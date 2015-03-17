@@ -1,12 +1,12 @@
 ﻿@ModelType Heat.PlantType
 @Code
-    ViewData("Title") = "Details"
+    ViewData("Title") = "Dettagli tipo di impianto"
 End Code
 
-<h2>Details</h2>
+<h2>Dettagli tipo di impianto</h2>
 
 <div>
-    <h4>PlantType</h4>
+    <h4>Tipo di impianto</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,6 +20,6 @@ End Code
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifica", "Edit", New With {.id = Model.ID}) |
+    @Html.ActionLink("Torna alla lista", "Index")
 </p>

@@ -4,8 +4,6 @@ Namespace Business
 
     Public Class CustomerBusiness
 
-
-
         Public Function GetPagedCustomer(sortOrder As String, skip As Integer, take As Integer) As List(Of Customer)
             Using db = New HeatDBContext
 

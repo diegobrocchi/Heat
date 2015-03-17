@@ -1,12 +1,12 @@
 ﻿@ModelType IEnumerable(Of Heat.Plant)
 @Code
-ViewData("Title") = "Index"
+    ViewData("Title") = "Impianti"
 End Code
 
-<h2>Index</h2>
+<h2>Impianti</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crea un nuovo impianto", "Create")
 </p>
 <table class="table">
     <tr>
@@ -94,9 +94,9 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.Fuel)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID })
+            @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
+            @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |
+            @Html.ActionLink("Cancella", "Delete", New With {.id = item.ID})
         </td>
     </tr>
 Next

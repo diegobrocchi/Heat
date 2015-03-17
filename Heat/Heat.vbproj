@@ -201,6 +201,8 @@
     <Compile Include="Controllers\PlantClassesController.vb" />
     <Compile Include="Controllers\PlantsController.vb" />
     <Compile Include="Controllers\PlantTypesController.vb" />
+    <Compile Include="Controllers\SearchController.vb" />
+    <Compile Include="Controllers\SettingsController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +235,10 @@
       <DependentUpon>201503081659008_Plants.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201503081659008_Plants.vb" />
+    <Compile Include="Migrations\201503141410172_customername_required.Designer.vb">
+      <DependentUpon>201503141410172_customername_required.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503141410172_customername_required.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
@@ -290,6 +296,9 @@
     <EmbeddedResource Include="Migrations\201503081659008_Plants.resx">
       <DependentUpon>201503081659008_Plants.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503141410172_customername_required.resx">
+      <DependentUpon>201503141410172_customername_required.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -314,7 +323,26 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <Content Include="Scripts\DataTables-1.10.5\media\images\Sorting icons.psd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.css" />
+    <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.min.css" />
+    <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\back_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\back_enabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\back_enabled_hover.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\favicon.ico" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\forward_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\forward_enabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\forward_enabled_hover.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_asc.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_both.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_desc.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\js\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables-1.10.5\media\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables-1.10.5\media\js\jquery.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -324,6 +352,7 @@
     <Content Include="Scripts\MvcFoolproofJQueryValidation.min.js" />
     <Content Include="Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Scripts\mvcvalidationextensions.unobtrusive.js" />
+    <Content Include="Scripts\Views\Customers\index.js" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
@@ -366,6 +395,10 @@
     <Content Include="Views\Plants\Details.vbhtml" />
     <Content Include="Views\Plants\Edit.vbhtml" />
     <Content Include="Views\Plants\Index.vbhtml" />
+    <Content Include="Views\Shared\_SearchPartial.vbhtml" />
+    <Content Include="Views\Search\index.vbhtml" />
+    <Content Include="Views\Settings\Index.vbhtml" />
+    <Content Include="Views\Shared\_indexPartial.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

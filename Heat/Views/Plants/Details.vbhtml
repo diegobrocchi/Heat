@@ -1,9 +1,9 @@
 ﻿@ModelType Heat.Plant
 @Code
-    ViewData("Title") = "Details"
+    ViewData("Title") = "Dettagli impianto"
 End Code
 
-<h2>Details</h2>
+<h2>Dettagli impianto</h2>
 
 <div>
     <h4>Plant</h4>

@@ -1,13 +1,13 @@
 ﻿@ModelType Heat.PlantType
 @Code
-    ViewData("Title") = "Delete"
+    ViewData("Title") = "Elimina un tipo di impianto"
 End Code
 
-<h2>Delete</h2>
+<h2>Elimina</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Sei sicuro di voler eliminare questo?</h3>
 <div>
-    <h4>PlantType</h4>
+    <h4>Tipo di impianto</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,8 +23,8 @@ End Code
         @Html.AntiForgeryToken()
 
         @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Elimina" class="btn btn-default" /> |
+            @Html.ActionLink("Torna alla lista", "Index")
         </div>
     End Using
 </div>

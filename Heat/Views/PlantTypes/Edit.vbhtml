@@ -1,15 +1,15 @@
 ﻿@ModelType Heat.PlantType
 @Code
-    ViewData("Title") = "Edit"
+    ViewData("Title") = "Modifica il tipo di impianto"
 End Code
 
-<h2>Edit</h2>
+<h2>Modifica il tipo di impianto</h2>
 
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>PlantType</h4>
+        <h4>Tipo di impianto</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.ID)
@@ -31,5 +31,5 @@ End Code
 End Using
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Torna alla lista", "Index")
 </div>

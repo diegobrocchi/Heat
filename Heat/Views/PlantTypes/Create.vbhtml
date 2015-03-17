@@ -1,9 +1,9 @@
 ﻿@ModelType Heat.PlantType
 @Code
-    ViewData("Title") = "Create"
+    ViewData("Title") = "Crea un nuovo tipo di impianto"
 End Code
 
-<h2>Create</h2>
+<h2>Crea un nuovo tipo di impianto</h2>
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()

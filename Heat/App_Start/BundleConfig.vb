@@ -5,7 +5,8 @@ Public Module BundleConfig
     Public Sub RegisterBundles(ByVal bundles As BundleCollection)
 
         bundles.Add(New ScriptBundle("~/bundles/jquery").Include(
-                    "~/Scripts/jquery-{version}.js"))
+                    "~/Scripts/jquery-{version}.js",
+                    "~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/jqueryval").Include(
                     "~/Scripts/jquery.validate*",
@@ -22,7 +23,8 @@ Public Module BundleConfig
 
         bundles.Add(New StyleBundle("~/Content/css").Include(
                   "~/Content/bootstrap.css",
-                  "~/Content/site.css"))
+                  "~/Content/site.css",
+                  "~/Scripts/DataTables-1.10.5/media/css/jquery.dataTables.css"))
     End Sub
 End Module
 

@@ -1,6 +1,6 @@
 ﻿@ModelType Heat.PlantClass
 @Code
-    ViewData("Title") = "Edit"
+    ViewData("Title") = "Modifica una classe di impianto"
 End Code
 
 <h2>Edit</h2>

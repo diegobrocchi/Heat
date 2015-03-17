@@ -29,7 +29,13 @@ End Code
                 @Html.ValidationMessageFor(Function(model) model.Address, "", New With {.class = "text-danger"})
             </div>
         </div>
-
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.PostalCode, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.PostalCode, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.PostalCode, "", New With {.class = "text-danger"})
+             </div>
+         </div>
         <div class="form-group">
             @Html.LabelFor(Function(model) model.City, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
@@ -37,7 +43,37 @@ End Code
                 @Html.ValidationMessageFor(Function(model) model.City, "", New With {.class = "text-danger"})
             </div>
         </div>
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.District, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.District, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.District, "", New With {.class = "text-danger"})
+             </div>
+         </div>
 
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.Telephone1, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.Telephone1, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.Telephone1, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.Telephone2, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.Telephone2, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.Telephone2, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.Telephone3, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.Telephone3, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.Telephone3, "", New With {.class = "text-danger"})
+             </div>
+         </div>
         <div class="form-group">
             @Html.LabelFor(Function(model) model.EMail, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">

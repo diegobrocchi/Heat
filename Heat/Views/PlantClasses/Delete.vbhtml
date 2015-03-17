@@ -1,6 +1,6 @@
 ﻿@ModelType Heat.PlantClass
 @Code
-    ViewData("Title") = "Delete"
+    ViewData("Title") = "Cancella una classe di impianto"
 End Code
 
 <h2>Delete</h2>

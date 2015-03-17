@@ -1,6 +1,6 @@
 ﻿@ModelType Heat.PlantClass
 @Code
-    ViewData("Title") = "Create"
+    ViewData("Title") = "Crea una nuova classe di impianto"
 End Code
 
 <h2>Create</h2>
