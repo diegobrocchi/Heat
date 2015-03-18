@@ -1,6 +1,7 @@
 ﻿Imports System.Web.Mvc
 
 Namespace Controllers
+    <Authorize> _
     Public Class SearchController
         Inherits Controller
 

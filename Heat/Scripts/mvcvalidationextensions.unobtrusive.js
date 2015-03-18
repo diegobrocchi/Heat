@@ -68,7 +68,7 @@
             var validateComparison = function (element, parameter, comparisonType) {
                 var obj = $(element);
 
-                if (obj.is(':not([data-val-required])') && obj.val() == null) {
+                if (obj.is(':not([data-val-required])') && (obj.val() == null || obj.val() == '')) {
                     return true;
                 }
 

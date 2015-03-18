@@ -41,9 +41,13 @@ End Class
 
 Public Class LoginViewModel
     <Required>
-    <Display(Name:="Email")>
-    <EmailAddress>
-    Public Property Email As String
+    <Display(Name:="Username")> _
+    Public Property Username As String
+
+    '<Required>
+    '<Display(Name:="Email")>
+    '<EmailAddress>
+    'Public Property Email As String
 
     <Required>
     <DataType(DataType.Password)>
@@ -59,6 +63,10 @@ Public Class RegisterViewModel
     <EmailAddress>
     <Display(Name:="Email")>
     Public Property Email As String
+
+    <Required> _
+    <Display(name:="Username")> _
+    Public Property Username As String
 
     <Required>
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=3)>

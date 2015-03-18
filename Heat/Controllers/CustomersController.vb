@@ -10,18 +10,20 @@ Imports Heat
 Imports Heat.Models
 
 Namespace Controllers
+
     Public Class CustomersController
         Inherits System.Web.Mvc.Controller
 
         Private db As New HeatDBContext
 
         ' GET: Customers
+
         Function Index(sortOrder As String) As ActionResult
 
             Dim custviewmodelb As New BusinessModelViewBuilder
 
-            'Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
-            Return PartialView("_indexPartial", custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
+            Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
+            'Return PartialView("_indexPartial", custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
 
         End Function
 

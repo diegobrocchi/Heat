@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports Heat
 
 Namespace Controllers
+    <Authorize> _
     Public Class PlantsController
         Inherits System.Web.Mvc.Controller
 

@@ -9,8 +9,7 @@ Public Module BundleConfig
                     "~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/jqueryval").Include(
-                    "~/Scripts/jquery.validate*",
-                    "~/Scripts/MvcFoolproofValidation.min.js"))
+                    "~/Scripts/jquery.validate*"))
 
         ' Use the development version of Modernizr to develop with and learn from. Then, when you're
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

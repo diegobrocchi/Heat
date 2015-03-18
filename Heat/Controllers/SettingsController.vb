@@ -1,6 +1,7 @@
 ﻿Imports System.Web.Mvc
 
 Namespace Controllers
+    <Authorize> _
     Public Class SettingsController
         Inherits Controller
 
@@ -9,6 +10,6 @@ Namespace Controllers
             Return View()
         End Function
 
-         
+
     End Class
 End Namespace
