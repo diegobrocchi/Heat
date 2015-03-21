@@ -9,8 +9,8 @@ Partial Public Class Startup
     ' For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
     Public Sub ConfigureAuth(app As IAppBuilder)
         ' Configure the db context, user manager and signin manager to use a single instance per request
-        app.CreatePerOwinContext(AddressOf ApplicationDbContext.Create)
-        app.CreatePerOwinContext(Of ApplicationUserManager)(AddressOf ApplicationUserManager.Create)
+        app.CreatePerOwinContext(AddressOf HeatIdentityDbContext.Create)
+        app.CreatePerOwinContext(Of HeatUserManager)(AddressOf HeatUserManager.Create)
         app.CreatePerOwinContext(Of ApplicationSignInManager)(AddressOf ApplicationSignInManager.Create)
 
         ' Enable the application to use a cookie to store information for the signed in user
@@ -21,7 +21,7 @@ Partial Public Class Startup
         app.UseCookieAuthentication(New CookieAuthenticationOptions() With {
             .AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
             .Provider = New CookieAuthenticationProvider() With {
-                .OnValidateIdentity = SecurityStampValidator.OnValidateIdentity(Of ApplicationUserManager, ApplicationUser)(
+                .OnValidateIdentity = SecurityStampValidator.OnValidateIdentity(Of HeatUserManager, HeatUser)(
                     validateInterval:=TimeSpan.FromMinutes(30),
                     regenerateIdentity:=Function(manager, user) user.GenerateUserIdentityAsync(manager))},
             .LoginPath = New PathString("/Account/Login")})
