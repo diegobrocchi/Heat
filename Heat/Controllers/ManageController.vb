@@ -10,10 +10,10 @@ Public Class ManageController
     End Sub
 
     Private _signInManager As ApplicationSignInManager
-    Private _userManager As ApplicationUserManager
+    Private _userManager As HeatUserManager
 
-    Public Sub New(appUserManager As ApplicationUserManager, appSignInManager As ApplicationSignInManager)
-        UserManager = appUserManager 
+    Public Sub New(appUserManager As HeatUserManager, appSignInManager As ApplicationSignInManager)
+        UserManager = appUserManager
         SignInManager = appSignInManager
     End Sub
 
@@ -26,11 +26,11 @@ Public Class ManageController
         End Set
     End Property
 
-    Public Property UserManager() As ApplicationUserManager
+    Public Property UserManager() As HeatUserManager
         Get
-            Return If(_userManager, HttpContext.GetOwinContext().GetUserManager(Of ApplicationUserManager)())
+            Return If(_userManager, HttpContext.GetOwinContext().GetUserManager(Of HeatUserManager)())
         End Get
-        Private Set(value As ApplicationUserManager)
+        Private Set(value As HeatUserManager)
             _userManager = value
         End Set
     End Property

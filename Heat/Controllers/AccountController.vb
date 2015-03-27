@@ -10,12 +10,12 @@ Imports Owin
 Public Class AccountController
     Inherits Controller
     Private _signInManager As ApplicationSignInManager
-    Private _userManager As ApplicationUserManager
+    Private _userManager As HeatUserManager
 
     Public Sub New()
     End Sub
 
-    Public Sub New(appUserMan As ApplicationUserManager, signInMan As ApplicationSignInManager)
+    Public Sub New(appUserMan As HeatUserManager, signInMan As ApplicationSignInManager)
         UserManager = appUserMan
         SignInManager = signInMan
     End Sub
@@ -24,16 +24,16 @@ Public Class AccountController
         Get
             Return If(_signInManager, HttpContext.GetOwinContext().[Get](Of ApplicationSignInManager)())
         End Get
-        Private Set
+        Private Set(value As ApplicationSignInManager)
             _signInManager = value
         End Set
     End Property
 
-    Public Property UserManager() As ApplicationUserManager
+    Public Property UserManager() As HeatUserManager
         Get
-            Return If(_userManager, HttpContext.GetOwinContext().GetUserManager(Of ApplicationUserManager)())
+            Return If(_userManager, HttpContext.GetOwinContext().GetUserManager(Of HeatUserManager)())
         End Get
-        Private Set
+        Private Set(value As HeatUserManager)
             _userManager = value
         End Set
     End Property
@@ -130,7 +130,7 @@ Public Class AccountController
     <ValidateAntiForgeryToken>
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
         If ModelState.IsValid Then
-            Dim user = New ApplicationUser() With {
+            Dim user = New HeatUser() With {
                             .UserName = model.Username,
             .Email = model.Email
             }
@@ -302,7 +302,7 @@ Public Class AccountController
         End If
 
         ' Sign in the user with this external login provider if the user already has a login
-        Dim result = Await SignInManager.ExternalSignInAsync(loginInfo, isPersistent := False)
+        Dim result = Await SignInManager.ExternalSignInAsync(loginInfo, isPersistent:=False)
         Select Case result
             Case SignInStatus.Success
                 Return RedirectToLocal(returnUrl)
@@ -330,28 +330,28 @@ Public Class AccountController
     <ValidateAntiForgeryToken>
     Public Async Function ExternalLoginConfirmation(model As ExternalLoginConfirmationViewModel, returnUrl As String) As Task(Of ActionResult)
         If User.Identity.IsAuthenticated Then
-          Return RedirectToAction("Index", "Manage")
+            Return RedirectToAction("Index", "Manage")
         End If
 
         If ModelState.IsValid Then
-          ' Get the information about the user from the external login provider
-          Dim info = Await AuthenticationManager.GetExternalLoginInfoAsync()
-          If info Is Nothing Then
-              Return View("ExternalLoginFailure")
-          End If
-          Dim userInfo = New ApplicationUser() With {
-              .UserName = model.Email,
-              .Email = model.Email
-          }
-          Dim result = Await UserManager.CreateAsync(userInfo)
-          If result.Succeeded Then
-            result = Await UserManager.AddLoginAsync(userInfo.Id, info.Login)
-            If result.Succeeded Then
-                Await SignInManager.SignInAsync(userInfo, isPersistent := False, rememberBrowser := False)
-                Return RedirectToLocal(returnUrl)
+            ' Get the information about the user from the external login provider
+            Dim info = Await AuthenticationManager.GetExternalLoginInfoAsync()
+            If info Is Nothing Then
+                Return View("ExternalLoginFailure")
             End If
-          End If
-          AddErrors(result)
+            Dim userInfo = New HeatUser() With {
+                .UserName = model.Email,
+                .Email = model.Email
+            }
+            Dim result = Await UserManager.CreateAsync(userInfo)
+            If result.Succeeded Then
+                result = Await UserManager.AddLoginAsync(userInfo.Id, info.Login)
+                If result.Succeeded Then
+                    Await SignInManager.SignInAsync(userInfo, isPersistent:=False, rememberBrowser:=False)
+                    Return RedirectToLocal(returnUrl)
+                End If
+            End If
+            AddErrors(result)
         End If
 
         ViewBag.ReturnUrl = returnUrl

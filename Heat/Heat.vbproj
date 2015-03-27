@@ -47,6 +47,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="elmahappender_log4net">
+      <HintPath>..\packages\elmahappender_log4net.1.0.0.0\lib\net45\elmahappender_log4net.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -54,6 +64,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -213,10 +226,15 @@
     <Compile Include="BLL\CustomerBusiness.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\CustomersController.vb" />
+    <Compile Include="Controllers\FuelsController.vb" />
+    <Compile Include="Controllers\InventoryMovementsController.vb" />
+    <Compile Include="Controllers\InvoicesController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\PaymentsController.vb" />
     <Compile Include="Controllers\PlantClassesController.vb" />
     <Compile Include="Controllers\PlantsController.vb" />
     <Compile Include="Controllers\PlantTypesController.vb" />
+    <Compile Include="Controllers\ProductsController.vb" />
     <Compile Include="Controllers\SearchController.vb" />
     <Compile Include="Controllers\SettingsController.vb" />
     <Compile Include="Global.asax.vb">
@@ -255,17 +273,36 @@
       <DependentUpon>201503141410172_customername_required.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201503141410172_customername_required.vb" />
+    <Compile Include="Migrations\201503210720459_products.Designer.vb">
+      <DependentUpon>201503210720459_products.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503210720459_products.vb" />
+    <Compile Include="Migrations\201503210743286_invoice.Designer.vb">
+      <DependentUpon>201503210743286_invoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503210743286_invoice.vb" />
+    <Compile Include="Migrations\201503211612094_fuel.Designer.vb">
+      <DependentUpon>201503211612094_fuel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503211612094_fuel.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\Action.vb" />
     <Compile Include="Models\Address.vb" />
     <Compile Include="Models\AddressType.vb" />
+    <Compile Include="Models\causation.vb" />
+    <Compile Include="Models\CausationType.vb" />
     <Compile Include="Models\Customer.vb" />
+    <Compile Include="Models\Deposit.vb" />
+    <Compile Include="Models\Fuel.vb" />
     <Compile Include="Models\IdentityModels.vb" />
     <Compile Include="Models\InventoryMovement.vb" />
+    <Compile Include="Models\Invoice.vb" />
+    <Compile Include="Models\InvoiceRow.vb" />
     <Compile Include="Models\Item.vb" />
     <Compile Include="Models\ManageViewModels.vb" />
+    <Compile Include="Models\Payment.vb" />
     <Compile Include="Models\Plant.vb" />
     <Compile Include="Models\PlantClass.vb" />
     <Compile Include="Models\PlantType.vb" />
@@ -314,6 +351,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503141410172_customername_required.resx">
       <DependentUpon>201503141410172_customername_required.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503210720459_products.resx">
+      <DependentUpon>201503210720459_products.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503210743286_invoice.resx">
+      <DependentUpon>201503210743286_invoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503211612094_fuel.resx">
+      <DependentUpon>201503211612094_fuel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -432,6 +478,31 @@
     <Content Include="Views\Search\index.vbhtml" />
     <Content Include="Views\Settings\Index.vbhtml" />
     <Content Include="Views\Shared\_indexPartial.vbhtml" />
+    <Content Include="Views\Products\Create.vbhtml" />
+    <Content Include="Views\Products\Delete.vbhtml" />
+    <Content Include="Views\Products\Details.vbhtml" />
+    <Content Include="Views\Products\Edit.vbhtml" />
+    <Content Include="Views\Products\Index.vbhtml" />
+    <Content Include="Views\InventoryMovements\Create.vbhtml" />
+    <Content Include="Views\InventoryMovements\Delete.vbhtml" />
+    <Content Include="Views\InventoryMovements\Details.vbhtml" />
+    <Content Include="Views\InventoryMovements\Edit.vbhtml" />
+    <Content Include="Views\InventoryMovements\Index.vbhtml" />
+    <Content Include="Views\Invoices\Create.vbhtml" />
+    <Content Include="Views\Invoices\Delete.vbhtml" />
+    <Content Include="Views\Invoices\Details.vbhtml" />
+    <Content Include="Views\Invoices\Edit.vbhtml" />
+    <Content Include="Views\Invoices\Index.vbhtml" />
+    <Content Include="Views\Payments\Create.vbhtml" />
+    <Content Include="Views\Payments\Delete.vbhtml" />
+    <Content Include="Views\Payments\Details.vbhtml" />
+    <Content Include="Views\Payments\Edit.vbhtml" />
+    <Content Include="Views\Payments\Index.vbhtml" />
+    <Content Include="Views\Fuels\Create.vbhtml" />
+    <Content Include="Views\Fuels\Delete.vbhtml" />
+    <Content Include="Views\Fuels\Details.vbhtml" />
+    <Content Include="Views\Fuels\Edit.vbhtml" />
+    <Content Include="Views\Fuels\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
