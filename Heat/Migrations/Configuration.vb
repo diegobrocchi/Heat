@@ -4,6 +4,7 @@ Imports System.Data.Entity.Migrations
 Imports System.Linq
 Imports Microsoft.AspNet.Identity.EntityFramework
 Imports Microsoft.AspNet.Identity
+Imports Heat.Repositories
 
 Namespace Migrations
 
@@ -17,18 +18,53 @@ Namespace Migrations
 
         Protected Overrides Sub Seed(context As HeatDBContext)
             Debug.Print("Seeding...")
-            '  This method will be called after migrating to the latest version.
+            Dim Fuel1 As New Models.Fuel
+            Dim Fuel2 As New Models.Fuel
+            Dim Fuel3 As New Models.Fuel
 
-            '  You can use the DbSet(Of T).AddOrUpdate() helper extension method 
-            '  to avoid creating duplicate seed data. E.g.
-            '
-            '    context.People.AddOrUpdate(
-            '       Function(c) c.FullName,
-            '       New Customer() With {.FullName = "Andrew Peters"},
-            '       New Customer() With {.FullName = "Brice Lambson"},
-            '       New Customer() With {.FullName = "Rowan Miller"})
+            Dim CausalDocument1 As New Models.CausalDocument
+            Dim CausalDocument2 As New Models.CausalDocument
+            Dim CausalDocument3 As New Models.CausalDocument
 
-            context.Payments.AddOrUpdate(New Models.Payment With {.Code = "RIBA99", .Description = "Ricevuta bancaria 99 giorni fine mese"})
+            Dim Payment1 As New Models.Payment
+            Dim Payment2 As New Models.Payment
+            Dim Payment3 As New Models.Payment
+
+            Fuel1.Name = "Gasolio"
+            Fuel2.Name = "Metano"
+            Fuel3.Name = "Cippato"
+
+            CausalDocument1.Code = "VEN"
+            CausalDocument1.Description = "Vendita"
+
+            CausalDocument2.Code = "SER"
+            CausalDocument2.Description = "Servizi"
+
+            CausalDocument3.Code = "ACQ"
+            CausalDocument3.Description = "Acquisto"
+
+            Payment1.Code = "RIBA30"
+            Payment1.Description = "Ricevuta bancaria a 30 giorni"
+
+            Payment2.Code = "RIBA60"
+            Payment2.Description = "Ricevuta bancaria a 60 giorni"
+
+            Payment3.Code = "RIBA90"
+            Payment3.Description = "Ricevuta bancaria a 90 giorni"
+
+            context.CausalDocuments.AddOrUpdate(CausalDocument1)
+            context.CausalDocuments.AddOrUpdate(CausalDocument2)
+            context.CausalDocuments.AddOrUpdate(CausalDocument3)
+
+            context.Fuels.AddOrUpdate(Fuel1)
+            context.Fuels.AddOrUpdate(Fuel2)
+            context.Fuels.AddOrUpdate(Fuel3)
+
+            context.Payments.AddOrUpdate(Payment1)
+            context.Payments.AddOrUpdate(Payment2)
+            context.Payments.AddOrUpdate(Payment3)
+
+
             context.SaveChanges()
 
             Using manager = New HeatUserManager(New UserStore(Of HeatUser)(New HeatIdentityDbContext))

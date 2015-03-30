@@ -11,92 +11,92 @@ Imports Heat.Models
 Imports Heat.Repositories
 
 Namespace Controllers
-    Public Class InvoicesController
+    Public Class CausalDocumentsController
         Inherits System.Web.Mvc.Controller
 
         Private db As New HeatDBContext
 
-        ' GET: Invoices
+        ' GET: CausalDocuments
         Function Index() As ActionResult
-            Return View(db.Invoices.ToList())
+            Return View("index", db.CausalDocuments.ToList())
         End Function
 
-        ' GET: Invoices/Details/5
+        ' GET: CausalDocuments/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim causalDocument As CausalDocument = db.CausalDocuments.Find(id)
+            If IsNothing(causalDocument) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(causalDocument)
         End Function
 
-        ' GET: Invoices/Create
+        ' GET: CausalDocuments/Create
         Function Create() As ActionResult
             Return View()
         End Function
 
-        ' POST: Invoices/Create
+        ' POST: CausalDocuments/Create
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
+        Function Create(<Bind(Include:="ID,Code,Description")> ByVal causalDocument As CausalDocument) As ActionResult
             If ModelState.IsValid Then
-                db.Invoices.Add(invoice)
+                db.CausalDocuments.Add(causalDocument)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(invoice)
+            Return View(causalDocument)
         End Function
 
-        ' GET: Invoices/Edit/5
+        ' GET: CausalDocuments/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim causalDocument As CausalDocument = db.CausalDocuments.Find(id)
+            If IsNothing(causalDocument) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(causalDocument)
         End Function
 
-        ' POST: Invoices/Edit/5
+        ' POST: CausalDocuments/Edit/5
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
+        Function Edit(<Bind(Include:="ID,Code,Description")> ByVal causalDocument As CausalDocument) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(invoice).State = EntityState.Modified
+                db.Entry(causalDocument).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(invoice)
+            Return View(causalDocument)
         End Function
 
-        ' GET: Invoices/Delete/5
+        ' GET: CausalDocuments/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim causalDocument As CausalDocument = db.CausalDocuments.Find(id)
+            If IsNothing(causalDocument) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(causalDocument)
         End Function
 
-        ' POST: Invoices/Delete/5
+        ' POST: CausalDocuments/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            db.Invoices.Remove(invoice)
+            Dim causalDocument As CausalDocument = db.CausalDocuments.Find(id)
+            db.CausalDocuments.Remove(causalDocument)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

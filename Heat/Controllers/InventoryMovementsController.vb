@@ -8,16 +8,17 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Models
+Imports Heat.Repositories
 
 Namespace Controllers
-    Public Class InventoryMovementsController
+    Public Class WarehouseMovementsController
         Inherits System.Web.Mvc.Controller
 
         Private db As New HeatDBContext
 
         ' GET: InventoryMovements
         Function Index() As ActionResult
-            Return View(db.InventoryMovement.ToList())
+            Return View(db.WarehouseMovement.ToList())
         End Function
 
         ' GET: InventoryMovements/Details/5
@@ -25,7 +26,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim inventoryMovement As InventoryMovement = db.InventoryMovement.Find(id)
+            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
             If IsNothing(inventoryMovement) Then
                 Return HttpNotFound()
             End If
@@ -42,9 +43,9 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Quantity,ExecDate,Note")> ByVal inventoryMovement As InventoryMovement) As ActionResult
+        Function Create(<Bind(Include:="ID,Quantity,ExecDate,Note")> ByVal inventoryMovement As WarehouseMovement) As ActionResult
             If ModelState.IsValid Then
-                db.InventoryMovement.Add(inventoryMovement)
+                db.WarehouseMovement.Add(inventoryMovement)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
@@ -56,7 +57,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim inventoryMovement As InventoryMovement = db.InventoryMovement.Find(id)
+            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
             If IsNothing(inventoryMovement) Then
                 Return HttpNotFound()
             End If
@@ -68,7 +69,7 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Quantity,ExecDate,Note")> ByVal inventoryMovement As InventoryMovement) As ActionResult
+        Function Edit(<Bind(Include:="ID,Quantity,ExecDate,Note")> ByVal inventoryMovement As WarehouseMovement) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(inventoryMovement).State = EntityState.Modified
                 db.SaveChanges()
@@ -82,7 +83,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim inventoryMovement As InventoryMovement = db.InventoryMovement.Find(id)
+            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
             If IsNothing(inventoryMovement) Then
                 Return HttpNotFound()
             End If
@@ -94,8 +95,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim inventoryMovement As InventoryMovement = db.InventoryMovement.Find(id)
-            db.InventoryMovement.Remove(inventoryMovement)
+            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
+            db.WarehouseMovement.Remove(inventoryMovement)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

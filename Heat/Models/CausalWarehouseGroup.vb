@@ -1,5 +1,5 @@
 ﻿
-Public Class CausationType
+Public Class CausalWarehouseGroup
     Property ID As Integer
     Property Code As String
     Property Description As String

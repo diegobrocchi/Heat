@@ -1,20 +1,20 @@
-﻿@ModelType IEnumerable(Of Heat.Models.Invoice)
+﻿@ModelType IEnumerable(Of Heat.Models.CausalDocument)
 @Code
 ViewData("Title") = "Index"
 End Code
 
-<h2>Fatture</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crea nuova fattura", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.DocNumber)
+            @Html.DisplayNameFor(Function(model) model.Code)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Sum)
+            @Html.DisplayNameFor(Function(model) model.Description)
         </th>
         <th></th>
     </tr>
@@ -22,10 +22,10 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.DocNumber)
+            @Html.DisplayFor(Function(modelItem) item.Code)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.Sum)
+            @Html.DisplayFor(Function(modelItem) item.Description)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |

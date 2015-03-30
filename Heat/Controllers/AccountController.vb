@@ -5,19 +5,24 @@ Imports Microsoft.AspNet.Identity
 Imports Microsoft.AspNet.Identity.Owin
 Imports Microsoft.Owin.Security
 Imports Owin
+Imports log4net
+Imports System.Security.Principal
 
 <Authorize>
 Public Class AccountController
     Inherits Controller
     Private _signInManager As ApplicationSignInManager
     Private _userManager As HeatUserManager
+    Private _logger As ILog
 
     Public Sub New()
+        _logger = LogManager.GetLogger(GetType(AccountController))
     End Sub
 
     Public Sub New(appUserMan As HeatUserManager, signInMan As ApplicationSignInManager)
         UserManager = appUserMan
         SignInManager = signInMan
+        _logger = LogManager.GetLogger(GetType(AccountController))
     End Sub
 
     Public Property SignInManager() As ApplicationSignInManager
@@ -42,6 +47,7 @@ Public Class AccountController
     ' GET: /Account/Login
     <AllowAnonymous>
     Public Function Login(returnUrl As String) As ActionResult
+        _logger.Info("Function Login entered from GET request")
         ViewBag.ReturnUrl = returnUrl
         Return View()
     End Function
@@ -52,7 +58,9 @@ Public Class AccountController
     <AllowAnonymous>
     <ValidateAntiForgeryToken>
     Public Async Function Login(model As LoginViewModel, returnUrl As String) As Task(Of ActionResult)
+        _logger.Info("Function Login entered from POST request")
         If Not ModelState.IsValid Then
+            _logger.Debug("ModelState in not valid")
             Return View(model)
         End If
 
@@ -104,7 +112,7 @@ Public Class AccountController
         ' If a user enters incorrect codes for a specified amount of time then the user account 
         ' will be locked out for a specified amount of time. 
         ' You can configure the account lockout settings in IdentityConfig
-        Dim result = Await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent := model.RememberMe, rememberBrowser := model.RememberBrowser)
+        Dim result = Await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:=model.RememberMe, rememberBrowser:=model.RememberBrowser)
         Select Case result
             Case SignInStatus.Success
                 Return RedirectToLocal(model.ReturnUrl)
@@ -120,6 +128,7 @@ Public Class AccountController
     ' GET: /Account/Register
     <AllowAnonymous> _
     Public Function Register() As ActionResult
+        _logger.Info("Function Register entered from GET request.")
         Return View()
     End Function
 
@@ -129,7 +138,9 @@ Public Class AccountController
     <AllowAnonymous> _
     <ValidateAntiForgeryToken>
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
+        _logger.Info("Function Registered entered from POST request.")
         If ModelState.IsValid Then
+            _logger.Debug("ModelState is valid. Username: " & model.Username & "; Email:" & model.Email)
             Dim user = New HeatUser() With {
                             .UserName = model.Username,
             .Email = model.Email
@@ -137,6 +148,7 @@ Public Class AccountController
 
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
+                _logger.Debug("User creation has succeeded.")
                 Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
 
                 ' For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -151,6 +163,7 @@ Public Class AccountController
         End If
 
         ' If we got this far, something failed, redisplay form
+        _logger.Debug("Something gone wrong: redisplay form.")
         Return View(model)
     End Function
 
@@ -363,7 +376,9 @@ Public Class AccountController
     <HttpPost>
     <ValidateAntiForgeryToken>
     Public Function LogOff() As ActionResult
+        _logger.Info("Function LogOff entered from POST request")
         AuthenticationManager.SignOut()
+        'HttpContext.User = New GenericPrincipal(New GenericIdentity(String.Empty), Nothing)
         Return RedirectToAction("Index", "Home")
     End Function
 
@@ -389,7 +404,7 @@ Public Class AccountController
         MyBase.Dispose(disposing)
     End Sub
 
-    #Region "Helpers"
+#Region "Helpers"
     ' Used for XSRF protection when adding external logins
     Private Const XsrfKey As String = "XsrfId"
 
@@ -433,10 +448,10 @@ Public Class AccountController
                 .RedirectUri = RedirectUri
             }
             If UserId IsNot Nothing Then
-              properties.Dictionary(XsrfKey) = UserId
+                properties.Dictionary(XsrfKey) = UserId
             End If
             context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider)
         End Sub
     End Class
-    #End Region
+#End Region
 End Class

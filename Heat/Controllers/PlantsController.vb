@@ -7,6 +7,7 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports Heat
+Imports Heat.Repositories
 
 Namespace Controllers
     <Authorize> _

@@ -1,8 +1,9 @@
 ﻿Imports Heat.Models
+Imports Heat.Repositories
 
 Namespace Business
 
-    Public Class CustomerBusiness
+    Public Class CustomerManager
 
         Public Function GetPagedCustomer(sortOrder As String, skip As Integer, take As Integer) As List(Of Customer)
             Using db = New HeatDBContext

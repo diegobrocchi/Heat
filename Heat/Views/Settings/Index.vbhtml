@@ -8,6 +8,7 @@ End Code
     <li class="list-group-item">@Html.ActionLink("Tipi di impianti", "index", "PlantTypes")</li>
     <li class="list-group-item">@Html.ActionLink("Classi di impianti", "index", "PlantClasses")</li>
     <li class="list-group-item">@Html.ActionLink("Combustibili","index","Fuels")</li>
+    <li class="list-group-item">@Html.ActionLink("Causali di documento","index", "causalDocuments")</li>
 </ul>
 
 
