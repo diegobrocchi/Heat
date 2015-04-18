@@ -9,7 +9,7 @@
         Property Customer As Customer
         Property CreationDate As DateTime
         Property PrintDate As DateTime
-        Property Numerator As Numerator
+        Property Numerator As Numbering
 
 
     End Class

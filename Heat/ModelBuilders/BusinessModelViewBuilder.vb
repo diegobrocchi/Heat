@@ -1,5 +1,5 @@
 ﻿Imports Heat.Models
-Imports Heat.Business
+Imports Heat.Manager
 
 Public Class BusinessModelViewBuilder
 

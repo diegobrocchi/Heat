@@ -1,6 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports Heat.Business
+Imports Heat.Manager
 Imports System.Web.Mvc
 Imports Heat.Repositories
 
@@ -9,19 +9,19 @@ Public Class NumeratorBusinessTest
 
     <TestMethod> _
     Public Sub GetNext_ReturnsNext()
-        Dim n As New Numerator
+        Dim n As New Numbering
         Dim db As New HeatDBContext
 
         n.Code = "ABCD"
         n.Description = "ambaraba"
         n.LastValue = 0
 
-        db.Numerators.Add(n)
+        db.Numberings.Add(n)
         db.SaveChanges()
 
         Assert.IsTrue(NumeratorManager.GetNext(n) > 0)
 
-        db.Numerators.Remove(n)
+        db.Numberings.Remove(n)
         db.SaveChanges()
 
 

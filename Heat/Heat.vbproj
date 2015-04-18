@@ -49,6 +49,9 @@
     <Reference Include="Elmah.Mvc">
       <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="elmahappender_log4net">
+      <HintPath>..\packages\elmahappender_log4net.1.0.0.0\lib\net45\elmahappender_log4net.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -163,8 +166,10 @@
     <Compile Include="App_Start\IdentityConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
-    <Compile Include="BLL\CustomerManager.vb" />
-    <Compile Include="BLL\NumeratorManager.vb" />
+    <Compile Include="Controllers\DocumentTypesController.vb" />
+    <Compile Include="Controllers\NumeratorsController.vb" />
+    <Compile Include="Manager\CustomerManager.vb" />
+    <Compile Include="Manager\NumeratorManager.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\CausalDocumentsController.vb" />
     <Compile Include="Controllers\CustomersController.vb" />
@@ -227,9 +232,20 @@
       <DependentUpon>201503211612094_fuel.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201503211612094_fuel.vb" />
+    <Compile Include="Migrations\201503311921201_numbering.Designer.vb">
+      <DependentUpon>201503311921201_numbering.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503311921201_numbering.vb" />
+    <Compile Include="Migrations\201503311930565_documenttype.Designer.vb">
+      <DependentUpon>201503311930565_documenttype.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503311930565_documenttype.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
-    <Compile Include="Models\AccountViewModels.vb" />
+    <Compile Include="ViewModels\DocumentTypeAddViewModel.vb" />
+    <Compile Include="ViewModels\InvoiceCreateViewModel.vb" />
+    <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
+    <Compile Include="ViewModels\AccountViewModels.vb" />
     <Compile Include="Models\Action.vb" />
     <Compile Include="Models\Address.vb" />
     <Compile Include="Models\AddressType.vb" />
@@ -239,7 +255,7 @@
     <Compile Include="Models\Customer.vb" />
     <Compile Include="Models\Document.vb" />
     <Compile Include="Models\DocumentType.vb" />
-    <Compile Include="Models\Numerator.vb" />
+    <Compile Include="Models\Numbering.vb" />
     <Compile Include="Models\Warehouse.vb" />
     <Compile Include="Models\Fuel.vb" />
     <Compile Include="Models\IdentityModels.vb" />
@@ -247,7 +263,7 @@
     <Compile Include="Models\Invoice.vb" />
     <Compile Include="Models\InvoiceRow.vb" />
     <Compile Include="Models\Item.vb" />
-    <Compile Include="Models\ManageViewModels.vb" />
+    <Compile Include="ViewModels\ManageViewModels.vb" />
     <Compile Include="Models\Payment.vb" />
     <Compile Include="Models\Plant.vb" />
     <Compile Include="Models\PlantClass.vb" />
@@ -306,6 +322,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503211612094_fuel.resx">
       <DependentUpon>201503211612094_fuel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503311921201_numbering.resx">
+      <DependentUpon>201503311921201_numbering.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503311930565_documenttype.resx">
+      <DependentUpon>201503311930565_documenttype.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -462,6 +484,16 @@
     <Content Include="Views\CausalDocuments\Details.vbhtml" />
     <Content Include="Views\CausalDocuments\Edit.vbhtml" />
     <Content Include="Views\CausalDocuments\Index.vbhtml" />
+    <Content Include="Views\Numberings\Create.vbhtml" />
+    <Content Include="Views\Numberings\Delete.vbhtml" />
+    <Content Include="Views\Numberings\Details.vbhtml" />
+    <Content Include="Views\Numberings\Edit.vbhtml" />
+    <Content Include="Views\Numberings\Index.vbhtml" />
+    <Content Include="Views\DocumentTypes\Create.vbhtml" />
+    <Content Include="Views\DocumentTypes\Delete.vbhtml" />
+    <Content Include="Views\DocumentTypes\Details.vbhtml" />
+    <Content Include="Views\DocumentTypes\Edit.vbhtml" />
+    <Content Include="Views\DocumentTypes\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

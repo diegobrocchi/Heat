@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Models.Invoice
+﻿@ModelType Heat.viewmodels.InvoiceCreateViewModel
 @Code
     ViewData("Title") = "Create"
 End Code

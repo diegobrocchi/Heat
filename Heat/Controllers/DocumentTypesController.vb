@@ -6,103 +6,101 @@ Imports System.Linq
 Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
-Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
 Imports Heat.Viewmodels
 
 Namespace Controllers
-    Public Class InvoicesController
+    Public Class DocumentTypesController
         Inherits System.Web.Mvc.Controller
 
         Private db As New HeatDBContext
-        Private modelBuilder As New InvoiceModelBuilder(db)
 
-        ' GET: Invoices
+        ' GET: DocumentTypes
         Function Index() As ActionResult
-            Return View(db.Invoices.ToList())
+            Return View(db.DocumentTypes.ToList())
         End Function
 
-        ' GET: Invoices/Details/5
+        ' GET: DocumentTypes/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim documentType As DocumentType = db.DocumentTypes.Find(id)
+            If IsNothing(documentType) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(documentType)
         End Function
 
-        ' GET: Invoices/Create
-        Function Create(customer As Customer) As ActionResult
-            Dim ivm As InvoiceCreateViewModel
+        ' GET: DocumentTypes/Create
+        Function Create() As ActionResult
+            Dim dtvm As New DocumentTypeAddViewModel
 
-            ivm = modelBuilder.GetInvoiceCreateViewModel(customer)
+            dtvm.NumberingList = New SelectList(db.Numberings.ToList, "ID", "Code")
 
-            Return View(ivm)
+            Return View(dtvm)
         End Function
 
-        ' POST: Invoices/Create
+        ' POST: DocumentTypes/Create
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
+        Function Create(<Bind(Include:="ID,Name,Description")> ByVal documentType As DocumentType) As ActionResult
             If ModelState.IsValid Then
-                db.Invoices.Add(invoice)
+                db.DocumentTypes.Add(documentType)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(invoice)
+            Return View(documentType)
         End Function
 
-        ' GET: Invoices/Edit/5
+        ' GET: DocumentTypes/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim documentType As DocumentType = db.DocumentTypes.Find(id)
+            If IsNothing(documentType) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(documentType)
         End Function
 
-        ' POST: Invoices/Edit/5
+        ' POST: DocumentTypes/Edit/5
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
+        Function Edit(<Bind(Include:="ID,Name,Description")> ByVal documentType As DocumentType) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(invoice).State = EntityState.Modified
+                db.Entry(documentType).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(invoice)
+            Return View(documentType)
         End Function
 
-        ' GET: Invoices/Delete/5
+        ' GET: DocumentTypes/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim documentType As DocumentType = db.DocumentTypes.Find(id)
+            If IsNothing(documentType) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(documentType)
         End Function
 
-        ' POST: Invoices/Delete/5
+        ' POST: DocumentTypes/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim invoice As Invoice = db.Invoices.Find(id)
-            db.Invoices.Remove(invoice)
+            Dim documentType As DocumentType = db.DocumentTypes.Find(id)
+            db.DocumentTypes.Remove(documentType)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

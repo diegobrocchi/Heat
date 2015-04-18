@@ -1,6 +1,6 @@
 ﻿Imports Heat.Repositories
 
-Namespace Business
+Namespace Manager
 
     Public NotInheritable Class NumeratorManager
         Private Shared ReadOnly lazy As New Lazy(Of NumeratorManager)(Function() New NumeratorManager)
@@ -14,13 +14,13 @@ Namespace Business
         Private Sub New()
         End Sub
 
-        Public Shared Function GetNext(numerator As Numerator) As Integer
+        Public Shared Function GetNext(numbering As Numbering) As Integer
             Dim db As New HeatDBContext
             Dim lastvalue As Integer
 
-            Dim dbNum As Numerator
+            Dim dbNum As Numbering
 
-            dbNum = db.Numerators.Find(numerator.ID)
+            dbNum = db.Numberings.Find(numbering.ID)
 
             lastvalue = dbNum.LastValue + 1
             dbNum.LastValue = lastvalue + 1
@@ -30,7 +30,7 @@ Namespace Business
             Return dbNum.LastValue
         End Function
 
-         
+
 
     End Class
 End Namespace

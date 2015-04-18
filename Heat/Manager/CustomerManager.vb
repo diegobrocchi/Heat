@@ -1,7 +1,7 @@
 ﻿Imports Heat.Models
 Imports Heat.Repositories
 
-Namespace Business
+Namespace Manager
 
     Public Class CustomerManager
 

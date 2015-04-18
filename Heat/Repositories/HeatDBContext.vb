@@ -32,7 +32,8 @@ Namespace Repositories
         Property Payments As DbSet(Of Payment)
         Property Fuels As DbSet(Of Fuel)
         Property CausalDocuments As DbSet(Of CausalDocument)
-        Property Numerators As DbSet(Of Numerator)
+        Property Numberings As DbSet(Of Numbering)
+        Public Property DocumentTypes As System.Data.Entity.DbSet(Of Models.DocumentType)
     End Class
 
 End Namespace
