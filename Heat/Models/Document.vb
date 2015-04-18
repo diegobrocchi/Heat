@@ -11,7 +11,6 @@
         Property PrintDate As DateTime
         Property Numerator As Numbering
 
-
     End Class
 End Namespace
 

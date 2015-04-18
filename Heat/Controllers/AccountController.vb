@@ -377,7 +377,8 @@ Public Class AccountController
     <ValidateAntiForgeryToken>
     Public Function LogOff() As ActionResult
         _logger.Info("Function LogOff entered from POST request")
-        AuthenticationManager.SignOut()
+        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie)
+        'AuthenticationManager.SignOut()
         'HttpContext.User = New GenericPrincipal(New GenericIdentity(String.Empty), Nothing)
         Return RedirectToAction("Index", "Home")
     End Function

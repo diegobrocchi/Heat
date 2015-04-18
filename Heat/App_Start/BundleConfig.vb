@@ -14,7 +14,7 @@ Public Module BundleConfig
         ' Use the development version of Modernizr to develop with and learn from. Then, when you're
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
         bundles.Add(New ScriptBundle("~/bundles/modernizr").Include(
-                    "~/Scripts/modernizr-*"))
+                    "~/Scripts/modernizr-{version}.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/bootstrap").Include(
                   "~/Scripts/bootstrap.js",
@@ -23,7 +23,12 @@ Public Module BundleConfig
         bundles.Add(New StyleBundle("~/Content/css").Include(
                   "~/Content/bootstrap.css",
                   "~/Content/site.css",
-                  "~/Scripts/DataTables-1.10.5/media/css/jquery.dataTables.css"))
+                  "~/Content/dataTables.bootstrap.css"))
+        '"~/Scripts/DataTables-1.10.5/media/css/jquery.dataTables.css"))
+
+
+        BundleTable.EnableOptimizations = True
+
     End Sub
 End Module
 

@@ -9,7 +9,7 @@
         Property Sum As Decimal
         Property InvoiceRows As List(Of InvoiceRow)
         Property Payment As Payment
-        Property CausalWarehouse As CausalWarehouse
+        'Property CausalWarehouse As CausalWarehouse
 
     End Class
 End Namespace

@@ -250,7 +250,6 @@
     <Compile Include="Models\Address.vb" />
     <Compile Include="Models\AddressType.vb" />
     <Compile Include="Models\CausalDocument.vb" />
-    <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseGroup.vb" />
     <Compile Include="Models\Customer.vb" />
     <Compile Include="Models\Document.vb" />
@@ -345,10 +344,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\Images\colorful-stones.jpg" />
     <Content Include="Content\Images\silhouette-of-colored-smoke.jpg" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\bootstrap-original.css.map" />
+    <Content Include="Content\signin.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -499,7 +500,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
