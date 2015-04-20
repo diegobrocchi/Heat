@@ -76,7 +76,7 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,FirstName,Surname,CompanyName,EMail,Website")> ByVal customer As Customer) As ActionResult
+        Function Edit(<Bind(Include:="ID,Name,Surname,CompanyName,EMail,Website")> ByVal customer As Customer) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(customer).State = EntityState.Modified
                 db.SaveChanges()
