@@ -6,7 +6,8 @@ Public Module BundleConfig
 
         bundles.Add(New ScriptBundle("~/bundles/jquery").Include(
                     "~/Scripts/jquery-{version}.js",
-                    "~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.js"))
+                    "~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.js",
+                    "~/Scripts/dataTables.bootstrap.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/jqueryval").Include(
                     "~/Scripts/jquery.validate*"))
@@ -24,8 +25,7 @@ Public Module BundleConfig
                   "~/Content/bootstrap.css",
                   "~/Content/site.css",
                   "~/Content/dataTables.bootstrap.css"))
-        '"~/Scripts/DataTables-1.10.5/media/css/jquery.dataTables.css"))
-
+        
 
         BundleTable.EnableOptimizations = True
 
