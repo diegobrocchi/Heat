@@ -8,7 +8,7 @@ End Code
 <p>
     @Html.ActionLink("Crea un nuovo cliente", "Create")
 </p>
-<table id="index_table" class="table table-bordered table-hover table-striped table-condensed">
+<table id="index_table" class="table table-bordered table-hover table-striped">
     <thead >
     <tr>
         <th class="col-md-3">

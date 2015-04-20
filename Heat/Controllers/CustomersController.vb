@@ -22,10 +22,10 @@ Namespace Controllers
         Function Index(sortOrder As String) As ActionResult
 
             Dim custviewmodelb As New BusinessModelViewBuilder
+            
 
             Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
-            'Return PartialView("_indexPartial", custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
-
+            
         End Function
 
         ' GET: Customers/Details/5
