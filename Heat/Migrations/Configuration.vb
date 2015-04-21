@@ -16,8 +16,28 @@ Namespace Migrations
             ContextKey = "Heat.HeatDBContext"
         End Sub
 
+        Protected Function AddUserAndRole(context As HeatIdentityDbContext) As Boolean
+            Dim ir As IdentityResult
+            Dim rm = New RoleManager(Of IdentityRole)(New RoleStore(Of IdentityRole)(context))
+            ir = rm.Create(New identityrole("canEdit"))
+            Dim um = New HeatUserManager(New UserStore(Of HeatUser)(context))
+            Dim user = New HeatUser With {.UserName = "demo"}
+
+            ir = um.Create(user, "demo")
+            If ir.Succeeded = False Then
+                Return ir.Succeeded
+            End If
+            ir = um.AddToRole(user.Id, "canEdit")
+            Return ir.Succeeded
+
+
+
+        End Function
+
         Protected Overrides Sub Seed(context As HeatDBContext)
             Debug.Print("Seeding...")
+            AddUserAndRole(New HeatIdentityDbContext)
+
             Dim Fuel1 As New Models.Fuel
             Dim Fuel2 As New Models.Fuel
             Dim Fuel3 As New Models.Fuel
