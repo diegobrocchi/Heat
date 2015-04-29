@@ -5,6 +5,8 @@ Imports Microsoft.AspNet.Identity.EntityFramework
 Imports Microsoft.AspNet.Identity.Owin
 Imports Microsoft.Owin
 Imports Microsoft.Owin.Security
+Imports System.Data.Entity
+Imports Heat.Repositories
 
 Public Class EmailService
     Implements IIdentityMessageService
@@ -32,8 +34,8 @@ Public Class HeatUserManager
         MyBase.New(store)
     End Sub
 
-    Public Shared Function Create(options As IdentityFactoryOptions(Of HeatUserManager), context As IOwinContext)
-        Dim manager = New HeatUserManager(New UserStore(Of HeatUser)(context.Get(Of HeatIdentityDbContext)()))
+    Public Shared Function Create(options As IdentityFactoryOptions(Of HeatUserManager), context As IOwinContext) As HeatUserManager
+        Dim manager = New HeatUserManager(New UserStore(Of HeatUser)(context.Get(Of HeatDBContext)()))
 
         ' Configure validation logic for usernames
         manager.UserValidator = New UserValidator(Of HeatUser)(manager) With {
@@ -87,7 +89,64 @@ Public Class ApplicationSignInManager
         Return user.GenerateUserIdentityAsync(DirectCast(UserManager, HeatUserManager))
     End Function
 
+     
+
     Public Shared Function Create(options As IdentityFactoryOptions(Of ApplicationSignInManager), context As IOwinContext) As ApplicationSignInManager
         Return New ApplicationSignInManager(context.GetUserManager(Of HeatUserManager)(), context.Authentication)
     End Function
+End Class
+
+Public Class HeatDBInitializer
+    Inherits DropCreateDatabaseAlways(Of HeatDBContext) ' CreateDatabaseIfNotExists(Of HeatDBContext)
+
+    Protected Overrides Sub Seed(context As HeatDBContext)
+        'InitializeIdentity(context)
+        MyBase.Seed(context)
+    End Sub
+
+    Public Sub InitializeIdentity(DbConfiguration As HeatDBContext)
+        'Dim um As HeatUserManager = HttpContext.Current.GetOwinContext().GetUserManager(Of HeatUserManager)()
+        'Dim rm As HeatRoleManager = HttpContext.Current.GetOwinContext().Get(Of HeatRoleManager)()
+
+        'Const username As String = "demo"
+        'Const password As String = "demo"
+        'Const role As String = "canView"
+
+        'Dim cr = rm.FindByName(role)
+
+        'If IsNothing(cr) Then
+        '    cr = New HeatRole(role, "Può visualizzare")
+        '    Dim result = rm.Create(cr)
+        'End If
+
+        'Dim cu = um.FindByName(username)
+        'If IsNothing(cu) Then
+        '    cu = New HeatUser With {.UserName = username}
+        '    Dim result = um.Create(cu, password)
+        '    result = um.SetLockoutEnabled(cu.Id, False)
+        'End If
+
+        'Dim RolesForUser = um.GetRoles(cu.Id)
+        'If Not RolesForUser.Contains(cr.Name) Then
+        '    Dim result = um.AddToRole(cu.Id, cr.Name)
+
+        'End If
+
+    End Sub
+
+
+End Class
+
+Public Class HeatRoleManager
+    Inherits RoleManager(Of HeatRole)
+
+    Sub New(roleStore As IRoleStore(Of HeatRole, String))
+        MyBase.New(roleStore)
+    End Sub
+
+    Shared Function Create(options As IdentityFactoryOptions(Of HeatRoleManager), context As IOwinContext) As HeatRoleManager
+        Dim roleStore = New RoleStore(Of HeatRole)(context.Get(Of HeatDBContext))
+        Return New HeatRoleManager(roleStore)
+    End Function
+
 End Class

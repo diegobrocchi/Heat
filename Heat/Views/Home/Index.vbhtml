@@ -1,5 +1,7 @@
-﻿@Code
+﻿@imports System.Security.Claims
+@Code
     ViewData("Title") = "Home Page"
+
 End Code
 
 <div class="jumbotron">
@@ -25,6 +27,14 @@ End Code
         <h2>Attività</h2>
         <p>Accedi all'area di gesione delle attività aziendali</p>
         <p><a class="btn btn-default" href=@Url.Action("index", "Operations")>Attività</a></p>
+    </div>
+</div>
+<div class="row">
+    <h1>Claims</h1>
+    <div>
+        @For Each claim In DirectCast(User, ClaimsPrincipal).Claims
+            @<div>@claim.Type: @claim.Value </div>
+        Next
     </div>
 </div>
 

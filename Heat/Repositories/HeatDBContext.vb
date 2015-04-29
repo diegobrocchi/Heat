@@ -8,17 +8,23 @@ Imports log4net
 Namespace Repositories
 
     Public Class HeatDBContext
-        Inherits DbContext
+        'Inherits DbContext
+        Inherits IdentityDbContext(Of HeatUser)
 
         Private _logger As ILog
 
         Sub New()
             MyBase.New("DefaultConnection")
-            Entity.Database.SetInitializer(Of HeatDBContext)(Nothing)
-
+            'Entity.Database.SetInitializer(Of HeatDBContext)(Nothing)
+            'Entity.Database.SetInitializer(Of HeatDBContext)(New HeatDBInitializer)
+            'Me.Configuration.LazyLoadingEnabled = True
             _logger = LogManager.GetLogger(GetType(HeatDBContext))
             _logger.Info("HeatDbContext created")
         End Sub
+
+        Public Shared Function Create() As HeatDBContext
+            Return New HeatDBContext()
+        End Function
 
         Property Customers As DbSet(Of Customer)
         Property Address As DbSet(Of Address)
@@ -33,7 +39,8 @@ Namespace Repositories
         Property Fuels As DbSet(Of Fuel)
         Property CausalDocuments As DbSet(Of CausalDocument)
         Property Numberings As DbSet(Of Numbering)
-        Public Property DocumentTypes As System.Data.Entity.DbSet(Of Models.DocumentType)
+        Property DocumentTypes As DbSet(Of Models.DocumentType)
+
     End Class
 
 End Namespace

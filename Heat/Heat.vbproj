@@ -94,6 +94,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -166,6 +167,7 @@
     <Compile Include="App_Start\IdentityConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
+    <Compile Include="Authorize\ClaimsAutorizeAttribute.vb" />
     <Compile Include="Claims\HeatClaimsPrincipal.vb" />
     <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
@@ -353,6 +355,7 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\bootstrap-original.css.map" />
     <Content Include="Content\signin.css" />
+    <Content Include="ELMAH-1.2-db-SQLServer.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

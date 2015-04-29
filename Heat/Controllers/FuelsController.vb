@@ -9,14 +9,18 @@ Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
-
+Imports System.Security.Claims
+Imports log4net
+ 
 Namespace Controllers
     Public Class FuelsController
         Inherits System.Web.Mvc.Controller
 
         Private db As New HeatDBContext
-
+         
         ' GET: Fuels
+        '<Authorize(roles:="canViewFuels")> _
+        <ClaimsAutorize(ClaimTypes.Name, "demo")> _
         Function Index() As ActionResult
             Return View(db.Fuels.ToList())
         End Function

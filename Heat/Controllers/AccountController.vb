@@ -13,6 +13,7 @@ Public Class AccountController
     Inherits Controller
     Private _signInManager As ApplicationSignInManager
     Private _userManager As HeatUserManager
+
     Private _logger As ILog
 
     Public Sub New()
@@ -43,6 +44,8 @@ Public Class AccountController
         End Set
     End Property
 
+     
+
     '
     ' GET: /Account/Login
     <AllowAnonymous>
@@ -67,6 +70,7 @@ Public Class AccountController
         ' This doesn't count login failures towards account lockout
         ' To enable password failures to trigger account lockout, change to shouldLockout := True
         Dim result = Await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout:=False)
+
         Select Case result
             Case SignInStatus.Success
                 Return RedirectToLocal(returnUrl)
@@ -135,8 +139,8 @@ Public Class AccountController
     '
     ' POST: /Account/Register
     <HttpPost>
-    <AllowAnonymous> _
     <ValidateAntiForgeryToken>
+    <AllowAnonymous> _
     Public Async Function Register(model As RegisterViewModel) As Task(Of ActionResult)
         _logger.Info("Function Registered entered from POST request.")
         If ModelState.IsValid Then

@@ -8,9 +8,14 @@ http://geekswithblogs.net/shahed/archive/2010/02/05/137795.aspx
 http://fczaja.blogspot.it/2013/12/claims-based-authorization-in-mvc4.html
 http://visualstudiomagazine.com/articles/2013/08/01/leveraging-claims-based-security-in-aspnet-45.aspx
 
+http://leastprivilege.com/2012/10/26/using-claims-based-authorization-in-mvc-and-web-api/
 
 IHttpModules:
 https://msdn.microsoft.com/en-us/library/vstudio/ms227673(v=vs.100).aspx
 
 NerDinner:
 http://nerddinnerbook.s3.amazonaws.com/Part9.htm
+
+
+roles:
+http://geekswithblogs.net/MightyZot/archive/2014/12/28/implementing-rolemanager-in-asp.net-mvc-5.aspx

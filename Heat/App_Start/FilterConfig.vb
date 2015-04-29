@@ -5,5 +5,6 @@ Public Module FilterConfig
     Public Sub RegisterGlobalFilters(ByVal filters As GlobalFilterCollection)
         filters.Add(New AuthorizeAttribute())
         filters.Add(New HandleErrorAttribute())
+        'filters.Add(New ClaimsAutorizeAttribute())
     End Sub
 End Module
