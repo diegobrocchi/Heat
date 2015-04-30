@@ -94,7 +94,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -168,8 +170,11 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Authorize\ClaimsAutorizeAttribute.vb" />
+    <Compile Include="Authorize\ResourceAuthorizeAttribute.vb" />
+    <Compile Include="Authorize\ResourceClaimsAuthorizeManager.vb" />
     <Compile Include="Claims\HeatClaimsPrincipal.vb" />
     <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.vb" />
+    <Compile Include="Claims\ResourceOperations.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\NumeratorsController.vb" />
     <Compile Include="Manager\CustomerManager.vb" />

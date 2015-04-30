@@ -7,6 +7,8 @@ http://stackoverflow.com/questions/21807528/claims-based-authorization-with-asp-
 http://geekswithblogs.net/shahed/archive/2010/02/05/137795.aspx
 http://fczaja.blogspot.it/2013/12/claims-based-authorization-in-mvc4.html
 http://visualstudiomagazine.com/articles/2013/08/01/leveraging-claims-based-security-in-aspnet-45.aspx
+https://www.simple-talk.com/dotnet/asp.net/thoughts-on-asp.net-mvc-authorization-and-security-/
+http://typecastexception.com/post/2014/06/22/ASPNET-Identity-20-Customizing-Users-and-Roles.aspx
 
 http://leastprivilege.com/2012/10/26/using-claims-based-authorization-in-mvc-and-web-api/
 

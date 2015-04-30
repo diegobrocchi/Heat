@@ -16,7 +16,7 @@ Namespace Controllers
     Public Class FuelsController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New HeatDBContext
+        Public db As New HeatDBContext
          
         ' GET: Fuels
         '<Authorize(roles:="canViewFuels")> _
@@ -26,6 +26,7 @@ Namespace Controllers
         End Function
 
         ' GET: Fuels/Details/5
+        <ResourceAuthorize(ResourceOperations.ReadOwn, "FuelDetail")> _
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

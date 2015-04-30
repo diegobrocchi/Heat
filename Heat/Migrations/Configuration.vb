@@ -56,6 +56,8 @@ Namespace Migrations
                 demoUser = New HeatUser With {.UserName = demoName}
                 Dim result = um.Create(demoUser, demoPassword)
                 result = um.SetLockoutEnabled(demoUser.Id, False)
+                Dim cl As New Claim("http://scheme.diegobrocchi.it/claims/2015/operation", ResourceOperations.Execute, "ResourceOperations")
+                um.AddClaim(demoUser.Id, cl)
             End If
 
             Dim RolesForUser = um.GetRoles(demoUser.Id)
