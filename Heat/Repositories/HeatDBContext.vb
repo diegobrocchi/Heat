@@ -8,7 +8,6 @@ Imports log4net
 Namespace Repositories
 
     Public Class HeatDBContext
-        'Inherits DbContext
         Inherits IdentityDbContext(Of HeatUser)
 
         Private _logger As ILog
@@ -21,6 +20,7 @@ Namespace Repositories
             _logger = LogManager.GetLogger(GetType(HeatDBContext))
             _logger.Info("HeatDbContext created")
         End Sub
+
 
         Public Shared Function Create() As HeatDBContext
             Return New HeatDBContext()

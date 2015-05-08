@@ -2,8 +2,13 @@
 
 
 Public Class Numbering
+     
     Property ID As Integer
     Property Code As String
     Property Description As String
-    Property LastValue As Integer
+    Property TempSerialSchema As SerialScheme
+    Property FinalSerialSchema As SerialScheme
+    Property LastTempSerial As SerialNumber
+    Property LastFinalSerial As SerialNumber
+         
 End Class

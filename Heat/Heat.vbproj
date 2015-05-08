@@ -91,6 +91,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -126,6 +136,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -167,6 +180,7 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\IdentityConfig.vb" />
+    <Compile Include="App_Start\NinjectWebCommons.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Authorize\ClaimsAutorizeAttribute.vb" />
@@ -177,6 +191,7 @@
     <Compile Include="Claims\ResourceOperations.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\NumeratorsController.vb" />
+    <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Manager\CustomerManager.vb" />
     <Compile Include="Manager\NumeratorManager.vb" />
     <Compile Include="Controllers\AccountController.vb" />
@@ -252,6 +267,10 @@
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
+    <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\SerialScheme.vb" />
+    <Compile Include="Repositories\IHeatDBContext.vb" />
+    <Compile Include="Types\SerialNumber.vb" />
     <Compile Include="ViewModels\DocumentTypeAddViewModel.vb" />
     <Compile Include="ViewModels\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
