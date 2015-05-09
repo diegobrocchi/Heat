@@ -7,9 +7,13 @@
         Property Number As Integer
         Property StringNumber As String
         Property Customer As Customer
-        Property CreationDate As DateTime
         Property PrintDate As DateTime
         Property Numerator As Numbering
+        Property CreateUser As HeatUser
+        Property CreationDate As DateTime
+        Property LastModifyUser As HeatUser
+        Property LastModifyDate As DateTime
+        'Property State As DocumentState
 
     End Class
 End Namespace

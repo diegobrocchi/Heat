@@ -9,8 +9,10 @@ http://fczaja.blogspot.it/2013/12/claims-based-authorization-in-mvc4.html
 http://visualstudiomagazine.com/articles/2013/08/01/leveraging-claims-based-security-in-aspnet-45.aspx
 https://www.simple-talk.com/dotnet/asp.net/thoughts-on-asp.net-mvc-authorization-and-security-/
 http://typecastexception.com/post/2014/06/22/ASPNET-Identity-20-Customizing-Users-and-Roles.aspx
-
 http://leastprivilege.com/2012/10/26/using-claims-based-authorization-in-mvc-and-web-api/
+
+
+https://visualstudiomagazine.com/Articles/2013/09/01/Going-Beyond-Usernames-and-Roles.aspx?Page=1
 
 IHttpModules:
 https://msdn.microsoft.com/en-us/library/vstudio/ms227673(v=vs.100).aspx
