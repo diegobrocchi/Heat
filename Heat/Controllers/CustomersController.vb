@@ -15,17 +15,21 @@ Namespace Controllers
     Public Class CustomersController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New HeatDBContext
+        Private _db As HeatDBContext
+
+        Sub New(dbcontext As HeatDBContext)
+            _db = dbcontext
+        End Sub
 
         ' GET: Customers
 
         Function Index(sortOrder As String) As ActionResult
 
             Dim custviewmodelb As New BusinessModelViewBuilder
-            
+
 
             Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
-            
+
         End Function
 
         ' GET: Customers/Details/5
@@ -33,7 +37,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim customer As Customer = db.Customers.Find(id)
+            Dim customer As Customer = _db.Customers.Find(id)
             If IsNothing(customer) Then
                 Return HttpNotFound()
             End If
@@ -52,8 +56,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Name,Address,City,PostalCode,VAT,EMail,Website")> ByVal customer As Customer) As ActionResult
             If ModelState.IsValid Then
-                db.Customers.Add(customer)
-                db.SaveChanges()
+                _db.Customers.Add(customer)
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
             Return View(customer)
@@ -64,7 +68,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim customer As Customer = db.Customers.Find(id)
+            Dim customer As Customer = _db.Customers.Find(id)
             If IsNothing(customer) Then
                 Return HttpNotFound()
             End If
@@ -78,8 +82,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,Name,Surname,CompanyName,EMail,Website")> ByVal customer As Customer) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(customer).State = EntityState.Modified
-                db.SaveChanges()
+                _db.Entry(customer).State = EntityState.Modified
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
             Return View(customer)
@@ -90,7 +94,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim customer As Customer = db.Customers.Find(id)
+            Dim customer As Customer = _db.Customers.Find(id)
             If IsNothing(customer) Then
                 Return HttpNotFound()
             End If
@@ -102,15 +106,15 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim customer As Customer = db.Customers.Find(id)
-            db.Customers.Remove(customer)
-            db.SaveChanges()
+            Dim customer As Customer = _db.Customers.Find(id)
+            _db.Customers.Remove(customer)
+            _db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
         Function Search(searchstring As String) As ActionResult
             Dim result As New List(Of Customer)
-            result = db.Customers.Where(Function(customer) customer.Name.Contains(searchstring)).ToList
+            result = _db.Customers.Where(Function(customer) customer.Name.Contains(searchstring)).ToList
 
             Return View(result)
 
@@ -127,7 +131,7 @@ Namespace Controllers
                 Dim fileExt As String
                 fileExt = System.IO.Path.GetExtension(uploadFileCustomers.FileName).ToLower
                 If fileExt = ".txt" Then
-                    Dim ih As New ImportHelper(db)
+                    Dim ih As New ImportHelper(_db)
                     Dim b(uploadFileCustomers.ContentLength) As Byte
                     uploadFileCustomers.InputStream.Read(b, 0, uploadFileCustomers.ContentLength)
                     If ih.Customer(System.Text.Encoding.ASCII.GetString(b)) Then
@@ -148,7 +152,7 @@ Namespace Controllers
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                db.Dispose()
+                _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub
