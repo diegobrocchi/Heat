@@ -113,6 +113,8 @@
     <Compile Include="Controllers\CausalDocumentsControllerTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Controllers\HomeControllerTest.vb" />
+    <Compile Include="NumeratorManagerTests.vb" />
+    <Compile Include="SerialNumberTests.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
