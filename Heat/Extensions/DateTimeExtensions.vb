@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports System.Globalization
 
 Public Module DateTimeExtensions
     <Extension>
@@ -40,6 +41,17 @@ Public Module DateTimeExtensions
         Return New DateTime(year, 12, 31, 23, 59, 59, 999)
 
 
+    End Function
+
+    <Extension> _
+    Public Function WeekOfTheYear(currentDate As DateTime) As Integer
+        Dim day As DayOfWeek = currentDate.DayOfWeek
+
+        If day >= DayOfWeek.Monday And day <= DayOfWeek.Wednesday Then
+            currentDate = currentDate.AddDays(3)
+        End If
+
+        Return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(currentDate, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)
     End Function
 End Module
 

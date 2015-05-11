@@ -49,7 +49,7 @@ Public Class SerialScheme
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property ExpiryDate As DateTime
+    Property ExpiryDate As Nullable(Of DateTime)
     ''' <summary>
     ''' Indica se lo schema deve essere re-inizializzato quando scade.
     ''' </summary>
@@ -63,7 +63,7 @@ Public Class SerialScheme
     ''' <value></value>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Property Period As Periodicity
+    Property Period As Nullable(Of Periodicity)
     ''' <summary>
     ''' Indica se lo schema deve essere re-inizializzato quando viene raggiunto il massimo.
     ''' </summary>

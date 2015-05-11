@@ -33,8 +33,6 @@ Public Class ResourceClaimsAuthorizeManager
         Next
 
         Return False
-
-        
     End Function
 
 

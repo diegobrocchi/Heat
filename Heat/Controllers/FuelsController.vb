@@ -11,13 +11,14 @@ Imports Heat.Models
 Imports Heat.Repositories
 Imports System.Security.Claims
 Imports log4net
- 
+Imports System.IdentityModel.Services
+
 Namespace Controllers
     Public Class FuelsController
         Inherits System.Web.Mvc.Controller
 
         Public db As New HeatDBContext
-         
+
         ' GET: Fuels
         '<Authorize(roles:="canViewFuels")> _
         <ClaimsAutorize(ClaimTypes.Name, "demo")> _
@@ -39,6 +40,7 @@ Namespace Controllers
         End Function
 
         ' GET: Fuels/Create
+        <ClaimsPrincipalPermission(System.Security.Permissions.SecurityAction.Demand, Operation:="Create", Resource:="Fuel")> _
         Function Create() As ActionResult
             Return View()
         End Function
@@ -106,6 +108,10 @@ Namespace Controllers
             Return RedirectToAction("Index")
         End Function
 
+        <HttpGet> _
+        Function PrintToPDF() As FileResult
+            Return File("c:\temp\prova.pdf", "application/pdf")
+        End Function
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
                 db.Dispose()
