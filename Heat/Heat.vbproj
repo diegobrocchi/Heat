@@ -43,6 +43,12 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="Elmah">
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
@@ -191,6 +197,8 @@
     <Compile Include="Claims\ResourceOperations.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\NumeratorsController.vb" />
+    <Compile Include="Controllers\SerialSchemesController.vb" />
+    <Compile Include="Extensions\AutomapperExtensions.vb" />
     <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Manager\CustomerManager.vb" />
     <Compile Include="Manager\NumeratorManager.vb" />
@@ -316,6 +324,7 @@
     <Compile Include="Repositories\HeatDBContext.vb" />
     <Compile Include="Startup.vb" />
     <Compile Include="Validation\NameOrCompanyValidation.vb" />
+    <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502221046383_InitialCreate.resx">
@@ -527,6 +536,11 @@
     <Content Include="Views\DocumentTypes\Details.vbhtml" />
     <Content Include="Views\DocumentTypes\Edit.vbhtml" />
     <Content Include="Views\DocumentTypes\Index.vbhtml" />
+    <Content Include="Views\SerialSchemes\Create.vbhtml" />
+    <Content Include="Views\SerialSchemes\Delete.vbhtml" />
+    <Content Include="Views\SerialSchemes\Details.vbhtml" />
+    <Content Include="Views\SerialSchemes\Edit.vbhtml" />
+    <Content Include="Views\SerialSchemes\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -586,6 +600,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

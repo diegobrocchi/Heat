@@ -4,6 +4,10 @@ Imports Heat.Models
 Public Interface IHeatDBContext
     Inherits IDisposable
 
-    Property Customers As IDbSet(Of Customer)
+    Property Customers As DbSet(Of Customer)
+
+
+    Function SaveChanges() As Integer
+
 
 End Interface

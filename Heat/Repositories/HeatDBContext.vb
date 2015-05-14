@@ -9,6 +9,7 @@ Namespace Repositories
 
     Public Class HeatDBContext
         Inherits IdentityDbContext(Of HeatUser)
+        Implements IHeatDBContext
 
         Private _logger As ILog
 
@@ -26,7 +27,7 @@ Namespace Repositories
             Return New HeatDBContext()
         End Function
 
-        Property Customers As DbSet(Of Customer)
+        Property Customers As DbSet(Of Customer) Implements IHeatDBContext.Customers
         Property Address As DbSet(Of Address)
         Property Actions As DbSet(Of Action)
         Property WarehouseMovement As DbSet(Of WarehouseMovement)
@@ -41,6 +42,12 @@ Namespace Repositories
         Property Numberings As DbSet(Of Numbering)
         Property DocumentTypes As DbSet(Of Models.DocumentType)
 
+
+        Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
+            Return MyBase.SaveChanges
+        End Function
+ 
+        Public Property SerialSchemes As System.Data.Entity.DbSet(Of SerialScheme)
     End Class
 
 End Namespace
