@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Numbering
+﻿@ModelType Heat.CreateNumberingViewModel
 @Code
     ViewData("Title") = "Create"
 End Code
@@ -29,12 +29,24 @@ End Code
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.LastValue, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.TempSerialSchema , htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.LastValue, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.LastValue, "", New With { .class = "text-danger" })
+                @Html.DropDownListFor(Function(model) model.TempSerialSchema, Model.TempSerialSchema, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ActionLink("...", "create", "SerialSchemes", Nothing, New With {.class = "btn btn-sm btn-primary"})
+                @Html.ValidationMessageFor(Function(model) model.TempSerialSchema, "", New With {.class = "text-danger"})
             </div>
         </div>
+
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.FinalSerialSchema, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.DropDownListFor(Function(model) model.FinalSerialSchema, Model.TempSerialSchema, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ActionLink("...", "create", "SerialSchemes", Nothing, New With {.class = "btn btn-sm btn-primary"})
+                 @Html.ValidationMessageFor(Function(model) model.FinalSerialSchema, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

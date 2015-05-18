@@ -200,6 +200,7 @@
     <Compile Include="Controllers\SerialSchemesController.vb" />
     <Compile Include="Extensions\AutomapperExtensions.vb" />
     <Compile Include="Extensions\DateTimeExtensions.vb" />
+    <Compile Include="Extensions\EnumerableExtensions.vb" />
     <Compile Include="Manager\CustomerManager.vb" />
     <Compile Include="Manager\NumeratorManager.vb" />
     <Compile Include="Controllers\AccountController.vb" />
@@ -279,6 +280,8 @@
     <Compile Include="Models\SerialScheme.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
     <Compile Include="Types\SerialNumber.vb" />
+    <Compile Include="ViewModelBuilders\NumberingViewModelsBuilder.vb" />
+    <Compile Include="ViewModelBuilders\SerialSchemeViewModelBuilder.vb" />
     <Compile Include="ViewModels\DocumentTypeAddViewModel.vb" />
     <Compile Include="ViewModels\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
@@ -324,6 +327,7 @@
     <Compile Include="Repositories\HeatDBContext.vb" />
     <Compile Include="Startup.vb" />
     <Compile Include="Validation\NameOrCompanyValidation.vb" />
+    <Compile Include="ViewModels\NumberingViewModels.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
   </ItemGroup>
   <ItemGroup>

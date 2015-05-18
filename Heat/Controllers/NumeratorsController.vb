@@ -7,6 +7,7 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports Heat
+Imports Heat.Models
 Imports Heat.Repositories
 
 Namespace Controllers
@@ -34,7 +35,10 @@ Namespace Controllers
 
         ' GET: Numerators/Create
         Function Create() As ActionResult
-            Return View()
+            Dim mb As New NumberingViewModelsBuilder(db)
+            Dim m As CreateNumberingViewModel
+            m = mb.GetCreateModel
+            Return View(m)
         End Function
 
         ' POST: Numerators/Create
@@ -44,6 +48,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Code,Description,LastValue")> ByVal numbering As Numbering) As ActionResult
             If ModelState.IsValid Then
+                numbering.LastFinalSerial = New SerialNumber
+                numbering.LastTempSerial = New SerialNumber
                 db.Numberings.Add(numbering)
                 db.SaveChanges()
                 Return RedirectToAction("Index")

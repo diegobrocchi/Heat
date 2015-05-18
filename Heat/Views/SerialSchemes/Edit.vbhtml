@@ -1,4 +1,4 @@
-﻿@ModelType Heat.AddNewSerialSchemeViewModel 
+﻿@ModelType Heat.createSerialSchemeViewModel 
 @Code
     ViewData("Title") = "Edit"
 End Code

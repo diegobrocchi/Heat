@@ -1,4 +1,5 @@
 ﻿Imports Heat.Manager
+Imports Heat.Models
 
 <TestClass> _
 Public Class NumeratorManagerTests
@@ -100,28 +101,15 @@ Public Class NumeratorManagerTests
 
         t1 = New Threading.Thread(AddressOf AddSerialsToList)
         t2 = New Threading.Thread(AddressOf AddSerialsToList)
-
-        't1.Start(_listOfSerials1)
-        't2.Start(_listOfSerials2)
-
+         
         t1.Start(_hashTable1)
         t2.Start(_hashTable2)
 
         t1.Join()
         t2.Join()
-
-        'Assert.IsTrue(_listOfSerials1.Count = 10001)
-        'Assert.IsTrue(_listOfSerials2.Count = 10001)
-
-        'For Each ser In _listOfSerials1
-        '    Assert.IsFalse(_listOfSerials2.Exists(Function(s) s.Equals(ser)))
-        'Next
-
-        'For Each ser In _listOfSerials2
-        '    Assert.IsFalse(_listOfSerials1.Exists(Function(s) s.Equals(ser)))
-        'Next
-        Assert.IsTrue(_hashTable1.Count = 10001)
-        Assert.IsTrue(_hashTable2.Count = 10001)
+ 
+        Assert.IsTrue(_hashTable1.Count = 500001)
+        Assert.IsTrue(_hashTable2.Count = 500001)
         For Each el In _hashTable1
             Assert.IsNull(_hashTable2(el.key))
         Next
@@ -137,7 +125,7 @@ Public Class NumeratorManagerTests
 
         nm = NumeratorManager.Instance
 
-        For i = 0 To 10000
+        For i = 0 To 500000
             result = nm.GetNextTemp(_numbering)
             h.Add(result.SerialInteger, result)
         Next

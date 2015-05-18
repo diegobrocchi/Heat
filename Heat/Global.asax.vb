@@ -3,6 +3,7 @@ Imports System.Web.Helpers
 Imports System.Security.Claims
 Imports System.IdentityModel.Services
 Imports AutoMapper
+Imports Heat.Models
 
 
 Public Class MvcApplication
@@ -17,7 +18,9 @@ Public Class MvcApplication
         'http://www.codeproject.com/Articles/639458/Claims-Based-Authentication-and-Authorization
         AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name
 
-        Mapper.CreateMap(Of AddNewSerialSchemeViewModel, SerialScheme)().bidirectional()
+        Mapper.CreateMap(Of CreateSerialSchemeViewModel, SerialScheme)().Bidirectional()
+        Mapper.CreateMap(Of SerialSchemeViewModel, SerialScheme)().Bidirectional()
+
     End Sub
 
     'Public Overrides Sub Init()

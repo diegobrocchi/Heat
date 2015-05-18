@@ -39,6 +39,12 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -123,11 +129,15 @@
   <ItemGroup>
     <Compile Include="Business\NumeratorBusinessTest.vb" />
     <Compile Include="ConfigurationTests.vb" />
+    <Compile Include="ContextTests.vb" />
     <Compile Include="Controllers\CausalDocumentsControllerTest.vb" />
     <Compile Include="DateTimeExtensionsTests.vb" />
+    <Compile Include="HeatDbContextMock.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Controllers\HomeControllerTest.vb" />
     <Compile Include="NumeratorManagerTests.vb" />
+    <Compile Include="SerialNumberTests.vb" />
+    <Compile Include="TestDbSet.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -143,6 +153,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

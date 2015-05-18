@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of Heat.numbering)
+﻿@ModelType IEnumerable(Of Heat.models.numbering)
 @Code
 ViewData("Title") = "Index"
 End Code
@@ -17,7 +17,7 @@ End Code
             @Html.DisplayNameFor(Function(model) model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.LastValue)
+            @Html.DisplayNameFor(Function(model) model.TempSerialSchema)
         </th>
         <th></th>
     </tr>
@@ -31,7 +31,7 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.Description)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.LastValue)
+            @Html.DisplayFor(Function(modelItem) item.TempSerialSchema)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |

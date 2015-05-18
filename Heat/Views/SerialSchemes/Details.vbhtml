@@ -1,4 +1,4 @@
-﻿@ModelType Heat.SerialScheme
+﻿@ModelType Heat.models.SerialScheme
 @Code
     ViewData("Title") = "Details"
 End Code
