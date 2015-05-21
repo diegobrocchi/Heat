@@ -1,4 +1,4 @@
-﻿@ModelType Heat.models.numbering
+﻿@ModelType Heat.Warehouse
 @Code
     ViewData("Title") = "Delete"
 End Code
@@ -7,7 +7,7 @@ End Code
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Numerator</h4>
+    <h4>Warehouse</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,19 +19,19 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.Description)
+            @Html.DisplayNameFor(Function(model) model.Descrition)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.Description)
+            @Html.DisplayFor(Function(model) model.Descrition)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.LastFinalSerial.SerialString)
+            @Html.DisplayNameFor(Function(model) model.HasValue)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.LastFinalSerial.SerialString)
+            @Html.DisplayFor(Function(model) model.HasValue)
         </dd>
 
     </dl>

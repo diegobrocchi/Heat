@@ -7,6 +7,7 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports Heat
+Imports Heat.Models
 Imports Heat.Repositories
 Imports AutoMapper
 
@@ -14,14 +15,16 @@ Namespace Controllers
     Public Class SerialSchemesController
         Inherits System.Web.Mvc.Controller
 
-        Private db As HeatDBContext
+        Private _db As HeatDBContext
+        Private _vmBuilder
 
         Sub New(context As HeatDBContext)
-            db = context
+            _db = context
+            _vmBuilder = New SerialSchemeViewModelBuilder(context)
         End Sub
         ' GET: SerialSchemes
         Function Index() As ActionResult
-            Return View(db.SerialSchemes.ToList())
+            Return View(_vmBuilder.getListViewModel)
         End Function
 
         ' GET: SerialSchemes/Details/5
@@ -29,12 +32,14 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim serialScheme As SerialScheme = db.SerialSchemes.Find(id)
+            Dim serialScheme As SerialScheme = _db.SerialSchemes.Find(id)
             If IsNothing(serialScheme) Then
                 Return HttpNotFound()
             End If
+            Dim schemaDetails As CreateSerialSchemeViewModel
+            schemaDetails = Mapper.Map(Of CreateSerialSchemeViewModel)(serialScheme)
 
-            Return View(serialScheme)
+            Return View(schemaDetails)
         End Function
 
         ' GET: SerialSchemes/Create
@@ -43,16 +48,17 @@ Namespace Controllers
         End Function
 
         ' POST: SerialSchemes/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(ByVal newSerialScheme As AddNewSerialSchemeViewModel) As ActionResult
+        Function Create(ByVal newSerialScheme As CreateSerialSchemeViewModel) As ActionResult
             If ModelState.IsValid Then
                 Dim serialScheme As SerialScheme
+
                 serialScheme = Mapper.Map(Of SerialScheme)(newSerialScheme)
-                db.SerialSchemes.Add(serialScheme)
-                db.SaveChanges()
+
+                _db.SerialSchemes.Add(serialScheme)
+                _db.SaveChanges()
+
                 Return RedirectToAction("Index")
             End If
             Return View(newSerialScheme)
@@ -63,27 +69,27 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim serialScheme As SerialScheme = db.SerialSchemes.Find(id)
+            Dim serialScheme As SerialScheme = _db.SerialSchemes.Find(id)
             If IsNothing(serialScheme) Then
                 Return HttpNotFound()
             End If
-            Dim editSerialScheme As AddNewSerialSchemeViewModel
-            editSerialScheme = Mapper.Map(Of AddNewSerialSchemeViewModel)(serialScheme)
+            Dim editSerialScheme As CreateSerialSchemeViewModel
+            editSerialScheme = Mapper.Map(Of CreateSerialSchemeViewModel)(serialScheme)
             Return View(editSerialScheme)
         End Function
 
         ' POST: SerialSchemes/Edit/5
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,InitialValue,Increment,MinValue,MaxValue,FormatMask,ExpiryDate,RecycleWhenExpired,Period,RecycleWhenMaxIsReached")> ByVal serialScheme As SerialScheme) As ActionResult
+        Function Edit(ByVal editSerialScheme As CreateSerialSchemeViewModel) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(serialScheme).State = EntityState.Modified
-                db.SaveChanges()
+                Dim serialScheme As SerialScheme
+                serialScheme = Mapper.Map(Of SerialScheme)(editSerialScheme)
+                _db.Entry(serialScheme).State = EntityState.Modified
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(serialScheme)
+            Return View(editSerialScheme)
         End Function
 
         ' GET: SerialSchemes/Delete/5
@@ -91,7 +97,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim serialScheme As SerialScheme = db.SerialSchemes.Find(id)
+            Dim serialScheme As SerialScheme = _db.SerialSchemes.Find(id)
             If IsNothing(serialScheme) Then
                 Return HttpNotFound()
             End If
@@ -103,15 +109,15 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim serialScheme As SerialScheme = db.SerialSchemes.Find(id)
-            db.SerialSchemes.Remove(serialScheme)
-            db.SaveChanges()
+            Dim serialScheme As SerialScheme = _db.SerialSchemes.Find(id)
+            _db.SerialSchemes.Remove(serialScheme)
+            _db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                db.Dispose()
+                _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub

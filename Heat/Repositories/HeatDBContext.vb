@@ -39,15 +39,17 @@ Namespace Repositories
         Property Payments As DbSet(Of Payment)
         Property Fuels As DbSet(Of Fuel)
         Property CausalDocuments As DbSet(Of CausalDocument)
-        Property Numberings As DbSet(Of Numbering)
+        Property Numberings As DbSet(Of Numbering) Implements IHeatDBContext.Numberings
         Property DocumentTypes As DbSet(Of Models.DocumentType)
+        Property SerialSchemes As DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
 
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges
         End Function
  
-        Public Property SerialSchemes As System.Data.Entity.DbSet(Of SerialScheme)
+
+        Public Property Warehouses As System.Data.Entity.DbSet(Of Warehouse)
     End Class
 
 End Namespace

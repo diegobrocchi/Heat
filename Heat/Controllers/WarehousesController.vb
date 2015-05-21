@@ -10,92 +10,92 @@ Imports Heat
 Imports Heat.Repositories
 
 Namespace Controllers
-    Public Class NumberingsController
+    Public Class WarehousesController
         Inherits System.Web.Mvc.Controller
 
         Private db As New HeatDBContext
 
-        ' GET: Numerators
+        ' GET: Warehouses
         Function Index() As ActionResult
-            Return View(db.Numberings.ToList())
+            Return View(db.Warehouses.ToList())
         End Function
 
-        ' GET: Numerators/Details/5
+        ' GET: Warehouses/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim numbering As Numbering = db.Numberings.Find(id)
-            If IsNothing(numbering) Then
+            Dim warehouse As Warehouse = db.Warehouses.Find(id)
+            If IsNothing(warehouse) Then
                 Return HttpNotFound()
             End If
-            Return View(numbering)
+            Return View(warehouse)
         End Function
 
-        ' GET: Numerators/Create
+        ' GET: Warehouses/Create
         Function Create() As ActionResult
             Return View()
         End Function
 
-        ' POST: Numerators/Create
+        ' POST: Warehouses/Create
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Code,Description,LastValue")> ByVal numbering As Numbering) As ActionResult
+        Function Create(<Bind(Include:="ID,Code,Descrition,HasValue")> ByVal warehouse As Warehouse) As ActionResult
             If ModelState.IsValid Then
-                db.Numberings.Add(numbering)
+                db.Warehouses.Add(warehouse)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(numbering)
+            Return View(warehouse)
         End Function
 
-        ' GET: Numerators/Edit/5
+        ' GET: Warehouses/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim numbering As Numbering = db.Numberings.Find(id)
-            If IsNothing(numbering) Then
+            Dim warehouse As Warehouse = db.Warehouses.Find(id)
+            If IsNothing(warehouse) Then
                 Return HttpNotFound()
             End If
-            Return View(numbering)
+            Return View(warehouse)
         End Function
 
-        ' POST: Numerators/Edit/5
+        ' POST: Warehouses/Edit/5
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Code,Description,LastValue")> ByVal numbering As Numbering) As ActionResult
+        Function Edit(<Bind(Include:="ID,Code,Descrition,HasValue")> ByVal warehouse As Warehouse) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(numbering).State = EntityState.Modified
+                db.Entry(warehouse).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(numbering)
+            Return View(warehouse)
         End Function
 
-        ' GET: Numerators/Delete/5
+        ' GET: Warehouses/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim numbering As Numbering = db.Numberings.Find(id)
-            If IsNothing(numbering) Then
+            Dim warehouse As Warehouse = db.Warehouses.Find(id)
+            If IsNothing(warehouse) Then
                 Return HttpNotFound()
             End If
-            Return View(numbering)
+            Return View(warehouse)
         End Function
 
-        ' POST: Numerators/Delete/5
+        ' POST: Warehouses/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim numbering As Numbering = db.Numberings.Find(id)
-            db.Numberings.Remove(numbering)
+            Dim warehouse As Warehouse = db.Warehouses.Find(id)
+            db.Warehouses.Remove(warehouse)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

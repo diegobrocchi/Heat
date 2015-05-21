@@ -1,5 +1,6 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
+Imports Heat.Models
 
 <TestClass()> _
 Public Class SerialNumberTests

@@ -1,4 +1,5 @@
 ﻿Imports Heat.Repositories
+Imports Heat.Models
 
 Namespace Manager
 

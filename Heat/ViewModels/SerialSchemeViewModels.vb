@@ -1,9 +1,18 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
-Public Class AddNewSerialSchemeViewModel
+Public Class CreateSerialSchemeViewModel
 
     <Key> _
     Property ID As Integer
+
+    <Required> _
+    <Display(name:="Nome simbolico dello schema, serve come riferimento")> _
+    Property Name As String
+
+    <Required> _
+    <Display(name:="Descrizione breve dello schema")> _
+    <DataType(DataType.MultilineText)> _
+    Property Description As String
 
     <Required> _
     <Display(Name:="Valore iniziale della serie")>
@@ -34,8 +43,23 @@ Public Class AddNewSerialSchemeViewModel
     <Display(name:="Riparte dal valore iniziale quando raggiunge il valore massimo")> _
     Property RecycleWhenMaxIsReached As Boolean
 
+End Class
 
+Public Class IndexSerialSchemeViewModel
+    <Key> _
+    Property ID As Integer
 
+    <Display(name:="Nome")> _
+    Property Name As String
 
+    <Display(name:="Descrizione")> _
+    <DataType(DataType.MultilineText)> _
+    Property Description As String
+
+    <Display(name:="Incremento")> _
+    Property Increment As Integer
+
+    <Display(name:="Periodicità")> _
+    Property Period As Periodicity
 
 End Class
