@@ -1,4 +1,4 @@
-﻿@ModelType Heat.editNumberingViewModel
+﻿@ModelType Heat.numbering
 @Code
     ViewData("Title") = "Edit"
 End Code
@@ -30,23 +30,13 @@ End Code
             </div>
         </div>
 
-         <div class="form-group">
-             @Html.LabelFor(Function(model) model.TempSerialSchemaID, htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-10">
-                 @Html.DropDownListFor(Function(model) model.TempSerialSchemaID, Model.TempSerialSchemaList, New With {.htmlAttributes = New With {.class = "form-control"}})
-                 @Html.ActionLink("...", "create", "SerialSchemes", Nothing, New With {.class = "btn btn-sm btn-primary"})
-                 @Html.ValidationMessageFor(Function(model) model.TempSerialSchemaID, "", New With {.class = "text-danger"})
-             </div>
-         </div>
-
-         <div class="form-group">
-             @Html.LabelFor(Function(model) model.FinalSerialSchemaID, htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-10">
-                 @Html.DropDownListFor(Function(model) model.FinalSerialSchemaID, Model.TempSerialSchemaList, New With {.htmlAttributes = New With {.class = "form-control"}})
-                 @Html.ActionLink("...", "create", "SerialSchemes", Nothing, New With {.class = "btn btn-sm btn-primary"})
-                 @Html.ValidationMessageFor(Function(model) model.FinalSerialSchemaID, "", New With {.class = "text-danger"})
-             </div>
-         </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(model) model.LastValue, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(Function(model) model.LastValue, New With { .htmlAttributes = New With { .class = "form-control" } })
+                @Html.ValidationMessageFor(Function(model) model.LastValue, "", New With { .class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

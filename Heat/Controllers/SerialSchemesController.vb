@@ -36,10 +36,8 @@ Namespace Controllers
             If IsNothing(serialScheme) Then
                 Return HttpNotFound()
             End If
-            Dim schemaDetails As CreateSerialSchemeViewModel
-            schemaDetails = Mapper.Map(Of CreateSerialSchemeViewModel)(serialScheme)
 
-            Return View(schemaDetails)
+            Return View(serialScheme)
         End Function
 
         ' GET: SerialSchemes/Create
@@ -48,17 +46,16 @@ Namespace Controllers
         End Function
 
         ' POST: SerialSchemes/Create
+        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(ByVal newSerialScheme As CreateSerialSchemeViewModel) As ActionResult
             If ModelState.IsValid Then
                 Dim serialScheme As SerialScheme
-
                 serialScheme = Mapper.Map(Of SerialScheme)(newSerialScheme)
-
                 _db.SerialSchemes.Add(serialScheme)
                 _db.SaveChanges()
-
                 Return RedirectToAction("Index")
             End If
             Return View(newSerialScheme)
@@ -79,17 +76,17 @@ Namespace Controllers
         End Function
 
         ' POST: SerialSchemes/Edit/5
+        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(ByVal editSerialScheme As CreateSerialSchemeViewModel) As ActionResult
+        Function Edit(<Bind(Include:="ID,InitialValue,Increment,MinValue,MaxValue,FormatMask,ExpiryDate,RecycleWhenExpired,Period,RecycleWhenMaxIsReached")> ByVal serialScheme As SerialScheme) As ActionResult
             If ModelState.IsValid Then
-                Dim serialScheme As SerialScheme
-                serialScheme = Mapper.Map(Of SerialScheme)(editSerialScheme)
                 _db.Entry(serialScheme).State = EntityState.Modified
                 _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(editSerialScheme)
+            Return View(serialScheme)
         End Function
 
         ' GET: SerialSchemes/Delete/5

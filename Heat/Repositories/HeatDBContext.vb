@@ -49,7 +49,6 @@ Namespace Repositories
         End Function
  
 
-        Public Property Warehouses As System.Data.Entity.DbSet(Of Warehouse)
     End Class
 
 End Namespace

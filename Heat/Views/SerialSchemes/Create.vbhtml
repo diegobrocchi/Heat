@@ -63,12 +63,9 @@ End Code
 
         <div class="form-group">
             @Html.LabelFor(Function(model) model.FormatMask, htmlAttributes:=New With {.class = "control-label col-md-4"})
-            <div class="col-md-4">
+            <div class="col-md-8">
                 @Html.EditorFor(Function(model) model.FormatMask, New With { .htmlAttributes = New With { .class = "form-control" } })
                 @Html.ValidationMessageFor(Function(model) model.FormatMask, "", New With { .class = "text-danger" })
-            </div>
-            <div class="col-md-4">
-                É possibile utilizzare i segnaposto speciali '{{ww}}' per il numero di settimana dell'anno e '{{yyyy}}' per l'anno a quattro cifre.
             </div>
         </div>
 

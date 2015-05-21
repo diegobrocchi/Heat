@@ -1,6 +1,5 @@
 ﻿
 Public Class Warehouse
-
     Property ID As Integer
     Property Code As String
     Property Descrition As String

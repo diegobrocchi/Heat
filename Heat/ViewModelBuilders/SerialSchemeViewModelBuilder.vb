@@ -13,13 +13,13 @@ Public Class SerialSchemeViewModelBuilder
         _db = context
     End Sub
 
-    Public Function getListViewModel() As List(Of IndexSerialSchemeViewModel)
-        Dim result As New List(Of IndexSerialSchemeViewModel)
+    Public Function getListViewModel() As List(Of SerialSchemeViewModel)
+        Dim result As New List(Of SerialSchemeViewModel)
 
         Dim l As New List(Of SerialScheme)
         l = _db.SerialSchemes.ToList
 
-        result = Mapper.Map(Of List(Of SerialScheme), List(Of IndexSerialSchemeViewModel))(l)
+        result = Mapper.Map(Of List(Of SerialScheme), List(Of SerialSchemeViewModel))(l)
 
         Return result
 

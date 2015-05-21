@@ -44,7 +44,7 @@ Namespace Heat.App_Start
         ''' </summary>
         ''' <param name="kernel">The kernel.</param>
         Private Sub RegisterServices(ByVal kernel As IKernel)
-            kernel.Bind(Of IHeatDBContext)().To(Of HeatDBContext).InRequestScope()
+
         End Sub
     End Module
 End Namespace

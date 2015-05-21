@@ -12,8 +12,6 @@ End Code
     <li class="list-group-item">@Html.ActionLink("Numeratori documenti", "index","Numberings")</li>
     <li class="list-group-item">@Html.ActionLink("Schemi di numerazione", "index", "SerialSchemes")</li>
     <li class="list-group-item">@Html.ActionLink("Tipi di documento", "index", "DocumentTypes")</li>
-    <li class="list-group-item">@Html.ActionLink("Magazzini", "index", "Wharehouse")</li>
-
 </ul>
 
 

@@ -1,15 +1,12 @@
-﻿@ModelType IEnumerable(Of Heat.indexSerialSchemeviewmodel)
+﻿@ModelType IEnumerable(Of Heat.SerialSchemeviewmodel)
 @Code
 ViewData("Title") = "Index"
 End Code
 
-<h2>Schemi di numerazione</h2>
-<p>
-    Lo schema di numerazione definisce il modo in cui viene generato il numero successivo di un numeratore.
-</p>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Crea un nuovo schema", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -50,9 +47,9 @@ End Code
         </td>
          
         <td>
-            @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
-            @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |
-            @Html.ActionLink("Elimina", "Delete", New With {.id = item.ID})
+            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
+            @Html.ActionLink("Details", "Details", New With {.id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID })
         </td>
     </tr>
 Next

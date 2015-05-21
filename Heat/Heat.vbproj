@@ -196,9 +196,8 @@
     <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.vb" />
     <Compile Include="Claims\ResourceOperations.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
-    <Compile Include="Controllers\NumberingsController.vb" />
+    <Compile Include="Controllers\NumeratorsController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
-    <Compile Include="Controllers\WarehousesController.vb" />
     <Compile Include="Extensions\AutomapperExtensions.vb" />
     <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Extensions\EnumerableExtensions.vb" />
@@ -208,7 +207,7 @@
     <Compile Include="Controllers\CausalDocumentsController.vb" />
     <Compile Include="Controllers\CustomersController.vb" />
     <Compile Include="Controllers\FuelsController.vb" />
-    <Compile Include="Controllers\WharehouseMovementsController.vb" />
+    <Compile Include="Controllers\InventoryMovementsController.vb" />
     <Compile Include="Controllers\InvoicesController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\PaymentsController.vb" />
@@ -274,10 +273,6 @@
       <DependentUpon>201503311930565_documenttype.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201503311930565_documenttype.vb" />
-    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.Designer.vb">
-      <DependentUpon>201505201054350_foreignkey_schema_numbering.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
@@ -374,9 +369,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503311930565_documenttype.resx">
       <DependentUpon>201503311930565_documenttype.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505201054350_foreignkey_schema_numbering.resx">
-      <DependentUpon>201505201054350_foreignkey_schema_numbering.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -555,12 +547,6 @@
     <Content Include="Views\SerialSchemes\Details.vbhtml" />
     <Content Include="Views\SerialSchemes\Edit.vbhtml" />
     <Content Include="Views\SerialSchemes\Index.vbhtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Periodicity.vbhtml" />
-    <Content Include="Views\Warehouses\Create.vbhtml" />
-    <Content Include="Views\Warehouses\Delete.vbhtml" />
-    <Content Include="Views\Warehouses\Details.vbhtml" />
-    <Content Include="Views\Warehouses\Edit.vbhtml" />
-    <Content Include="Views\Warehouses\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
