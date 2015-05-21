@@ -45,7 +45,7 @@ Public Class CreateSerialSchemeViewModel
 
 End Class
 
-Public Class SerialSchemeViewModel
+Public Class IndexSerialSchemeViewModel
     <Key> _
     Property ID As Integer
 
