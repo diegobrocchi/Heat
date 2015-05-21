@@ -3,13 +3,13 @@
     ViewData("Title") = "Create"
 End Code
 
-<h2>Create</h2>
+<h2>Aggiungi un nuovo Numeratore</h2>
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>Numerator</h4>
+        <h4>Numeratore</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         <div class="form-group">
@@ -29,28 +29,26 @@ End Code
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.TempSerialSchema , htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.TempSerialSchemaID, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownListFor(Function(model) model.TempSerialSchema, Model.TempSerialSchema, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.DropDownListFor(Function(model) model.TempSerialSchemaID, Model.TempSerialSchemaList, New With {.htmlAttributes = New With {.class = "form-control"}})
                 @Html.ActionLink("...", "create", "SerialSchemes", Nothing, New With {.class = "btn btn-sm btn-primary"})
-                @Html.ValidationMessageFor(Function(model) model.TempSerialSchema, "", New With {.class = "text-danger"})
+                @Html.ValidationMessageFor(Function(model) model.TempSerialSchemaID, "", New With {.class = "text-danger"})
             </div>
         </div>
 
          <div class="form-group">
-             @Html.LabelFor(Function(model) model.FinalSerialSchema, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             @Html.LabelFor(Function(model) model.FinalSerialSchemaID, htmlAttributes:=New With {.class = "control-label col-md-2"})
              <div class="col-md-10">
-                 @Html.DropDownListFor(Function(model) model.FinalSerialSchema, Model.TempSerialSchema, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.DropDownListFor(Function(model) model.FinalSerialSchemaID, Model.TempSerialSchemaList, New With {.htmlAttributes = New With {.class = "form-control"}})
                  @Html.ActionLink("...", "create", "SerialSchemes", Nothing, New With {.class = "btn btn-sm btn-primary"})
-                 @Html.ValidationMessageFor(Function(model) model.FinalSerialSchema, "", New With {.class = "text-danger"})
+                 @Html.ValidationMessageFor(Function(model) model.FinalSerialSchemaID, "", New With {.class = "text-danger"})
              </div>
          </div>
 
-
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Aggiungi" class="btn btn-default" />
             </div>
         </div>
     </div>
