@@ -1,4 +1,4 @@
-﻿@ModelType Heat.numbering
+﻿@ModelType Heat.models.numbering
 @Code
     ViewData("Title") = "Details"
 End Code
@@ -26,16 +26,16 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.LastValue)
+            @Html.DisplayNameFor(Function(model) model.LastFinalSerial.SerialString)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.LastValue)
+            @Html.DisplayFor(Function(model) model.LastFinalSerial.SerialString)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", New With {.id = Model.ID}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

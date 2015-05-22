@@ -547,6 +547,7 @@
     <Content Include="Views\SerialSchemes\Details.vbhtml" />
     <Content Include="Views\SerialSchemes\Edit.vbhtml" />
     <Content Include="Views\SerialSchemes\Index.vbhtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Periodicity.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -1,89 +1,166 @@
-﻿@ModelType Heat.models.SerialScheme
+﻿@ModelType Heat.CreateSerialSchemeViewModel
 @Code
     ViewData("Title") = "Details"
 End Code
 
-<h2>Details</h2>
+<div class="page-header">
+    <h1>
+        Dettagli dello schema di numerazione
+    </h1>
+
+</div>
 
 <div>
-    <h4>SerialScheme</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.InitialValue)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.InitialValue)
-        </dd>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+                Schema di numerazione
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.Name)
+                        </dd>
+                    </dl>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Increment)
-        </dt>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.Description)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.Description)
+                        </dd>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Increment)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.InitialValue)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.MinValue)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.InitialValue)
+                        </dd>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.MinValue)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.Increment)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.MaxValue)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.Increment)
+                        </dd>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.MaxValue)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.MinValue)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.FormatMask)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.MinValue)
+                        </dd>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.FormatMask)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.ExpiryDate)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.MaxValue)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.ExpiryDate)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.MaxValue)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.RecycleWhenExpired)
-        </dt>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.RecycleWhenExpired)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.FormatMask)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Period)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.FormatMask)
+                        </dd>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.Period)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.ExpiryDate)
+                        </dt>
 
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.RecycleWhenMaxIsReached)
-        </dt>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.ExpiryDate)
+                        </dd>
+                    </dl>
 
-        <dd>
-            @Html.DisplayFor(Function(model) model.RecycleWhenMaxIsReached)
-        </dd>
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.RecycleWhenExpired)
+                        </dt>
 
-    </dl>
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.RecycleWhenExpired)
+                        </dd>
+                    </dl>
+
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.Period)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.Period)
+                        </dd>
+                    </dl>
+
+                </div>
+                <div class="list-group-item">
+                    <dl class="dl-horizontal ">
+                        <dt>
+                            @Html.DisplayNameFor(Function(model) model.RecycleWhenMaxIsReached)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(Function(model) model.RecycleWhenMaxIsReached)
+                        </dd>
+                    </dl>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <p>
+            @Html.ActionLink("Modifica", "Edit", New With {.id = Model.ID}) |
+            @Html.ActionLink("Torna alla lista", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

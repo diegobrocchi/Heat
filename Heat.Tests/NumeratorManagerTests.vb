@@ -1,4 +1,5 @@
 ﻿Imports Heat.Manager
+Imports Heat.Models
 
 <TestClass> _
 Public Class NumeratorManagerTests
@@ -170,7 +171,7 @@ Public Class NumeratorManagerTests
         t11.Join()
         t12.Join()
 
-         
+
         Assert.IsTrue(_hashTable1.Count = 10001)
         Assert.IsTrue(_hashTable2.Count = 10001)
         Assert.IsTrue(_hashTable3.Count = 10001)

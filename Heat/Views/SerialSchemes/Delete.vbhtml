@@ -1,4 +1,4 @@
-﻿@ModelType Heat.models.SerialScheme
+﻿@ModelType Heat.Models.SerialScheme
 @Code
     ViewData("Title") = "Delete"
 End Code

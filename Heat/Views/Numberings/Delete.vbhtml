@@ -1,4 +1,4 @@
-﻿@ModelType Heat.numbering
+﻿@ModelType Heat.Models.Numbering
 @Code
     ViewData("Title") = "Delete"
 End Code
@@ -27,11 +27,11 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.LastValue)
+            @Html.DisplayNameFor(Function(model) model.LastFinalSerial.SerialString)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.LastValue)
+            @Html.DisplayFor(Function(model) model.LastFinalSerial.SerialString)
         </dd>
 
     </dl>
