@@ -1,6 +1,6 @@
 ﻿@ModelType IEnumerable(Of Heat.indexSerialSchemeviewmodel)
 @Code
-ViewData("Title") = "Index"
+    ViewData("Title") = "Index"
 End Code
 
 <h2>Schemi di numerazione</h2>
@@ -14,47 +14,47 @@ End Code
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Name ) 
+            @Html.DisplayNameFor(Function(model) model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Description )
+            @Html.DisplayNameFor(Function(model) model.Description)
         </th>
-         
+
         <th>
             @Html.DisplayNameFor(Function(model) model.Increment)
         </th>
-         
+
         <th>
             @Html.DisplayNameFor(Function(model) model.Period)
         </th>
-         
+
         <th></th>
     </tr>
 
-@For Each item In Model
-    @<tr>
-         <td>
-             @Html.DisplayFor(Function(model) item.Name)
-         </td>
-         <td>
-             @Html.DisplayFor(Function(model) item.Description)
-         </td>
+    @For Each item In Model
+        @<tr>
+            <td>
+                @Html.DisplayFor(Function(model) item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(Function(model) item.Description)
+            </td>
 
-         
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Increment)
-        </td>
-         
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Period)
-        </td>
-         
-        <td>
-            @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
-            @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |
-            @Html.ActionLink("Elimina", "Delete", New With {.id = item.ID})
-        </td>
-    </tr>
-Next
+
+            <td>
+                @Html.DisplayFor(Function(modelItem) item.Increment)
+            </td>
+
+            <td>
+                @Html.DisplayFor(Function(modelItem) item.Period)
+            </td>
+
+            <td>
+                @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
+                @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |
+                @Html.ActionLink("Elimina", "Delete", New With {.id = item.ID})
+            </td>
+        </tr>
+    Next
 
 </table>

@@ -43,10 +43,10 @@ Public Class MvcApplication
             ForMember(Function(dest) dest.FinalSerialSchema, Sub(opt) opt.MapFrom(Function(source) source.FinalSerialSchema.Description)). _
             ForMember(Function(dest) dest.TempSerialSchema, Sub(opt) opt.MapFrom(Function(source) source.TempSerialSchema.Description))
 
-        
+
         Mapper.AssertConfigurationIsValid()
 
     End Sub
 
-    
+
 End Class

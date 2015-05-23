@@ -1,4 +1,4 @@
-﻿@ModelType Heat.models.numbering
+﻿@ModelType Heat.Models.Numbering
 @Code
     ViewData("Title") = "Delete"
 End Code

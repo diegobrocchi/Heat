@@ -1,4 +1,5 @@
 ﻿Imports Heat.Manager
+Imports Heat.Models
 
 <TestClass> _
 Public Class NumeratorManagerTests

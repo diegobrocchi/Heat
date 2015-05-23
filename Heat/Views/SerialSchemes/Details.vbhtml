@@ -1,4 +1,4 @@
-﻿@ModelType Heat.createSerialSchemeviewmodel
+﻿@ModelType Heat.CreateSerialSchemeViewModel
 @Code
     ViewData("Title") = "Details"
 End Code
@@ -11,12 +11,12 @@ End Code
 </div>
 
 <div>
-    
+
     <div class="panel panel-default">
         <div class="panel-heading">
-        <div class="panel-title">
-            Schema di numerazione
-        </div>
+            <div class="panel-title">
+                Schema di numerazione
+            </div>
         </div>
         <div class="panel-body">
             <div class="list-group">
@@ -29,7 +29,7 @@ End Code
                             @Html.DisplayFor(Function(model) model.Name)
                         </dd>
                     </dl>
-                    
+
                 </div>
                 <div class="list-group-item">
                     <dl class="dl-horizontal ">
@@ -52,7 +52,7 @@ End Code
                             @Html.DisplayFor(Function(model) model.InitialValue)
                         </dd>
                     </dl>
-                    
+
                 </div>
                 <div class="list-group-item">
                     <dl class="dl-horizontal ">
@@ -152,15 +152,15 @@ End Code
                     </dl>
 
                 </div>
-                
+
 
             </div>
         </div>
 
-    
-<p>
-    @Html.ActionLink("Modifica", "Edit", New With {.id = Model.ID}) |
-    @Html.ActionLink("Torna alla lista", "Index")
-</p>
-    </div> 
+
+        <p>
+            @Html.ActionLink("Modifica", "Edit", New With {.id = Model.ID}) |
+            @Html.ActionLink("Torna alla lista", "Index")
+        </p>
+    </div>
 </div>

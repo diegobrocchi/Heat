@@ -16,7 +16,7 @@ Namespace Controllers
         Inherits System.Web.Mvc.Controller
 
         Private _db As HeatDBContext
-        Private _vmBuilder
+        Private _vmBuilder As SerialSchemeViewModelBuilder
 
         Sub New(context As HeatDBContext)
             _db = context
