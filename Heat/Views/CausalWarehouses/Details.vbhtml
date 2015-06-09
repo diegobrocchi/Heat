@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Models.Warehouse
+﻿@ModelType Heat.CausalWarehouse
 @Code
     ViewData("Title") = "Details"
 End Code
@@ -6,9 +6,17 @@ End Code
 <h2>Details</h2>
 
 <div>
-    <h4>Warehouse</h4>
+    <h4>CausalWarehouse</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(Function(model) model.Type.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Function(model) model.Type.Code)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(Function(model) model.Code)
         </dt>
@@ -18,19 +26,19 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.Description)
+            @Html.DisplayNameFor(Function(model) model.Sign)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.Description)
+            @Html.DisplayFor(Function(model) model.Sign)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.HasValue)
+            @Html.DisplayNameFor(Function(model) model.Transaction)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.HasValue)
+            @Html.DisplayFor(Function(model) model.Transaction)
         </dd>
 
     </dl>

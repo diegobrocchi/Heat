@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Models.Warehouse
+﻿@ModelType Heat.CausalWarehouseGroup
 @Code
     ViewData("Title") = "Create"
 End Code
@@ -9,7 +9,7 @@ End Code
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>Warehouse</h4>
+        <h4>CausalWarehouseGroup</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         <div class="form-group">
@@ -21,20 +21,10 @@ End Code
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.Description, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            @Html.LabelFor(Function(model) model.Description, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Description, New With {.htmlAttributes = New With {.class = "form-control"}})
-                @Html.ValidationMessageFor(Function(model) model.Description, "", New With {.class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.HasValue, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(Function(model) model.HasValue)
-                    @Html.ValidationMessageFor(Function(model) model.HasValue, "", New With { .class = "text-danger" })
-                </div>
+                @Html.EditorFor(Function(model) model.Description, New With { .htmlAttributes = New With { .class = "form-control" } })
+                @Html.ValidationMessageFor(Function(model) model.Description, "", New With { .class = "text-danger" })
             </div>
         </div>
 

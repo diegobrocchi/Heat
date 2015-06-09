@@ -3,9 +3,6 @@
 Public Class HeatDbContextMock
     Implements IHeatDBContext
 
-
-
-
     Public Property Numberings As Entity.DbSet(Of Models.Numbering) Implements IHeatDBContext.Numberings
     Public Property SerialScheme As Entity.DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
     Public Property Customers As Entity.DbSet(Of Models.Customer) Implements IHeatDBContext.Customers
@@ -50,4 +47,15 @@ Public Class HeatDbContextMock
     End Sub
 #End Region
 
+    Public Property CausalWarehouseGroups As Entity.DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
+
+    Public Property CausalWarehouses As Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
+
+    Public Sub SetModified(entity As Object) Implements IHeatDBContext.SetModified
+
+    End Sub
+
+    Public Property Warehouses As Entity.DbSet(Of Models.Warehouse) Implements IHeatDBContext.Warehouses
+
+    Public Property WarehouseMovement As Entity.DbSet(Of Models.WarehouseMovement) Implements IHeatDBContext.WarehouseMovement
 End Class

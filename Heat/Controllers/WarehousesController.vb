@@ -6,104 +6,108 @@ Imports System.Linq
 Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
-Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
 
 Namespace Controllers
-    Public Class WarehouseMovementsController
+    Public Class WarehousesController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New HeatDBContext
+        Private _db As HeatDBContext
 
-        ' GET: InventoryMovements
+        Public Sub New(context As IHeatDBContext)
+            _db = context
+        End Sub
+
+
+        ' GET: Warehouses
         Function Index() As ActionResult
-            Return View(db.WarehouseMovement.ToList())
+            Return View(_db.Warehouses.ToList())
         End Function
 
-        ' GET: InventoryMovements/Details/5
+        ' GET: Warehouses/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
-            If IsNothing(inventoryMovement) Then
+            Dim warehouse As Warehouse = _db.Warehouses.Find(id)
+            If IsNothing(warehouse) Then
                 Return HttpNotFound()
             End If
-            Return View(inventoryMovement)
+            Return View(warehouse)
         End Function
 
-        ' GET: InventoryMovements/Create
+        ' GET: Warehouses/Create
         Function Create() As ActionResult
             Return View()
         End Function
 
-        ' POST: InventoryMovements/Create
+        ' POST: Warehouses/Create
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Quantity,ExecDate,Note")> ByVal inventoryMovement As WarehouseMovement) As ActionResult
+        Function Create(<Bind(Include:="ID,Code,Description,HasValue")> ByVal warehouse As Warehouse) As ActionResult
             If ModelState.IsValid Then
-                db.WarehouseMovement.Add(inventoryMovement)
-                db.SaveChanges()
+                _db.Warehouses.Add(warehouse)
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(inventoryMovement)
+            Return View(warehouse)
         End Function
 
-        ' GET: InventoryMovements/Edit/5
+        ' GET: Warehouses/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
-            If IsNothing(inventoryMovement) Then
+            Dim warehouse As Warehouse = _db.Warehouses.Find(id)
+            If IsNothing(warehouse) Then
                 Return HttpNotFound()
             End If
-            Return View(inventoryMovement)
+            Return View(warehouse)
         End Function
 
-        ' POST: InventoryMovements/Edit/5
+        ' POST: Warehouses/Edit/5
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Quantity,ExecDate,Note")> ByVal inventoryMovement As WarehouseMovement) As ActionResult
+        Function Edit(<Bind(Include:="ID,Code,Description,HasValue")> ByVal warehouse As Warehouse) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(inventoryMovement).State = EntityState.Modified
-                db.SaveChanges()
+                _db.Entry(warehouse).State = EntityState.Modified
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(inventoryMovement)
+            Return View(warehouse)
         End Function
 
-        ' GET: InventoryMovements/Delete/5
+        ' GET: Warehouses/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
-            If IsNothing(inventoryMovement) Then
+            Dim warehouse As Warehouse = _db.Warehouses.Find(id)
+            If IsNothing(warehouse) Then
                 Return HttpNotFound()
             End If
-            Return View(inventoryMovement)
+            Return View(warehouse)
         End Function
 
-        ' POST: InventoryMovements/Delete/5
+        ' POST: Warehouses/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim inventoryMovement As WarehouseMovement = db.WarehouseMovement.Find(id)
-            db.WarehouseMovement.Remove(inventoryMovement)
-            db.SaveChanges()
+            Dim warehouse As Warehouse = _db.Warehouses.Find(id)
+            _db.Warehouses.Remove(warehouse)
+            _db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                db.Dispose()
+                _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub

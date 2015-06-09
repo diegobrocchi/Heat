@@ -26,7 +26,13 @@
                     <li>@Html.ActionLink("Clienti", "Index", "Customers")</li>
                     <li>@Html.ActionLink("Documenti", "Index", "Documents")</li>
                     <li>@Html.ActionLink("Attività", "Index", "Operations")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestione<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Articoli", "index", "products",Nothing,"")</li>
                     <li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+                        </ul>
+                    </li>
                 </ul>
                     @Html.Partial("_SearchPartial")
                     @Html.Partial("_LoginPartial")

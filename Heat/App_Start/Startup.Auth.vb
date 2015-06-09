@@ -32,8 +32,7 @@ Partial Public Class Startup
                     regenerateIdentity:=Function(manager, user) user.GenerateUserIdentityAsync(manager))},
             .LoginPath = New PathString("/Account/Login")})
 
-
-
+        
         app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie)
 
         ' Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.

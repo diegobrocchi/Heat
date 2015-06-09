@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Models.Warehouse
+﻿@ModelType Heat.CausalWarehouseGroup
 @Code
     ViewData("Title") = "Delete"
 End Code
@@ -7,7 +7,7 @@ End Code
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Warehouse</h4>
+    <h4>CausalWarehouseGroup</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,14 +24,6 @@ End Code
 
         <dd>
             @Html.DisplayFor(Function(model) model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.HasValue)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.HasValue)
         </dd>
 
     </dl>

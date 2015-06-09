@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Models.Warehouse
+﻿@ModelType Heat.CausalWarehouse
 @Code
     ViewData("Title") = "Edit"
 End Code
@@ -9,7 +9,7 @@ End Code
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>Warehouse</h4>
+        <h4>CausalWarehouse</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.ID)
@@ -23,19 +23,27 @@ End Code
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.Description, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            @Html.LabelFor(Function(model) model.Sign, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Description, New With {.htmlAttributes = New With {.class = "form-control"}})
-                @Html.ValidationMessageFor(Function(model) model.Description, "", New With {.class = "text-danger"})
+                @Html.EditorFor(Function(model) model.Sign, New With { .htmlAttributes = New With { .class = "form-control" } })
+                @Html.ValidationMessageFor(Function(model) model.Sign, "", New With { .class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.HasValue, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.TypeID, "TypeID", htmlAttributes:= New With { .class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TypeID", Nothing, htmlAttributes:= New With { .class = "form-control" })
+                @Html.ValidationMessageFor(Function(model) model.TypeID, "", New With { .class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(Function(model) model.Transaction, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(Function(model) model.HasValue)
-                    @Html.ValidationMessageFor(Function(model) model.HasValue, "", New With { .class = "text-danger" })
+                    @Html.EditorFor(Function(model) model.Transaction)
+                    @Html.ValidationMessageFor(Function(model) model.Transaction, "", New With { .class = "text-danger" })
                 </div>
             </div>
         </div>

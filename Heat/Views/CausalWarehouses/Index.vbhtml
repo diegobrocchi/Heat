@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of Heat.Models.Warehouse)
+﻿@ModelType IEnumerable(Of Heat.CausalWarehouse)
 @Code
 ViewData("Title") = "Index"
 End Code
@@ -11,13 +11,16 @@ End Code
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(Function(model) model.Type.Code)
+        </th>
+        <th>
             @Html.DisplayNameFor(Function(model) model.Code)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Description)
+            @Html.DisplayNameFor(Function(model) model.Sign)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.HasValue)
+            @Html.DisplayNameFor(Function(model) model.Transaction)
         </th>
         <th></th>
     </tr>
@@ -25,13 +28,16 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
+            @Html.DisplayFor(Function(modelItem) item.Type.Code)
+        </td>
+        <td>
             @Html.DisplayFor(Function(modelItem) item.Code)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.Description)
+            @Html.DisplayFor(Function(modelItem) item.Sign)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.HasValue)
+            @Html.DisplayFor(Function(modelItem) item.Transaction)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |

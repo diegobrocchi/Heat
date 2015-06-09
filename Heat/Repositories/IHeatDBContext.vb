@@ -7,9 +7,13 @@ Public Interface IHeatDBContext
     Property Customers As DbSet(Of Customer)
     Property Numberings As DbSet(Of Numbering)
     Property SerialSchemes As DbSet(Of SerialScheme)
-
+    Property CausalWarehouses As DbSet(Of CausalWarehouse)
+    Property CausalWarehouseGroups As DbSet(Of CausalWarehouseGroup)
+    Property Warehouses As DbSet(Of Warehouse)
+    Property WarehouseMovement As DbSet(Of WarehouseMovement)
 
     Function SaveChanges() As Integer
 
+    Sub SetModified(entity As Object)
 
 End Interface

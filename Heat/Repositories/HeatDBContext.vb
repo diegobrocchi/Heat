@@ -15,6 +15,7 @@ Namespace Repositories
 
         Sub New()
             MyBase.New("DefaultConnection")
+            'Entity.Database.SetInitializer(Of HeatDBContext)(New DropCreateDatabaseIfModelChanges(Of HeatDBContext))
             'Entity.Database.SetInitializer(Of HeatDBContext)(Nothing)
             'Entity.Database.SetInitializer(Of HeatDBContext)(New HeatDBInitializer)
             'Me.Configuration.LazyLoadingEnabled = True
@@ -27,10 +28,14 @@ Namespace Repositories
             Return New HeatDBContext()
         End Function
 
+        Public Sub SetModified(entity As Object) Implements IHeatDBContext.SetModified
+            Entry(entity).State = EntityState.Modified
+        End Sub
+
         Property Customers As DbSet(Of Customer) Implements IHeatDBContext.Customers
         Property Address As DbSet(Of Address)
         Property Actions As DbSet(Of Action)
-        Property WarehouseMovement As DbSet(Of WarehouseMovement)
+        Property WarehouseMovement As DbSet(Of WarehouseMovement) Implements IHeatDBContext.WarehouseMovement
         Property Plants As DbSet(Of Plant)
         Property PlantTypes As DbSet(Of PlantType)
         Property PlantClasses As DbSet(Of PlantClass)
@@ -47,9 +52,12 @@ Namespace Repositories
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges
         End Function
- 
 
-        Public Property Warehouses As System.Data.Entity.DbSet(Of Warehouse)
+
+        Public Property Warehouses As System.Data.Entity.DbSet(Of Warehouse) Implements IHeatDBContext.Warehouses
+        Public Property CausalWarehouseGroups As System.Data.Entity.DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
+        Public Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
+
     End Class
 
 End Namespace

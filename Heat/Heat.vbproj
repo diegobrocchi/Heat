@@ -195,10 +195,13 @@
     <Compile Include="Claims\HeatClaimsPrincipal.vb" />
     <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.vb" />
     <Compile Include="Claims\ResourceOperations.vb" />
+    <Compile Include="Controllers\CausalWarehouseGroupsController.vb" />
+    <Compile Include="Controllers\CausalWarehousesController.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\NumberingsController.vb" />
-    <Compile Include="Controllers\NumeratorsController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
+    <Compile Include="Controllers\WarehousesController.vb" />
+    <Compile Include="Controllers\WarehouseMovementsController.vb" />
     <Compile Include="Extensions\AutomapperExtensions.vb" />
     <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Extensions\EnumerableExtensions.vb" />
@@ -208,7 +211,6 @@
     <Compile Include="Controllers\CausalDocumentsController.vb" />
     <Compile Include="Controllers\CustomersController.vb" />
     <Compile Include="Controllers\FuelsController.vb" />
-    <Compile Include="Controllers\InventoryMovementsController.vb" />
     <Compile Include="Controllers\InvoicesController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\PaymentsController.vb" />
@@ -222,6 +224,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Import\ImportHelper.vb" />
+    <Compile Include="Manager\WarehouseMovementManager.vb" />
     <Compile Include="Migrations\201502221046383_InitialCreate.Designer.vb">
       <DependentUpon>201502221046383_InitialCreate.vb</DependentUpon>
     </Compile>
@@ -274,9 +277,26 @@
       <DependentUpon>201503311930565_documenttype.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201503311930565_documenttype.vb" />
+    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.Designer.vb">
+      <DependentUpon>201505201054350_foreignkey_schema_numbering.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.vb" />
+    <Compile Include="Migrations\201505231212567_foreignkey_warehouse.Designer.vb">
+      <DependentUpon>201505231212567_foreignkey_warehouse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231212567_foreignkey_warehouse.vb" />
+    <Compile Include="Migrations\201505231320467_causali.Designer.vb">
+      <DependentUpon>201505231320467_causali.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231320467_causali.vb" />
+    <Compile Include="Migrations\201505231330392_gruppi_causali.Designer.vb">
+      <DependentUpon>201505231330392_gruppi_causali.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231330392_gruppi_causali.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
+    <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
     <Compile Include="Models\Periodicity.vb" />
     <Compile Include="Models\SerialScheme.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
@@ -370,6 +390,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503311930565_documenttype.resx">
       <DependentUpon>201503311930565_documenttype.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201054350_foreignkey_schema_numbering.resx">
+      <DependentUpon>201505201054350_foreignkey_schema_numbering.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231212567_foreignkey_warehouse.resx">
+      <DependentUpon>201505231212567_foreignkey_warehouse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231320467_causali.resx">
+      <DependentUpon>201505231320467_causali.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231330392_gruppi_causali.resx">
+      <DependentUpon>201505231330392_gruppi_causali.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -549,6 +581,26 @@
     <Content Include="Views\SerialSchemes\Edit.vbhtml" />
     <Content Include="Views\SerialSchemes\Index.vbhtml" />
     <Content Include="Views\Shared\DisplayTemplates\Periodicity.vbhtml" />
+    <Content Include="Views\Warehouses\Create.vbhtml" />
+    <Content Include="Views\Warehouses\Delete.vbhtml" />
+    <Content Include="Views\Warehouses\Details.vbhtml" />
+    <Content Include="Views\Warehouses\Edit.vbhtml" />
+    <Content Include="Views\Warehouses\Index.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Create.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Delete.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Details.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Edit.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Index.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Create.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Delete.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Details.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Edit.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Index.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Create.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Delete.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Details.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Edit.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

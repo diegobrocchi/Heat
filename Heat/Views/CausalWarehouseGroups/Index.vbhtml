@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of Heat.Models.Warehouse)
+﻿@ModelType IEnumerable(Of Heat.CausalWarehouseGroup)
 @Code
 ViewData("Title") = "Index"
 End Code
@@ -16,9 +16,6 @@ End Code
         <th>
             @Html.DisplayNameFor(Function(model) model.Description)
         </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.HasValue)
-        </th>
         <th></th>
     </tr>
 
@@ -29,9 +26,6 @@ End Code
         </td>
         <td>
             @Html.DisplayFor(Function(modelItem) item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.HasValue)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
