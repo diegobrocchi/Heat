@@ -199,6 +199,7 @@
     <Compile Include="Controllers\CausalWarehousesController.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\NumberingsController.vb" />
+    <Compile Include="Controllers\SellersController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
     <Compile Include="Controllers\WarehousesController.vb" />
     <Compile Include="Controllers\WarehouseMovementsController.vb" />
@@ -206,6 +207,7 @@
     <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Extensions\EnumerableExtensions.vb" />
     <Compile Include="Manager\CustomerManager.vb" />
+    <Compile Include="Manager\InvoiceManager.vb" />
     <Compile Include="Manager\NumeratorManager.vb" />
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\CausalDocumentsController.vb" />
@@ -293,11 +295,21 @@
       <DependentUpon>201505231330392_gruppi_causali.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201505231330392_gruppi_causali.vb" />
+    <Compile Include="Migrations\201506130850422_seller.Designer.vb">
+      <DependentUpon>201506130850422_seller.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506130850422_seller.vb" />
+    <Compile Include="Migrations\201506131333027_invoice_row.Designer.vb">
+      <DependentUpon>201506131333027_invoice_row.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506131333027_invoice_row.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
+    <Compile Include="Models\Interfaces\ISeller.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\Seller.vb" />
     <Compile Include="Models\SerialScheme.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
     <Compile Include="Types\SerialNumber.vb" />
@@ -402,6 +414,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505231330392_gruppi_causali.resx">
       <DependentUpon>201505231330392_gruppi_causali.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506130850422_seller.resx">
+      <DependentUpon>201506130850422_seller.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506131333027_invoice_row.resx">
+      <DependentUpon>201506131333027_invoice_row.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -601,6 +619,11 @@
     <Content Include="Views\WarehouseMovements\Details.vbhtml" />
     <Content Include="Views\WarehouseMovements\Edit.vbhtml" />
     <Content Include="Views\WarehouseMovements\Index.vbhtml" />
+    <Content Include="Views\Sellers\Create.vbhtml" />
+    <Content Include="Views\Sellers\Delete.vbhtml" />
+    <Content Include="Views\Sellers\Details.vbhtml" />
+    <Content Include="Views\Sellers\Edit.vbhtml" />
+    <Content Include="Views\Sellers\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

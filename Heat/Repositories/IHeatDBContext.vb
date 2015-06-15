@@ -10,7 +10,9 @@ Public Interface IHeatDBContext
     Property CausalWarehouses As DbSet(Of CausalWarehouse)
     Property CausalWarehouseGroups As DbSet(Of CausalWarehouseGroup)
     Property Warehouses As DbSet(Of Warehouse)
-    Property WarehouseMovement As DbSet(Of WarehouseMovement)
+    Property WarehouseMovements As DbSet(Of WarehouseMovement)
+    Property Sellers As DbSet(Of Seller)
+    Property Invoices As DbSet(Of Invoice)
 
     Function SaveChanges() As Integer
 

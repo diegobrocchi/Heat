@@ -13,6 +13,7 @@ Public Class HomeController
 
     Function Index() As ActionResult
         _logger.Debug("Index function entered")
+       
         Return View()
     End Function
 

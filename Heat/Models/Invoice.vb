@@ -3,13 +3,21 @@
     Public Class Invoice
 
         Property ID As Integer
-        Property DocNumber As Integer
-
+        Property InsertedNumber As SerialNumber
+        Property ConfirmedNumber As SerialNumber
+        Property State As DocumentState
+        Property Seller As ISeller
         Property Customer As Customer
-        Property Sum As Decimal
-        Property InvoiceRows As List(Of InvoiceRow)
+        Property InvoiceDate As Date
+        Property TaxableAmount As Decimal
+        Property TaxRate As Decimal
+        Property TaxesAmount As Decimal
+        Property TotalAmount As Decimal
+        Property SelfBilling As Boolean
+        Property IsTaxExempt As Boolean
+        Property TaxExemption As String
         Property Payment As Payment
-        'Property CausalWarehouse As CausalWarehouse
+        Property InvoiceRows As List(Of InvoiceRow)
 
     End Class
 End Namespace

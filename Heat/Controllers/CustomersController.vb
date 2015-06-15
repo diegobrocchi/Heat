@@ -25,9 +25,8 @@ Namespace Controllers
 
         Function Index(sortOrder As String) As ActionResult
 
-            Dim custviewmodelb As New BusinessModelViewBuilder
-
-
+            Dim custviewmodelb As New BusinessModelViewBuilder(_db)
+            'TODO: jQ Datatable con server processing
             Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
 
         End Function

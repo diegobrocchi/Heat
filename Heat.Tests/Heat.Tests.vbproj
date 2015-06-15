@@ -133,6 +133,7 @@
     <Compile Include="Controllers\CausalDocumentsControllerTest.vb" />
     <Compile Include="DateTimeExtensionsTests.vb" />
     <Compile Include="HeatDbContextMock.vb" />
+    <Compile Include="InvoiceRowTests.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Controllers\HomeControllerTest.vb" />
     <Compile Include="NumeratorManagerTests.vb" />

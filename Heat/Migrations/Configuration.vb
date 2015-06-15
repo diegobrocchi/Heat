@@ -119,7 +119,7 @@ Namespace Migrations
 
         Protected Overrides Sub Seed(context As HeatDBContext)
             Debug.Print("Seeding...")
-            'AddUserAndRole(context)
+
             InitializeIdentity(context)
 
             Dim Fuel1 As New Models.Fuel
@@ -133,6 +133,9 @@ Namespace Migrations
             Dim Payment1 As New Models.Payment
             Dim Payment2 As New Models.Payment
             Dim Payment3 As New Models.Payment
+
+            Dim DittaMC As New Models.Seller
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -156,11 +159,17 @@ Namespace Migrations
             Payment3.Code = "RIBA90"
             Payment3.Description = "Ricevuta bancaria a 90 giorni"
 
+
+            DittaMC.FiscalCode = "ABCDEFGHILMNOPQRSTUVZ"
+            DittaMC.IBAN = "IT000000000000000"
+            DittaMC.Logo = "LogoMC.jpg"
+            DittaMC.Name = "MC Assistenza Srl di Mauro Cedro"
+            DittaMC.Vat_Number = "1234567890"
+            DittaMC.Address = New Models.Address With {.StreetNumber = "Via Rossi, 23", .City = "Mandello"}
+
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument1)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument2)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument3)
-
-
 
             context.Fuels.AddOrUpdate(Function(f) f.Name, Fuel1)
             context.Fuels.AddOrUpdate(Function(f) f.Name, Fuel2)
@@ -170,9 +179,9 @@ Namespace Migrations
             context.Payments.AddOrUpdate(Function(p) p.Code, Payment2)
             context.Payments.AddOrUpdate(Function(p) p.Code, Payment3)
 
+            context.Seller.AddOrUpdate(Function(s) s.Name, DittaMC)
+
             context.SaveChanges()
-
-
 
 
         End Sub

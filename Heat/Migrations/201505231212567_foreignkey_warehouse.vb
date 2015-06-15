@@ -23,7 +23,7 @@ Namespace Migrations
             CreateIndex("dbo.WarehouseMovements", "SourceID")
             CreateIndex("dbo.WarehouseMovements", "DestinationID")
             AddForeignKey("dbo.WarehouseMovements", "DestinationID", "dbo.Warehouses", "ID", cascadeDelete:=False)
-            AddForeignKey("dbo.WarehouseMovements", "ProductID", "dbo.Products", "ID", cascadeDelete := True)
+            AddForeignKey("dbo.WarehouseMovements", "ProductID", "dbo.Products", "ID", cascadeDelete:=False)
             AddForeignKey("dbo.WarehouseMovements", "SourceID", "dbo.Warehouses", "ID", cascadeDelete:=False)
         End Sub
         

@@ -11,14 +11,14 @@ Namespace Migrations
                 "dbo.CausalWarehouses",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
+                        .ID = c.Int(nullable:=False, identity:=True),
                         .Code = c.String(),
-                        .Sign = c.Int(nullable := False),
-                        .TypeID = c.Int(nullable := False),
-                        .Transaction = c.Boolean(nullable := False)
+                        .Sign = c.Int(nullable:=False),
+                        .TypeID = c.Int(nullable:=False),
+                        .Transaction = c.Boolean(nullable:=False)
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.CausalWarehouseGroups", Function(t) t.TypeID, cascadeDelete := True) _
+                .ForeignKey("dbo.CausalWarehouseGroups", Function(t) t.TypeID, cascadeDelete:=False) _
                 .Index(Function(t) t.TypeID)
             
         End Sub

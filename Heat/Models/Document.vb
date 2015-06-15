@@ -2,6 +2,7 @@
 
     Public MustInherit Class Document
         Property ID As Integer
+
         Property TemporaryNumber As Integer
         Property TemporaryStringNumber As String
         Property Number As Integer
@@ -13,8 +14,14 @@
         Property CreationDate As DateTime
         Property LastModifyUser As HeatUser
         Property LastModifyDate As DateTime
-        'Property State As DocumentState
-
+        Property State As DocumentState
     End Class
+
+    Public Enum DocumentState
+        Inserted = 0
+        Confirmed = 1
+        Deleted = 3
+
+    End Enum
 End Namespace
 

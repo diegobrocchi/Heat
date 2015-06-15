@@ -8,7 +8,7 @@ Public Class ConfigurationTests
     Public Sub Initi()
         Dim cs As New Global.Heat.Migrations.Configuration
 
-        cs.InitializeIdentity(New HeatDBContext)
+        'cs.InitializeIdentity(New HeatDBContext)
 
     End Sub
 End Class

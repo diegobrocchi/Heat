@@ -6,114 +6,103 @@ Imports System.Linq
 Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
-Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
-Imports Heat.Viewmodels
-Imports Heat.Manager
 
 Namespace Controllers
-    Public Class InvoicesController
+    Public Class SellersController
         Inherits System.Web.Mvc.Controller
 
-        Private _db As IHeatDBContext
-        Private modelBuilder As New InvoiceModelBuilder(_db)
-        Private _businessService As New InvoiceManager(_db)
+        Private db As New HeatDBContext
 
-        ' GET: Invoices
+        ' GET: Sellers
         Function Index() As ActionResult
-            Return View(_db.Invoices.ToList())
+            Return View(db.Seller.ToList())
         End Function
 
-        ' GET: Invoices/Details/5
+        ' GET: Sellers/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = _db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim seller As Seller = db.Seller.Find(id)
+            If IsNothing(seller) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(seller)
         End Function
 
-        ' GET: Invoices/Create
-        Function Create(customer As Customer) As ActionResult
-            Dim ivm As InvoiceCreateViewModel
-
-            ivm = modelBuilder.GetInvoiceCreateViewModel(customer)
-
-            Return View(ivm)
+        ' GET: Sellers/Create
+        Function Create() As ActionResult
+            Return View()
         End Function
 
-        ' POST: Invoices/Create
+        ' POST: Sellers/Create
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
+        Function Create(<Bind(Include:="ID,FiscalCode,IBAN,Logo,Name,Vat_Number")> ByVal seller As Seller) As ActionResult
             If ModelState.IsValid Then
-
-                _businessService.Insert(invoice)
-
-                _db.SaveChanges()
+                db.Seller.Add(seller)
+                db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(invoice)
+            Return View(seller)
         End Function
 
-        ' GET: Invoices/Edit/5
+        ' GET: Sellers/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = _db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim seller As Seller = db.Seller.Find(id)
+            If IsNothing(seller) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(seller)
         End Function
 
-        ' POST: Invoices/Edit/5
+        ' POST: Sellers/Edit/5
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
+        Function Edit(<Bind(Include:="ID,FiscalCode,IBAN,Logo,Name,Vat_Number")> ByVal seller As Seller) As ActionResult
             If ModelState.IsValid Then
-                _db.SetModified(invoice)
-                _db.SaveChanges()
+                db.Entry(seller).State = EntityState.Modified
+                db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(invoice)
+            Return View(seller)
         End Function
 
-        ' GET: Invoices/Delete/5
+        ' GET: Sellers/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim invoice As Invoice = _db.Invoices.Find(id)
-            If IsNothing(invoice) Then
+            Dim seller As Seller = db.Seller.Find(id)
+            If IsNothing(seller) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+            Return View(seller)
         End Function
 
-        ' POST: Invoices/Delete/5
+        ' POST: Sellers/Delete/5
         <HttpPost()>
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim invoice As Invoice = _db.Invoices.Find(id)
-            _db.Invoices.Remove(invoice)
-            _db.SaveChanges()
+            Dim seller As Seller = db.Seller.Find(id)
+            db.Seller.Remove(seller)
+            db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                _db.Dispose()
+                db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub
