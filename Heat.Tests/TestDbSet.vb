@@ -20,6 +20,10 @@ Public Class TestDbSet(Of TEntity As Class)
         _query = _data.AsQueryable
     End Sub
 
+    Public Overrides Function Find(ParamArray keyValues() As Object) As TEntity
+        Return MyBase.Find(keyValues)
+    End Function
+     
     Public Overrides Function Add(item As TEntity) As TEntity
         _data.Add(item)
         Return item
@@ -80,6 +84,8 @@ Public Class TestDbSet(Of TEntity As Class)
     End Function
 
 End Class
+
+
 Friend Class TestDbAsyncQueryProvider(Of TEntity)
     Implements IDbAsyncQueryProvider
     Private ReadOnly _inner As IQueryProvider

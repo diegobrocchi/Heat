@@ -14,16 +14,16 @@ Public Class InvoiceModelBuilder
         _db = repository
     End Sub
 
-    Public Function GetInvoiceCreateViewModel(customer As Customer) As InvoiceCreateViewModel
+    Public Function GetInvoiceCreateViewModel(tempDOc As Invoice) As InvoiceCreateViewModel
         Dim result As New InvoiceCreateViewModel
         Dim nm As NumeratorManager = NumeratorManager.Instance
 
-        result.Customer = customer
-        result.EmissionDate = Now
-        Dim d As DocumentType
-        d = From doc In _db.DocumentTypes Where doc.Name = "FTC"
-        result.TempNumber = nm.GetNextTemp(d.Numbering).SerialInteger
 
+        result.EmissionDate = Now
+        result.TempNumber = tempDOc.InsertedNumber
+
+        'result.TempNumber = nm.GetNextTemp(d.Numbering).SerialInteger
+        Return result
 
 
     End Function

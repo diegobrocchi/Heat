@@ -136,6 +136,10 @@ Namespace Migrations
 
             Dim DittaMC As New Models.Seller
 
+            Dim FTC As New Models.DocumentType
+            Dim simpleSchema As New Models.SerialScheme
+            Dim number As New Models.Numbering
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -167,6 +171,23 @@ Namespace Migrations
             DittaMC.Vat_Number = "1234567890"
             DittaMC.Address = New Models.Address With {.StreetNumber = "Via Rossi, 23", .City = "Mandello"}
 
+            number.Code = "FTC"
+            number.Description = "Numeratore FTC"
+            number.FinalSerialSchema = simpleSchema
+            number.TempSerialSchema = simpleSchema
+            number.LastTempSerial = New Models.SerialNumber With {.SerialInteger = 0, .SerialString = "0", .IsValid = True}
+            number.LastFinalSerial = New Models.SerialNumber With {.SerialInteger = 0, .SerialString = "0", .IsValid = True}
+
+            simpleSchema.Description = "Schema semplice"
+            simpleSchema.Increment = 1
+            simpleSchema.InitialValue = 1
+            simpleSchema.Period = Periodicity.None
+            simpleSchema.Name = "INC_1"
+
+            FTC.Name = "FTC"
+            FTC.Description = "Fattura Cliente"
+            FTC.Numbering = number
+
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument1)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument2)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument3)
@@ -180,6 +201,11 @@ Namespace Migrations
             context.Payments.AddOrUpdate(Function(p) p.Code, Payment3)
 
             context.Seller.AddOrUpdate(Function(s) s.Name, DittaMC)
+
+            context.SerialSchemes.AddOrUpdate(Function(ss) ss.Name, simpleSchema)
+            context.Numberings.AddOrUpdate(Function(n) n.Code, number)
+            context.DocumentTypes.AddOrUpdate(Function(dt) dt.Name, FTC)
+
 
             context.SaveChanges()
 

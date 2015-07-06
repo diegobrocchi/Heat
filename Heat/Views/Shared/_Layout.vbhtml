@@ -24,10 +24,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Clienti", "Index", "Customers")</li>
-                    <li>@Html.ActionLink("Documenti", "Index", "Documents")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" rule="button" aria-expanded="false">Documenti <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Fatture", "index", "invoices")</li>
+                            <li>@Html.ActionLink("Preventivi", "index", "preventivi")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Attività", "Index", "Operations")</li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestione<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestione <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Articoli", "index", "products",Nothing,"")</li>
                     <li>@Html.ActionLink("Settings", "Index", "Settings")</li>

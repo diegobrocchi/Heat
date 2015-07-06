@@ -1,4 +1,6 @@
-﻿'https://visualstudiomagazine.com/articles/2014/06/01/test-driven-development.aspx
+﻿Imports Heat.Models
+
+'https://visualstudiomagazine.com/articles/2014/06/01/test-driven-development.aspx
 
 Public Class HeatDbContextMock
     Implements IHeatDBContext
@@ -10,9 +12,19 @@ Public Class HeatDbContextMock
 
 
     Public Sub New()
-        Customers = New TestDbSet(Of Models.Customer)
+        Customers = New CustomerMockDbSet
+        DocumentTypes = New DocumentTypeMockDbSet
+        Invoices = New TestDbSet(Of Invoice)
+        init()
     End Sub
 
+    Public Sub init()
+        Dim num As New Numbering
+        num.Code = "HHH"
+        num.TempSerialSchema = New SerialScheme With {.Increment = 1, .InitialValue = 1, .Period = Periodicity.None}
+        num.LastTempSerial = New SerialNumber With {.SerialInteger = 0, .SerialString = "0", .IsValid = True}
+        DocumentTypes.Add(New Models.DocumentType With {.Name = "FTC", .Numbering = num})
+    End Sub
     Public Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
         Return 0
     End Function
@@ -63,4 +75,6 @@ Public Class HeatDbContextMock
     Public Property Seller As Entity.DbSet(Of Models.Seller) Implements IHeatDBContext.Sellers
 
     Public Property Invoices As Entity.DbSet(Of Models.Invoice) Implements IHeatDBContext.Invoices
+
+    Public Property DocumentTypes As Entity.DbSet(Of Models.DocumentType) Implements IHeatDBContext.DocumentTypes
 End Class

@@ -13,6 +13,7 @@ Public Interface IHeatDBContext
     Property WarehouseMovements As DbSet(Of WarehouseMovement)
     Property Sellers As DbSet(Of Seller)
     Property Invoices As DbSet(Of Invoice)
+    Property DocumentTypes As DbSet(Of DocumentType)
 
     Function SaveChanges() As Integer
 

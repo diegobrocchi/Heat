@@ -39,28 +39,24 @@ Namespace Repositories
         Property Plants As DbSet(Of Plant)
         Property PlantTypes As DbSet(Of PlantType)
         Property PlantClasses As DbSet(Of PlantClass)
-        Property Invoices As DbSet(Of Invoice)
+        Property Invoices As DbSet(Of Invoice) Implements IHeatDBContext.Invoices
         Property Products As DbSet(Of Product)
         Property Payments As DbSet(Of Payment)
         Property Fuels As DbSet(Of Fuel)
         Property CausalDocuments As DbSet(Of CausalDocument)
         Property Numberings As DbSet(Of Numbering) Implements IHeatDBContext.Numberings
-        Property DocumentTypes As DbSet(Of Models.DocumentType)
+        Property DocumentTypes As DbSet(Of Models.DocumentType) Implements IHeatDBContext.DocumentTypes
         Property SerialSchemes As DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
+        Property Warehouses As System.Data.Entity.DbSet(Of Warehouse) Implements IHeatDBContext.Warehouses
+        Property CausalWarehouseGroups As System.Data.Entity.DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
+        Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
 
+        Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges
         End Function
-
-
-        Public Property Warehouses As System.Data.Entity.DbSet(Of Warehouse) Implements IHeatDBContext.Warehouses
-        Public Property CausalWarehouseGroups As System.Data.Entity.DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
-        Public Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
-
-        Public Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
-
-        Public Property Invoices1 As DbSet(Of Invoice) Implements IHeatDBContext.Invoices
+ 
     End Class
 
 End Namespace

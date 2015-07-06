@@ -3,7 +3,7 @@ Namespace Viewmodels
     Public Class InvoiceCreateViewModel
 
         Property Customer As Customer
-        Property TempNumber As Integer
+        Property TempNumber As SerialNumber
         Property EmissionDate As Date
 
 

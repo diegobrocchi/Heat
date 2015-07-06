@@ -131,7 +131,9 @@
     <Compile Include="ConfigurationTests.vb" />
     <Compile Include="ContextTests.vb" />
     <Compile Include="Controllers\CausalDocumentsControllerTest.vb" />
+    <Compile Include="CustomerMockDbSet.vb" />
     <Compile Include="DateTimeExtensionsTests.vb" />
+    <Compile Include="DocumentTypeMockDbSet.vb" />
     <Compile Include="HeatDbContextMock.vb" />
     <Compile Include="InvoiceRowTests.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -139,6 +141,7 @@
     <Compile Include="NumeratorManagerTests.vb" />
     <Compile Include="SerialNumberTests.vb" />
     <Compile Include="TestDbSet.vb" />
+    <Compile Include="InvoiceManagerTests.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

@@ -303,6 +303,10 @@
       <DependentUpon>201506131333027_invoice_row.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506131333027_invoice_row.vb" />
+    <Compile Include="Migrations\201506290508292_sell.Designer.vb">
+      <DependentUpon>201506290508292_sell.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506290508292_sell.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
@@ -420,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506131333027_invoice_row.resx">
       <DependentUpon>201506131333027_invoice_row.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506290508292_sell.resx">
+      <DependentUpon>201506290508292_sell.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

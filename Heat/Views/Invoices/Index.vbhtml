@@ -11,10 +11,10 @@ End Code
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.DocNumber)
+            @Html.DisplayNameFor(Function(model) model.ConfirmedNumber.SerialString)
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Sum)
+            @Html.DisplayNameFor(Function(model) model.Customer.Name)
         </th>
         <th></th>
     </tr>
@@ -22,10 +22,10 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.DocNumber)
+            @Html.DisplayFor(Function(modelItem) item.ConfirmedNumber.SerialString)
         </td>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.Sum)
+            @Html.DisplayFor(Function(modelItem) item.Customer.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |

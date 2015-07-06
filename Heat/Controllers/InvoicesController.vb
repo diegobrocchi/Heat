@@ -17,8 +17,15 @@ Namespace Controllers
         Inherits System.Web.Mvc.Controller
 
         Private _db As IHeatDBContext
-        Private modelBuilder As New InvoiceModelBuilder(_db)
-        Private _businessService As New InvoiceManager(_db)
+        Private modelBuilder As InvoiceModelBuilder
+        Private _businessService As InvoiceManager
+
+        Sub New(context As IHeatDBContext)
+            _db = context
+
+            modelBuilder = New InvoiceModelBuilder(_db)
+            _businessService = New InvoiceManager(_db)
+        End Sub
 
         ' GET: Invoices
         Function Index() As ActionResult
@@ -38,10 +45,14 @@ Namespace Controllers
         End Function
 
         ' GET: Invoices/Create
-        Function Create(customer As Customer) As ActionResult
+        Function Create(customerID As Integer) As ActionResult
             Dim ivm As InvoiceCreateViewModel
+            Dim tmpDoc As Invoice
 
-            ivm = modelBuilder.GetInvoiceCreateViewModel(customer)
+            tmpDoc = _businessService.GetTemporaryDocument(customerID)
+            ivm = modelBuilder.GetInvoiceCreateViewModel(tmpDoc)
+
+            _db.SaveChanges()
 
             Return View(ivm)
         End Function
