@@ -13,6 +13,7 @@ Imports Heat.Viewmodels
 Imports Heat.Manager
 
 Namespace Controllers
+    <OutputCache(duration:=0, NoStore:=True, varybyParam:="*")> _
     Public Class InvoicesController
         Inherits System.Web.Mvc.Controller
 
@@ -28,9 +29,22 @@ Namespace Controllers
         End Sub
 
         ' GET: Invoices
-        Function Index() As ActionResult
-            Return View(_db.Invoices.ToList())
+        Function Index(Optional state As DocumentState = DocumentState.Inserted) As ActionResult
+
+            Select Case state
+                Case DocumentState.Inserted
+                    Return View(modelBuilder.GetInsertedInvoicesIndexViewModel)
+                Case DocumentState.Confirmed
+                    Return View(modelBuilder.GetConfirmedInvoicesIndexViewModel)
+                Case DocumentState.Deleted
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                Case Else
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End Select
+
         End Function
+
+
 
         ' GET: Invoices/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
@@ -128,5 +142,20 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
+
+        ''' <summary>
+        ''' aggiunge una riga alla fattura e ritorna l'elenco delle righe in una partial view
+        ''' </summary>
+        ''' <param name="invoiceID">ID della fattura</param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        <HttpGet> _
+        Public Function addNewRow(invoiceID As Integer) As ActionResult
+            Dim invoiceRow As New AddNewInvoiceRowViewModel
+            invoiceRow.InvoiceID = invoiceID
+            'invoiceRow.ProductList = _db.products.all.tolist.tos
+
+            Return PartialView("/invoices/partial/_addInvoiceRows", invoiceRow)
+        End Function
     End Class
 End Namespace

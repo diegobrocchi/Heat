@@ -15,18 +15,18 @@ End Code
         @Html.HiddenFor(Function(model) model.ID)
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.DocNumber, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.InsertedNumber.SerialString, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.DocNumber, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.DocNumber, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.InsertedNumber.SerialString, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.InsertedNumber.SerialString, "", New With {.class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.Sum, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.InvoiceDate, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Sum, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.Sum, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.InvoiceDate, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.InvoiceDate, "", New With {.class = "text-danger"})
             </div>
         </div>
 
@@ -40,4 +40,16 @@ End Using
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+</div>
+
+@Ajax.ActionLink("Aggiungi una riga", "addNewRow", New With {.invoiceID = Model.ID}, New AjaxOptions With {
+                      .HttpMethod = "GET",
+                      .InsertionMode = InsertionMode.Replace,
+                      .OnBegin = "showAddNewRowPanel",
+                      .OnComplete = "onCompleteAddNewRowPanel",
+                      .OnFailure = "onErrorAddNewRowPanel",
+                      .UpdateTargetId = "id_addNewRowPanel"}, New With {.class = "btn btn-default"})
+
+<div id="id_addNewRowPanel">
+
 </div>

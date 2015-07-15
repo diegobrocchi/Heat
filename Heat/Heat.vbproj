@@ -315,6 +315,7 @@
     <Compile Include="Models\Periodicity.vb" />
     <Compile Include="Models\Seller.vb" />
     <Compile Include="Models\SerialScheme.vb" />
+    <Compile Include="Models\ViewModels\AddNewInvoiceRowViewModel.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
     <Compile Include="Types\SerialNumber.vb" />
     <Compile Include="ViewModelBuilders\NumberingViewModelsBuilder.vb" />
@@ -339,6 +340,8 @@
     <Compile Include="Models\Invoice.vb" />
     <Compile Include="Models\InvoiceRow.vb" />
     <Compile Include="Models\Item.vb" />
+    <Compile Include="ViewModels\Invoices\indexViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\InvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\ManageViewModels.vb" />
     <Compile Include="Models\Payment.vb" />
     <Compile Include="Models\Plant.vb" />
@@ -631,6 +634,7 @@
     <Content Include="Views\Sellers\Details.vbhtml" />
     <Content Include="Views\Sellers\Edit.vbhtml" />
     <Content Include="Views\Sellers\Index.vbhtml" />
+    <Content Include="Views\Invoices\Partials\_invoiceRows.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
