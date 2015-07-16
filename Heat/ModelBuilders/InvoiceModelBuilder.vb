@@ -14,27 +14,40 @@ Public Class InvoiceModelBuilder
         _db = repository
     End Sub
 
-    Public Function GetConfirmedInvoicesIndexViewModel() As ViewModels.Invoices.indexViewModel
-        Dim result As New ViewModels.Invoices.indexViewModel
+    ''' <summary>
+    ''' Prepara il modello da visualizzare nella view con l'elenco delle fatture confermate.
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetConfirmedInvoicesIndexViewModel() As ViewModels.Invoices.confirmedIndexViewModel
+        Dim result As New ViewModels.Invoices.confirmedIndexViewModel
 
-        result.State = DocumentState.Inserted
-        result.InvoiceList = _db.Invoices.
-            Where(Function(x) x.State = DocumentState.Inserted).Select(
-                Function(x) New Invoices.InvoicesGridViewModel With {
+        result.State = DocumentState.Confirmed
+        result.InsertedInvoiceCount = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Count
+
+        result.ConfirmedInvoiceList = _db.Invoices.
+            Where(Function(x) x.State = DocumentState.Confirmed).Select(
+                Function(x) New Invoices.confirmedInvoicesGridViewModel With {
                     .ID = x.ID,
                     .Customer = x.Customer.Name,
                     .InvoiceDate = x.InvoiceDate,
                     .InvoiceNumber = x.ConfirmedNumber.SerialString,
                     .Total = x.TotalAmount}).ToList
+
         Return result
     End Function
 
-    Public Function GetInsertedInvoicesIndexViewModel() As ViewModels.Invoices.indexViewModel
-        Dim result As New ViewModels.Invoices.indexViewModel
+    ''' <summary>
+    ''' Prepara il modello per la view con l'elenco delle fatture INSERITE (ma non ancora confermate).
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetInsertedInvoicesIndexViewModel() As ViewModels.Invoices.insertedIndexViewModel
+        Dim result As New ViewModels.Invoices.insertedIndexViewModel
 
         result.State = DocumentState.Inserted
-        result.InvoiceList = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Select(
-            Function(x) New Invoices.InvoicesGridViewModel With {
+        result.InsertedInvoiceList = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Select(
+            Function(x) New Invoices.InsertedInvoicesGridViewModel With {
                 .ID = x.ID,
                 .Customer = x.Customer.Name,
                 .InvoiceDate = x.InvoiceDate,

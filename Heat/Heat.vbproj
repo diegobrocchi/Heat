@@ -340,8 +340,10 @@
     <Compile Include="Models\Invoice.vb" />
     <Compile Include="Models\InvoiceRow.vb" />
     <Compile Include="Models\Item.vb" />
-    <Compile Include="ViewModels\Invoices\indexViewModel.vb" />
-    <Compile Include="ViewModels\Invoices\InvoicesGridViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\confirmedIndexViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\insertedIndexViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\confirmedInvoicesGridViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\InsertedInvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\ManageViewModels.vb" />
     <Compile Include="Models\Payment.vb" />
     <Compile Include="Models\Plant.vb" />
@@ -577,7 +579,7 @@
     <Content Include="Views\Invoices\Delete.vbhtml" />
     <Content Include="Views\Invoices\Details.vbhtml" />
     <Content Include="Views\Invoices\Edit.vbhtml" />
-    <Content Include="Views\Invoices\Index.vbhtml" />
+    <Content Include="Views\Invoices\insertedIndex.vbhtml" />
     <Content Include="Views\Payments\Create.vbhtml" />
     <Content Include="Views\Payments\Delete.vbhtml" />
     <Content Include="Views\Payments\Details.vbhtml" />
@@ -635,6 +637,7 @@
     <Content Include="Views\Sellers\Edit.vbhtml" />
     <Content Include="Views\Sellers\Index.vbhtml" />
     <Content Include="Views\Invoices\Partials\_invoiceRows.vbhtml" />
+    <Content Include="Views\Invoices\confirmedIndex.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

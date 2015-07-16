@@ -29,13 +29,13 @@ Namespace Controllers
         End Sub
 
         ' GET: Invoices
-        Function Index(Optional state As DocumentState = DocumentState.Inserted) As ActionResult
+        Function Index(Optional state As DocumentState = DocumentState.Confirmed) As ActionResult
 
             Select Case state
                 Case DocumentState.Inserted
-                    Return View(modelBuilder.GetInsertedInvoicesIndexViewModel)
+                    Return View("insertedIndex", modelBuilder.GetInsertedInvoicesIndexViewModel)
                 Case DocumentState.Confirmed
-                    Return View(modelBuilder.GetConfirmedInvoicesIndexViewModel)
+                    Return View("confirmedIndex", modelBuilder.GetConfirmedInvoicesIndexViewModel)
                 Case DocumentState.Deleted
                     Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 Case Else
