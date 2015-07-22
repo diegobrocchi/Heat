@@ -1,9 +1,9 @@
-﻿@ModelType Heat.Models.Invoice
+﻿@ModelType Heat.ViewModels.EditInvoiceViewModel
 @Code
-    ViewData("Title") = "Edit"
+    ViewData("Title") = "Modifica"
 End Code
 
-<h2>Edit</h2>
+<h2>Immissione fattura</h2>
 
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
@@ -15,41 +15,63 @@ End Code
         @Html.HiddenFor(Function(model) model.ID)
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.InsertedNumber.SerialString, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            @Html.LabelFor(Function(model) model.CustomerName, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.InsertedNumber.SerialString, New With {.htmlAttributes = New With {.class = "form-control"}})
-                @Html.ValidationMessageFor(Function(model) model.InsertedNumber.SerialString, "", New With {.class = "text-danger"})
+                <p class="form-control-static">@Model.CustomerName</p>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(Function(model) model.InvoiceDate, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.InvoiceDate, New With {.htmlAttributes = New With {.class = "form-control"}})
-                @Html.ValidationMessageFor(Function(model) model.InvoiceDate, "", New With {.class = "text-danger"})
+                <p class="form-control-static">@Model.InvoiceDate</p>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.InvoiceNumber, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 <p class="form-control-static">@Model.InvoiceNumber</p>
+             </div>
+         </div>
+         
     </div>
 End Using
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
+ 
 @Ajax.ActionLink("Aggiungi una riga", "addNewRow", New With {.invoiceID = Model.ID}, New AjaxOptions With {
                       .HttpMethod = "GET",
                       .InsertionMode = InsertionMode.Replace,
-                      .OnBegin = "showAddNewRowPanel",
-                      .OnComplete = "onCompleteAddNewRowPanel",
-                      .OnFailure = "onErrorAddNewRowPanel",
+                      .OnBegin = "showAddRowPanel",
+                      .OnSuccess = "reparseForm",
                       .UpdateTargetId = "id_addNewRowPanel"}, New With {.class = "btn btn-default"})
 
-<div id="id_addNewRowPanel">
-
+<div id="invoiceRows">
+    @Html.Partial("partials/_invoiceRows", Model.rows)
 </div>
+
+<div class="modal" id="addRowModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalTitle">Aggiungi una riga alla fattura</h4>
+            </div>
+            <div class="modal-body">
+                <div id="id_addNewRowPanel">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"> </script>
+    <script src="~/Scripts/Views/Invoices/edit.js"></script>
+ 
+End Section

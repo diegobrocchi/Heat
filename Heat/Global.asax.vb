@@ -46,6 +46,8 @@ Public Class MvcApplication
 
         Mapper.AssertConfigurationIsValid()
 
+        ModelBinders.Binders.Add(GetType(Decimal), New DecimalModelBinder())
+
     End Sub
 
 

@@ -21,10 +21,7 @@ Namespace Manager
 
 
             d = _db.DocumentTypes.Include("Numbering").Where(Function(dt) dt.Name = "FTC").FirstOrDefault
-            '(From doc
-            '               In _db.DocumentTypes
-            '               Where doc.Name = "FTC" Select doc).FirstOrDefault
-
+            
             result.Customer = _db.Customers.Find(customerID)
             result.InvoiceDate = DateTime.Now
             result.InsertedNumber = numberGenerator.GetNextTemp(d.Numbering)

@@ -1,6 +1,30 @@
-﻿@modeltype Models.InvoiceRow
+﻿@modeltype ienumerable(of ViewModels.InvoiceRowViewModel )
 
-@Html.HiddenFor(Function(m) m.Invoice.ID)
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Prodotto</th>
+            <th>Quantità</th>
+        </tr>
+    </thead>
+    <tbody >
+        @For Each itemModel In Model
+            @<tr>
+        <td>
+    @Html.DisplayFor(Function(x) itemModel.Product)
 
-@Html.DisplayFor(Function(m) m.Product.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(x) itemModel.Quantity)
+        </td>
+            </tr>
+
+        Next
+    </tbody>
+</table>
+
+
+
+
+
 

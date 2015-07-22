@@ -12,11 +12,19 @@ End Code
         <h4>Fattura</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.CustomerName, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.CustomerName, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.CustomerName, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.TempNumber.SerialString, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            @Html.LabelFor(Function(model) model.TempNumber, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.TempNumber.SerialString, New With {.htmlAttributes = New With {.class = "form-control"}})
-                @Html.ValidationMessageFor(Function(model) model.TempNumber.SerialString, "", New With {.class = "text-danger"})
+                @Html.EditorFor(Function(model) model.TempNumber, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.TempNumber, "", New With {.class = "text-danger"})
             </div>
         </div>
 
@@ -27,10 +35,11 @@ End Code
                 @Html.ValidationMessageFor(Function(model) model.EmissionDate, "", New With {.class = "text-danger"})
             </div>
         </div>
+    
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Conferma l'emissione del documento per il soggetto" class="btn btn-primary" />
             </div>
         </div>
     </div>

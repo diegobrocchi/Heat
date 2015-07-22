@@ -77,4 +77,8 @@ Public Class HeatDbContextMock
     Public Property Invoices As Entity.DbSet(Of Models.Invoice) Implements IHeatDBContext.Invoices
 
     Public Property DocumentTypes As Entity.DbSet(Of Models.DocumentType) Implements IHeatDBContext.DocumentTypes
+
+    Public Property InvoiceRows As Entity.DbSet(Of InvoiceRow) Implements IHeatDBContext.InvoiceRows
+
+    Public Property Products As Entity.DbSet(Of Product) Implements IHeatDBContext.Products
 End Class

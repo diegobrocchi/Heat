@@ -4,5 +4,21 @@
     ViewBag.Title = "Error"
 End Code
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Errore inatteso dell'applicazione</title>
+</head>
+<body>
+
+    <h1>Errore</h1>
+    <h2>E' capitato un errore non gestito</h2>
+
+
+    <p>
+        @ViewBag.message
+    </p>
+</body>
+</html>

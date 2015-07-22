@@ -19,8 +19,8 @@ Public Class InvoiceModelBuilder
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function GetConfirmedInvoicesIndexViewModel() As ViewModels.Invoices.confirmedIndexViewModel
-        Dim result As New ViewModels.Invoices.confirmedIndexViewModel
+    Public Function GetConfirmedInvoicesIndexViewModel() As Viewmodels.Invoices.confirmedIndexViewModel
+        Dim result As New Viewmodels.Invoices.confirmedIndexViewModel
 
         result.State = DocumentState.Confirmed
         result.InsertedInvoiceCount = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Count
@@ -42,8 +42,8 @@ Public Class InvoiceModelBuilder
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function GetInsertedInvoicesIndexViewModel() As ViewModels.Invoices.insertedIndexViewModel
-        Dim result As New ViewModels.Invoices.insertedIndexViewModel
+    Public Function GetInsertedInvoicesIndexViewModel() As Viewmodels.Invoices.insertedIndexViewModel
+        Dim result As New Viewmodels.Invoices.insertedIndexViewModel
 
         result.State = DocumentState.Inserted
         result.InsertedInvoiceList = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Select(
@@ -57,16 +57,38 @@ Public Class InvoiceModelBuilder
         Return result
     End Function
 
-    Public Function GetInvoiceCreateViewModel(tempDOc As Invoice) As InvoiceCreateViewModel
-        Dim result As New InvoiceCreateViewModel
-        Dim nm As NumeratorManager = NumeratorManager.Instance
 
-        result.EmissionDate = Now
-        result.TempNumber = tempDOc.InsertedNumber
+    Public Function GetEditInvoiceViewModel(tempDoc As Invoice) As EditInvoiceViewModel
+        Dim result As New EditInvoiceViewModel
 
-        'result.TempNumber = nm.GetNextTemp(d.Numbering).SerialInteger
+        result.ID = tempDoc.ID
+        result.CustomerName = tempDoc.Customer.Name
+        result.InvoiceNumber = tempDoc.InsertedNumber.SerialString
+        result.InvoiceDate = tempDoc.InvoiceDate.ToShortDateString
+        result.Rows = _db.InvoiceRows.
+            Where(Function(r) r.Invoice.ID = tempDoc.ID).
+            OrderBy(Function(x) x.ItemOrder).
+            Select(Function(x) New InvoiceRowViewModel With {
+                       .ID = x.ID,
+                       .Item = x.ItemOrder,
+                       .InvoiceID = x.Invoice.ID,
+                       .Product = x.Product.Description,
+                       .Quantity = x.Quantity}).
+               ToList
+
         Return result
 
+
+    End Function
+
+    Public Function GetAddInvoiceRowViewModel(invoiceID As Integer) As AddNewInvoiceRowViewModel
+        Dim result As New AddNewInvoiceRowViewModel
+
+        result.InvoiceID = invoiceID
+        result.ProductList = _db.Products.ToList.OrderBy(Function(x) x.Description).ToSelectListItems(Function(p) p.Description, Function(p) p.ID, "")
+
+
+        Return result
 
     End Function
 

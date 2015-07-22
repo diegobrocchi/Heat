@@ -141,6 +141,10 @@ Namespace Migrations
             Dim number As New Models.Numbering
 
 
+            Dim product1 As New Models.Product
+            Dim product2 As New Models.Product
+
+
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
             Fuel3.Name = "Cippato"
@@ -188,6 +192,18 @@ Namespace Migrations
             FTC.Description = "Fattura Cliente"
             FTC.Numbering = number
 
+            product1.Cost = 3.56
+            product1.Description = "Ghiera modello XYZ"
+            product1.ReorderLevel = 30
+            product1.SKU = "MCS_GH_XYZ"
+            product1.UnitPrice = 7.76
+
+            product2.Cost = 3
+            product2.Description = "Tubo modello ABC"
+            product2.ReorderLevel = 10
+            product2.SKU = "MCS_TU_ABC"
+            product2.UnitPrice = 2.7
+
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument1)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument2)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument3)
@@ -205,6 +221,9 @@ Namespace Migrations
             context.SerialSchemes.AddOrUpdate(Function(ss) ss.Name, simpleSchema)
             context.Numberings.AddOrUpdate(Function(n) n.Code, number)
             context.DocumentTypes.AddOrUpdate(Function(dt) dt.Name, FTC)
+
+            context.Products.AddOrUpdate(Function(p) p.SKU, product1)
+            context.Products.AddOrUpdate(Function(p) p.SKU, product2)
 
 
             context.SaveChanges()

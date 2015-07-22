@@ -10,7 +10,8 @@ Public Module BundleConfig
                     "~/Scripts/dataTables.bootstrap.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/jqueryval").Include(
-                    "~/Scripts/jquery.validate*"))
+                    "~/scripts/jquery.validate.js",
+        "~/scripts/jquery.validate.unobtrusive.js"))
 
         ' Use the development version of Modernizr to develop with and learn from. Then, when you're
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -27,7 +28,7 @@ Public Module BundleConfig
                   "~/Content/dataTables.bootstrap.css"))
         
 
-        BundleTable.EnableOptimizations = True
+        BundleTable.EnableOptimizations = False
 
     End Sub
 End Module
