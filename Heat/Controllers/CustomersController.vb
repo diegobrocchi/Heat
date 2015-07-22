@@ -149,11 +149,19 @@ Namespace Controllers
             End If
         End Function
 
+        <HttpGet> _
+        Function GetCustomersByName(searchText As String) As ActionResult
+            Return Json(_db.Customers.Where(Function(x) x.Name.Contains(searchText)).Select(Function(x) New With {.id = x.ID, .name = x.Name}).ToList, JsonRequestBehavior.AllowGet)
+        End Function
+
+
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
                 _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub
+
+
     End Class
 End Namespace

@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -23,6 +24,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -202,7 +204,6 @@
     <Compile Include="Controllers\SellersController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
     <Compile Include="Controllers\WarehousesController.vb" />
-    <Compile Include="Controllers\WarehouseMovementsController.vb" />
     <Compile Include="Extensions\AutomapperExtensions.vb" />
     <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Extensions\EnumerableExtensions.vb" />
@@ -308,6 +309,7 @@
     </Compile>
     <Compile Include="Migrations\201506290508292_sell.vb" />
     <Compile Include="Migrations\Configuration.vb" />
+    <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
@@ -318,10 +320,15 @@
     <Compile Include="Models\ViewModels\AddNewInvoiceRowViewModel.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
     <Compile Include="Types\SerialNumber.vb" />
+    <Compile Include="Validation\EditableInvoiceValidator.vb" />
+    <Compile Include="Validation\Interfaces\IValidator.vb" />
+    <Compile Include="Validation\ValidationRules.vb" />
     <Compile Include="ViewModelBuilders\NumberingViewModelsBuilder.vb" />
     <Compile Include="ViewModelBuilders\SerialSchemeViewModelBuilder.vb" />
+    <Compile Include="ViewModels\Customers\CustomerViewModel.vb" />
     <Compile Include="ViewModels\DocumentTypeAddViewModel.vb" />
-    <Compile Include="ViewModels\InvoiceCreateViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\EditInvoiceViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
     <Compile Include="ViewModels\AccountViewModels.vb" />
     <Compile Include="Models\Action.vb" />
@@ -341,9 +348,10 @@
     <Compile Include="Models\InvoiceRow.vb" />
     <Compile Include="Models\Item.vb" />
     <Compile Include="ViewModels\Invoices\confirmedIndexViewModel.vb" />
-    <Compile Include="ViewModels\Invoices\insertedIndexViewModel.vb" />
     <Compile Include="ViewModels\Invoices\confirmedInvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InsertedInvoicesGridViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\insertedIndexViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\InvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\ManageViewModels.vb" />
     <Compile Include="Models\Payment.vb" />
     <Compile Include="Models\Plant.vb" />
@@ -455,6 +463,39 @@
     <Content Include="Content\Login.css" />
     <Content Include="Content\bootstrap-original.css.map" />
     <Content Include="Content\signin.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="ELMAH-1.2-db-SQLServer.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -502,10 +543,13 @@
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -519,6 +563,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Views\Customers\index.js" />
+    <Content Include="Scripts\Views\Invoices\create.js" />
+    <Content Include="Scripts\Views\Invoices\edit.js" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
@@ -579,7 +625,6 @@
     <Content Include="Views\Invoices\Delete.vbhtml" />
     <Content Include="Views\Invoices\Details.vbhtml" />
     <Content Include="Views\Invoices\Edit.vbhtml" />
-    <Content Include="Views\Invoices\insertedIndex.vbhtml" />
     <Content Include="Views\Payments\Create.vbhtml" />
     <Content Include="Views\Payments\Delete.vbhtml" />
     <Content Include="Views\Payments\Details.vbhtml" />
@@ -638,6 +683,11 @@
     <Content Include="Views\Sellers\Index.vbhtml" />
     <Content Include="Views\Invoices\Partials\_invoiceRows.vbhtml" />
     <Content Include="Views\Invoices\confirmedIndex.vbhtml" />
+    <Content Include="Views\Invoices\SelectCustomer.vbhtml" />
+    <Content Include="Scripts\Views\Invoices\create.js.map" />
+    <Content Include="Views\Shared\_searchCustomer.vbhtml" />
+    <Content Include="Views\Invoices\Partials\_addInvoiceRows.vbhtml" />
+    <Content Include="Scripts\Views\Invoices\edit.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -669,11 +719,26 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery-validation-unobtrusive\jquery-validation-unobtrusive.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Invoices\create.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Invoices\edit.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

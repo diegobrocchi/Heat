@@ -40,7 +40,7 @@ Namespace Repositories
         Property PlantTypes As DbSet(Of PlantType)
         Property PlantClasses As DbSet(Of PlantClass)
         Property Invoices As DbSet(Of Invoice) Implements IHeatDBContext.Invoices
-        Property Products As DbSet(Of Product)
+        Property InvoiceRows As DbSet(Of InvoiceRow) Implements IHeatDBContext.InvoiceRows
         Property Payments As DbSet(Of Payment)
         Property Fuels As DbSet(Of Fuel)
         Property CausalDocuments As DbSet(Of CausalDocument)
@@ -50,13 +50,14 @@ Namespace Repositories
         Property Warehouses As System.Data.Entity.DbSet(Of Warehouse) Implements IHeatDBContext.Warehouses
         Property CausalWarehouseGroups As System.Data.Entity.DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
         Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
-
         Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
+        Property Products As DbSet(Of Product) Implements IHeatDBContext.Products
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges
         End Function
- 
+
+
     End Class
 
 End Namespace

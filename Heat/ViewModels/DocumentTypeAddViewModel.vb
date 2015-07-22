@@ -1,5 +1,5 @@
 ﻿
-Namespace Viewmodels
+Namespace ViewModels
 
     Public Class DocumentTypeAddViewModel
         Property ID As Integer
