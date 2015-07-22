@@ -44,8 +44,6 @@ Namespace Controllers
 
         End Function
 
-
-
         ' GET: Invoices/Details/5
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
@@ -59,9 +57,10 @@ Namespace Controllers
         End Function
 
         ' GET: Invoices/Create
-        Function Create(customerID As Integer) As ActionResult
+        Function Create(Optional customerID As Integer = 0) As ActionResult
             Dim ivm As InvoiceCreateViewModel
             Dim tmpDoc As Invoice
+
 
             tmpDoc = _businessService.GetTemporaryDocument(customerID)
             ivm = modelBuilder.GetInvoiceCreateViewModel(tmpDoc)
