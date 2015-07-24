@@ -158,10 +158,10 @@ Namespace Controllers
         ''' <remarks></remarks>
         <HttpGet> _
         Public Function addNewRow(invoiceID As Integer) As ActionResult
-            Dim invoiceRow As AddNewInvoiceRowViewModel
-            invoiceRow = _modelBuilder.GetAddInvoiceRowViewModel(invoiceID)
+            'Dim invoiceRow As AddNewInvoiceRowViewModel
+            'invoiceRow = _modelBuilder.GetAddInvoiceRowViewModel(invoiceID)
 
-            Return PartialView("partials/_addInvoiceRows", invoiceRow)
+            'Return PartialView("partials/_addInvoiceRows", invoiceRow)
         End Function
 
         <HttpPost> _

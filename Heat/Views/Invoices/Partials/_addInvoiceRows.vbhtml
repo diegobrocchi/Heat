@@ -17,6 +17,7 @@
             @Html.LabelFor(Function(x) x.Quantity, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.EditorFor(Function(x) x.Quantity, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(x) x.Quantity, "", New With {.class = "text-danger"})
             </div>
         </div>
          <div class="form-group">
