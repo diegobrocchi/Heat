@@ -79,7 +79,7 @@ Namespace Controllers
 
             tmpDoc = _businessService.GetTemporaryDocument(customerID)
             _db.SaveChanges()
-  
+
             Return RedirectToAction("Edit", New With {.id = tmpDoc.ID})
         End Function
 
