@@ -38,12 +38,14 @@ End Code
 End Using
 
  
-@Ajax.ActionLink("Aggiungi una riga", "addNewRow", New With {.invoiceID = Model.ID}, New AjaxOptions With {
+@Ajax.ActionLink("Aggiungi una riga Async", "addNewRow", New With {.invoiceID = Model.ID}, New AjaxOptions With {
                       .HttpMethod = "GET",
                       .InsertionMode = InsertionMode.Replace,
                       .OnBegin = "showAddRowPanel",
                       .OnSuccess = "reparseForm",
                       .UpdateTargetId = "id_addNewRowPanel"}, New With {.class = "btn btn-default"})
+
+@Html.ActionLink("Aggiungi una riga", "create", "invoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary"})
 
 <div id="invoiceRows">
     @Html.Partial("partials/_invoiceRows", Model.rows)
@@ -71,7 +73,14 @@ End Using
 
 @section scripts
 
-    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"> </script>
+    @*<script src="~/scripts/jquery.unobtrusive-ajax.min.js"> </script>*@
+    <script src="~/Scripts/cldr.js"></script>
+    <script src="~/Scripts/cldr/event.js"></script>
+    <script src="~/Scripts/cldr/supplemental.js"></script>
+    <script src="~/Scripts/globalize.js"></script>
+    <script src="~/scripts/jquery.validate.globalize.js"></script>
+    <script src="~/Scripts/Heat.js"></script>
     <script src="~/Scripts/Views/Invoices/edit.js"></script>
  
 End Section
+

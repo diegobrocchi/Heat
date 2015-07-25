@@ -73,7 +73,8 @@ Public Class InvoiceModelBuilder
                        .Item = x.ItemOrder,
                        .InvoiceID = x.Invoice.ID,
                        .Product = x.Product.Description,
-                       .Quantity = x.Quantity}).
+                       .Quantity = x.Quantity,
+                       .UnitPrice = x.UnitPrice}).
                ToList
 
         Return result

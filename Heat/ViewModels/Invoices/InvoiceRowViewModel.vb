@@ -18,6 +18,9 @@ Namespace ViewModels
         <Display(name:="Quantità")> _
         Property Quantity As Single
 
+        <Display(name:="Prezzo")> _
+        Property UnitPrice As Decimal
+
     End Class
 
 End Namespace

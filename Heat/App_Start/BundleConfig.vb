@@ -11,7 +11,7 @@ Public Module BundleConfig
 
         bundles.Add(New ScriptBundle("~/bundles/jqueryval").Include(
                     "~/scripts/jquery.validate.js",
-        "~/scripts/jquery.validate.unobtrusive.js"))
+                    "~/scripts/jquery.validate.unobtrusive.js"))
 
         ' Use the development version of Modernizr to develop with and learn from. Then, when you're
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

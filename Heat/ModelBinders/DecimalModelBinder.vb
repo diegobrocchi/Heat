@@ -12,6 +12,7 @@ Public Class DecimalModelBinder
         Dim actualValue As Object = Nothing
 
         Try
+
             actualValue = Convert.ToDecimal(valueResult.AttemptedValue, CultureInfo.CurrentCulture)
 
         Catch ex As FormatException
