@@ -1,9 +1,9 @@
 ﻿$(document).ready(function () {
     $.when(
         $.get("../scripts/cldr/supplemental/likelySubtags.json"),
-        $.get("../scripts/cldr/main/en/currencies.json"),
+        $.get("../scripts/cldr/main/it/currencies.json"),
         $.get("../scripts/cldr/supplemental/currencyData.json"),
-        $.get("../scripts/cldr/main/en/numbers.json"),
+        $.get("../scripts/cldr/main/it/numbers.json"),
         $.get("../scripts/cldr/supplemental/numberingSystems.json")
 
     ).then(function () {
@@ -15,7 +15,7 @@
 
     }).then(Globalize.load).then(function () {
 
-        Globalize.locale("en");
+        Globalize.locale("it");
         
     });
 

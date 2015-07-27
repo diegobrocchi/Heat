@@ -1,6 +1,9 @@
 ﻿/*!
 ** An extension to the jQuery Validation Plugin which makes it use Globalize.js for number and date parsing 
 ** Copyright (c) 2013 John Reilly
+**
+** Modificata da Diego Brocchi per adeguarsi alla libreria Globalize.js v1.0.0, che non ha 
+** più la funzione parseFloat, ma parseNumber (la funzione è nel plugin per Globalize numbers.js)
 */
 
 (function ($, Globalize) {

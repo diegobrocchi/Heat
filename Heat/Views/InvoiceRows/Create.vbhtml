@@ -1,7 +1,11 @@
 ﻿@modeltype ViewModels.AddNewInvoiceRowViewModel
 @Code
     ViewData("Title") = "Aggiungi una nuova riga al documento"
+    Dim languageCodeCLDR As String = Culture.Substring(0, 2)
+    
 End Code
+
+<h2>Immissione di una nuova riga per la fattura</h2>
 
 @Using Html.BeginForm()
     @Html.AntiForgeryToken
@@ -78,13 +82,40 @@ End Using
 <script src="~/Scripts/globalize/relative-time.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script> 
-@*<script src="~/scripts/jquery.validate.globalize.js"></script>*@
-<script src="~/Scripts/Heat.js"></script>
+<script src="~/Scripts/jquery.validate.globalize.fix.js"></script>
+@*<script src="~/Scripts/Heat.js"></script>*@
+<script>
+    $(document).ready(function () {
+        $.when(
+            $.get("../scripts/cldr/supplemental/likelySubtags.json"),
+            $.get("../scripts/cldr/main/@languageCodeCLDR/currencies.json"),
+            $.get("../scripts/cldr/supplemental/currencyData.json"),
+            $.get("../scripts/cldr/main/@languageCodeCLDR/numbers.json"),
+            $.get("../scripts/cldr/supplemental/numberingSystems.json")
+
+        ).then(function () {
+
+            // Normalize $.get results, we only need the JSON, not the request statuses.
+            return [].slice.apply(arguments, [0]).map(function (result) {
+                return result[0];
+            });
+
+        }).then(Globalize.load).then(function () {
+
+            Globalize.locale("@languageCodeCLDR");
+
+        });
+
+    });
+
+
+    
+</script>
 End Section
 
 
 
-<script>
+
     
-</script>
+
 

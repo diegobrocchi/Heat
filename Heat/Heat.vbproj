@@ -1265,6 +1265,10 @@
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.globalize.fix.js" />
+    <Content Include="Scripts\jquery.validate.globalize.fix.min.js">
+      <DependentUpon>jquery.validate.globalize.fix.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery.validate.globalize.js" />
     <Content Include="Scripts\jquery.validate.globalize.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1414,6 +1418,9 @@
     <Content Include="Views\InvoiceRows\Details.vbhtml" />
     <Content Include="Views\InvoiceRows\Edit.vbhtml" />
     <Content Include="Views\InvoiceRows\Index.vbhtml" />
+    <Content Include="Scripts\jquery.validate.globalize.fix.min.js.map">
+      <DependentUpon>jquery.validate.globalize.fix.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
