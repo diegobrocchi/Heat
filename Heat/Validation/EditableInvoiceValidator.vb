@@ -1,5 +1,10 @@
 ﻿Imports Heat.Models
 
+''' <summary>
+''' Regola di validazione per una fattura editabile.
+''' Solo le fatture con State=DocumentState.Inserted sono modificabili.
+''' </summary>
+''' <remarks></remarks>
 Public Class EditableInvoiceValidator
     Implements IValidator
 

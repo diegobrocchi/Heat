@@ -16,6 +16,7 @@ End Code
     <li class="list-group-item">@Html.ActionLink("Tipi di documento", "index", "DocumentTypes")</li>
     <li class="list-group-item">@Html.ActionLink("Magazzini", "index", "Warehouses")</li>
     <li class="list-group-item">@Html.ActionLink("Movimenti di magazzino", "index", "WarehouseMovements")</li>
+    <li class="list-group-item">@Html.ActionLink("Pagamenti", "index", "payments")</li>
 
 </ul>
 

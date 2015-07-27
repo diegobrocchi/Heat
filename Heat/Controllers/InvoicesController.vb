@@ -84,7 +84,7 @@ Namespace Controllers
         End Function
 
 
-        ' GET: Invoices/Edit/5
+        <HttpGet> _
         Function Edit(ByVal id As Integer?) As ActionResult
 
             If IsNothing(id) Then
@@ -92,10 +92,13 @@ Namespace Controllers
             End If
 
             Dim invoice As Invoice = _db.Invoices.Include(Function(i) i.Customer).Where(Function(i) i.ID = id).Single
+
             If IsNothing(invoice) Then
                 Return HttpNotFound()
             End If
+
             Dim validator As New EditableInvoiceValidator(_db, id)
+
             If validator.IsValid Then
                 Dim model As EditInvoiceViewModel
                 model = _modelBuilder.GetEditInvoiceViewModel(invoice)
@@ -106,18 +109,65 @@ Namespace Controllers
             End If
         End Function
 
-        ' POST: Invoices/Edit/5
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,DocNumber,Sum")> ByVal invoice As Invoice) As ActionResult
-            If ModelState.IsValid Then
-                _db.SetModified(invoice)
-                _db.SaveChanges()
-                Return RedirectToAction("Index")
+        Function Edit(ID As Integer) As ActionResult
+            'L'azione POST su Edit è la conferma del documento e la attribuzione dello stato 'Confirmed'
+            'Cerco la fattura con ID specificato,
+            'se State = DocumentState.Inserted confermo l'inserimento.
+
+            Dim validator As New EditableInvoiceValidator(_db, ID)
+
+            If validator.IsValid Then
+
             End If
-            Return View(invoice)
+            If ModelState.IsValid Then
+
+                If _businessService.SetConfirmedDocument(ID) Then
+
+                    _db.SaveChanges()
+                    Return RedirectToAction("Index")
+                Else
+
+
+                    ViewBag.message = "Impossibile confermare il documento"
+                    Return View("Error")
+                End If
+            Else
+
+                ViewBag.message = "Il documento non è editabile: impossibile confermare il documento!"
+                Return View("error")
+            End If
+
+        End Function
+
+        <HttpGet> _
+        Public Function EditPayment(ID As Integer) As ActionResult
+            Dim model As InvoicePaymentViewModel
+
+            model = _modelBuilder.getEditInvoicePaymentViewModel(ID)
+
+            Return View(model)
+        End Function
+
+        <HttpPost> _
+        Public Function EditPayment(model As InvoicePaymentViewModel) As ActionResult
+            If ModelState.IsValid Then
+                Dim dbInvoice As Invoice
+                dbInvoice = _db.Invoices.Find(model.ID)
+
+                dbInvoice.IsTaxExempt = model.IsTaxExempt
+                dbInvoice.Payment = _db.Payments.Find(model.PaymentID)
+                dbInvoice.TaxExemption = model.TaxExemption
+
+                _db.SaveChanges()
+
+                Return RedirectToAction("Index")
+            Else
+                ViewBag.message = "Impossibile salvare il modello"
+                Return View("error")
+            End If
         End Function
 
         ' GET: Invoices/Delete/5
@@ -164,30 +214,33 @@ Namespace Controllers
             'Return PartialView("partials/_addInvoiceRows", invoiceRow)
         End Function
 
-        <HttpPost> _
-        Public Function addNewRow(newRow As AddNewInvoiceRowViewModel) As ActionResult
-            If ModelState.IsValid Then
-                Dim newDBRow As New InvoiceRow
-                newDBRow.Invoice = _db.Invoices.Find(newRow.InvoiceID)
-                newDBRow.ItemOrder = _db.InvoiceRows.Where(Function(x) x.Invoice.ID = newRow.InvoiceID).Max(Function(x) x.ItemOrder) + 1
-                newDBRow.Product = _db.Products.Find(newRow.ProductID)
-                newDBRow.Quantity = newRow.Quantity
-                newDBRow.UnitPrice = newRow.UnitPrice
-                newDBRow.RateDiscount1 = newRow.Discount1
-                newDBRow.RateDiscount2 = newRow.Discount2
-                newDBRow.RateDiscount3 = newRow.Discount3
-                newDBRow.VAT_Rate = newRow.VAT
+        '<HttpPost> _
+        'Public Function addNewRow(newRow As AddNewInvoiceRowViewModel) As ActionResult
+        '    If ModelState.IsValid Then
+        '        Dim newDBRow As New InvoiceRow
+        '        newDBRow.Invoice = _db.Invoices.Find(newRow.InvoiceID)
+        '        newDBRow.ItemOrder = _db.InvoiceRows.Where(Function(x) x.Invoice.ID = newRow.InvoiceID).Max(Function(x) x.ItemOrder) + 1
+        '        newDBRow.Product = _db.Products.Find(newRow.ProductID)
+        '        newDBRow.Quantity = newRow.Quantity
+        '        newDBRow.UnitPrice = newRow.UnitPrice
+        '        newDBRow.RateDiscount1 = newRow.Discount1
+        '        newDBRow.RateDiscount2 = newRow.Discount2
+        '        newDBRow.RateDiscount3 = newRow.Discount3
+        '        newDBRow.VAT_Rate = newRow.VAT
 
-                _db.InvoiceRows.Add(newDBRow)
+        '        _db.InvoiceRows.Add(newDBRow)
 
-                _db.SaveChanges()
+        '        _db.SaveChanges()
 
-                Return RedirectToAction("edit", New With {.id = newRow.InvoiceID})
+        '        Return RedirectToAction("edit", New With {.id = newRow.InvoiceID})
 
-            Else
-                ViewBag.message = "Errore nel salvataggio della riga"
-                Return View("error")
-            End If
-        End Function
+        '    Else
+        '        ViewBag.message = "Errore nel salvataggio della riga"
+        '        Return View("error")
+        '    End If
+        'End Function
+
+
+
     End Class
 End Namespace

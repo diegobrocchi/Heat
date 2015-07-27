@@ -309,6 +309,10 @@
       <DependentUpon>201506290508292_sell.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201506290508292_sell.vb" />
+    <Compile Include="Migrations\201507270857483_VAT-single.Designer.vb">
+      <DependentUpon>201507270857483_VAT-single.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507270857483_VAT-single.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
@@ -352,6 +356,7 @@
     <Compile Include="ViewModels\Invoices\confirmedInvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InsertedInvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\Invoices\insertedIndexViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\InvoicePaymentViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\ManageViewModels.vb" />
     <Compile Include="Models\Payment.vb" />
@@ -441,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201506290508292_sell.resx">
       <DependentUpon>201506290508292_sell.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507270857483_VAT-single.resx">
+      <DependentUpon>201507270857483_VAT-single.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1229,6 +1237,7 @@
     <Content Include="Scripts\cldr\main\zh\numbers.json" />
     <Content Include="Scripts\cldr\main\zu\currencies.json" />
     <Content Include="Scripts\cldr\main\zu\numbers.json" />
+    <Content Include="Scripts\Heat.Globalize.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.css" />
     <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.min.css" />
@@ -1421,6 +1430,7 @@
     <Content Include="Scripts\jquery.validate.globalize.fix.min.js.map">
       <DependentUpon>jquery.validate.globalize.fix.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\Invoices\EditPayment.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

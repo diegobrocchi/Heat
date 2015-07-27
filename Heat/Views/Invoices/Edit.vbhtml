@@ -9,7 +9,7 @@ End Code
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h4>Invoice</h4>
+        <h4>Fattura</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.ID)
@@ -34,24 +34,34 @@ End Code
              </div>
          </div>
          
+@Html.ActionLink("Aggiungi una riga", "create", "invoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary btn-sm"})
+
+
+
+<div id="invoiceRows">
+    @Html.Partial("partials/_invoiceRows", Model.Rows)
+</div>
+
+    @Html.ActionLink("Vai alle condizioni di pagamento", "EditPayment", "invoices", New With {.id = Model.ID}, New With {.class = "btn btn-default"})
+         @*<input type="submit" value="Conferma la fattura" class="btn btn-default" />*@
     </div>
+    
 End Using
 
  
-@Ajax.ActionLink("Aggiungi una riga Async", "addNewRow", New With {.invoiceID = Model.ID}, New AjaxOptions With {
+@*@Ajax.ActionLink("Aggiungi una riga Async", "addNewRow", New With {.invoiceID = Model.ID}, New AjaxOptions With {
                       .HttpMethod = "GET",
                       .InsertionMode = InsertionMode.Replace,
                       .OnBegin = "showAddRowPanel",
                       .OnSuccess = "reparseForm",
-                      .UpdateTargetId = "id_addNewRowPanel"}, New With {.class = "btn btn-default"})
+                      .UpdateTargetId = "id_addNewRowPanel"}, New With {.class = "btn btn-default"})*@
 
-@Html.ActionLink("Aggiungi una riga", "create", "invoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary"})
+ 
 
-<div id="invoiceRows">
-    @Html.Partial("partials/_invoiceRows", Model.rows)
-</div>
 
-<div class="modal" id="addRowModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle">
+
+
+@*<div class="modal" id="addRowModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -68,19 +78,10 @@ End Using
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
-@section scripts
-
-    @*<script src="~/scripts/jquery.unobtrusive-ajax.min.js"> </script>*@
-    <script src="~/Scripts/cldr.js"></script>
-    <script src="~/Scripts/cldr/event.js"></script>
-    <script src="~/Scripts/cldr/supplemental.js"></script>
-    <script src="~/Scripts/globalize.js"></script>
-    <script src="~/scripts/jquery.validate.globalize.js"></script>
-    <script src="~/Scripts/Heat.js"></script>
-    <script src="~/Scripts/Views/Invoices/edit.js"></script>
- 
-End Section
+@*@section scripts
+        <script src="~/Scripts/Views/Invoices/edit.js"></script>
+ End Section*@
 

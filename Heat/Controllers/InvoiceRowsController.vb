@@ -39,11 +39,11 @@ Namespace Controllers
             Return View(invoiceRow)
         End Function
 
-        ' GET: InvoiceRows/Create
+        <HttpGet> _
         Function Create(invoiceID As Integer) As ActionResult
             Dim invoiceRow As AddNewInvoiceRowViewModel
-            invoiceRow = _modelBuilder.GetAddInvoiceRowViewModel(invoiceID)
 
+            invoiceRow = _modelBuilder.GetAddInvoiceRowViewModel(invoiceID)
 
             Return View(invoiceRow)
         End Function

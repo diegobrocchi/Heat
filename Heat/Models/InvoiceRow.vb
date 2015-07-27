@@ -7,10 +7,11 @@
         Property Product As Product
         Property Quantity As Double
         Property UnitPrice As Decimal
-        Property VAT_Rate As Decimal
+        Property VAT_Rate As Single
         Property RateDiscount1 As Decimal
         Property RateDiscount2 As Decimal
         Property RateDiscount3 As Decimal
+
         ''' <summary>
         ''' Totale LORDO nominale: prezzo unitario * quantità
         ''' </summary>

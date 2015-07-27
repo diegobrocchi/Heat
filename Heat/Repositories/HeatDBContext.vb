@@ -41,7 +41,7 @@ Namespace Repositories
         Property PlantClasses As DbSet(Of PlantClass)
         Property Invoices As DbSet(Of Invoice) Implements IHeatDBContext.Invoices
         Property InvoiceRows As DbSet(Of InvoiceRow) Implements IHeatDBContext.InvoiceRows
-        Property Payments As DbSet(Of Payment)
+        Property Payments As DbSet(Of Payment) Implements IHeatDBContext.Payments
         Property Fuels As DbSet(Of Fuel)
         Property CausalDocuments As DbSet(Of CausalDocument)
         Property Numberings As DbSet(Of Numbering) Implements IHeatDBContext.Numberings

@@ -11,6 +11,8 @@ End Code
     @Html.AntiForgeryToken
 
     @<div class="form-horizontal">
+    <h4>Riga fattura</h4>
+         <hr />
         <div class="form-group">
             @Html.LabelFor(Function(x) x.ProductID, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
@@ -69,7 +71,7 @@ End Using
 
 
 @section scripts
-@*<script src="~/scripts/jquery.unobtrusive-ajax.min.js"> </script>*@
+
 <script src="~/Scripts/cldr.js"></script>
 <script src="~/Scripts/cldr/event.js"></script>
 <script src="~/Scripts/cldr/supplemental.js"></script>
@@ -83,33 +85,16 @@ End Using
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script> 
 <script src="~/Scripts/jquery.validate.globalize.fix.js"></script>
-@*<script src="~/Scripts/Heat.js"></script>*@
+<script src="~/Scripts/Heat.Globalize.js"></script>
+
+
 <script>
+
     $(document).ready(function () {
-        $.when(
-            $.get("../scripts/cldr/supplemental/likelySubtags.json"),
-            $.get("../scripts/cldr/main/@languageCodeCLDR/currencies.json"),
-            $.get("../scripts/cldr/supplemental/currencyData.json"),
-            $.get("../scripts/cldr/main/@languageCodeCLDR/numbers.json"),
-            $.get("../scripts/cldr/supplemental/numberingSystems.json")
-
-        ).then(function () {
-
-            // Normalize $.get results, we only need the JSON, not the request statuses.
-            return [].slice.apply(arguments, [0]).map(function (result) {
-                return result[0];
-            });
-
-        }).then(Globalize.load).then(function () {
-
-            Globalize.locale("@languageCodeCLDR");
-
-        });
-
+        loadGlobalize('@languageCodeCLDR');
     });
 
-
-    
+       
 </script>
 End Section
 

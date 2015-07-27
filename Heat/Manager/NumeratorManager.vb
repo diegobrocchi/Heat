@@ -53,26 +53,27 @@ Namespace Manager
         ''' <param name="numbering"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function GetNextFinal(numbering As Numbering) As Integer
+        Public Function GetNextFinal(numbering As Numbering) As SerialNumber
+            SyncLock _lockObject
+                Dim currentSerial As SerialNumber
+                Dim nextSerial As SerialNumber
 
+                currentSerial = numbering.LastFinalSerial
+                Try
+                    nextSerial = currentSerial.Increment(numbering.FinalSerialSchema)
+                    If nextSerial.IsValid Then
+                        numbering.LastFinalSerial = nextSerial
+                        Return nextSerial
+                    Else
+                        Throw New Exception("Impossibile generare un serial valido per il numeratore!")
+                    End If
+                Catch ex As Exception
+                    Throw
+                End Try
+            End SyncLock
         End Function
 
-        'Private Function GetNext(lastValue As Integer, schema As SerialScheme) As SerialNumber
-
-        '    Dim minValueAdmitted As Integer
-        '    Dim maxValueAdmitted As Integer
-
-        '    If schema.ExpiryDate < Now Then
-        '        If schema.RecycleWhenExpired Then
-        '            'rinnova lo schema
-
-
-        '        Else
-        '            Throw New Exception("Lo schema è scaduto!")
-        '        End If
-        '    End If
-        'End Function
-
+       
          
 
         Public Shared Function EndOfWeek() As DateTime

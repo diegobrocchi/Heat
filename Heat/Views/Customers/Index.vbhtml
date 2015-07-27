@@ -54,8 +54,20 @@ End Code
             </td>
             <td>
                 @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
-                @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) 
-                @*@Html.ActionLink("Cancella", "Delete", New With {.id = item.ID})*@
+                @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) | 
+
+                <!-- Single button -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Documenti<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Fattura", "create", "invoices", New With {.customerID = item.ID}, Nothing)</li>
+                        <li>@Html.ActionLink("Preventivo", "create", "quotation", New With {.customerID = item.ID}, Nothing)</li>
+                    </ul>
+                </div>
+
+                
             </td>
         </tr>
     Next

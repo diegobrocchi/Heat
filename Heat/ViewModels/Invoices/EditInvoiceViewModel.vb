@@ -16,7 +16,6 @@ Namespace ViewModels
 
         Property Rows As List(Of InvoiceRowViewModel)
 
-
     End Class
 End Namespace
 
