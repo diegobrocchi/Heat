@@ -59,16 +59,15 @@
          </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div>
+                @Html.ActionLink("Torna all'inserimento righe", "edit", "invoices", New With {.id = Model.ID}, New With {.class = "btn btn-primary"})
+                <input type="submit" value="Conferma il documento" class="btn btn-default" />
             </div>
         </div>
     </div>
 End Using
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 
 
 @Section Scripts 
     @Scripts.Render("~/bundles/jqueryval")

@@ -1,5 +1,6 @@
 ﻿@modeltype ienumerable(of ViewModels.InvoiceRowViewModel )
 
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -13,8 +14,7 @@
             <th>Imponibile</th>
             <th>IVA</th>
             <th>TOTALE</th>
-            <th></th>
-
+             
         </tr>
     </thead>
     <tbody >
@@ -51,10 +51,7 @@
         <td>
             @Html.DisplayFor(Function(x) itemModel.Total)
         </td>
-        <td>
-            @Html.ActionLink("Modifica", "edit", "InvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Elimina", "delete", "InvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-danger  btn-sm"})
-        </td>
+         
             </tr>
 
         Next

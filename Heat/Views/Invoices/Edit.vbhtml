@@ -7,45 +7,53 @@ End Code
 
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
-    
-    @<div class="form-horizontal">
-        <h4>Fattura</h4>
-        <hr />
-        @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-        @Html.HiddenFor(Function(model) model.ID)
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.CustomerName, htmlAttributes:=New With {.class = "control-label col-md-2"})
-            <div class="col-md-10">
-                <p class="form-control-static">@Model.CustomerName</p>
-            </div>
+@<div class="form-horizontal">
+    <h4>Fattura</h4>
+    <hr />
+    @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+    @Html.HiddenFor(Function(model) model.ID)
+
+    <div>
+        <p class="form-control-static">Documento @Model.InvoiceNumber del @Model.InvoiceDate emesso a @Model.CustomerName </p>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(Function(model) model.CustomerName, htmlAttributes:=New With {.class = "control-label col-md-2"})
+        <div class="col-md-10">
+            <p class="form-control-static">@Model.CustomerName</p>
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.InvoiceDate, htmlAttributes:=New With {.class = "control-label col-md-2"})
-            <div class="col-md-10">
-                <p class="form-control-static">@Model.InvoiceDate</p>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(Function(model) model.InvoiceDate, htmlAttributes:=New With {.class = "control-label col-md-2"})
+        <div class="col-md-10">
+            <p class="form-control-static">@Model.InvoiceDate</p>
         </div>
-         <div class="form-group">
-             @Html.LabelFor(Function(model) model.InvoiceNumber, htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-10">
-                 <p class="form-control-static">@Model.InvoiceNumber</p>
-             </div>
-         </div>
-         
-@Html.ActionLink("Aggiungi una riga", "create", "invoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary btn-sm"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Function(model) model.InvoiceNumber, htmlAttributes:=New With {.class = "control-label col-md-2"})
+        <div class="col-md-10">
+            <p class="form-control-static">@Model.InvoiceNumber</p>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-10">
+            @Html.ActionLink("Aggiungi una riga", "create", "invoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary btn-sm"})
 
-
-<div id="invoiceRows">
-    @Html.Partial("partials/_invoiceRows", Model.Rows)
-</div>
-
-    @Html.ActionLink("Vai alle condizioni di pagamento", "EditPayment", "invoices", New With {.id = Model.ID}, New With {.class = "btn btn-default"})
-         @*<input type="submit" value="Conferma la fattura" class="btn btn-default" />*@
+        </div>
     </div>
     
+    
+    <div id="invoiceRows">
+        @Html.Partial("partials/_invoiceRows", Model.Rows)
+    </div>
+
+    @Html.ActionLink("Vai alle condizioni di pagamento", "EditPayment", "invoices", New With {.id = Model.ID}, New With {.class = "btn btn-default"})
+    
+</div>
+
 End Using
 
  

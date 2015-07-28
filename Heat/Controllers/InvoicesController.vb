@@ -44,7 +44,7 @@ Namespace Controllers
 
         End Function
 
-        ' GET: Invoices/Details/5
+        <HttpGet> _
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -53,7 +53,10 @@ Namespace Controllers
             If IsNothing(invoice) Then
                 Return HttpNotFound()
             End If
-            Return View(invoice)
+
+            Dim model As InvoiceDetailsViewModel
+            model = _modelBuilder.GetDetailsInvoiceViewModel(id)
+            Return View(model)
         End Function
 
         <HttpGet> _
@@ -73,7 +76,7 @@ Namespace Controllers
             'La creazione di una fattura passa per:
             '1: creazione documento con numerazione temporanea
             '2: salvataggio del contesto, per persistere i numeratori
-            '3: modifica del documento appena creato
+            '3: modifica del documento appena creato (aggiunta righe)
 
             Dim tmpDoc As Invoice
 
@@ -86,6 +89,9 @@ Namespace Controllers
 
         <HttpGet> _
         Function Edit(ByVal id As Integer?) As ActionResult
+            'secondo passo della creazione della fattura: aggiunta righe
+            'la funzione è chiamata solo da GET per permettere l'aggiornamento
+            'faciel della view durante l'immissione delle righe.
 
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -109,39 +115,6 @@ Namespace Controllers
             End If
         End Function
 
-        
-        <HttpPost()>
-        <ValidateAntiForgeryToken()>
-        Function Edit(ID As Integer) As ActionResult
-            'L'azione POST su Edit è la conferma del documento e la attribuzione dello stato 'Confirmed'
-            'Cerco la fattura con ID specificato,
-            'se State = DocumentState.Inserted confermo l'inserimento.
-
-            Dim validator As New EditableInvoiceValidator(_db, ID)
-
-            If validator.IsValid Then
-
-            End If
-            If ModelState.IsValid Then
-
-                If _businessService.SetConfirmedDocument(ID) Then
-
-                    _db.SaveChanges()
-                    Return RedirectToAction("Index")
-                Else
-
-
-                    ViewBag.message = "Impossibile confermare il documento"
-                    Return View("Error")
-                End If
-            Else
-
-                ViewBag.message = "Il documento non è editabile: impossibile confermare il documento!"
-                Return View("error")
-            End If
-
-        End Function
-
         <HttpGet> _
         Public Function EditPayment(ID As Integer) As ActionResult
             Dim model As InvoicePaymentViewModel
@@ -163,12 +136,62 @@ Namespace Controllers
 
                 _db.SaveChanges()
 
-                Return RedirectToAction("Index")
+                Return RedirectToAction("Confirm", New With {.id = model.ID})
             Else
                 ViewBag.message = "Impossibile salvare il modello"
                 Return View("error")
             End If
         End Function
+
+        <HttpGet> _
+        Public Function Confirm(ID As Integer) As ActionResult
+            Dim model As ConfirmInvoiceViewModel
+
+            Try
+                model = _modelBuilder.getConfirmInvoiceViewModel(ID)
+
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+
+            End Try
+        End Function
+
+        <HttpPost> _
+        <ValidateAntiForgeryToken> _
+        Public Function Confirm(invoice As EditInvoiceViewModel) As ActionResult
+            'L'azione POST su Confirm è la conferma del documento e la attribuzione dello stato 'Confirmed'
+            'Cerco la fattura con ID specificato,
+            'se State = DocumentState.Inserted confermo l'inserimento.
+
+            If ModelState.IsValid Then
+                Dim validator As New EditableInvoiceValidator(_db, invoice.ID)
+
+                If validator.IsValid Then
+                    If _businessService.SetConfirmedDocument(invoice.ID) Then
+
+                        _db.SaveChanges()
+
+                        Return RedirectToAction("Index")
+
+                    Else
+
+                        ViewBag.message = "Impossibile confermare il documento"
+                        Return View("Error")
+                    End If
+                Else
+                    ViewBag.message = "Il documento non è in uno stato che ammette la conferma."
+                    Return View("error")
+                End If
+
+            Else
+
+                ViewBag.message = "Il documento non è editabile: impossibile confermare il documento!"
+                Return View("error")
+            End If
+        End Function
+
 
         ' GET: Invoices/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult

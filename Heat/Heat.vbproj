@@ -332,6 +332,7 @@
     <Compile Include="ViewModelBuilders\SerialSchemeViewModelBuilder.vb" />
     <Compile Include="ViewModels\Customers\CustomerViewModel.vb" />
     <Compile Include="ViewModels\DocumentTypeAddViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\ConfirmInvoiceViewModel.vb" />
     <Compile Include="ViewModels\Invoices\EditInvoiceViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
@@ -356,6 +357,7 @@
     <Compile Include="ViewModels\Invoices\confirmedInvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InsertedInvoicesGridViewModel.vb" />
     <Compile Include="ViewModels\Invoices\insertedIndexViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\InvoiceDetailsViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InvoicePaymentViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\ManageViewModels.vb" />
@@ -1431,6 +1433,8 @@
       <DependentUpon>jquery.validate.globalize.fix.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Invoices\EditPayment.vbhtml" />
+    <Content Include="Views\Invoices\Confirm.vbhtml" />
+    <Content Include="Views\Invoices\Partials\_invoiceRowsIndex.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
