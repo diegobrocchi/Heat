@@ -1,5 +1,5 @@
 ﻿Imports Heat.Models
-Imports Heat.Viewmodels
+Imports Heat.ViewModels.Invoices
 Imports Heat.Manager
 Imports System.Data.Entity
 
@@ -21,19 +21,22 @@ Public Class InvoiceModelBuilder
     ''' <returns></returns>
     ''' <remarks></remarks>
     Public Function GetConfirmedInvoicesIndexViewModel() As Viewmodels.Invoices.confirmedIndexViewModel
-        Dim result As New Viewmodels.Invoices.confirmedIndexViewModel
+
+        Dim result As New ViewModels.Invoices.confirmedIndexViewModel
 
         result.State = DocumentState.Confirmed
         result.InsertedInvoiceCount = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Count
 
         result.ConfirmedInvoiceList = _db.Invoices.
-            Where(Function(x) x.State = DocumentState.Confirmed).Select(
-                Function(x) New Invoices.confirmedInvoicesGridViewModel With {
+            Where(Function(x) x.State = DocumentState.Confirmed).OrderBy(Function(x) x.ConfirmedNumber.SerialInteger).Select(
+                Function(x) New confirmedInvoicesGridViewModel With {
                     .ID = x.ID,
                     .Customer = x.Customer.Name,
                     .InvoiceDate = x.InvoiceDate,
                     .InvoiceNumber = x.ConfirmedNumber.SerialString,
-                    .Total = x.TotalAmount}).ToList
+                    .TotalAmount = x.TotalAmount,
+                    .TaxableAmount = x.TaxableAmount,
+                    .TaxesAmount = x.TaxesAmount}).ToList
 
         Return result
     End Function
@@ -47,13 +50,14 @@ Public Class InvoiceModelBuilder
         Dim result As New Viewmodels.Invoices.insertedIndexViewModel
 
         result.State = DocumentState.Inserted
-        result.InsertedInvoiceList = _db.Invoices.Where(Function(x) x.State = DocumentState.Inserted).Select(
-            Function(x) New Invoices.InsertedInvoicesGridViewModel With {
+        result.InsertedInvoiceList = _db.Invoices.Include(Function(x) x.InvoiceRows).Where(Function(x) x.State = DocumentState.Inserted).Select(
+            Function(x) New InsertedInvoicesGridViewModel With {
                 .ID = x.ID,
                 .Customer = x.Customer.Name,
                 .InvoiceDate = x.InvoiceDate,
                 .InvoiceNumber = x.InsertedNumber.SerialString,
-                .Total = x.TotalAmount}).ToList
+                .RowCount = x.InvoiceRows.Count
+                }).ToList
 
         Return result
     End Function
@@ -204,7 +208,12 @@ Public Class InvoiceModelBuilder
 
     End Function
 
-
+    ''' <summary>
+    ''' Prepara il modello per la vista di dettaglio di una fattura.
+    ''' </summary>
+    ''' <param name="id"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function GetDetailsInvoiceViewModel(id As Integer) As InvoiceDetailsViewModel
         Dim result As New InvoiceDetailsViewModel
         Dim invoiceDB As Invoice
@@ -240,4 +249,36 @@ Public Class InvoiceModelBuilder
 
         Return result
     End Function
+
+    Public Function getDeleteInvoiceViewModel(id As Integer) As DeleteInvoiceViewModel
+        Dim result As New DeleteInvoiceViewModel
+        Dim invoiceDB As Invoice
+        Dim invoiceDBRows As List(Of InvoiceRow)
+
+        invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).Include(Function(x) x.Customer).Include(
+            Function(x) x.InvoiceRows).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).First
+        invoiceDBRows = invoiceDB.InvoiceRows
+
+        result.ID = invoiceDB.ID
+        result.CustomerName = invoiceDB.Customer.Name
+        result.InvoiceDate = invoiceDB.InvoiceDate
+        result.InvoiceNumber = invoiceDB.InsertedNumber.SerialString
+        result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
+                      .ID = x.ID,
+                      .Item = x.ItemOrder,
+                      .InvoiceID = x.Invoice.ID,
+                      .Product = x.Product.Description,
+                      .Quantity = x.Quantity,
+                      .UnitPrice = x.UnitPrice,
+                      .Discount1 = x.RateDiscount1,
+                      .Discount2 = x.RateDiscount2,
+                      .Discount3 = x.RateDiscount3,
+                               .TotalBeforeTax = x.DiscountedAmount,
+                               .Total = x.TotalAmount}).
+                ToList()
+
+        Return result
+
+    End Function
+
 End Class

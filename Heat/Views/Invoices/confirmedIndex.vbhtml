@@ -13,7 +13,7 @@ End Code
 </p>
 
 @If Model.ConfirmedInvoiceList.Count > 0 Then
-    @<table class="table">
+    @<table class="table table-bordered">
         <tr>
             <th>
                 @Html.DisplayNameFor(Function(model) model.ConfirmedInvoiceList(0).InvoiceNumber)
@@ -23,6 +23,15 @@ End Code
             </th>
             <th>
                 @Html.DisplayNameFor(Function(model) model.ConfirmedInvoiceList(0).Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.ConfirmedInvoiceList(0).TaxableAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.ConfirmedInvoiceList(0).TaxesAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.ConfirmedInvoiceList(0).TotalAmount)
             </th>
             <th></th>
         </tr>
@@ -38,6 +47,15 @@ End Code
                 <td>
                     @Html.DisplayFor(Function(modelItem) item.Customer)
                 </td>
+    <td>
+        @Html.DisplayFor(Function(modelitem) item.TaxableAmount )
+    </td>
+    <td>
+        @Html.DisplayFor(Function(modelItem) item.TaxesAmount)
+    </td>
+    <td>
+        @Html.DisplayFor(Function(modelItem) item.TotalAmount)
+    </td>
                 <td>
 
                     @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}, New With {.class = "btn btn-primary"})

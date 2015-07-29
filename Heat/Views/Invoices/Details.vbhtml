@@ -1,4 +1,4 @@
-﻿@ModelType Heat.ViewModels.InvoiceDetailsViewModel 
+﻿@ModelType Heat.ViewModels.invoices.InvoiceDetailsViewModel 
 
 <div>
     <h4>Dettagli della fattura @Model.ID del @Model.InvoiceDate </h4>

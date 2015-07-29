@@ -1,7 +1,7 @@
 ﻿Imports Heat.Models
 Imports System.ComponentModel.DataAnnotations
 
-Namespace ViewModels
+Namespace ViewModels.Invoices
 
     ''' <summary>
     ''' Modello 

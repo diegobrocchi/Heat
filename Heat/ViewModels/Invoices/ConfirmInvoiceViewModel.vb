@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
-Namespace ViewModels
+Namespace ViewModels.Invoices
     Public Class ConfirmInvoiceViewModel
         <Key> _
         Property ID As Integer

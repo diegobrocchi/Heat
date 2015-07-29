@@ -322,7 +322,7 @@
     <Compile Include="Models\Periodicity.vb" />
     <Compile Include="Models\Seller.vb" />
     <Compile Include="Models\SerialScheme.vb" />
-    <Compile Include="Models\ViewModels\AddNewInvoiceRowViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\AddNewInvoiceRowViewModel.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
     <Compile Include="Types\SerialNumber.vb" />
     <Compile Include="Validation\EditableInvoiceValidator.vb" />
@@ -333,6 +333,7 @@
     <Compile Include="ViewModels\Customers\CustomerViewModel.vb" />
     <Compile Include="ViewModels\DocumentTypeAddViewModel.vb" />
     <Compile Include="ViewModels\Invoices\ConfirmInvoiceViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\DeleteInvoiceViewModel.vb" />
     <Compile Include="ViewModels\Invoices\EditInvoiceViewModel.vb" />
     <Compile Include="ViewModels\Invoices\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
@@ -1435,6 +1436,7 @@
     <Content Include="Views\Invoices\EditPayment.vbhtml" />
     <Content Include="Views\Invoices\Confirm.vbhtml" />
     <Content Include="Views\Invoices\Partials\_invoiceRowsIndex.vbhtml" />
+    <Content Include="Views\Invoices\InsertedIndex.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -1461,6 +1463,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,4 +1,4 @@
-﻿@modeltype ienumerable(of ViewModels.InvoiceRowViewModel )
+﻿@modeltype ienumerable(of ViewModels.Invoices.InvoiceRowViewModel )
 
 
 <table class="table table-bordered">

@@ -1,4 +1,4 @@
-﻿@modeltype ViewModels.AddNewInvoiceRowViewModel
+﻿@modeltype ViewModels.Invoices.AddNewInvoiceRowViewModel
 @Code
     ViewData("Title") = "Aggiungi una nuova riga al documento"
     Dim languageCodeCLDR As String = Culture.Substring(0, 2)

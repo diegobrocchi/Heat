@@ -1,7 +1,8 @@
 ﻿Imports Heat.Models
 Imports System.ComponentModel.DataAnnotations
 
-Namespace ViewModels
+Namespace ViewModels.Invoices
+
     Public Class AddNewInvoiceRowViewModel
         Property InvoiceID As Integer
 

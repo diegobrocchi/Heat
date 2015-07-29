@@ -8,7 +8,7 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Heat.Models
 Imports Heat.Repositories
-Imports Heat.ViewModels
+Imports Heat.ViewModels.Invoices
 
 Namespace Controllers
     Public Class InvoiceRowsController

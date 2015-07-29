@@ -11,17 +11,17 @@ Namespace Migrations
                 "dbo.InvoiceRows",
                 Function(c) New With
                     {
-                        .ID = c.Int(nullable := False, identity := True),
-                        .RowID = c.Int(nullable := False),
-                        .ItemOrder = c.Int(nullable := False),
-                        .Quantity = c.Double(nullable := False),
-                        .UnitPrice = c.Decimal(nullable := False, precision := 18, scale := 2),
-                        .VAT = c.Double(nullable := False),
+                        .ID = c.Int(nullable:=False, identity:=True),
+                        .RowID = c.Int(nullable:=False),
+                        .ItemOrder = c.Int(nullable:=False),
+                        .Quantity = c.Double(nullable:=False),
+                        .UnitPrice = c.Decimal(nullable:=False, precision:=18, scale:=2),
+                        .VAT = c.Double(nullable:=False),
                         .Invoice_ID = c.Int(),
                         .Product_ID = c.Int()
                     }) _
                 .PrimaryKey(Function(t) t.ID) _
-                .ForeignKey("dbo.Invoices", Function(t) t.Invoice_ID) _
+                .ForeignKey("dbo.Invoices", Function(t) t.Invoice_ID, True) _
                 .ForeignKey("dbo.Products", Function(t) t.Product_ID) _
                 .Index(Function(t) t.Invoice_ID) _
                 .Index(Function(t) t.Product_ID)
@@ -40,7 +40,7 @@ Namespace Migrations
             AddColumn("dbo.Invoices", "Customer_ID", Function(c) c.Int())
             AddColumn("dbo.Invoices", "Payment_ID", Function(c) c.Int())
             CreateIndex("dbo.Invoices", "Customer_ID")
-            CreateIndex("dbo.Invoices", "Payment_ID")
+            CreateIndex("dbo.Invoices", " AddForeignKeyPayment_ID")
             AddForeignKey("dbo.Invoices", "Customer_ID", "dbo.Customers", "ID")
             AddForeignKey("dbo.Invoices", "Payment_ID", "dbo.Payments", "ID")
         End Sub

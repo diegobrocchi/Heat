@@ -1,4 +1,4 @@
-﻿@ModelType Heat.ViewModels.EditInvoiceViewModel
+﻿@ModelType Heat.ViewModels.Invoices.EditInvoiceViewModel
 @Code
     ViewData("Title") = "Modifica"
 End Code

@@ -1,4 +1,4 @@
-﻿@modeltype ViewModels.AddNewInvoiceRowViewModel
+﻿@modeltype ViewModels.Invoices.AddNewInvoiceRowViewModel
 
 
 

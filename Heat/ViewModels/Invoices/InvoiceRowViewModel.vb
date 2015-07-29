@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
 
-Namespace ViewModels
+Namespace ViewModels.Invoices
     Public Class InvoiceRowViewModel
 
         <Key> _
@@ -14,7 +14,7 @@ Namespace ViewModels
 
         <Display(name:="Prodotto")> _
         Property Product As String
-        
+
         <Display(name:="Quantità")> _
         Property Quantity As Single
 

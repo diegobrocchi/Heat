@@ -9,11 +9,13 @@ Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
-Imports Heat.Viewmodels
+'Imports Heat.ViewModels
 Imports Heat.Manager
+Imports Heat.ViewModels.Invoices
 
 Namespace Controllers
     <OutputCache(duration:=0, NoStore:=True, varybyParam:="*")> _
+    <HandleError> _
     Public Class InvoicesController
         Inherits System.Web.Mvc.Controller
 
@@ -30,46 +32,57 @@ Namespace Controllers
 
         ' GET: Invoices
         Function Index(Optional state As DocumentState = DocumentState.Confirmed) As ActionResult
+            Try
+                Select Case state
+                    Case DocumentState.Inserted
+                        Return View("insertedIndex", _modelBuilder.GetInsertedInvoicesIndexViewModel)
+                    Case DocumentState.Confirmed
+                        Return View("confirmedIndex", _modelBuilder.GetConfirmedInvoicesIndexViewModel)
+                    Case DocumentState.Deleted
+                        Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                    Case Else
+                        Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End Select
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
 
-            Select Case state
-                Case DocumentState.Inserted
-                    Return View("insertedIndex", _modelBuilder.GetInsertedInvoicesIndexViewModel)
-                Case DocumentState.Confirmed
-                    Return View("confirmedIndex", _modelBuilder.GetConfirmedInvoicesIndexViewModel)
-                Case DocumentState.Deleted
-                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-                Case Else
-                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End Select
 
         End Function
 
         <HttpGet> _
         Function Details(ByVal id As Integer?) As ActionResult
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
-            Dim invoice As Invoice = _db.Invoices.Find(id)
-            If IsNothing(invoice) Then
-                Return HttpNotFound()
-            End If
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim invoice As Invoice = _db.Invoices.Find(id)
+                If IsNothing(invoice) Then
+                    Return HttpNotFound()
+                End If
 
-            Dim model As InvoiceDetailsViewModel
-            model = _modelBuilder.GetDetailsInvoiceViewModel(id)
-            Return View(model)
+                Dim model As InvoiceDetailsViewModel
+                model = _modelBuilder.GetDetailsInvoiceViewModel(id)
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
-        <HttpGet> _
-        Function SelectCustomer() As ActionResult
+        '<HttpGet> _
+        'Function SelectCustomer() As ActionResult
 
-            Return View()
+        '    Return View()
 
-        End Function
+        'End Function
 
-        <HttpPost> _
-        Function SelectCustomer(id As Integer) As ActionResult
-            Return RedirectToAction("create", New With {.customerID = id})
-        End Function
+        '<HttpPost> _
+        'Function SelectCustomer(id As Integer) As ActionResult
+        '    Return RedirectToAction("create", New With {.customerID = id})
+        'End Function
 
         <HttpGet()> _
         Function Create(customerID As Integer) As ActionResult
@@ -78,12 +91,18 @@ Namespace Controllers
             '2: salvataggio del contesto, per persistere i numeratori
             '3: modifica del documento appena creato (aggiunta righe)
 
-            Dim tmpDoc As Invoice
+            Try
+                Dim tmpDoc As Invoice
 
-            tmpDoc = _businessService.GetTemporaryDocument(customerID)
-            _db.SaveChanges()
+                tmpDoc = _businessService.GetTemporaryDocument(customerID)
+                _db.SaveChanges()
 
-            Return RedirectToAction("Edit", New With {.id = tmpDoc.ID})
+                Return RedirectToAction("Edit", New With {.id = tmpDoc.ID})
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
 
@@ -91,63 +110,81 @@ Namespace Controllers
         Function Edit(ByVal id As Integer?) As ActionResult
             'secondo passo della creazione della fattura: aggiunta righe
             'la funzione è chiamata solo da GET per permettere l'aggiornamento
-            'faciel della view durante l'immissione delle righe.
+            'facile della view durante l'immissione delle righe.
 
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
 
-            Dim invoice As Invoice = _db.Invoices.Include(Function(i) i.Customer).Where(Function(i) i.ID = id).Single
+                Dim invoice As Invoice = _db.Invoices.Include(Function(i) i.Customer).Where(Function(i) i.ID = id).Single
 
-            If IsNothing(invoice) Then
-                Return HttpNotFound()
-            End If
+                If IsNothing(invoice) Then
+                    Return HttpNotFound()
+                End If
 
-            Dim validator As New EditableInvoiceValidator(_db, id)
+                Dim validator As New EditableInvoiceValidator(_db, id)
 
-            If validator.IsValid Then
-                Dim model As EditInvoiceViewModel
-                model = _modelBuilder.GetEditInvoiceViewModel(invoice)
-                Return View(model)
-            Else
-                ViewBag.message = validator.ErrorMessage
-                Return View("Error")
-            End If
+                If validator.IsValid Then
+                    Dim model As EditInvoiceViewModel
+                    model = _modelBuilder.GetEditInvoiceViewModel(invoice)
+                    Return View(model)
+                Else
+                    ViewBag.message = validator.ErrorMessage
+                    Return View("Error")
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
         <HttpGet> _
         Public Function EditPayment(ID As Integer) As ActionResult
-            Dim model As InvoicePaymentViewModel
+            Try
+                Dim model As InvoicePaymentViewModel
 
-            model = _modelBuilder.getEditInvoicePaymentViewModel(ID)
+                model = _modelBuilder.getEditInvoicePaymentViewModel(ID)
 
-            Return View(model)
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
         <HttpPost> _
         Public Function EditPayment(model As InvoicePaymentViewModel) As ActionResult
-            If ModelState.IsValid Then
-                Dim dbInvoice As Invoice
-                dbInvoice = _db.Invoices.Find(model.ID)
+            Try
+                If ModelState.IsValid Then
+                    Dim dbInvoice As Invoice
+                    dbInvoice = _db.Invoices.Find(model.ID)
 
-                dbInvoice.IsTaxExempt = model.IsTaxExempt
-                dbInvoice.Payment = _db.Payments.Find(model.PaymentID)
-                dbInvoice.TaxExemption = model.TaxExemption
+                    dbInvoice.IsTaxExempt = model.IsTaxExempt
+                    dbInvoice.Payment = _db.Payments.Find(model.PaymentID)
+                    dbInvoice.TaxExemption = model.TaxExemption
 
-                _db.SaveChanges()
+                    _db.SaveChanges()
 
-                Return RedirectToAction("Confirm", New With {.id = model.ID})
-            Else
-                ViewBag.message = "Impossibile salvare il modello"
+                    Return RedirectToAction("Confirm", New With {.id = model.ID})
+                Else
+                    ViewBag.message = "Impossibile salvare il modello"
+                    Return View("error")
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.Message
                 Return View("error")
-            End If
+            End Try
+
         End Function
 
         <HttpGet> _
         Public Function Confirm(ID As Integer) As ActionResult
-            Dim model As ConfirmInvoiceViewModel
 
             Try
+                Dim model As ConfirmInvoiceViewModel
                 model = _modelBuilder.getConfirmInvoiceViewModel(ID)
 
                 Return View(model)
@@ -164,45 +201,63 @@ Namespace Controllers
             'L'azione POST su Confirm è la conferma del documento e la attribuzione dello stato 'Confirmed'
             'Cerco la fattura con ID specificato,
             'se State = DocumentState.Inserted confermo l'inserimento.
+            Try
+                If ModelState.IsValid Then
+                    Dim validator As New EditableInvoiceValidator(_db, invoice.ID)
 
-            If ModelState.IsValid Then
-                Dim validator As New EditableInvoiceValidator(_db, invoice.ID)
+                    If validator.IsValid Then
+                        If _businessService.SetConfirmedDocument(invoice.ID) Then
 
-                If validator.IsValid Then
-                    If _businessService.SetConfirmedDocument(invoice.ID) Then
+                            _db.SaveChanges()
 
-                        _db.SaveChanges()
+                            Return RedirectToAction("Index")
 
-                        Return RedirectToAction("Index")
+                        Else
 
+                            ViewBag.message = "Impossibile confermare il documento"
+                            Return View("Error")
+                        End If
                     Else
-
-                        ViewBag.message = "Impossibile confermare il documento"
-                        Return View("Error")
+                        ViewBag.message = "Il documento non è in uno stato che ammette la conferma."
+                        Return View("error")
                     End If
+
                 Else
-                    ViewBag.message = "Il documento non è in uno stato che ammette la conferma."
+
+                    ViewBag.message = "Il documento non è editabile: impossibile confermare il documento!"
                     Return View("error")
                 End If
-
-            Else
-
-                ViewBag.message = "Il documento non è editabile: impossibile confermare il documento!"
+            Catch ex As Exception
+                ViewBag.message = ex.Message
                 Return View("error")
-            End If
+            End Try
+
         End Function
 
 
         ' GET: Invoices/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
-            Dim invoice As Invoice = _db.Invoices.Find(id)
-            If IsNothing(invoice) Then
-                Return HttpNotFound()
-            End If
-            Return View(invoice)
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim invoice As Invoice = _db.Invoices.Find(id)
+                If IsNothing(invoice) Then
+                    Return HttpNotFound()
+                End If
+                If invoice.State = DocumentState.Inserted Then
+
+                    Return View("delete", _modelBuilder.getDeleteInvoiceViewModel(id))
+
+                Else
+                    ViewBag.message = "Impossibile eliminare una fattura già confermata, o già eliminata."
+                    Return View("error")
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
         ' POST: Invoices/Delete/5
@@ -211,9 +266,18 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
             Dim invoice As Invoice = _db.Invoices.Find(id)
-            _db.Invoices.Remove(invoice)
-            _db.SaveChanges()
-            Return RedirectToAction("Index")
+
+            If IsNothing(invoice) Then
+                Return HttpNotFound()
+            End If
+
+            If invoice.State = DocumentState.Inserted Then
+                _db.Invoices.Remove(invoice)
+                _db.SaveChanges()
+            Else
+                ViewBag.message = "Impossibile eliminare una fattura già confermata, o già eliminata."
+            End If
+            Return RedirectToAction("Index", New With {.state = DocumentState.Inserted})
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)

@@ -1,33 +1,37 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports Heat.ViewModels
 
-Public Class InvoicePaymentViewModel
+Namespace ViewModels.Invoices
 
-    <Key> _
-    Property ID As Integer
+    Public Class InvoicePaymentViewModel
 
-    <Display(name:="Cliente")> _
-    Property CustomerName As String
+        <Key> _
+        Property ID As Integer
 
-    <Display(name:="Numero fattura provvisoria")> _
-    Property InvoiceNumber As String
+        <Display(name:="Cliente")> _
+        Property CustomerName As String
 
-    <Display(name:="Data documento")> _
-    Property InvoiceDate As String
+        <Display(name:="Numero fattura provvisoria")> _
+        Property InvoiceNumber As String
 
-    Property Rows As List(Of InvoiceRowViewModel)
+        <Display(name:="Data documento")> _
+        Property InvoiceDate As String
 
-    <Required> _
-    <Display(name:="Condizioni di pagamento")> _
-    Property PaymentID As Integer
+        Property Rows As List(Of InvoiceRowViewModel)
 
-    Property PaymentList As IEnumerable(Of SelectListItem)
+        <Required> _
+        <Display(name:="Condizioni di pagamento")> _
+        Property PaymentID As Integer
 
-    <Display(name:="Fattura esente")> _
-    Property IsTaxExempt As Boolean
+        Property PaymentList As IEnumerable(Of SelectListItem)
 
-    <Display(name:="Esenzione")> _
-    Property TaxExemption As String
+        <Display(name:="Fattura esente")> _
+        Property IsTaxExempt As Boolean
+
+        <Display(name:="Esenzione")> _
+        Property TaxExemption As String
 
 
-End Class
+    End Class
+
+End Namespace
