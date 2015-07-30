@@ -20,7 +20,7 @@ Namespace Repositories
             'Entity.Database.SetInitializer(Of HeatDBContext)(New HeatDBInitializer)
             'Me.Configuration.LazyLoadingEnabled = True
             _logger = LogManager.GetLogger(GetType(HeatDBContext))
-            _logger.Info("HeatDbContext created")
+            _logger.Debug("HeatDbContext created")
         End Sub
 
 
