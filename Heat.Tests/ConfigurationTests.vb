@@ -11,4 +11,6 @@ Public Class ConfigurationTests
         'cs.InitializeIdentity(New HeatDBContext)
 
     End Sub
+
+    
 End Class

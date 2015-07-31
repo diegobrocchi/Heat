@@ -9,25 +9,37 @@ Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
+Imports Heat.ViewModels.Customers
+Imports Heat.Manager
 
 Namespace Controllers
 
     Public Class CustomersController
         Inherits System.Web.Mvc.Controller
 
-        Private _db As HeatDBContext
+        Private _db As IHeatDBContext
+        Private _mb As CustomerModelViewBuilder
 
-        Sub New(dbcontext As HeatDBContext)
+        Sub New(dbcontext As IHeatDBContext)
             _db = dbcontext
+            _mb = New CustomerModelViewBuilder(_db)
         End Sub
 
         ' GET: Customers
 
-        Function Index(sortOrder As String) As ActionResult
+        Function Index(Optional IncludeDisabled As Boolean = False) As ActionResult
+            Dim l As List(Of Customer)
+            If IncludeDisabled Then
+                l = _db.Customers.OrderBy(Function(c) c.Name).ToList
+            Else
+                l = _db.Customers.Where(Function(c) c.IsEnabled = True).OrderBy(Function(c) c.Name).ToList
+            End If
 
-            Dim custviewmodelb As New BusinessModelViewBuilder(_db)
-            'TODO: jQ Datatable con server processing
-            Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
+            Return View(l)
+
+            'Dim custviewmodelb As New BusinessModelViewBuilder(_db)
+            ''TODO: jQ Datatable con server processing
+            'Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
 
         End Function
 
@@ -55,6 +67,9 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Name,Address,City,PostalCode,VAT,EMail,Website")> ByVal customer As Customer) As ActionResult
             If ModelState.IsValid Then
+                customer.IsEnabled = True
+                customer.CreationDate = Now
+                customer.EnableDate = Now
                 _db.Customers.Add(customer)
                 _db.SaveChanges()
                 Return RedirectToAction("Index")
@@ -81,7 +96,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,Name,Surname,CompanyName,EMail,Website")> ByVal customer As Customer) As ActionResult
             If ModelState.IsValid Then
-                _db.Entry(customer).State = EntityState.Modified
+                '_db.Entry(customer).State = EntityState.Modified
+                _db.SetModified(customer)
                 _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
@@ -152,6 +168,48 @@ Namespace Controllers
         <HttpGet> _
         Function GetCustomersByName(searchText As String) As ActionResult
             Return Json(_db.Customers.Where(Function(x) x.Name.Contains(searchText)).Select(Function(x) New With {.id = x.ID, .name = x.Name}).ToList, JsonRequestBehavior.AllowGet)
+        End Function
+
+        <HttpGet> _
+        Public Function DisableCustomer(id As Integer) As ActionResult
+            If IsNothing(id) Then
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End If
+            Dim customer As Customer = _db.Customers.Find(id)
+            If IsNothing(customer) Then
+                Return HttpNotFound()
+            End If
+            Dim dc As DisableCustomerViewModel
+            dc = _mb.GetDisableCustomerViewModel(id)
+            Return View(dc)
+        End Function
+
+        <HttpPost> _
+        <ValidateAntiForgeryToken> _
+        Public Function DisableCustomer(dc As DisableCustomerViewModel) As ActionResult
+            If ModelState.IsValid Then
+                Try
+                    Dim cm As New CustomerManager(_db)
+                    Dim c As Customer
+                    c = _db.Customers.Find(dc.ID)
+                    If Not IsNothing(c) Then
+                        cm.DisableCustomer(c)
+                        _db.SaveChanges()
+                        Return RedirectToAction("index")
+                    Else
+                        ViewBag.message = "Impossibile trovare il cliente con ID specificato!"
+                        Return View("error")
+                    End If
+                Catch ex As Exception
+                    ViewBag.message = ex.Message
+                    Return View("error")
+                End Try
+
+            Else
+                ViewBag.message = "Modello non valido!"
+                Return View("Error")
+            End If
+
         End Function
 
 

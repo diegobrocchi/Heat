@@ -5,6 +5,7 @@ Namespace Models
     Public Class Address
         <Key> _
         Property ID As Integer
+        Property AddressTypeID As Integer
         Property AddressType As AddressType
         Property Street As String
         Property StreetNumber As String
@@ -16,6 +17,10 @@ Namespace Models
         Property CellPhone As String
         Property Fax As String
         Property Note As String
+
+        Property CustomerID As Nullable(Of Integer)
+        Overridable Property Customer As Customer
+
 
     End Class
 End Namespace

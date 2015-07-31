@@ -36,9 +36,10 @@ Namespace Models
         <EmailAddress> _
         Property EMail As String
         Property Website As String
-        Property Enabled As Boolean
-
-
+        Property IsEnabled As Boolean
+        Property CreationDate As DateTime
+        Property EnableDate As Nullable(Of DateTime)
+        Property DisableDate As Nullable(Of DateTime)
 
 
     End Class

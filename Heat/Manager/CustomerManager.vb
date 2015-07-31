@@ -16,6 +16,36 @@ Namespace Manager
 
         End Function
 
+        Public Sub EnableCustomer(customer As Customer)
+            Me.EnableCustomer(customer.ID)
+        End Sub
+
+        Public Sub EnableCustomer(customerID As Integer)
+            Dim c As Customer
+            c = _db.Customers.Find(customerID)
+            If IsNothing(c) Then
+                Throw New Exception("Impossibile trovare il Cliente richiesto!")
+            End If
+
+            c.IsEnabled = True
+            c.EnableDate = Now
+
+        End Sub
+
+        Public Sub DisableCustomer(customer As Customer)
+            Me.DisableCustomer(customer.ID)
+        End Sub
+
+        Public Sub DisableCustomer(customerID As Integer)
+            Dim c As Customer
+            c = _db.Customers.Find(customerID)
+            If IsNothing(c) Then
+                Throw New Exception("Impossibile trovare il Cliente richiesto!")
+            End If
+
+            c.IsEnabled = False
+            c.DisableDate = Now
+        End Sub
     End Class
 
 End Namespace

@@ -118,7 +118,9 @@ Namespace Migrations
         End Function
 
         Protected Overrides Sub Seed(context As HeatDBContext)
-            Debug.Print("Seeding...")
+            'If Not System.Diagnostics.Debugger.IsAttached Then
+            '    System.Diagnostics.Debugger.Launch()
+            'End If
 
             InitializeIdentity(context)
 
@@ -137,12 +139,17 @@ Namespace Migrations
             Dim DittaMC As New Models.Seller
 
             Dim FTC As New Models.DocumentType
+
             Dim simpleSchema As New Models.SerialScheme
+
             Dim number As New Models.Numbering
 
 
             Dim product1 As New Models.Product
             Dim product2 As New Models.Product
+
+            Dim addressType1 As New Models.AddressType
+            Dim addressType2 As New Models.AddressType
 
 
             Fuel1.Name = "Gasolio"
@@ -173,12 +180,13 @@ Namespace Migrations
             DittaMC.Logo = "LogoMC.jpg"
             DittaMC.Name = "MC Assistenza Srl di Mauro Cedro"
             DittaMC.Vat_Number = "1234567890"
-            DittaMC.Address = New Models.Address With {.StreetNumber = "Via Rossi, 23", .City = "Mandello"}
+            DittaMC.Address = New Models.Address With {.StreetNumber = "Via Rossi, 23", .City = "Mandello", .AddressType = addressType1}
 
             number.Code = "FTC"
             number.Description = "Numeratore FTC"
-            number.FinalSerialSchema = simpleSchema
             number.TempSerialSchema = simpleSchema
+            number.FinalSerialSchema = simpleSchema
+
             number.LastTempSerial = New Models.SerialNumber With {.SerialInteger = 0, .SerialString = "0", .IsValid = True}
             number.LastFinalSerial = New Models.SerialNumber With {.SerialInteger = 0, .SerialString = "0", .IsValid = True}
 
@@ -187,6 +195,7 @@ Namespace Migrations
             simpleSchema.InitialValue = 1
             simpleSchema.Period = Periodicity.None
             simpleSchema.Name = "INC_1"
+
 
             FTC.Name = "FTC"
             FTC.Description = "Fattura Cliente"
@@ -204,6 +213,14 @@ Namespace Migrations
             product2.SKU = "MCS_TU_ABC"
             product2.UnitPrice = 2.7
 
+            addressType1.Description = "Indirizzo impianto"
+            addressType2.Description = "Indirizzo di fatturazione"
+
+
+            '###################################
+            'Aggiunta dati al DB
+            '###################################
+
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument1)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument2)
             context.CausalDocuments.AddOrUpdate(Function(c) c.Code, CausalDocument3)
@@ -219,17 +236,27 @@ Namespace Migrations
             context.Seller.AddOrUpdate(Function(s) s.Name, DittaMC)
 
             context.SerialSchemes.AddOrUpdate(Function(ss) ss.Name, simpleSchema)
-            context.Numberings.AddOrUpdate(Function(n) n.Code, number)
+
+            'Commenta la riga sotto dopo il primo update-database
+            'finchè non capisci perchè dà un errore su violazione FK in UPDATE 
+            'context.Numberings.AddOrUpdate(Function(n) n.Code, number)
+
+
             context.DocumentTypes.AddOrUpdate(Function(dt) dt.Name, FTC)
 
             context.Products.AddOrUpdate(Function(p) p.SKU, product1)
             context.Products.AddOrUpdate(Function(p) p.SKU, product2)
 
+            context.AddressTypes.AddOrUpdate(Function(at) at.Description, addressType1)
+            context.AddressTypes.AddOrUpdate(Function(at) at.Description, addressType2)
 
             context.SaveChanges()
 
+            '################################
 
         End Sub
+
+         
 
     End Class
 

@@ -17,6 +17,7 @@ End Code
     <li class="list-group-item">@Html.ActionLink("Magazzini", "index", "Warehouses")</li>
     <li class="list-group-item">@Html.ActionLink("Movimenti di magazzino", "index", "WarehouseMovements")</li>
     <li class="list-group-item">@Html.ActionLink("Pagamenti", "index", "payments")</li>
+    <li class="list-group-item">@Html.ActionLink("Tipi di indirizzo", "index", "AddressTypes")</li>
 
 </ul>
 

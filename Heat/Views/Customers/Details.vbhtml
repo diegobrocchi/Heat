@@ -98,6 +98,7 @@ End Code
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Modifica", "Edit", New With {.id = Model.ID}) |
+    @Html.ActionLink("Torna alla lista", "Index")
+    @Html.ActionLink("Aggiungi un indirizzo al cliente", "Create", "Addresses", New With {.customerID = Model.ID}, New With {.class = "btn btn-default"})
 </p>

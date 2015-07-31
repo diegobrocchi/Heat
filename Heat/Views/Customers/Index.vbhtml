@@ -6,7 +6,8 @@ End Code
     <h3>Heat - visualizza clienti</h3>
   
 <p>
-    @Html.ActionLink("Crea un nuovo cliente", "Create")
+    @Html.ActionLink("Crea un nuovo cliente", "Create", Nothing, New With {.class = "btn btn-default"})
+    @Html.ActionLink("Visualizza anche i clienti disabilitati", "index", New With {.IncludeDisabled = True}, New With {.class="btn btn-danger"})
 </p>
 <table id="index_table" class="table table-bordered table-hover table-striped">
     <thead >

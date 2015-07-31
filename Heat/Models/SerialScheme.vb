@@ -10,6 +10,7 @@ Namespace Models
     ''' <remarks></remarks>
     Public Class SerialScheme
         Property ID As Integer
+
         Property Name As String
         Property Description As String
 
@@ -87,7 +88,6 @@ Namespace Models
         ''' <returns></returns>
         ''' <remarks></remarks>
         Property RecycleWhenMaxIsReached As Boolean
-
 
     End Class
 End Namespace

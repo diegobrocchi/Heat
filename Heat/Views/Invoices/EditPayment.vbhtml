@@ -1,4 +1,4 @@
-﻿@ModelType Heat.InvoicePaymentViewModel
+﻿@ModelType Heat.Viewmodels.Invoices.InvoicePaymentViewModel
 
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()

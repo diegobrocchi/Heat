@@ -9,7 +9,7 @@ Imports System.Data.Entity
 ''' <remarks></remarks>
 Public Class InvoiceModelBuilder
 
-    Private _db As Global.Heat.Repositories.HeatDBContext
+    Private _db As IHeatDBContext
 
     Public Sub New(repository As IHeatDBContext)
         _db = repository

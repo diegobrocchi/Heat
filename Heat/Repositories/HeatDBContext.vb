@@ -58,6 +58,7 @@ Namespace Repositories
         End Function
 
 
+        Public Property AddressTypes As System.Data.Entity.DbSet(Of Models.AddressType)
     End Class
 
 End Namespace
