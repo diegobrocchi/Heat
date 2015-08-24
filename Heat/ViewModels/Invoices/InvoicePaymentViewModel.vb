@@ -17,7 +17,8 @@ Namespace ViewModels.Invoices
         <Display(name:="Data documento")> _
         Property InvoiceDate As String
 
-        Property Rows As List(Of InvoiceRowViewModel)
+        Property Rows As List(Of PresentationInvoiceRowViewModel)
+        'Property Rows As List(Of InvoiceRowViewModel)
 
         <Required> _
         <Display(name:="Condizioni di pagamento")> _

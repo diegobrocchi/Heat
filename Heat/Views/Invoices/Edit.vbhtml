@@ -39,15 +39,18 @@ End Code
     </div>
 
     <div class="row">
-        <div class="col-md-10">
-            @Html.ActionLink("Aggiungi una riga", "create", "invoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary btn-sm"})
-
+        <div class="col-md-12">
+            @Html.ActionLink("Aggiungi una riga di prodotto", "create", "productInvoiceRows", New With {.invoiceId = Model.ID}, New With {.class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Aggiungi una riga descrittiva", "create", "descriptiveInvoiceRows", New With {.invoiceID = Model.ID}, New With {.class = "btn btn-primary btn-sm"})
         </div>
     </div>
     
     
-    <div id="invoiceRows">
+    <div class="row">
+        <div class="col-md-12">
         @Html.Partial("partials/_invoiceRows", Model.Rows)
+
+        </div>
     </div>
 
     @Html.ActionLink("Vai alle condizioni di pagamento", "EditPayment", "invoices", New With {.id = Model.ID}, New With {.class = "btn btn-default"})

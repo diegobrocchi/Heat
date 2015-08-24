@@ -1,4 +1,4 @@
-﻿@modeltype ienumerable(of ViewModels.invoices.InvoiceRowViewModel )
+﻿@modeltype ienumerable(of ViewModels.invoices.PresentationInvoiceRowViewModel  )
 
 <table class="table table-bordered">
     <thead>
@@ -51,10 +51,15 @@
         <td>
             @Html.DisplayFor(Function(x) itemModel.Total)
         </td>
-        <td>
-            @Html.ActionLink("Modifica", "edit", "InvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-primary btn-sm"})
-            @Html.ActionLink("Elimina", "delete", "InvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-danger  btn-sm"})
-        </td>
+                 <td>
+                     @If itemModel.RowType = Invoices.InvoiceRowType.DescriptiveRow Then
+                         @Html.ActionLink("Modifica", "edit", "DescriptiveInvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-primary btn-sm"})
+                         @Html.ActionLink("Elimina", "delete", "DescriptiveInvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-danger  btn-sm"})
+                     Else
+                         @Html.ActionLink("Modifica", "edit", "ProductInvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-primary btn-sm"})
+                         @Html.ActionLink("Elimina", "delete", "ProductInvoiceRows", New With {.id = itemModel.ID}, New With {.class = "btn btn-danger  btn-sm"})
+                     End If
+                 </td>
             </tr>
 
         Next

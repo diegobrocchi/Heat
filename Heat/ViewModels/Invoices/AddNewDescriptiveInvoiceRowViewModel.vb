@@ -1,15 +1,12 @@
-﻿Imports Heat.Models
-Imports System.ComponentModel.DataAnnotations
+﻿Imports System.ComponentModel.DataAnnotations
 
 Namespace ViewModels.Invoices
-
-    Public Class AddNewInvoiceRowViewModel
+    Public Class AddNewDescriptiveInvoiceRowViewModel
         Property InvoiceID As Integer
 
         <Required> _
-        <Display(name:="Prodotto")> _
-        Property ProductID As Integer
-        Property ProductList As IEnumerable(Of SelectListItem)
+        <Display(Name:="Descrizione")> _
+        Property RowDescription As String
 
         <Required> _
         <Display(name:="Quantità")> _
@@ -21,7 +18,7 @@ Namespace ViewModels.Invoices
         Property UnitPrice As Decimal
 
         <Display(name:="IVA")> _
-        Property VAT As Single
+        Property VAT As Double
 
         <Display(name:="Sconto 1")> _
         Property Discount1 As Single

@@ -9,7 +9,6 @@ Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Models
 Imports Heat.Repositories
-'Imports Heat.ViewModels
 Imports Heat.Manager
 Imports Heat.ViewModels.Invoices
 
@@ -26,11 +25,10 @@ Namespace Controllers
         Sub New(context As IHeatDBContext)
             _db = context
 
-            _modelBuilder = New InvoiceModelBuilder(_db)
             _businessService = New InvoiceManager(_db)
+            _modelBuilder = New InvoiceModelBuilder(_db, _businessService)
         End Sub
 
-        ' GET: Invoices
         Function Index(Optional state As DocumentState = DocumentState.Confirmed) As ActionResult
             Try
                 Select Case state
@@ -72,18 +70,6 @@ Namespace Controllers
 
         End Function
 
-        '<HttpGet> _
-        'Function SelectCustomer() As ActionResult
-
-        '    Return View()
-
-        'End Function
-
-        '<HttpPost> _
-        'Function SelectCustomer(id As Integer) As ActionResult
-        '    Return RedirectToAction("create", New With {.customerID = id})
-        'End Function
-
         <HttpGet()> _
         Function Create(customerID As Integer) As ActionResult
             'La creazione di una fattura passa per:
@@ -104,8 +90,6 @@ Namespace Controllers
             End Try
 
         End Function
-
-
 
         <HttpGet> _
         Function Edit(ByVal id As Integer?) As ActionResult
@@ -287,47 +271,6 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
-
-        ''' <summary>
-        ''' prepara il modello per l'aggiunta di una riga alla fattura 
-        ''' </summary>
-        ''' <param name="invoiceID">ID della fattura</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        <HttpGet> _
-        Public Function addNewRow(invoiceID As Integer) As ActionResult
-            'Dim invoiceRow As AddNewInvoiceRowViewModel
-            'invoiceRow = _modelBuilder.GetAddInvoiceRowViewModel(invoiceID)
-
-            'Return PartialView("partials/_addInvoiceRows", invoiceRow)
-        End Function
-
-        '<HttpPost> _
-        'Public Function addNewRow(newRow As AddNewInvoiceRowViewModel) As ActionResult
-        '    If ModelState.IsValid Then
-        '        Dim newDBRow As New InvoiceRow
-        '        newDBRow.Invoice = _db.Invoices.Find(newRow.InvoiceID)
-        '        newDBRow.ItemOrder = _db.InvoiceRows.Where(Function(x) x.Invoice.ID = newRow.InvoiceID).Max(Function(x) x.ItemOrder) + 1
-        '        newDBRow.Product = _db.Products.Find(newRow.ProductID)
-        '        newDBRow.Quantity = newRow.Quantity
-        '        newDBRow.UnitPrice = newRow.UnitPrice
-        '        newDBRow.RateDiscount1 = newRow.Discount1
-        '        newDBRow.RateDiscount2 = newRow.Discount2
-        '        newDBRow.RateDiscount3 = newRow.Discount3
-        '        newDBRow.VAT_Rate = newRow.VAT
-
-        '        _db.InvoiceRows.Add(newDBRow)
-
-        '        _db.SaveChanges()
-
-        '        Return RedirectToAction("edit", New With {.id = newRow.InvoiceID})
-
-        '    Else
-        '        ViewBag.message = "Errore nel salvataggio della riga"
-        '        Return View("error")
-        '    End If
-        'End Function
-
 
 
     End Class

@@ -12,7 +12,7 @@ Imports Heat.ViewModels.Invoices
 Imports Heat.Manager
 
 Namespace Controllers
-    Public Class InvoiceRowsController
+    Public Class ProductInvoiceRowsController
         Inherits System.Web.Mvc.Controller
 
         Private _db As IHeatDBContext
@@ -28,7 +28,7 @@ Namespace Controllers
         End Sub
         ' GET: InvoiceRows
         Function Index() As ActionResult
-            Return View(_db.InvoiceRows.ToList())
+            Return View(_db.ProductInvoiceRows.ToList())
         End Function
 
         ' GET: InvoiceRows/Details/5
@@ -52,9 +52,6 @@ Namespace Controllers
             Return View(invoiceRow)
         End Function
 
-        ' POST: InvoiceRows/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(invoiceRow As AddNewProductInvoiceRowViewModel) As ActionResult
@@ -75,7 +72,7 @@ Namespace Controllers
                 invoiceRowDB.VAT_Rate = invoiceRow.VAT
 
 
-                _db.InvoiceRows.Add(invoiceRowDB)
+                _db.ProductInvoiceRows.Add(invoiceRowDB)
                 _db.SaveChanges()
                 Return RedirectToAction("edit", "invoices", New With {.ID = invoiceRow.InvoiceID})
             Else

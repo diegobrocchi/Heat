@@ -40,7 +40,8 @@ Namespace Migrations
             AddColumn("dbo.Invoices", "Customer_ID", Function(c) c.Int())
             AddColumn("dbo.Invoices", "Payment_ID", Function(c) c.Int())
             CreateIndex("dbo.Invoices", "Customer_ID")
-            CreateIndex("dbo.Invoices", " AddForeignKeyPayment_ID")
+            CreateIndex("dbo.Invoices", "Payment_ID")
+            'CreateIndex("dbo.Invoices", " AddForeignKeyPayment_ID")
             AddForeignKey("dbo.Invoices", "Customer_ID", "dbo.Customers", "ID")
             AddForeignKey("dbo.Invoices", "Payment_ID", "dbo.Payments", "ID")
         End Sub

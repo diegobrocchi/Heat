@@ -151,6 +151,10 @@ Namespace Migrations
             Dim addressType1 As New Models.AddressType
             Dim addressType2 As New Models.AddressType
 
+            Dim op1 As New Models.Operation
+            Dim op2 As New Models.Operation
+            Dim op3 As New Models.Operation
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -216,6 +220,14 @@ Namespace Migrations
             addressType1.Description = "Indirizzo impianto"
             addressType2.Description = "Indirizzo di fatturazione"
 
+            op1.Code = "INT1"
+            op1.Description = "Operazione di tipo 1"
+
+            op2.Code = "INT2"
+            op2.Description = "Operazione di tipo 2"
+
+            op3.Code = "INT3"
+            op3.Description = "Operazione di tipo 3"
 
             '###################################
             'Aggiunta dati al DB
@@ -240,8 +252,6 @@ Namespace Migrations
             'Commenta la riga sotto dopo il primo update-database
             'finchè non capisci perchè dà un errore su violazione FK in UPDATE 
             'context.Numberings.AddOrUpdate(Function(n) n.Code, number)
-
-
             context.DocumentTypes.AddOrUpdate(Function(dt) dt.Name, FTC)
 
             context.Products.AddOrUpdate(Function(p) p.SKU, product1)
@@ -249,6 +259,10 @@ Namespace Migrations
 
             context.AddressTypes.AddOrUpdate(Function(at) at.Description, addressType1)
             context.AddressTypes.AddOrUpdate(Function(at) at.Description, addressType2)
+
+            context.Operations.AddOrUpdate(Function(o) o.Code, op1)
+            context.Operations.AddOrUpdate(Function(o) o.Code, op2)
+            context.Operations.AddOrUpdate(Function(o) o.Code, op3)
 
             context.SaveChanges()
 

@@ -201,9 +201,12 @@
     <Compile Include="Controllers\AddressTypesController.vb" />
     <Compile Include="Controllers\CausalWarehouseGroupsController.vb" />
     <Compile Include="Controllers\CausalWarehousesController.vb" />
+    <Compile Include="Controllers\DescriptiveInvoiceRowsController.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\InvoiceRowsController.vb" />
     <Compile Include="Controllers\NumberingsController.vb" />
+    <Compile Include="Controllers\OperationsController.vb" />
+    <Compile Include="Controllers\ProductInvoiceRowsController.vb" />
     <Compile Include="Controllers\SellersController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
     <Compile Include="Controllers\WarehousesController.vb" />
@@ -315,18 +318,35 @@
       <DependentUpon>201507270857483_VAT-single.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201507270857483_VAT-single.vb" />
+    <Compile Include="Migrations\201508150930040_abstract_invoiceRow.Designer.vb">
+      <DependentUpon>201508150930040_abstract_invoiceRow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508150930040_abstract_invoiceRow.vb" />
+    <Compile Include="Migrations\201508201708016_descriptiverowdescription.Designer.vb">
+      <DependentUpon>201508201708016_descriptiverowdescription.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508201708016_descriptiverowdescription.vb" />
+    <Compile Include="Migrations\201508201720303_rowVAT_double.Designer.vb">
+      <DependentUpon>201508201720303_rowVAT_double.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508201720303_rowVAT_double.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
+    <Compile Include="Models\DescriptiveInvoiceRow.vb" />
     <Compile Include="Models\Interfaces\ISeller.vb" />
+    <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="ViewModels\Invoices\AddNewDescriptiveInvoiceRowViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\PresentationInvoiceRowViewModel.vb" />
+    <Compile Include="Models\ProductInvoiceRow.vb" />
     <Compile Include="Models\Seller.vb" />
     <Compile Include="Models\SerialScheme.vb" />
     <Compile Include="ViewModels\Customers\DisableCustomerViewModel.vb" />
-    <Compile Include="ViewModels\Invoices\AddNewInvoiceRowViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\AddNewProductInvoiceRowViewModel.vb" />
     <Compile Include="Repositories\IHeatDBContext.vb" />
     <Compile Include="Types\SerialNumber.vb" />
     <Compile Include="Validation\EditableInvoiceValidator.vb" />
@@ -456,6 +476,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201507270857483_VAT-single.resx">
       <DependentUpon>201507270857483_VAT-single.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508150930040_abstract_invoiceRow.resx">
+      <DependentUpon>201508150930040_abstract_invoiceRow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508201708016_descriptiverowdescription.resx">
+      <DependentUpon>201508201708016_descriptiverowdescription.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508201720303_rowVAT_double.resx">
+      <DependentUpon>201508201720303_rowVAT_double.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1452,6 +1481,21 @@
     <Content Include="Views\Addresses\Edit.vbhtml" />
     <Content Include="Views\Addresses\Index.vbhtml" />
     <Content Include="Views\Customers\DisableCustomer.vbhtml" />
+    <Content Include="Views\Operations\Create.vbhtml" />
+    <Content Include="Views\Operations\Delete.vbhtml" />
+    <Content Include="Views\Operations\Details.vbhtml" />
+    <Content Include="Views\Operations\Edit.vbhtml" />
+    <Content Include="Views\Operations\Index.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Create.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Delete.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Details.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Edit.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Index.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Create.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Delete.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Details.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Edit.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -1478,7 +1522,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

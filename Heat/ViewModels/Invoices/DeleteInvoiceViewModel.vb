@@ -15,7 +15,8 @@ Namespace ViewModels.Invoices
         <DisplayFormat(DataFormatString:="{0:d}")> _
         Property InvoiceDate As DateTime
 
-        Property Rows As List(Of InvoiceRowViewModel)
+        Property Rows As List(Of PresentationInvoiceRowViewModel)
+        ' Property Rows As List(Of InvoiceRowViewModel)
 
     End Class
 End Namespace

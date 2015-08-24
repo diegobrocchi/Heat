@@ -1,13 +1,13 @@
 ﻿Namespace Models
-    Public Class InvoiceRow
+    Public MustInherit Class InvoiceRow
         Property ID As Integer
         Property Invoice As Invoice
         Property RowID As Integer
         Property ItemOrder As Integer
-        Property Product As Product
+        'Property Product As Product
         Property Quantity As Double
         Property UnitPrice As Decimal
-        Property VAT_Rate As Single
+        Property VAT_Rate As Double
         Property RateDiscount1 As Decimal
         Property RateDiscount2 As Decimal
         Property RateDiscount3 As Decimal
@@ -40,14 +40,14 @@
 
                 partial1 = GrossAmount - discountAmount1
 
-                discountamount2 = partial1 * RateDiscount2 / 100
+                discountAmount2 = partial1 * RateDiscount2 / 100
                 Dim partial2 As Decimal
 
-                partial2 = GrossAmount - discountAmount1 - discountamount2
+                partial2 = GrossAmount - discountAmount1 - discountAmount2
 
                 discountAmount3 = partial2 * RateDiscount3 / 100
 
-                Return GrossAmount - discountAmount1 - discountamount2 - discountAmount3
+                Return GrossAmount - discountAmount1 - discountAmount2 - discountAmount3
 
             End Get
         End Property

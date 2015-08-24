@@ -10,10 +10,13 @@ Imports System.Data.Entity
 Public Class InvoiceModelBuilder
 
     Private _db As IHeatDBContext
+    Private _manager As InvoiceManager
 
-    Public Sub New(repository As IHeatDBContext)
+    Public Sub New(repository As IHeatDBContext, manager As InvoiceManager)
         _db = repository
+        _manager = manager
     End Sub
+
 
     ''' <summary>
     ''' Prepara il modello da visualizzare nella view con l'elenco delle fatture confermate.
@@ -62,24 +65,35 @@ Public Class InvoiceModelBuilder
         Return result
     End Function
 
-
+    ''' <summary>
+    ''' Prepara il modello per la view di Edit della fattura.
+    ''' </summary>
+    ''' <param name="tempDoc"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
     Public Function GetEditInvoiceViewModel(tempDoc As Invoice) As EditInvoiceViewModel
+        'l'elenco delle righe della fattura è composto da 2 tipi differenti di righe: 
+        ''Prodotto' e 'Descrittive'.
+
         Dim result As New EditInvoiceViewModel
-        Dim dbRowList As New List(Of InvoiceRow)
+        Dim dbProductRowList As New List(Of ProductInvoiceRow)
+        Dim dbDescriptiveRowList As New List(Of DescriptiveInvoiceRow)
+
 
         result.ID = tempDoc.ID
         result.CustomerName = tempDoc.Customer.Name
         result.InvoiceNumber = tempDoc.InsertedNumber.SerialString
         result.InvoiceDate = tempDoc.InvoiceDate.ToShortDateString
 
-        dbRowList = _db.InvoiceRows.Include("Product").
-            Where(Function(r) r.Invoice.ID = tempDoc.ID).
-            OrderBy(Function(x) x.ItemOrder).ToList
+        dbProductRowList = _db.ProductInvoiceRows.Include("Product").Where(Function(r) r.Invoice.ID = tempDoc.ID).ToList()
 
-        result.Rows = dbRowList.Select(Function(x) New InvoiceRowViewModel With {
+        dbDescriptiveRowList = _db.DescriptiveInvoiceRows.Where(Function(x) x.Invoice.ID = tempDoc.ID).ToList
+
+        result.Rows = dbProductRowList.Select(Function(x) New PresentationInvoiceRowViewModel With {
                        .ID = x.ID,
                        .Item = x.ItemOrder,
                        .InvoiceID = x.Invoice.ID,
+                       .SKU = x.Product.SKU,
                        .Product = x.Product.Description,
                        .Quantity = x.Quantity,
                        .UnitPrice = x.UnitPrice,
@@ -87,8 +101,29 @@ Public Class InvoiceModelBuilder
                        .Discount2 = x.RateDiscount2,
                        .Discount3 = x.RateDiscount3,
                                 .TotalBeforeTax = x.DiscountedAmount,
-                                .Total = x.TotalAmount}).
+                                .Total = x.TotalAmount,
+                       .VAT = x.VAT_Rate,
+                       .RowType = InvoiceRowType.ProductRow}).
                  ToList()
+
+        result.Rows.AddRange(dbDescriptiveRowList.Select(Function(x) New PresentationInvoiceRowViewModel With {
+                                                             .ID = x.ID,
+                                                             .Item = x.ItemOrder,
+                                                             .InvoiceID = x.Invoice.ID,
+                                                             .SKU = String.Empty,
+                                                             .Product = x.RowDescription,
+                                                             .Quantity = x.Quantity,
+                                                             .UnitPrice = x.UnitPrice,
+                                                             .Discount1 = x.RateDiscount1,
+                                                             .Discount2 = x.RateDiscount2,
+                                                             .Discount3 = x.RateDiscount3,
+                                                             .TotalBeforeTax = x.DiscountedAmount,
+                                                             .Total = x.TotalAmount,
+                                                             .VAT = x.VAT_Rate,
+                                                             .RowType = InvoiceRowType.DescriptiveRow}).ToList)
+
+
+        result.Rows = result.Rows.OrderBy(Function(x) x.Item).ToList
 
         Return result
 
@@ -97,16 +132,32 @@ Public Class InvoiceModelBuilder
 
 
     ''' <summary>
-    ''' Produce il modello di rigaFattura per la vista Create. 
+    ''' Produce il modello per la vista Create di una riga fattura di tipo 'Prodotto'. 
     ''' </summary>
     ''' <param name="invoiceID"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function GetAddInvoiceRowViewModel(invoiceID As Integer) As AddNewInvoiceRowViewModel
-        Dim result As New AddNewInvoiceRowViewModel
+    Public Function GetAddProductInvoiceRowViewModel(invoiceID As Integer) As AddNewProductInvoiceRowViewModel
+        Dim result As New AddNewProductInvoiceRowViewModel
 
         result.InvoiceID = invoiceID
         result.ProductList = _db.Products.ToList.OrderBy(Function(x) x.Description).ToSelectListItems(Function(p) p.Description, Function(p) p.ID, "")
+        result.VAT = 22
+
+        Return result
+
+    End Function
+
+    ''' <summary>
+    ''' Produce il modello per la vista Create di una riga fattura di tipo 'Descrittivo'.
+    ''' </summary>
+    ''' <param name="invoiceID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetAddDescriptiveInvoiceRowViewModel(invoiceID As Integer) As AddNewDescriptiveInvoiceRowViewModel
+        Dim result As New AddNewDescriptiveInvoiceRowViewModel
+
+        result.InvoiceID = invoiceID
         result.VAT = 22
 
         Return result
@@ -122,33 +173,35 @@ Public Class InvoiceModelBuilder
     Public Function getEditInvoicePaymentViewModel(id As Integer) As InvoicePaymentViewModel
         Dim result As New InvoicePaymentViewModel
         Dim dbInvoice As Invoice
-        Dim rows As List(Of InvoiceRow)
+        Dim rows As List(Of PresentationInvoiceRowViewModel)
 
-        dbInvoice = _db.Invoices.Where(Function(x) x.ID = id).
-            Include(Function(x) x.Customer).
-            Include(Function(x) x.InvoiceRows).
-            Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
-
-        rows = dbInvoice.InvoiceRows
+        'dbInvoice = _db.Invoices.Where(Function(x) x.ID = id).
+        '    Include(Function(x) x.Customer).
+        '    Include(Function(x) x.InvoiceRows).
+        '    Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
+        'rows = dbInvoice.InvoiceRows
+        dbInvoice = _db.Invoices.Find(id)
+        rows = _manager.GetInvoiceRows(id)
 
         result.ID = id
         result.CustomerName = dbInvoice.Customer.Name
         result.InvoiceNumber = dbInvoice.InsertedNumber.SerialString
         result.InvoiceDate = dbInvoice.InvoiceDate.ToShortDateString
         result.IsTaxExempt = dbInvoice.IsTaxExempt
-        result.Rows = rows.Select(Function(x) New InvoiceRowViewModel With {
-                       .ID = x.ID,
-                       .Item = x.ItemOrder,
-                       .InvoiceID = x.Invoice.ID,
-                       .Product = x.Product.Description,
-                       .Quantity = x.Quantity,
-                       .UnitPrice = x.UnitPrice,
-                       .Discount1 = x.RateDiscount1,
-                       .Discount2 = x.RateDiscount2,
-                       .Discount3 = x.RateDiscount3,
-                                .TotalBeforeTax = x.DiscountedAmount,
-                                .Total = x.TotalAmount}).
-                 ToList()
+        result.Rows = rows
+        'result.Rows = rows.Select(Function(x) New InvoiceRowViewModel With {
+        '               .ID = x.ID,
+        '               .Item = x.ItemOrder,
+        '               .InvoiceID = x.Invoice.ID,
+        '               .Product = x.Description,
+        '               .Quantity = x.Quantity,
+        '               .UnitPrice = x.UnitPrice,
+        '               .Discount1 = x.RateDiscount1,
+        '               .Discount2 = x.RateDiscount2,
+        '               .Discount3 = x.RateDiscount3,
+        '                        .TotalBeforeTax = x.DiscountedAmount,
+        '                        .Total = x.TotalAmount}).
+        '         ToList()
 
         If Not dbInvoice.Payment Is Nothing Then
             result.PaymentID = dbInvoice.Payment.ID
@@ -170,33 +223,37 @@ Public Class InvoiceModelBuilder
     Public Function getConfirmInvoiceViewModel(id As Integer) As ConfirmInvoiceViewModel
         Dim result As New ConfirmInvoiceViewModel
         Dim invoiceDB As Invoice
-        Dim invoiceDBRows As List(Of InvoiceRow)
+        Dim invoiceDBRows As List(Of PresentationInvoiceRowViewModel)
 
 
-        invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).
-            Include(Function(x) x.Customer).
-            Include(Function(x) x.InvoiceRows).
-            Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
+        'invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).
+        '    Include(Function(x) x.Customer).
+        '    Include(Function(x) x.InvoiceRows).
+        '    Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
 
-        invoiceDBRows = invoiceDB.InvoiceRows
+        'invoiceDBRows = invoiceDB.InvoiceRows
+
+        invoiceDB = _db.Invoices.Find(id)
+        invoiceDBRows = _manager.GetInvoiceRows(id)
 
         result.ID = id
         result.CustomerName = invoiceDB.Customer.Name
         result.InvoiceDate = invoiceDB.InvoiceDate.ToShortDateString
         result.InvoiceNumber = invoiceDB.InsertedNumber.SerialString
-        result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
-                       .ID = x.ID,
-                       .Item = x.ItemOrder,
-                       .InvoiceID = x.Invoice.ID,
-                       .Product = x.Product.Description,
-                       .Quantity = x.Quantity,
-                       .UnitPrice = x.UnitPrice,
-                       .Discount1 = x.RateDiscount1,
-                       .Discount2 = x.RateDiscount2,
-                       .Discount3 = x.RateDiscount3,
-                                .TotalBeforeTax = x.DiscountedAmount,
-                                .Total = x.TotalAmount}).
-                 ToList()
+        result.Rows = invoiceDBRows
+        'result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
+        '               .ID = x.ID,
+        '               .Item = x.ItemOrder,
+        '               .InvoiceID = x.Invoice.ID,
+        '               .Product = x.Description,
+        '               .Quantity = x.Quantity,
+        '               .UnitPrice = x.UnitPrice,
+        '               .Discount1 = x.RateDiscount1,
+        '               .Discount2 = x.RateDiscount2,
+        '               .Discount3 = x.RateDiscount3,
+        '                        .TotalBeforeTax = x.DiscountedAmount,
+        '                        .Total = x.TotalAmount}).
+        '         ToList()
 
         result.Payment = invoiceDB.Payment.Description
         result.IsTaxExempt = invoiceDB.IsTaxExempt
@@ -217,31 +274,36 @@ Public Class InvoiceModelBuilder
     Public Function GetDetailsInvoiceViewModel(id As Integer) As InvoiceDetailsViewModel
         Dim result As New InvoiceDetailsViewModel
         Dim invoiceDB As Invoice
-        Dim invoiceDBRows As List(Of InvoiceRow)
+        Dim invoiceDBRows As List(Of PresentationInvoiceRowViewModel)
 
-        invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).
-            Include(Function(x) x.Customer).
-            Include(Function(x) x.InvoiceRows).
-            Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
+        'invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).
+        '    Include(Function(x) x.Customer).
+        '    Include(Function(x) x.InvoiceRows).
+        '    Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
 
-        invoiceDBRows = invoiceDB.InvoiceRows
+        'invoiceDBRows = invoiceDB.InvoiceRows
+
+        invoiceDB = _db.Invoices.Find(id)
+        invoiceDBRows = _manager.GetInvoiceRows(id)
+
         result.ID = id
         result.CustomerName = invoiceDB.Customer.Name
         result.InvoiceDate = invoiceDB.InvoiceDate.ToShortDateString
         result.InvoiceNumber = invoiceDB.InsertedNumber.SerialString
-        result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
-                       .ID = x.ID,
-                       .Item = x.ItemOrder,
-                       .InvoiceID = x.Invoice.ID,
-                       .Product = x.Product.Description,
-                       .Quantity = x.Quantity,
-                       .UnitPrice = x.UnitPrice,
-                       .Discount1 = x.RateDiscount1,
-                       .Discount2 = x.RateDiscount2,
-                       .Discount3 = x.RateDiscount3,
-                                .TotalBeforeTax = x.DiscountedAmount,
-                                .Total = x.TotalAmount}).
-                 ToList()
+        result.Rows = invoiceDBRows
+        'result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
+        '               .ID = x.ID,
+        '               .Item = x.ItemOrder,
+        '               .InvoiceID = x.Invoice.ID,
+        '               .Product = x.Description,
+        '               .Quantity = x.Quantity,
+        '               .UnitPrice = x.UnitPrice,
+        '               .Discount1 = x.RateDiscount1,
+        '               .Discount2 = x.RateDiscount2,
+        '               .Discount3 = x.RateDiscount3,
+        '                        .TotalBeforeTax = x.DiscountedAmount,
+        '                        .Total = x.TotalAmount}).
+        '         ToList()
 
         result.Payment = invoiceDB.Payment.Description
         result.IsTaxExempt = invoiceDB.IsTaxExempt
@@ -253,29 +315,33 @@ Public Class InvoiceModelBuilder
     Public Function getDeleteInvoiceViewModel(id As Integer) As DeleteInvoiceViewModel
         Dim result As New DeleteInvoiceViewModel
         Dim invoiceDB As Invoice
-        Dim invoiceDBRows As List(Of InvoiceRow)
+        Dim invoiceDBRows As List(Of PresentationInvoiceRowViewModel)
 
-        invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).Include(Function(x) x.Customer).Include(
-            Function(x) x.InvoiceRows).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).First
-        invoiceDBRows = invoiceDB.InvoiceRows
+        'invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).Include(Function(x) x.Customer).Include(
+        '    Function(x) x.InvoiceRows).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).First
+        'invoiceDBRows = invoiceDB.InvoiceRows
+
+        invoiceDB = _db.Invoices.Find(id)
+        invoiceDBRows = _manager.GetInvoiceRows(id)
 
         result.ID = invoiceDB.ID
         result.CustomerName = invoiceDB.Customer.Name
         result.InvoiceDate = invoiceDB.InvoiceDate
         result.InvoiceNumber = invoiceDB.InsertedNumber.SerialString
-        result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
-                      .ID = x.ID,
-                      .Item = x.ItemOrder,
-                      .InvoiceID = x.Invoice.ID,
-                      .Product = x.Product.Description,
-                      .Quantity = x.Quantity,
-                      .UnitPrice = x.UnitPrice,
-                      .Discount1 = x.RateDiscount1,
-                      .Discount2 = x.RateDiscount2,
-                      .Discount3 = x.RateDiscount3,
-                               .TotalBeforeTax = x.DiscountedAmount,
-                               .Total = x.TotalAmount}).
-                ToList()
+        result.Rows = invoiceDBRows
+        'result.Rows = invoiceDBRows.Select(Function(x) New InvoiceRowViewModel With {
+        '              .ID = x.ID,
+        '              .Item = x.ItemOrder,
+        '              .InvoiceID = x.Invoice.ID,
+        '              .Product = x.Description,
+        '              .Quantity = x.Quantity,
+        '              .UnitPrice = x.UnitPrice,
+        '              .Discount1 = x.RateDiscount1,
+        '              .Discount2 = x.RateDiscount2,
+        '              .Discount3 = x.RateDiscount3,
+        '                       .TotalBeforeTax = x.DiscountedAmount,
+        '                       .Total = x.TotalAmount}).
+        '        ToList()
 
         Return result
 

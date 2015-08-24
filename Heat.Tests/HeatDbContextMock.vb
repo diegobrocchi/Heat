@@ -5,7 +5,6 @@
 Public Class HeatDbContextMock
     Implements IHeatDBContext
 
-
     Public Property Numberings As Entity.DbSet(Of Models.Numbering) Implements IHeatDBContext.Numberings
     Public Property SerialScheme As Entity.DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
     Public Property Customers As Entity.DbSet(Of Models.Customer) Implements IHeatDBContext.Customers
@@ -83,4 +82,8 @@ Public Class HeatDbContextMock
     Public Property Products As Entity.DbSet(Of Product) Implements IHeatDBContext.Products
 
     Public Property Payments As Entity.DbSet(Of Payment) Implements IHeatDBContext.Payments
+
+    Public Property DescriptiveInvoiceRows As Entity.DbSet(Of DescriptiveInvoiceRow) Implements IHeatDBContext.DescriptiveInvoiceRows
+
+    Public Property ProductInvoiceRows As Entity.DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
 End Class

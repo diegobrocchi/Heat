@@ -3,15 +3,15 @@ Imports System.Data.Entity.Migrations
 Imports Microsoft.VisualBasic
 
 Namespace Migrations
-    Public Partial Class VATsingle
+    Public Partial Class rowVAT_double
         Inherits DbMigration
     
         Public Overrides Sub Up()
-            ' AlterColumn("dbo.InvoiceRows", "VAT_Rate", Function(c) c.Single(nullable := False))
+            AlterColumn("dbo.InvoiceRows", "VAT_Rate", Function(c) c.Double(nullable := False))
         End Sub
         
         Public Overrides Sub Down()
-            ' AlterColumn("dbo.InvoiceRows", "VAT_Rate", Function(c) c.Decimal(nullable := False, precision := 18, scale := 2))
+            AlterColumn("dbo.InvoiceRows", "VAT_Rate", Function(c) c.Single(nullable := False))
         End Sub
     End Class
 End Namespace

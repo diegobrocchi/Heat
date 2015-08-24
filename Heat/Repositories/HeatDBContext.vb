@@ -52,13 +52,15 @@ Namespace Repositories
         Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
         Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
         Property Products As DbSet(Of Product) Implements IHeatDBContext.Products
+        Public Property AddressTypes As System.Data.Entity.DbSet(Of Models.AddressType)
+        Public Property Operations As System.Data.Entity.DbSet(Of Models.Operation)
+        Public Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow) Implements IHeatDBContext.DescriptiveInvoiceRows
+        Public Property ProductInvoiceRows As DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges
         End Function
 
-
-        Public Property AddressTypes As System.Data.Entity.DbSet(Of Models.AddressType)
     End Class
 
 End Namespace
