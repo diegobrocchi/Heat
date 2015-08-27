@@ -8,50 +8,52 @@ End Code
 <p>
     @Html.ActionLink("Crea un nuovo impianto", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.StreetNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Area)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Zone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.PlantTelephone1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.PlantTelephone2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.PlantTelephone3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.PlantDistictCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Fuel)
-        </th>
-        <th></th>
-    </tr>
-
+<table id="index_table" class="table table-bordered table-hover table-striped">
+    <thead >
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.StreetNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Zone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.PlantTelephone1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.PlantTelephone2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.PlantTelephone3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.PlantDistictCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Fuel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+   <tbody>
 @For Each item In Model
     @<tr>
         <td>
@@ -100,5 +102,13 @@ End Code
         </td>
     </tr>
 Next
+   </tbody>
+
+   
 
 </table>
+
+
+@section scripts
+    <script type="text/javascript" src="~/Scripts/Views/Plants/index.js"></script>
+End Section

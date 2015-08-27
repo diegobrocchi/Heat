@@ -11,6 +11,11 @@ Imports Heat.Models
 Imports Heat.Repositories
 Imports Heat.ViewModels.Customers
 Imports Heat.Manager
+Imports AutoMapper
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+
+
 
 Namespace Controllers
 
@@ -19,27 +24,25 @@ Namespace Controllers
 
         Private _db As IHeatDBContext
         Private _mb As CustomerModelViewBuilder
+        Private _cm As CustomerManager
 
         Sub New(dbcontext As IHeatDBContext)
             _db = dbcontext
             _mb = New CustomerModelViewBuilder(_db)
+            _cm = New CustomerManager(_db)
         End Sub
 
-        ' GET: Customers
 
         Function Index(Optional IncludeDisabled As Boolean = False) As ActionResult
-            Dim l As List(Of Customer)
-            If IncludeDisabled Then
-                l = _db.Customers.OrderBy(Function(c) c.Name).ToList
-            Else
-                l = _db.Customers.Where(Function(c) c.IsEnabled = True).OrderBy(Function(c) c.Name).ToList
-            End If
+            Try
+                Dim model As IndexCustomerViewModel
+                model = _mb.GetIndexCustomerViewModel(IncludeDisabled)
 
-            Return View(l)
-
-            'Dim custviewmodelb As New BusinessModelViewBuilder(_db)
-            ''TODO: jQ Datatable con server processing
-            'Return View(custviewmodelb.GetSortedAndPagedCustomer(sortOrder, 0, 1000))
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
 
         End Function
 
@@ -60,48 +63,59 @@ Namespace Controllers
             Return View()
         End Function
 
-        ' POST: Customers/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Name,Address,City,PostalCode,VAT,EMail,Website")> ByVal customer As Customer) As ActionResult
+        Function Create(newCustomer As CreateCustomerViewModel) As ActionResult
             If ModelState.IsValid Then
-                customer.IsEnabled = True
-                customer.CreationDate = Now
-                customer.EnableDate = Now
-                _db.Customers.Add(customer)
+                Dim c As New Customer
+                c = Mapper.Map(Of Customer)(newCustomer)
+                c.CreationDate = Now
+                c.EnableDate = Now
+
+                _db.Customers.Add(c)
                 _db.SaveChanges()
                 Return RedirectToAction("Index")
+            Else
+                Return View(newCustomer)
             End If
-            Return View(customer)
+
         End Function
 
         ' GET: Customers/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
-            Dim customer As Customer = _db.Customers.Find(id)
-            If IsNothing(customer) Then
-                Return HttpNotFound()
-            End If
-            Return View(customer)
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+
+                If Not _db.Customers.AsNoTracking.Any(Function(x) x.ID = id) Then
+                    Return HttpNotFound()
+                End If
+                Dim model As EditCustomerViewModel
+                model = _mb.GetEditCustomerViewModel(id)
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
-        ' POST: Customers/Edit/5
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,Name,Surname,CompanyName,EMail,Website")> ByVal customer As Customer) As ActionResult
+        Function Edit(editedCustomer As EditCustomerViewModel) As ActionResult
             If ModelState.IsValid Then
-                '_db.Entry(customer).State = EntityState.Modified
-                _db.SetModified(customer)
+                Dim dbCustomer As Customer
+                dbCustomer = _db.Customers.Find(editedCustomer.ID)
+
+                Mapper.Map(editedCustomer, dbCustomer)
+
                 _db.SaveChanges()
                 Return RedirectToAction("Index")
+            Else
+                Return View(editedCustomer)
             End If
-            Return View(customer)
         End Function
 
         ' GET: Customers/Delete/5
@@ -213,6 +227,51 @@ Namespace Controllers
         End Function
 
 
+        <HttpGet> _
+        Public Function EnableCustomer(id As Integer) As ActionResult
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim customer As Customer = _db.Customers.Find(id)
+                If IsNothing(customer) Then
+                    Return HttpNotFound()
+                End If
+                Dim dc As EnableCustomerViewModel
+                dc = _mb.GetEnableCustomerViewModel(id)
+                Return View(dc)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
+        End Function
+
+        <HttpPost> _
+        <ValidateAntiForgeryToken> _
+        Public Function EnableCustomer(ec As EnableCustomerViewModel) As ActionResult
+            Try
+                If ModelState.IsValid Then
+                    Dim c As Customer
+                    c = _db.Customers.Find(ec.ID)
+                    If Not IsNothing(c) Then
+                        _cm.EnableCustomer(c)
+                        _db.SaveChanges()
+                        Return RedirectToAction("index")
+                    Else
+                        ViewBag.message = "impossibile trovare il cliente con ID specificato!"
+                        Return View("error")
+                    End If
+                Else
+                    ViewBag.message("Modello non valido")
+                    Return View("error")
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("Error")
+            End Try
+        End Function
+
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
                 _db.Dispose()
@@ -220,6 +279,16 @@ Namespace Controllers
             MyBase.Dispose(disposing)
         End Sub
 
+        <HttpGet> _
+        Public Function Print(id As Integer) As ActionResult
+            Dim d As New iTextSharp.text.Document
+            PdfWriter.GetInstance(d, New System.IO.FileStream(Request.PhysicalApplicationPath & "\1.pdf", System.IO.FileMode.Create))
+            d.Open()
+            d.Add(New Paragraph("Hello " & id))
+            d.Close()
+            Return Redirect("~/1.pdf")
+
+        End Function
 
     End Class
 End Namespace

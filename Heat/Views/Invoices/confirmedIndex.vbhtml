@@ -6,7 +6,7 @@ End Code
 <h2>Fatture</h2>
 
 <p>
-    @Html.ActionLink("Crea nuova fattura", "Create", Nothing, New With {.class = "btn btn-default"})
+    @Html.ActionLink("Crea nuova fattura", "Index", "Customers", Nothing, New With {.class = "btn btn-success"})
     @If Model.InsertedInvoiceCount > 0 Then
         @Html.ActionLink("Lista fatture non ancora confermate", "index", New With {.state = Heat.Models.DocumentState.Inserted}, New With {.class = "btn btn-primary"})
     End If

@@ -32,7 +32,13 @@
                             <li>@Html.ActionLink("Preventivi", "index", "preventivi")</li>
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Attività", "Index", "Operations")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" rule="button" aria-expanded="false">Attività <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Interventi", "Index", "WorkActions")</li>
+                            <li>@Html.ActionLink("Impianti", "Index", "Plants")</li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestione <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

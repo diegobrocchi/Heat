@@ -5,7 +5,6 @@ Public Class NumberingViewModelsBuilder
     Private _db As IHeatDBContext
 
 
-
     Sub New(context As IHeatDBContext)
         _db = context
     End Sub

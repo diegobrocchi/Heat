@@ -6,6 +6,7 @@ Namespace ViewModels.Invoices
 
         <Required> _
         <Display(Name:="Descrizione")> _
+        <DataType(DataType.MultilineText)> _
         Property RowDescription As String
 
         <Required> _

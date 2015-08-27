@@ -86,4 +86,8 @@ Public Class HeatDbContextMock
     Public Property DescriptiveInvoiceRows As Entity.DbSet(Of DescriptiveInvoiceRow) Implements IHeatDBContext.DescriptiveInvoiceRows
 
     Public Property ProductInvoiceRows As Entity.DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
+
+    Public Property ActionTypes As Entity.DbSet(Of ActionType) Implements IHeatDBContext.ActionTypes
+
+    Public Property WorkOperators As Entity.DbSet(Of WorkOperator) Implements IHeatDBContext.WorkOperators
 End Class

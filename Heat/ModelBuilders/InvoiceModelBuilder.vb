@@ -149,6 +149,33 @@ Public Class InvoiceModelBuilder
     End Function
 
     ''' <summary>
+    ''' Produce il modello per la vista Edit di una riga fattura di tipo 'Prodotto'.
+    ''' </summary>
+    ''' <param name="ID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetEditProductInvoiceRowViewModel(ID As Integer) As EditProductInvoiceRowViewModel
+        Dim result As New EditProductInvoiceRowViewModel
+        Dim dbRow As ProductInvoiceRow
+
+        dbRow = _db.ProductInvoiceRows.Include(Function(x) x.Invoice).Include(Function(x) x.Product).Where(Function(x) x.ID = ID).Single
+
+        result.ID = ID
+        result.Discount1 = dbRow.RateDiscount1
+        result.Discount2 = dbRow.RateDiscount2
+        result.Discount3 = dbRow.RateDiscount3
+        result.InvoiceID = dbRow.Invoice.ID
+        result.ProductID = dbRow.Product.ID
+        result.ProductList = _db.Products.ToList.OrderBy(Function(x) x.Description).ToSelectListItems(Function(p) p.Description, Function(p) p.ID, dbRow.Product.ID)
+        result.Quantity = dbRow.Quantity
+        result.UnitPrice = dbRow.UnitPrice
+        result.VAT = dbRow.VAT_Rate
+
+        Return result
+
+    End Function
+
+    ''' <summary>
     ''' Produce il modello per la vista Create di una riga fattura di tipo 'Descrittivo'.
     ''' </summary>
     ''' <param name="invoiceID"></param>
@@ -162,6 +189,31 @@ Public Class InvoiceModelBuilder
 
         Return result
 
+    End Function
+
+    ''' <summary>
+    ''' Produce il modello per la vista Edit di una riga fattura di tipo 'Descrittivo'.
+    ''' </summary>
+    ''' <param name="ID"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function GetEditDescriptiveInvoiceRowViewModel(ID As Integer) As EditDescriptiveInvoiceRowViewModel
+        Dim result As New EditDescriptiveInvoiceRowViewModel
+        Dim dbRow As DescriptiveInvoiceRow
+
+        dbRow = _db.DescriptiveInvoiceRows.Include(Function(x) x.Invoice).Where(Function(x) x.ID = ID).Single
+
+        result.ID = dbRow.ID
+        result.Discount1 = dbRow.RateDiscount1
+        result.Discount2 = dbRow.RateDiscount2
+        result.Discount3 = dbRow.RateDiscount3
+        result.InvoiceID = dbRow.Invoice.ID
+        result.Quantity = dbRow.Quantity
+        result.RowDescription = dbRow.RowDescription
+        result.UnitPrice = dbRow.UnitPrice
+        result.VAT = dbRow.VAT_Rate
+
+        Return result
     End Function
 
     ''' <summary>
@@ -180,7 +232,7 @@ Public Class InvoiceModelBuilder
         '    Include(Function(x) x.InvoiceRows).
         '    Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
         'rows = dbInvoice.InvoiceRows
-        dbInvoice = _db.Invoices.Find(id)
+        dbInvoice = _db.Invoices.Include(Function(x) x.Customer).Include(Function(x) x.Payment).Where(Function(x) x.ID = id).FirstOrDefault
         rows = _manager.GetInvoiceRows(id)
 
         result.ID = id
@@ -233,7 +285,7 @@ Public Class InvoiceModelBuilder
 
         'invoiceDBRows = invoiceDB.InvoiceRows
 
-        invoiceDB = _db.Invoices.Find(id)
+        invoiceDB = _db.Invoices.Include(Function(x) x.Customer).Include(Function(x) x.Payment).Where(Function(x) x.ID = id).Single
         invoiceDBRows = _manager.GetInvoiceRows(id)
 
         result.ID = id
@@ -276,10 +328,9 @@ Public Class InvoiceModelBuilder
         Dim invoiceDB As Invoice
         Dim invoiceDBRows As List(Of PresentationInvoiceRowViewModel)
 
-        'invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).
-        '    Include(Function(x) x.Customer).
-        '    Include(Function(x) x.InvoiceRows).
-        '    Include(Function(x) x.Payment).Include(Function(x) x.InvoiceRows.Select(Function(r) r.Product)).FirstOrDefault()
+        invoiceDB = _db.Invoices.Where(Function(x) x.ID = id).
+            Include(Function(x) x.Customer).
+            Include(Function(x) x.Payment).Single
 
         'invoiceDBRows = invoiceDB.InvoiceRows
 

@@ -155,6 +155,9 @@ Namespace Migrations
             Dim op2 As New Models.Operation
             Dim op3 As New Models.Operation
 
+            Dim wop1 As New Models.WorkOperator
+            Dim wop2 As New Models.WorkOperator
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -229,6 +232,9 @@ Namespace Migrations
             op3.Code = "INT3"
             op3.Description = "Operazione di tipo 3"
 
+            wop1.Name = "Diego Brocchi"
+            wop2.Name = "Mario Rossi"
+
             '###################################
             'Aggiunta dati al DB
             '###################################
@@ -263,6 +269,9 @@ Namespace Migrations
             context.Operations.AddOrUpdate(Function(o) o.Code, op1)
             context.Operations.AddOrUpdate(Function(o) o.Code, op2)
             context.Operations.AddOrUpdate(Function(o) o.Code, op3)
+
+            context.WorkOperators.AddOrUpdate(Function(wo) wo.Name, wop1)
+            context.WorkOperators.AddOrUpdate(Function(wo) wo.Name, wop2)
 
             context.SaveChanges()
 

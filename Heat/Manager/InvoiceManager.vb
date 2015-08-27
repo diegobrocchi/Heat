@@ -1,6 +1,8 @@
 ﻿Imports Heat.Repositories
 Imports Heat.Models
 Imports Heat.ViewModels.Invoices
+Imports System.Linq
+Imports System.Data.Entity
 
 Namespace Manager
     ''' <summary>
@@ -25,7 +27,7 @@ Namespace Manager
             Dim numberGenerator As NumeratorManager = NumeratorManager.Instance
             Dim d As DocumentType
 
-            d = _db.DocumentTypes.Include("Numbering").Where(Function(dt) dt.Name = "FTC").FirstOrDefault
+            d = _db.DocumentTypes.Include(Function(x) x.numbering).Where(Function(dt) dt.Name = "FTC").FirstOrDefault
 
             result.Customer = _db.Customers.Find(customerID)
             result.InvoiceDate = DateTime.Now
@@ -52,7 +54,7 @@ Namespace Manager
             Dim numberGenerator As NumeratorManager = NumeratorManager.Instance
             Dim d As DocumentType
 
-            d = _db.DocumentTypes.Include("Numbering").Where(Function(dt) dt.Name = "FTC").FirstOrDefault
+            d = _db.DocumentTypes.Include(Function(x) x.Numbering).Where(Function(dt) dt.Name = "FTC").FirstOrDefault
 
             invoice = _db.Invoices.Include("InvoiceRows").Where(Function(x) x.ID = id).First
             rows = invoice.InvoiceRows
@@ -84,7 +86,7 @@ Namespace Manager
             Dim result As New List(Of PresentationInvoiceRowViewModel)
 
             Dim productRowList As List(Of ProductInvoiceRow)
-            productRowList = _db.ProductInvoiceRows.Where(Function(x) x.Invoice.ID = invoiceID).ToList
+            productRowList = _db.ProductInvoiceRows.Include(Function(x) x.Product).Where(Function(x) x.Invoice.ID = invoiceID).ToList
 
             Dim descriptiveRowList As List(Of DescriptiveInvoiceRow)
             descriptiveRowList = _db.DescriptiveInvoiceRows.Where(Function(x) x.Invoice.ID = invoiceID).ToList
@@ -101,8 +103,9 @@ Namespace Manager
                        .Discount1 = x.RateDiscount1,
                        .Discount2 = x.RateDiscount2,
                        .Discount3 = x.RateDiscount3,
-                                .TotalBeforeTax = x.DiscountedAmount,
-                                .Total = x.TotalAmount,
+                       .VAT = x.VAT_Rate,
+                       .TotalBeforeTax = x.DiscountedAmount,
+                       .Total = x.TotalAmount,
                        .RowType = InvoiceRowType.ProductRow}).
                  ToList())
 
@@ -117,38 +120,12 @@ Namespace Manager
                                                                  .Discount1 = x.RateDiscount1,
                                                                  .Discount2 = x.RateDiscount2,
                                                                  .Discount3 = x.RateDiscount3,
+                                                                 .VAT = x.VAT_Rate,
+                                                                 .TotalBeforeTax = x.DiscountedAmount,
+                                                                 .Total = x.TotalAmount,
                                                                  .RowType = InvoiceRowType.DescriptiveRow}).ToList)
-            result = result.OrderBy(Function(x) x.Item).ToList
-            'result.AddRange(productRowList.Select(Function(x) New PresentationInvoiceRowViewModel With {
-            '                                          .Description = x.Product.Description,
-            '                                          .ID = x.ID,
-            '                                          .Invoice = x.Invoice,
-            '                                          .ItemOrder = x.ItemOrder,
-            '                                          .ProductCode = x.Product.SKU,
-            '                                          .Quantity = x.Quantity,
-            '                                          .RateDiscount1 = x.RateDiscount1,
-            '                                          .RateDiscount2 = x.RateDiscount2,
-            '                                          .RateDiscount3 = x.RateDiscount3,
-            '                                          .RowType = InvoiceRowType.ProductRow,
-            '                                          .UnitPrice = x.UnitPrice,
-            '                                          .VAT_Rate = x.VAT_Rate}).ToList)
-
-            'result.AddRange(descriptiveRowList.Select(Function(x) New PresentationInvoiceRowViewModel With {
-            '                                              .Description = x.RowDescription,
-            '                                              .ID = x.ID,
-            '                                              .Invoice = x.Invoice,
-            '                                              .ItemOrder = x.ItemOrder,
-            '                                              .ProductCode = String.Empty,
-            '                                              .Quantity = x.Quantity,
-            '                                              .RateDiscount1 = x.RateDiscount1,
-            '                                              .RateDiscount2 = x.RateDiscount2,
-            '                                              .RateDiscount3 = x.RateDiscount3,
-            '                                              .RowType = InvoiceRowType.DescriptiveRow,
-            '                                              .UnitPrice = x.UnitPrice,
-            '                                              .VAT_Rate = x.VAT_Rate}).ToList)
-
-
-            'Return result.OrderBy(Function(x) x.ItemOrder).ToList
+            Return result.OrderBy(Function(x) x.Item).ToList
+            
 
         End Function
     End Class

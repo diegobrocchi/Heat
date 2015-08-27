@@ -7,8 +7,8 @@ Namespace Migrations
         Inherits DbMigration
     
         Public Overrides Sub Up()
-            DropColumn("dbo.InvoiceRows", "Description")
-            RenameColumn(table := "dbo.InvoiceRows", name := "Description1", newName := "Description")
+            'DropColumn("dbo.InvoiceRows", "Description")
+            'RenameColumn(table := "dbo.InvoiceRows", name := "Description1", newName := "Description")
             AddColumn("dbo.InvoiceRows", "RowDescription", Function(c) c.String())
         End Sub
         

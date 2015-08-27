@@ -62,9 +62,12 @@ End Code
             </div>
         </div>
     </div>
+    
     @<div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Inserisci" class="btn btn-default" />
+            @Html.ActionLink("Annulla le modifiche e torna", "edit", "invoices", New With {.id = Model.InvoiceID}, New With {.class = "btn btn-primary"})
+
         </div>
     </div>
 End Using

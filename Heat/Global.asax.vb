@@ -43,6 +43,21 @@ Public Class MvcApplication
             ForMember(Function(dest) dest.FinalSerialSchema, Sub(opt) opt.MapFrom(Function(source) source.FinalSerialSchema.Description)). _
             ForMember(Function(dest) dest.TempSerialSchema, Sub(opt) opt.MapFrom(Function(source) source.TempSerialSchema.Description))
 
+        Mapper.CreateMap(Of Customer, ViewModels.Customers.IndexCustomerGridViewModel)()  
+
+        Mapper.CreateMap(Of ViewModels.Customers.CreateCustomerViewModel, Customer)() _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Addresses, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.CreationDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.DisableDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.EnableDate, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of ViewModels.Customers.EditCustomerViewModel, Customer)() _
+            .ForMember(Function(dest) dest.Addresses, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.CreationDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.DisableDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.EnableDate, Sub(opt) opt.Ignore()).Bidirectional()
+
 
         Mapper.AssertConfigurationIsValid()
 

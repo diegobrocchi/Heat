@@ -83,28 +83,48 @@ Namespace Controllers
 
         ' GET: DescriptiveInvoiceRows/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
-            Dim descriptiveInvoiceRow As DescriptiveInvoiceRow = _db.InvoiceRows.Find(id)
-            If IsNothing(descriptiveInvoiceRow) Then
-                Return HttpNotFound()
-            End If
-            Return View(descriptiveInvoiceRow)
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                'Dim descriptiveInvoiceRow As DescriptiveInvoiceRow = _db.InvoiceRows.Find(id)
+                'If IsNothing(descriptiveInvoiceRow) Then
+                '    Return HttpNotFound()
+                'End If
+                Dim model As EditDescriptiveInvoiceRowViewModel
+                model = _modelBuilder.GetEditDescriptiveInvoiceRowViewModel(id)
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
-        ' POST: DescriptiveInvoiceRows/Edit/5
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,RowID,ItemOrder,Quantity,UnitPrice,VAT_Rate,RateDiscount1,RateDiscount2,RateDiscount3,RowDescription")> ByVal descriptiveInvoiceRow As DescriptiveInvoiceRow) As ActionResult
+        Function Edit(editedDescriptiveInvoiceRow As EditDescriptiveInvoiceRowViewModel) As ActionResult
+
             If ModelState.IsValid Then
-                _db.SetModified(descriptiveInvoiceRow)
+                Dim dbRow As DescriptiveInvoiceRow
+                dbRow = _db.DescriptiveInvoiceRows.Find(editedDescriptiveInvoiceRow.ID)
+
+                dbRow.Quantity = editedDescriptiveInvoiceRow.Quantity
+                dbRow.RateDiscount1 = editedDescriptiveInvoiceRow.Discount1
+                dbRow.RateDiscount2 = editedDescriptiveInvoiceRow.Discount2
+                dbRow.RateDiscount3 = editedDescriptiveInvoiceRow.Discount3
+                dbRow.RowDescription = editedDescriptiveInvoiceRow.RowDescription
+                dbRow.UnitPrice = editedDescriptiveInvoiceRow.UnitPrice
+                dbRow.VAT_Rate = editedDescriptiveInvoiceRow.VAT
+
+
                 _db.SaveChanges()
-                Return RedirectToAction("Index")
+                Return RedirectToAction("edit", "invoices", New With {.id = editedDescriptiveInvoiceRow.InvoiceID})
+            Else
+                'il modello non è valido, torna alla vista di edit.
+                Return View(editedDescriptiveInvoiceRow)
             End If
-            Return View(descriptiveInvoiceRow)
+
         End Function
 
         ' GET: DescriptiveInvoiceRows/Delete/5

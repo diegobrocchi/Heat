@@ -5,7 +5,7 @@
 End Code
 
  
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -20,5 +20,14 @@ End Code
     <p>
         @ViewBag.message
     </p>
+     
 </body>
-</html>
+</html>*@
+
+<h1>Errore</h1>
+<h2>E' capitato un errore non gestito</h2>
+
+
+<p>
+    @ViewBag.message
+</p>

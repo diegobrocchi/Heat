@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Models.ProductInvoiceRow
+﻿@ModelType Heat.viewModels.Invoices.EditProductInvoiceRowViewModel  
 @Code
     ViewData("Title") = "Edit"
 End Code
@@ -13,22 +13,16 @@ End Code
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.ID)
+        @Html.HiddenFor(Function(model) model.InvoiceID)
+
+         
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.RowID, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(x) x.ProductID, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.RowID, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.RowID, "", New With { .class = "text-danger" })
+                @Html.DropDownListFor(Function(x) x.ProductID, Model.ProductList, New With {.class = "form-control"})
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.ItemOrder, htmlAttributes:= New With { .class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.ItemOrder, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.ItemOrder, "", New With { .class = "text-danger" })
-            </div>
-        </div>
+        </div> 
 
         <div class="form-group">
             @Html.LabelFor(Function(model) model.Quantity, htmlAttributes:= New With { .class = "control-label col-md-2" })
@@ -47,40 +41,41 @@ End Code
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.VAT_Rate, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.VAT, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.VAT_Rate, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.VAT_Rate, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.VAT, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.VAT, "", New With {.class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.RateDiscount1, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.Discount1, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.RateDiscount1, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.RateDiscount1, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.Discount1, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.Discount1, "", New With {.class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.RateDiscount2, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.Discount2, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.RateDiscount2, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.RateDiscount2, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.Discount2, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.Discount2, "", New With {.class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.RateDiscount3, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.Discount3, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.RateDiscount3, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.RateDiscount3, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.Discount3, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.Discount3, "", New With {.class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Salva" class="btn btn-default" />
+                @Html.ActionLink("Annulla le modifiche e torna", "edit", "invoices", New With {.id = Model.InvoiceID}, New With {.class = "btn btn-primary"})
             </div>
         </div>
     </div>

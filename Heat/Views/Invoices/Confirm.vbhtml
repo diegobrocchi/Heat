@@ -1,4 +1,4 @@
-﻿@ModelType Heat.ViewModels.ConfirmInvoiceViewModel
+﻿@ModelType Heat.ViewModels.Invoices.ConfirmInvoiceViewModel 
 
 <div>
     <h4>Conferma la fattura</h4>

@@ -67,6 +67,10 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
@@ -197,6 +201,7 @@
     <Compile Include="Claims\HeatClaimsPrincipal.vb" />
     <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.vb" />
     <Compile Include="Claims\ResourceOperations.vb" />
+    <Compile Include="Controllers\ActionTypesController.vb" />
     <Compile Include="Controllers\AddressesController.vb" />
     <Compile Include="Controllers\AddressTypesController.vb" />
     <Compile Include="Controllers\CausalWarehouseGroupsController.vb" />
@@ -210,6 +215,8 @@
     <Compile Include="Controllers\SellersController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
     <Compile Include="Controllers\WarehousesController.vb" />
+    <Compile Include="Controllers\WorkActionsController.vb" />
+    <Compile Include="Controllers\WorkOperatorsController.vb" />
     <Compile Include="Extensions\AutomapperExtensions.vb" />
     <Compile Include="Extensions\DateTimeExtensions.vb" />
     <Compile Include="Extensions\EnumerableExtensions.vb" />
@@ -330,17 +337,54 @@
       <DependentUpon>201508201720303_rowVAT_double.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201508201720303_rowVAT_double.vb" />
+    <Compile Include="Migrations\201508251227002_descriptiverow.Designer.vb">
+      <DependentUpon>201508251227002_descriptiverow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508251227002_descriptiverow.vb" />
+    <Compile Include="Migrations\201508270855095_actiontypes.Designer.vb">
+      <DependentUpon>201508270855095_actiontypes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508270855095_actiontypes.vb" />
+    <Compile Include="Migrations\201508271026383_renameActionToWorkAction.Designer.vb">
+      <DependentUpon>201508271026383_renameActionToWorkAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271026383_renameActionToWorkAction.vb" />
+    <Compile Include="Migrations\201508271028103_changeWorkAction.Designer.vb">
+      <DependentUpon>201508271028103_changeWorkAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271028103_changeWorkAction.vb" />
+    <Compile Include="Migrations\201508271033405_workoperator.Designer.vb">
+      <DependentUpon>201508271033405_workoperator.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271033405_workoperator.vb" />
+    <Compile Include="Migrations\201508271044009_changeWorkAction1.Designer.vb">
+      <DependentUpon>201508271044009_changeWorkAction1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271044009_changeWorkAction1.vb" />
+    <Compile Include="Migrations\201508271046448_changeWorkAction2.Designer.vb">
+      <DependentUpon>201508271046448_changeWorkAction2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271046448_changeWorkAction2.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
+    <Compile Include="Models\ActionType.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
     <Compile Include="Models\DescriptiveInvoiceRow.vb" />
     <Compile Include="Models\Interfaces\ISeller.vb" />
     <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\WorkOperator.vb" />
+    <Compile Include="ViewModels\Customers\CreateCustomerViewModel.vb" />
+    <Compile Include="ViewModels\Customers\EditCustomerViewModel.vb" />
+    <Compile Include="ViewModels\Customers\EnableCustomerViewModel.vb" />
+    <Compile Include="ViewModels\Customers\IndexCustomerGridViewModel.vb" />
+    <Compile Include="ViewModels\Customers\IndexCustomerViewModel.vb" />
     <Compile Include="ViewModels\Invoices\AddNewDescriptiveInvoiceRowViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\EditDescriptiveInvoiceRowViewModel.vb" />
+    <Compile Include="ViewModels\Invoices\EditProductInvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\Invoices\PresentationInvoiceRowViewModel.vb" />
     <Compile Include="Models\ProductInvoiceRow.vb" />
     <Compile Include="Models\Seller.vb" />
@@ -362,7 +406,7 @@
     <Compile Include="ViewModels\Invoices\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
     <Compile Include="ViewModels\AccountViewModels.vb" />
-    <Compile Include="Models\Action.vb" />
+    <Compile Include="Models\WorkAction.vb" />
     <Compile Include="Models\Address.vb" />
     <Compile Include="Models\AddressType.vb" />
     <Compile Include="Models\CausalDocument.vb" />
@@ -486,6 +530,27 @@
     <EmbeddedResource Include="Migrations\201508201720303_rowVAT_double.resx">
       <DependentUpon>201508201720303_rowVAT_double.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508251227002_descriptiverow.resx">
+      <DependentUpon>201508251227002_descriptiverow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508270855095_actiontypes.resx">
+      <DependentUpon>201508270855095_actiontypes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271026383_renameActionToWorkAction.resx">
+      <DependentUpon>201508271026383_renameActionToWorkAction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271028103_changeWorkAction.resx">
+      <DependentUpon>201508271028103_changeWorkAction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271033405_workoperator.resx">
+      <DependentUpon>201508271033405_workoperator.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271044009_changeWorkAction1.resx">
+      <DependentUpon>201508271044009_changeWorkAction1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271046448_changeWorkAction2.resx">
+      <DependentUpon>201508271046448_changeWorkAction2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -496,17 +561,17 @@
   <ItemGroup>
     <Content Include="bin\System.Web.WebPages.dll" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\bootstrap-original.css" />
-    <Content Include="Content\bootstrap-original.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-bootswatch.css" />
+    <Content Include="Content\bootstrap-bootswatch.min.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\Images\colorful-stones.jpg" />
     <Content Include="Content\Images\silhouette-of-colored-smoke.jpg" />
     <Content Include="Content\Login.css" />
-    <Content Include="Content\bootstrap-original.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\signin.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -542,13 +607,13 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="ELMAH-1.2-db-SQLServer.sql" />
+    <Content Include="Content\bootstrap-bootswatch.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -559,7 +624,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <Content Include="Icon.png" />
     <Content Include="readme.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1274,6 +1338,7 @@
     <Content Include="Scripts\cldr\main\zu\currencies.json" />
     <Content Include="Scripts\cldr\main\zu\numbers.json" />
     <Content Include="Scripts\Heat.Globalize.js" />
+    <Content Include="Scripts\DataTableLocalization\it-IT.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.css" />
     <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.min.css" />
@@ -1326,7 +1391,6 @@
     <Content Include="Scripts\MvcFoolproofJQueryValidation.min.js" />
     <Content Include="Scripts\MvcFoolproofValidation.min.js" />
     <Content Include="Scripts\mvcvalidationextensions.unobtrusive.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -1334,6 +1398,8 @@
     <Content Include="Scripts\Views\Customers\index.js" />
     <Content Include="Scripts\Views\Invoices\create.js" />
     <Content Include="Scripts\Views\Invoices\edit.js" />
+    <Content Include="Scripts\Views\Plants\index.js" />
+    <Content Include="Scripts\Views\WorkActions\index.js" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
@@ -1496,6 +1562,28 @@
     <Content Include="Views\DescriptiveInvoiceRows\Details.vbhtml" />
     <Content Include="Views\DescriptiveInvoiceRows\Edit.vbhtml" />
     <Content Include="Views\DescriptiveInvoiceRows\Index.vbhtml" />
+    <Content Include="Views\Customers\Partials\_customerGrid.vbhtml" />
+    <Content Include="Views\Customers\EnableCustomer.vbhtml" />
+    <Content Include="Views\ActionTypes\Create.vbhtml" />
+    <Content Include="Views\ActionTypes\Delete.vbhtml" />
+    <Content Include="Views\ActionTypes\Details.vbhtml" />
+    <Content Include="Views\ActionTypes\Edit.vbhtml" />
+    <Content Include="Views\ActionTypes\Index.vbhtml" />
+    <Content Include="Views\Actions\Create.vbhtml" />
+    <Content Include="Views\Actions\Delete.vbhtml" />
+    <Content Include="Views\Actions\Details.vbhtml" />
+    <Content Include="Views\Actions\Edit.vbhtml" />
+    <Content Include="Views\Actions\Index.vbhtml" />
+    <Content Include="Views\WorkOperators\Create.vbhtml" />
+    <Content Include="Views\WorkOperators\Delete.vbhtml" />
+    <Content Include="Views\WorkOperators\Details.vbhtml" />
+    <Content Include="Views\WorkOperators\Edit.vbhtml" />
+    <Content Include="Views\WorkOperators\Index.vbhtml" />
+    <Content Include="Views\WorkActions\Create.vbhtml" />
+    <Content Include="Views\WorkActions\Delete.vbhtml" />
+    <Content Include="Views\WorkActions\Details.vbhtml" />
+    <Content Include="Views\WorkActions\Edit.vbhtml" />
+    <Content Include="Views\WorkActions\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

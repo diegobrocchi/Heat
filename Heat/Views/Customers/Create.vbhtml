@@ -1,6 +1,6 @@
-﻿@ModelType Heat.Models.Customer
+﻿@ModelType Heat.ViewModels.Customers.CreateCustomerViewModel 
 @Code
-    ViewData("Title") = "Crea"
+    ViewData("Title") = "Aggiungi un nuovo cliente"
 End Code
 
 <h2>Aggiungi un nuovo cliente</h2>
@@ -106,17 +106,27 @@ End Code
             </div>
         </div>
 
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.IsEnabled, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.IsEnabled, New With {.htmlAttributes = New With {.class = "form-comtrol"}})
+                 @Html.ValidationMessageFor(Function(model) model.IsEnabled, "", New With {.class = "text-danger"})
+                  
+             </div>
+         </div>
+
+
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Aggiungi" class="btn btn-default" />
+                @Html.ActionLink("Torna all'elenco clienti", "index", Nothing, New With {.class = "btn btn-primary"})
             </div>
         </div>
     </div>
 End Using
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+ 
 
 @Section Scripts 
     @Scripts.Render("~/bundles/jqueryval")

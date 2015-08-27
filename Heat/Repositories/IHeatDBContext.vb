@@ -19,6 +19,9 @@ Public Interface IHeatDBContext
     Property Payments As DbSet(Of Payment)
     Property ProductInvoiceRows As DbSet(Of ProductInvoiceRow)
     Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow)
+    Property ActionTypes As DbSet(Of ActionType)
+    Property WorkOperators As DbSet(Of WorkOperator)
+
 
     Function SaveChanges() As Integer
 
