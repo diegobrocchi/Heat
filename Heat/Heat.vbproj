@@ -365,6 +365,10 @@
       <DependentUpon>201508271046448_changeWorkAction2.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201508271046448_changeWorkAction2.vb" />
+    <Compile Include="Migrations\201508280931053_plant_toWorkAction.Designer.vb">
+      <DependentUpon>201508280931053_plant_toWorkAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508280931053_plant_toWorkAction.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
@@ -550,6 +554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508271046448_changeWorkAction2.resx">
       <DependentUpon>201508271046448_changeWorkAction2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508280931053_plant_toWorkAction.resx">
+      <DependentUpon>201508280931053_plant_toWorkAction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

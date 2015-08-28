@@ -39,6 +39,7 @@ Namespace Controllers
             ViewBag.CustomerID = New SelectList(db.Customers, "ID", "Name")
             ViewBag.OperationID = New SelectList(db.Operations, "ID", "Code")
             ViewBag.TypeID = New SelectList(db.ActionTypes, "ID", "Description")
+            ViewBag.PlantID = New SelectList(db.Plants, "ID", "Code")
             Return View()
         End Function
 
@@ -47,7 +48,7 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,CustomerID,ActionDate,OperationID,AssignedOperatorID,TypeID")> ByVal workAction As WorkAction) As ActionResult
+        Function Create(<Bind(Include:="ID,CustomerID,ActionDate,OperationID,AssignedOperatorID,TypeID, PlantID")> ByVal workAction As WorkAction) As ActionResult
             If ModelState.IsValid Then
                 db.Actions.Add(workAction)
                 db.SaveChanges()
@@ -57,6 +58,7 @@ Namespace Controllers
             ViewBag.CustomerID = New SelectList(db.Customers, "ID", "Name", workAction.CustomerID)
             ViewBag.OperationID = New SelectList(db.Operations, "ID", "Code", workAction.OperationID)
             ViewBag.TypeID = New SelectList(db.ActionTypes, "ID", "Description", workAction.TypeID)
+            ViewBag.PlantID = New SelectList(db.Plants, "ID", "Code", workAction.PlantID)
             Return View(workAction)
         End Function
 

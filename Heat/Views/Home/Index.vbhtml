@@ -16,26 +16,29 @@ End Code
         <p>
             Accedi all'area di gestione dei clienti.
         </p>
-        <p><a class="btn btn-default" href=@Url.Action("index", "customers")>Clienti</a></p>
+        <p><a class="btn btn-primary" href=@Url.Action("index", "customers")>Clienti</a></p>
     </div>
     <div class="col-md-4">
         <h2>Documenti</h2>
         <p>Accedi all'area di gestione dei documenti aziendali</p>
-        <p><a class="btn btn-default" href=@Url.Action("index", "Documents")>Documenti</a></p>
+        <p><a class="btn btn-primary" href=@Url.Action("index", "Documents")>Documenti</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Attività</h2>
+        <h2>Interventi</h2>
         <p>Accedi all'area di gesione delle attività aziendali</p>
-        <p><a class="btn btn-default" href=@Url.Action("index", "Operations")>Attività</a></p>
+        <p><a class="btn btn-primary" href=@Url.Action("index", "WorkActions")>Interventi</a></p>
     </div>
 </div>
 <div class="row">
-    <h1>Claims</h1>
-    <div>
-        @For Each claim In DirectCast(User, ClaimsPrincipal).Claims
-            @<div>@claim.Type: @claim.Value </div>
-        Next
+    <div class="col-md-12 ">
+        <h1>Claims</h1>
+        <div>
+            @For Each claim In DirectCast(User, ClaimsPrincipal).Claims
+                @<div>@claim.Type: @claim.Value </div>
+            Next
+        </div>
     </div>
+    
 </div>
 
   

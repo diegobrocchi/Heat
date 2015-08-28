@@ -20,6 +20,14 @@ End Code
             </div>
         </div>
 
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.PlantID, "PlantID", htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.DropDownList("PlantID", Nothing, htmlAttributes:=New With {.class = "form-control"})
+                 @Html.ValidationMessageFor(Function(model) model.PlantID, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
         <div class="form-group">
             @Html.LabelFor(Function(model) model.ActionDate, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -54,7 +62,7 @@ End Code
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
