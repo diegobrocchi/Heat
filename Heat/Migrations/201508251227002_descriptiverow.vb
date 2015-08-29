@@ -7,8 +7,8 @@ Namespace Migrations
         Inherits DbMigration
     
         Public Overrides Sub Up()
-            DropColumn("dbo.InvoiceRows", "RowType")
-            DropColumn("dbo.InvoiceRows", "ProductCode")
+            'DropColumn("dbo.InvoiceRows", "RowType")
+            'DropColumn("dbo.InvoiceRows", "ProductCode")
             'DropColumn("dbo.InvoiceRows", "Description")
         End Sub
         

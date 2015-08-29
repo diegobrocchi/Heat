@@ -380,6 +380,7 @@
     <Compile Include="Models\Interfaces\ISeller.vb" />
     <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\WorkAction.vb" />
     <Compile Include="Models\WorkOperator.vb" />
     <Compile Include="ViewModels\Customers\CreateCustomerViewModel.vb" />
     <Compile Include="ViewModels\Customers\EditCustomerViewModel.vb" />
@@ -410,7 +411,6 @@
     <Compile Include="ViewModels\Invoices\InvoiceCreateViewModel.vb" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.vb" />
     <Compile Include="ViewModels\AccountViewModels.vb" />
-    <Compile Include="Models\WorkAction.vb" />
     <Compile Include="Models\Address.vb" />
     <Compile Include="Models\AddressType.vb" />
     <Compile Include="Models\CausalDocument.vb" />

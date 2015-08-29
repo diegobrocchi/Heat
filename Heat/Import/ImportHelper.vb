@@ -43,6 +43,10 @@ Public Class ImportHelper
                         newCustomer.Telephone3 = fileRowFields(10)
                         newCustomer.VAT_Number = fileRowFields(12)
 
+                        newCustomer.IsEnabled = True
+                        newCustomer.CreationDate = Now
+                        newCustomer.EnableDate = Now
+                        
                         NewCustomersList.Add(newCustomer)
                     Next
                 End If
