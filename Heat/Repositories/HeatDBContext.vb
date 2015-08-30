@@ -58,6 +58,10 @@ Namespace Repositories
         Property ProductInvoiceRows As DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
         Property ActionTypes As System.Data.Entity.DbSet(Of Models.ActionType) Implements IHeatDBContext.ActionTypes
         Property WorkOperators As System.Data.Entity.DbSet(Of Models.WorkOperator) Implements IHeatDBContext.WorkOperators
+        Property Manifacturers As DbSet(Of Manifacturer) Implements IHeatDBContext.Manifacturers
+        Property ManifacturerModels As DbSet(Of ManifacturerModel) Implements IHeatDBContext.ManifacturerModels
+        Property BoilerHeaters As DbSet(Of BoilerHeater) Implements IHeatDBContext.BoilerHeaters
+        Property BoilerServicesTypes As DbSet(Of BoilerServiceType) Implements IHeatDBContext.BoilerServiceTypes
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges

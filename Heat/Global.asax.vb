@@ -58,6 +58,16 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.DisableDate, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.EnableDate, Sub(opt) opt.Ignore()).Bidirectional()
 
+        Mapper.CreateMap(Of ViewModels.ManifacturerModels.CreateManifacturerModelViewModel, ManifacturerModel)() _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Services, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of ViewModels.ManifacturerModels.EditManifacturerModelViewModel, ManifacturerModel)() _
+            .ForMember(Function(dest) dest.Services, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.Ignore())
+
+
 
         Mapper.AssertConfigurationIsValid()
 

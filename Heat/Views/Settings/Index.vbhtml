@@ -20,7 +20,10 @@ End Code
     <li class="list-group-item">@Html.ActionLink("Tipi di indirizzo", "index", "AddressTypes")</li>
     <li class="list-group-item">@Html.ActionLink("Archivio operazioni", "index", "Operations")</li>
     <li class="list-group-item">@Html.ActionLink("Tipi intervento","index", "ActionTypes")</li>
-    <li class="list-group-item">@Html.ActionLink("Operatori","index", "WorkOperators")</li>
+    <li class="list-group-item">@Html.ActionLink("Operatori", "index", "WorkOperators")</li>
+    <li class="list-group-item">@Html.ActionLink("Costruttori/Marche", "index", "Manifacturers")</li>
+    <li class="list-group-item">@Html.ActionLink("Modelli del costruttore", "index", "ManifacturerModels")</li>
+
     
 </ul>
 

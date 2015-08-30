@@ -5,6 +5,7 @@
 Public Class HeatDbContextMock
     Implements IHeatDBContext
 
+
     Public Property Numberings As Entity.DbSet(Of Models.Numbering) Implements IHeatDBContext.Numberings
     Public Property SerialScheme As Entity.DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
     Public Property Customers As Entity.DbSet(Of Models.Customer) Implements IHeatDBContext.Customers
@@ -90,4 +91,12 @@ Public Class HeatDbContextMock
     Public Property ActionTypes As Entity.DbSet(Of ActionType) Implements IHeatDBContext.ActionTypes
 
     Public Property WorkOperators As Entity.DbSet(Of WorkOperator) Implements IHeatDBContext.WorkOperators
+
+    Public Property Manifacturers As Entity.DbSet(Of Manifacturer) Implements IHeatDBContext.Manifacturers
+
+    Public Property ManifacturerModels As Entity.DbSet(Of ManifacturerModel) Implements IHeatDBContext.ManifacturerModels
+
+    Public Property BoilerHeaters As Entity.DbSet(Of BoilerHeater) Implements IHeatDBContext.BoilerHeaters
+
+    Public Property BoilerServiceTypes As Entity.DbSet(Of BoilerServiceType) Implements IHeatDBContext.BoilerServiceTypes
 End Class

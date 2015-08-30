@@ -209,6 +209,8 @@
     <Compile Include="Controllers\DescriptiveInvoiceRowsController.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
     <Compile Include="Controllers\InvoiceRowsController.vb" />
+    <Compile Include="Controllers\ManifacturerModelsController.vb" />
+    <Compile Include="Controllers\ManifacturersController.vb" />
     <Compile Include="Controllers\NumberingsController.vb" />
     <Compile Include="Controllers\OperationsController.vb" />
     <Compile Include="Controllers\ProductInvoiceRowsController.vb" />
@@ -369,15 +371,38 @@
       <DependentUpon>201508280931053_plant_toWorkAction.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201508280931053_plant_toWorkAction.vb" />
+    <Compile Include="Migrations\201508291809059_add_manifacturer.Designer.vb">
+      <DependentUpon>201508291809059_add_manifacturer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508291809059_add_manifacturer.vb" />
+    <Compile Include="Migrations\201508291922035_add_BoilerServiceType.Designer.vb">
+      <DependentUpon>201508291922035_add_BoilerServiceType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508291922035_add_BoilerServiceType.vb" />
+    <Compile Include="Migrations\201508291936347_BoilerHeater_CertificationReference.Designer.vb">
+      <DependentUpon>201508291936347_BoilerHeater_CertificationReference.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508291936347_BoilerHeater_CertificationReference.vb" />
+    <Compile Include="Migrations\201508300831308_manifacturermodelID.Designer.vb">
+      <DependentUpon>201508300831308_manifacturermodelID.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508300831308_manifacturermodelID.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\ManifacturerModelViewBuilder.vb" />
     <Compile Include="Models\ActionType.vb" />
+    <Compile Include="Models\Boiler.vb" />
+    <Compile Include="Models\BoilerHeater.vb" />
+    <Compile Include="Models\BoilerService.vb" />
+    <Compile Include="Models\BoilerServiceType.vb" />
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
     <Compile Include="Models\DescriptiveInvoiceRow.vb" />
     <Compile Include="Models\Interfaces\ISeller.vb" />
+    <Compile Include="Models\Manifacturer.vb" />
+    <Compile Include="Models\ManifacturerModel.vb" />
     <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
     <Compile Include="Models\WorkAction.vb" />
@@ -458,6 +483,9 @@
     <Compile Include="Repositories\HeatDBContext.vb" />
     <Compile Include="Startup.vb" />
     <Compile Include="Validation\NameOrCompanyValidation.vb" />
+    <Compile Include="ViewModels\ManifacturerModels\CreateManifacturerModelViewModel.vb" />
+    <Compile Include="ViewModels\ManifacturerModels\EditManifacturerModelViewModel.vb" />
+    <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\NumberingViewModels.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
   </ItemGroup>
@@ -557,6 +585,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508280931053_plant_toWorkAction.resx">
       <DependentUpon>201508280931053_plant_toWorkAction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508291809059_add_manifacturer.resx">
+      <DependentUpon>201508291809059_add_manifacturer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508291922035_add_BoilerServiceType.resx">
+      <DependentUpon>201508291922035_add_BoilerServiceType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508291936347_BoilerHeater_CertificationReference.resx">
+      <DependentUpon>201508291936347_BoilerHeater_CertificationReference.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508300831308_manifacturermodelID.resx">
+      <DependentUpon>201508300831308_manifacturermodelID.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1591,6 +1631,16 @@
     <Content Include="Views\WorkActions\Details.vbhtml" />
     <Content Include="Views\WorkActions\Edit.vbhtml" />
     <Content Include="Views\WorkActions\Index.vbhtml" />
+    <Content Include="Views\Manifacturers\Create.vbhtml" />
+    <Content Include="Views\Manifacturers\Delete.vbhtml" />
+    <Content Include="Views\Manifacturers\Details.vbhtml" />
+    <Content Include="Views\Manifacturers\Edit.vbhtml" />
+    <Content Include="Views\Manifacturers\Index.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Create.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Delete.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Details.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Edit.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

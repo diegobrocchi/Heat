@@ -6,7 +6,7 @@ End Code
 <h2>Impianti</h2>
 
 <p>
-    @Html.ActionLink("Crea un nuovo impianto", "Create")
+    @Html.ActionLink("Crea un nuovo impianto", "Create", Nothing, New With {.class = "btn btn-success"})
 </p>
 <table id="index_table" class="table table-bordered table-hover table-striped">
     <thead >

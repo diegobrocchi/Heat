@@ -21,6 +21,11 @@ Public Interface IHeatDBContext
     Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow)
     Property ActionTypes As DbSet(Of ActionType)
     Property WorkOperators As DbSet(Of WorkOperator)
+    Property Manifacturers As DbSet(Of Manifacturer)
+    Property ManifacturerModels As DbSet(Of ManifacturerModel)
+    Property BoilerHeaters As DbSet(Of BoilerHeater)
+    Property BoilerServiceTypes As DbSet(Of BoilerServiceType)
+
 
 
     Function SaveChanges() As Integer
