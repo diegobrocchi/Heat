@@ -208,6 +208,7 @@
     <Compile Include="Controllers\CausalWarehousesController.vb" />
     <Compile Include="Controllers\DescriptiveInvoiceRowsController.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
+    <Compile Include="Controllers\HeatTransferFluidsController.vb" />
     <Compile Include="Controllers\InvoiceRowsController.vb" />
     <Compile Include="Controllers\ManifacturerModelsController.vb" />
     <Compile Include="Controllers\ManifacturersController.vb" />
@@ -216,6 +217,7 @@
     <Compile Include="Controllers\ProductInvoiceRowsController.vb" />
     <Compile Include="Controllers\SellersController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
+    <Compile Include="Controllers\ThermalUnitsController.vb" />
     <Compile Include="Controllers\WarehousesController.vb" />
     <Compile Include="Controllers\WorkActionsController.vb" />
     <Compile Include="Controllers\WorkOperatorsController.vb" />
@@ -387,11 +389,29 @@
       <DependentUpon>201508300831308_manifacturermodelID.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201508300831308_manifacturermodelID.vb" />
+    <Compile Include="Migrations\201508310959056_HeatTransferFluid.Designer.vb">
+      <DependentUpon>201508310959056_HeatTransferFluid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508310959056_HeatTransferFluid.vb" />
+    <Compile Include="Migrations\201508311015482_ThermalUnitKind.Designer.vb">
+      <DependentUpon>201508311015482_ThermalUnitKind.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311015482_ThermalUnitKind.vb" />
+    <Compile Include="Migrations\201508311231239_ThermalUnit.Designer.vb">
+      <DependentUpon>201508311231239_ThermalUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311231239_ThermalUnit.vb" />
+    <Compile Include="Migrations\201508311355009_ThermalUnit.Designer.vb">
+      <DependentUpon>201508311355009_ThermalUnit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311355009_ThermalUnit.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\ManifacturerModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\PlantModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\ThermalUnitModelViewBuilder.vb" />
     <Compile Include="Models\ActionType.vb" />
     <Compile Include="Models\Boiler.vb" />
     <Compile Include="Models\BoilerHeater.vb" />
@@ -400,11 +420,16 @@
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
     <Compile Include="Models\DescriptiveInvoiceRow.vb" />
+    <Compile Include="Models\Enum\ThermalUnitKindEnum.vb" />
+    <Compile Include="Models\Heater.vb" />
+    <Compile Include="Models\HeatTransferFluid.vb" />
     <Compile Include="Models\Interfaces\ISeller.vb" />
     <Compile Include="Models\Manifacturer.vb" />
     <Compile Include="Models\ManifacturerModel.vb" />
     <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\ThermalUnit.vb" />
+    <Compile Include="Models\ThermalUnitKind.vb" />
     <Compile Include="Models\WorkAction.vb" />
     <Compile Include="Models\WorkOperator.vb" />
     <Compile Include="ViewModels\Customers\CreateCustomerViewModel.vb" />
@@ -488,6 +513,7 @@
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\NumberingViewModels.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
+    <Compile Include="ViewModels\ThermalUnits\CreateThermalUnitViewModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502221046383_InitialCreate.resx">
@@ -598,6 +624,18 @@
     <EmbeddedResource Include="Migrations\201508300831308_manifacturermodelID.resx">
       <DependentUpon>201508300831308_manifacturermodelID.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508310959056_HeatTransferFluid.resx">
+      <DependentUpon>201508310959056_HeatTransferFluid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311015482_ThermalUnitKind.resx">
+      <DependentUpon>201508311015482_ThermalUnitKind.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311231239_ThermalUnit.resx">
+      <DependentUpon>201508311231239_ThermalUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311355009_ThermalUnit.resx">
+      <DependentUpon>201508311355009_ThermalUnit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -653,6 +691,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="DesignNotes.txt" />
     <Content Include="ELMAH-1.2-db-SQLServer.sql" />
     <Content Include="Content\bootstrap-bootswatch.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1641,6 +1680,16 @@
     <Content Include="Views\ManifacturerModels\Details.vbhtml" />
     <Content Include="Views\ManifacturerModels\Edit.vbhtml" />
     <Content Include="Views\ManifacturerModels\Index.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Create.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Delete.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Details.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Edit.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Index.vbhtml" />
+    <Content Include="Views\ThermalUnits\Create.vbhtml" />
+    <Content Include="Views\ThermalUnits\Delete.vbhtml" />
+    <Content Include="Views\ThermalUnits\Details.vbhtml" />
+    <Content Include="Views\ThermalUnits\Edit.vbhtml" />
+    <Content Include="Views\ThermalUnits\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

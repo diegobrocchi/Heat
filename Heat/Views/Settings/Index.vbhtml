@@ -23,6 +23,8 @@ End Code
     <li class="list-group-item">@Html.ActionLink("Operatori", "index", "WorkOperators")</li>
     <li class="list-group-item">@Html.ActionLink("Costruttori/Marche", "index", "Manifacturers")</li>
     <li class="list-group-item">@Html.ActionLink("Modelli del costruttore", "index", "ManifacturerModels")</li>
+    <li class="list-group-item">@Html.ActionLink("Fluidi termovettori", "index", "HeatTransferFluids")</li>
+
 
     
 </ul>

@@ -41,3 +41,27 @@ Le caratteristiche che il processo deve garantire sono:
  - periodicità del numeratore: la sequenza deve poter essere resettata. Il reset può essere automatico nel periodo, oppure forzato manualmente.
  - la periodicità può essere di questi tipi: nessuna (o infinito), giornaliera, settimanale, mensile, annuale, biannuale;
  - il numeratore possiede uno schema;
+
+
+Gestione degli impianti
+Con riferimento al 'Libretto di impianto' come definito da 'Allegato I al DM 10 febbraio 2014 “Modelli di
+libretto di impianto per la climatizzazione e di rapporto di efficienza energetica di cui al decreto del Presidente
+della Repubblica n. 74/2013”'
+
+L'impianto ('plant') è caratterizzato da:
+ - identificativo 
+ - indirizzo
+ - trattamento acqua
+ - generatori: gruppi termici o caldaie
+ - generatori: macchine frigorifere/pompe di calore
+ - sistemi di distribuzione
+ 
+Un generatore puo' essere un gruppo termico oppure essere composto da uno o più bruciatori.
+
+Terminologia:
+ - Gruppo termico: ThermalUnit
+ - Bruciatore: Heater
+
+
+
+

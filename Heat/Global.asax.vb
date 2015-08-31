@@ -67,6 +67,14 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.Services, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.Ignore())
 
+        Mapper.CreateMap(Of ViewModels.ThermalUnits.CreateThermalUnitViewModel, ThermalUnit)() _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.DismissDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Model, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Fuel, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.HeatTransferFluid, Sub(opt) opt.Ignore())
+
 
 
         Mapper.AssertConfigurationIsValid()

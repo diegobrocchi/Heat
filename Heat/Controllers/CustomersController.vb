@@ -88,7 +88,7 @@ Namespace Controllers
                     Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 End If
 
-                If Not _db.Customers.AsNoTracking.Any(Function(x) x.ID = id) Then
+                If Not _db.Customers.Any(Function(x) x.ID = id) Then
                     Return HttpNotFound()
                 End If
                 Dim model As EditCustomerViewModel

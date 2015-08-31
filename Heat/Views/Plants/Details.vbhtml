@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Plant
+﻿@ModelType Heat.models.Plant
 @Code
     ViewData("Title") = "Dettagli impianto"
 End Code

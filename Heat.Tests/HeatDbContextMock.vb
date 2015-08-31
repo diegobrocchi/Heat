@@ -99,4 +99,18 @@ Public Class HeatDbContextMock
     Public Property BoilerHeaters As Entity.DbSet(Of BoilerHeater) Implements IHeatDBContext.BoilerHeaters
 
     Public Property BoilerServiceTypes As Entity.DbSet(Of BoilerServiceType) Implements IHeatDBContext.BoilerServiceTypes
+
+    Public Property HeatTransferFluids As Entity.DbSet(Of HeatTransferFluid) Implements IHeatDBContext.HeatTransferFluids
+
+    Public Property ThermalUnitKinds As Entity.DbSet(Of ThermalUnitKind) Implements IHeatDBContext.ThermalUnitKinds
+
+    Public Property PlantClasses As Entity.DbSet(Of PlantClass) Implements IHeatDBContext.PlantClasses
+
+    Public Property Plants As Entity.DbSet(Of Plant) Implements IHeatDBContext.Plants
+
+    Public Property PlantTypes As Entity.DbSet(Of PlantType) Implements IHeatDBContext.PlantTypes
+
+    Public Property Fuels As Entity.DbSet(Of Fuel) Implements IHeatDBContext.Fuels
+
+    Public Property ThermalUnits As Entity.DbSet(Of ThermalUnit) Implements IHeatDBContext.ThermalUnits
 End Class

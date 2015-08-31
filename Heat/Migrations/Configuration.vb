@@ -158,6 +158,18 @@ Namespace Migrations
             Dim wop1 As New Models.WorkOperator
             Dim wop2 As New Models.WorkOperator
 
+            Dim manu1 As New Models.Manifacturer
+            Dim manu2 As New Models.Manifacturer
+
+            Dim manuModel1 As New Models.ManifacturerModel
+            Dim manuModel2 As New Models.ManifacturerModel
+
+            Dim flu1 As New Models.HeatTransferFluid
+            Dim flu2 As New Models.HeatTransferFluid
+
+            Dim tuk1 As New Models.ThermalUnitKind
+            Dim tuk2 As New Models.ThermalUnitKind
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -235,6 +247,21 @@ Namespace Migrations
             wop1.Name = "Diego Brocchi"
             wop2.Name = "Mario Rossi"
 
+            manu1.Name = "Beretta"
+            manu2.Name = "Vaillant"
+
+            manuModel1.Manifacturer = manu1
+            manuModel1.Model = "ModelXYZ"
+
+            manuModel2.Manifacturer = manu2
+            manuModel2.Model = "ModelABC"
+
+            flu1.Name = "Acqua"
+            flu2.Name = "Vapore"
+
+            tuk1.Description = "Gruppo termico singolo"
+
+
             '###################################
             'Aggiunta dati al DB
             '###################################
@@ -272,6 +299,17 @@ Namespace Migrations
 
             context.WorkOperators.AddOrUpdate(Function(wo) wo.Name, wop1)
             context.WorkOperators.AddOrUpdate(Function(wo) wo.Name, wop2)
+
+            context.Manifacturers.AddOrUpdate(Function(m) m.Name, manu1)
+            context.Manifacturers.AddOrUpdate(Function(m) m.Name, manu2)
+
+            context.ManifacturerModels.AddOrUpdate(Function(m) m.Model, manuModel1)
+            context.ManifacturerModels.AddOrUpdate(Function(m) m.Model, manuModel2)
+
+            context.HeatTransferFluids.AddOrUpdate(Function(x) x.Name, flu1)
+            context.HeatTransferFluids.AddOrUpdate(Function(x) x.Name, flu2)
+
+            context.ThermalUnitKinds.AddOrUpdate(Function(x) x.Description, tuk1)
 
             context.SaveChanges()
 

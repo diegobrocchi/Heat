@@ -1,0 +1,40 @@
+﻿Controller
+pattern per costruttore e variabili private
+
+- private _dbcontext as Idbcontext
+- private _mb as *model*viewmodelBuilder
+- sub new (dbcontext as idbcontext) e assegnazione
+
+
+pattern per le action GET:
+- check se id(o parametro) non è nullo;
+- check se esiste una entity con id specificato (sintassi: if not dbContext.Entities.any(function(x) x.ID = id then return httpnotfound));
+- dim model as viewmodel e model = modelbuilder.get*RequestedModel*(id);
+- return view(model)
+
+
+pattern per le action edit POST:
+- check ModelState.Isvalid
+- (check CustomBusinessValidator.Isvalid)
+- get dbEntity dal db
+- automapper entitàPostata -> dbEntity
+
+pattern per le action Create POST:
+- check ModelState.IsValid
+- (check CustomBusinessValidator.IsValid)
+- automapper ViewModel -> dbEntity
+- save and redirect to index
+
+
+
+regole di nominazione
+ModelView
+il nome di un modelview contiene i riferimenti alla view e al model;
+quindi l'oggetto di dominio che si chiama 'Exercise' che deve essere mostrato nella view 'Create' si chiama 'CreateExerciseViewModel'.
+
+Funzioni del ModelBuilder:
+- Get$nomeClasseRitorno$
+es. il modello per l'azione 'Create' del modelview 'CreateThermalUnitViewModel' è 'GetCreateThermalUnitViewModel'
+
+
+

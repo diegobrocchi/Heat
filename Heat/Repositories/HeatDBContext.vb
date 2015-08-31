@@ -36,13 +36,13 @@ Namespace Repositories
         Property Address As DbSet(Of Address)
         Property Actions As DbSet(Of WorkAction)
         Property WarehouseMovement As DbSet(Of WarehouseMovement) Implements IHeatDBContext.WarehouseMovements
-        Property Plants As DbSet(Of Plant)
-        Property PlantTypes As DbSet(Of PlantType)
-        Property PlantClasses As DbSet(Of PlantClass)
+        Property Plants As DbSet(Of Plant) Implements IHeatDBContext.Plants
+        Property PlantTypes As DbSet(Of PlantType) Implements IHeatDBContext.PlantTypes
+        Property PlantClasses As DbSet(Of PlantClass) Implements IHeatDBContext.PlantClasses
         Property Invoices As DbSet(Of Invoice) Implements IHeatDBContext.Invoices
         Property InvoiceRows As DbSet(Of InvoiceRow) Implements IHeatDBContext.InvoiceRows
         Property Payments As DbSet(Of Payment) Implements IHeatDBContext.Payments
-        Property Fuels As DbSet(Of Fuel)
+        Property Fuels As DbSet(Of Fuel) Implements IHeatDBContext.Fuels
         Property CausalDocuments As DbSet(Of CausalDocument)
         Property Numberings As DbSet(Of Numbering) Implements IHeatDBContext.Numberings
         Property DocumentTypes As DbSet(Of Models.DocumentType) Implements IHeatDBContext.DocumentTypes
@@ -60,12 +60,21 @@ Namespace Repositories
         Property WorkOperators As System.Data.Entity.DbSet(Of Models.WorkOperator) Implements IHeatDBContext.WorkOperators
         Property Manifacturers As DbSet(Of Manifacturer) Implements IHeatDBContext.Manifacturers
         Property ManifacturerModels As DbSet(Of ManifacturerModel) Implements IHeatDBContext.ManifacturerModels
+
+        'da eliminare quando hai finito con ThermalUnit e Heater
         Property BoilerHeaters As DbSet(Of BoilerHeater) Implements IHeatDBContext.BoilerHeaters
         Property BoilerServicesTypes As DbSet(Of BoilerServiceType) Implements IHeatDBContext.BoilerServiceTypes
+        'fine da eliminare
+
+        Property HeatTransferFluids As DbSet(Of HeatTransferFluid) Implements IHeatDBContext.HeatTransferFluids
+        Property ThermalUnits As System.Data.Entity.DbSet(Of Models.ThermalUnit) Implements IHeatDBContext.ThermalUnits
+        Property ThermalUnitKinds As DbSet(Of ThermalUnitKind) Implements IHeatDBContext.ThermalUnitKinds
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges
         End Function
+
+
 
     End Class
 

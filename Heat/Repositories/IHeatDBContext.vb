@@ -25,6 +25,13 @@ Public Interface IHeatDBContext
     Property ManifacturerModels As DbSet(Of ManifacturerModel)
     Property BoilerHeaters As DbSet(Of BoilerHeater)
     Property BoilerServiceTypes As DbSet(Of BoilerServiceType)
+    Property HeatTransferFluids As DbSet(Of HeatTransferFluid)
+    Property ThermalUnitKinds As DbSet(Of ThermalUnitKind)
+    Property Plants As DbSet(Of Plant)
+    Property PlantTypes As DbSet(Of PlantType)
+    Property PlantClasses As DbSet(Of PlantClass)
+    Property ThermalUnits As DbSet(Of ThermalUnit)
+    Property Fuels As DbSet(Of Fuel)
 
 
 

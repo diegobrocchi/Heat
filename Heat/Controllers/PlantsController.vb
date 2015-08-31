@@ -8,17 +8,26 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Repositories
+Imports Heat.Models
+
 
 Namespace Controllers
     <Authorize> _
     Public Class PlantsController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New HeatDBContext
+        Private _db As IHeatDBContext
+        Private _mb As PlantModelViewBuilder
+
+        Sub New(dbcontext As IHeatDBContext)
+            _db = dbcontext
+            _mb = New PlantModelViewBuilder(_db)
+        End Sub
+
 
         ' GET: Plants
         Function Index() As ActionResult
-            Return View(db.Plants.ToList())
+            Return View(_db.Plants.ToList())
         End Function
 
         ' GET: Plants/Details/5
@@ -26,7 +35,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim plant As Plant = db.Plants.Find(id)
+            Dim plant As Plant = _db.Plants.Find(id)
             If IsNothing(plant) Then
                 Return HttpNotFound()
             End If
@@ -45,8 +54,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Code,Name,Address,StreetNumber,City,PostalCode,Area,Zone,PlantTelephone1,PlantTelephone2,PlantTelephone3,PlantDistictCode,Fuel")> ByVal plant As Plant) As ActionResult
             If ModelState.IsValid Then
-                db.Plants.Add(plant)
-                db.SaveChanges()
+                _db.Plants.Add(plant)
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
             Return View(plant)
@@ -57,7 +66,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim plant As Plant = db.Plants.Find(id)
+            Dim plant As Plant = _db.Plants.Find(id)
             If IsNothing(plant) Then
                 Return HttpNotFound()
             End If
@@ -71,8 +80,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,Code,Name,Address,StreetNumber,City,PostalCode,Area,Zone,PlantTelephone1,PlantTelephone2,PlantTelephone3,PlantDistictCode,Fuel")> ByVal plant As Plant) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(plant).State = EntityState.Modified
-                db.SaveChanges()
+                '_db.Entry(plant).State = EntityState.Modified
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
             Return View(plant)
@@ -83,7 +92,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim plant As Plant = db.Plants.Find(id)
+            Dim plant As Plant = _db.Plants.Find(id)
             If IsNothing(plant) Then
                 Return HttpNotFound()
             End If
@@ -95,9 +104,9 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim plant As Plant = db.Plants.Find(id)
-            db.Plants.Remove(plant)
-            db.SaveChanges()
+            Dim plant As Plant = _db.Plants.Find(id)
+            _db.Plants.Remove(plant)
+            _db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
@@ -107,7 +116,7 @@ Namespace Controllers
                 Dim fileExt As String
                 fileExt = System.IO.Path.GetExtension(uploadFilePlant.FileName).ToLower
                 If fileExt = ".txt" Then
-                    Dim ih As New ImportHelper(db)
+                    Dim ih As New ImportHelper(_db)
                     Dim b(uploadFilePlant.ContentLength) As Byte
                     uploadFilePlant.InputStream.Read(b, 0, uploadFilePlant.ContentLength)
                     If ih.Plant(System.Text.Encoding.ASCII.GetString(b)) Then
@@ -126,9 +135,10 @@ Namespace Controllers
             End If
         End Function
 
+        
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                db.Dispose()
+                _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub
