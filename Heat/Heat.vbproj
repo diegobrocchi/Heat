@@ -208,12 +208,14 @@
     <Compile Include="Controllers\CausalWarehousesController.vb" />
     <Compile Include="Controllers\DescriptiveInvoiceRowsController.vb" />
     <Compile Include="Controllers\DocumentTypesController.vb" />
+    <Compile Include="Controllers\HeatersController.vb" />
     <Compile Include="Controllers\HeatTransferFluidsController.vb" />
     <Compile Include="Controllers\InvoiceRowsController.vb" />
     <Compile Include="Controllers\ManifacturerModelsController.vb" />
     <Compile Include="Controllers\ManifacturersController.vb" />
     <Compile Include="Controllers\NumberingsController.vb" />
     <Compile Include="Controllers\OperationsController.vb" />
+    <Compile Include="Controllers\PlantServicesController.vb" />
     <Compile Include="Controllers\ProductInvoiceRowsController.vb" />
     <Compile Include="Controllers\SellersController.vb" />
     <Compile Include="Controllers\SerialSchemesController.vb" />
@@ -405,13 +407,64 @@
       <DependentUpon>201508311355009_ThermalUnit.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201508311355009_ThermalUnit.vb" />
+    <Compile Include="Migrations\201509010725042_heaterlist.Designer.vb">
+      <DependentUpon>201509010725042_heaterlist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010725042_heaterlist.vb" />
+    <Compile Include="Migrations\201509010733216_add_heaters.Designer.vb">
+      <DependentUpon>201509010733216_add_heaters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010733216_add_heaters.vb" />
+    <Compile Include="Migrations\201509010738144_x.Designer.vb">
+      <DependentUpon>201509010738144_x.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010738144_x.vb" />
+    <Compile Include="Migrations\201509010845444_modHeater.Designer.vb">
+      <DependentUpon>201509010845444_modHeater.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010845444_modHeater.vb" />
+    <Compile Include="Migrations\201509010849552_modHeater1.Designer.vb">
+      <DependentUpon>201509010849552_modHeater1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010849552_modHeater1.vb" />
+    <Compile Include="Migrations\201509010853083_heatermod2.Designer.vb">
+      <DependentUpon>201509010853083_heatermod2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010853083_heatermod2.vb" />
+    <Compile Include="Migrations\201509011101143_plantService.Designer.vb">
+      <DependentUpon>201509011101143_plantService.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011101143_plantService.vb" />
+    <Compile Include="Migrations\201509011212463_plantidToPlantservice.Designer.vb">
+      <DependentUpon>201509011212463_plantidToPlantservice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011212463_plantidToPlantservice.vb" />
+    <Compile Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.Designer.vb">
+      <DependentUpon>201509011245507_nullableLastServiceDateInPlantService.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.vb" />
+    <Compile Include="Migrations\201509011255462_removeFuelFromPlant.Designer.vb">
+      <DependentUpon>201509011255462_removeFuelFromPlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011255462_removeFuelFromPlant.vb" />
+    <Compile Include="Migrations\201509011415459_removeBoiler.Designer.vb">
+      <DependentUpon>201509011415459_removeBoiler.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011415459_removeBoiler.vb" />
+    <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.Designer.vb">
+      <DependentUpon>201509011532440_removeCustomerFromWorkAction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\HeaterModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\ManifacturerModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\PlantModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\PlantServiceModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\ThermalUnitModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\WorkActionModelViewBuilder.vb" />
     <Compile Include="Models\ActionType.vb" />
     <Compile Include="Models\Boiler.vb" />
     <Compile Include="Models\BoilerHeater.vb" />
@@ -428,6 +481,7 @@
     <Compile Include="Models\ManifacturerModel.vb" />
     <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\PlantService.vb" />
     <Compile Include="Models\ThermalUnit.vb" />
     <Compile Include="Models\ThermalUnitKind.vb" />
     <Compile Include="Models\WorkAction.vb" />
@@ -437,6 +491,7 @@
     <Compile Include="ViewModels\Customers\EnableCustomerViewModel.vb" />
     <Compile Include="ViewModels\Customers\IndexCustomerGridViewModel.vb" />
     <Compile Include="ViewModels\Customers\IndexCustomerViewModel.vb" />
+    <Compile Include="ViewModels\Heaters\CreateHeaterViewModel.vb" />
     <Compile Include="ViewModels\Invoices\AddNewDescriptiveInvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\Invoices\EditDescriptiveInvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\Invoices\EditProductInvoiceRowViewModel.vb" />
@@ -512,8 +567,10 @@
     <Compile Include="ViewModels\ManifacturerModels\EditManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\NumberingViewModels.vb" />
+    <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
     <Compile Include="ViewModels\ThermalUnits\CreateThermalUnitViewModel.vb" />
+    <Compile Include="ViewModels\WorkActions\CreateWorkActionViewModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502221046383_InitialCreate.resx">
@@ -635,6 +692,42 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508311355009_ThermalUnit.resx">
       <DependentUpon>201508311355009_ThermalUnit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010725042_heaterlist.resx">
+      <DependentUpon>201509010725042_heaterlist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010733216_add_heaters.resx">
+      <DependentUpon>201509010733216_add_heaters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010738144_x.resx">
+      <DependentUpon>201509010738144_x.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010845444_modHeater.resx">
+      <DependentUpon>201509010845444_modHeater.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010849552_modHeater1.resx">
+      <DependentUpon>201509010849552_modHeater1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010853083_heatermod2.resx">
+      <DependentUpon>201509010853083_heatermod2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011101143_plantService.resx">
+      <DependentUpon>201509011101143_plantService.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011212463_plantidToPlantservice.resx">
+      <DependentUpon>201509011212463_plantidToPlantservice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.resx">
+      <DependentUpon>201509011245507_nullableLastServiceDateInPlantService.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011255462_removeFuelFromPlant.resx">
+      <DependentUpon>201509011255462_removeFuelFromPlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011415459_removeBoiler.resx">
+      <DependentUpon>201509011415459_removeBoiler.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011532440_removeCustomerFromWorkAction.resx">
+      <DependentUpon>201509011532440_removeCustomerFromWorkAction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1690,6 +1783,16 @@
     <Content Include="Views\ThermalUnits\Details.vbhtml" />
     <Content Include="Views\ThermalUnits\Edit.vbhtml" />
     <Content Include="Views\ThermalUnits\Index.vbhtml" />
+    <Content Include="Views\Heaters\Create.vbhtml" />
+    <Content Include="Views\Heaters\Delete.vbhtml" />
+    <Content Include="Views\Heaters\Details.vbhtml" />
+    <Content Include="Views\Heaters\Edit.vbhtml" />
+    <Content Include="Views\Heaters\Index.vbhtml" />
+    <Content Include="Views\PlantServices\Create.vbhtml" />
+    <Content Include="Views\PlantServices\Delete.vbhtml" />
+    <Content Include="Views\PlantServices\Details.vbhtml" />
+    <Content Include="Views\PlantServices\Edit.vbhtml" />
+    <Content Include="Views\PlantServices\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

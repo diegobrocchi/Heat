@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel.DataAnnotations.Schema
 
 Namespace Models
     ''' <summary>
@@ -38,10 +39,11 @@ Namespace Models
         Property PlantType As PlantType
         <Display(name:="Codice dell'impianto per la provincia")> _
         Property PlantDistictCode As String
-        <Display(name:="Combustibile")> _
-        Property Fuel As String
+        
 
-        Property ThermalUnit As thermalUnit
+        Property ThermalUnit As ThermalUnit
+
+        Overridable Property Service As PlantService
 
 
 

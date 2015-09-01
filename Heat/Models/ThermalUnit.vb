@@ -11,8 +11,6 @@ Namespace Models
         <Key> _
         Property ID As Integer
 
-        
-
         '************
         'Proprietà copiate da Futura
         Property ManifacturerId As Integer
@@ -43,6 +41,8 @@ Namespace Models
 
         'Esiste anche una classe 'ThermalUnitKind': da decidere cosa è meglio, se enum o classe.
         Property Kind As ThermalUnitKindEnum
+
+        Property Heaters As List(Of Heater)
 
         '**************
         'fine proprietà del libretto di impianto

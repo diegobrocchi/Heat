@@ -85,7 +85,9 @@ Public Class ImportHelper
                         newPlant.Area = fileRowFields(16)
                         newPlant.City = fileRowFields(12)
                         newPlant.Code = fileRowFields(2)
-                        newPlant.Fuel = fileRowFields(17)
+                        'TODO: Fuel è un oggetto a se': aggiusta l'import!!!!
+                        'newPlant.Fuel = fileRowFields(17)
+                        '
                         newPlant.Name = fileRowFields(3)
                         Dim sPlantClass As String = fileRowFields(9)
                         newPlant.PlantClass = _context.PlantClasses.Where(Function(pc) pc.Name = sPlantClass).FirstOrDefault

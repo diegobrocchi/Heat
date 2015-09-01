@@ -8,17 +8,25 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Heat.Models
 Imports Heat.Repositories
+Imports Heat.ViewModels.WorkOperations
+Imports Heat.ViewModels.WorkActions
 
 Namespace Controllers
     Public Class WorkActionsController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New HeatDBContext
+        Private _db As IHeatDBContext
+        Private _mb As WorkActionModelViewBuilder
+
+        Sub New(dbContext As IHeatDBContext)
+            _db = dbContext
+            _mb = New WorkActionModelViewBuilder(_db)
+        End Sub
 
         ' GET: WorkActions
         Function Index() As ActionResult
-            Dim actions = db.Actions.Include(Function(w) w.AssignedOperator).Include(Function(w) w.Customer).Include(Function(w) w.Operation).Include(Function(w) w.Type)
-            Return View(actions.ToList())
+            'Dim actions = _db.Actions.Include(Function(w) w.AssignedOperator).Include(Function(w) w.Customer).Include(Function(w) w.Operation).Include(Function(w) w.Type)
+            'Return View(workactions.ToList())
         End Function
 
         ' GET: WorkActions/Details/5
@@ -26,40 +34,59 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim workAction As WorkAction = db.Actions.Find(id)
+            Dim workAction As WorkAction = _db.WorkActions.Find(id)
             If IsNothing(workAction) Then
                 Return HttpNotFound()
             End If
             Return View(workAction)
         End Function
 
-        ' GET: WorkActions/Create
-        Function Create() As ActionResult
-            ViewBag.AssignedOperatorID = New SelectList(db.WorkOperators, "ID", "Name")
-            ViewBag.CustomerID = New SelectList(db.Customers, "ID", "Name")
-            ViewBag.OperationID = New SelectList(db.Operations, "ID", "Code")
-            ViewBag.TypeID = New SelectList(db.ActionTypes, "ID", "Description")
-            ViewBag.PlantID = New SelectList(db.Plants, "ID", "Code")
-            Return View()
+        <HttpGet> _
+        Function Create(plantID As Integer) As ActionResult
+            Try
+                If IsNothing(plantID) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                If Not _db.Plants.Any(Function(x) x.ID = plantID) Then
+                    Return HttpNotFound()
+                End If
+
+                Dim model As CreateWorkActionViewModel
+                model = _mb.GetCreateWorkActionViewModel(plantID)
+
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
-        ' POST: WorkActions/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,CustomerID,ActionDate,OperationID,AssignedOperatorID,TypeID, PlantID")> ByVal workAction As WorkAction) As ActionResult
-            If ModelState.IsValid Then
-                db.Actions.Add(workAction)
-                db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            ViewBag.AssignedOperatorID = New SelectList(db.WorkOperators, "ID", "Name", workAction.AssignedOperatorID)
-            ViewBag.CustomerID = New SelectList(db.Customers, "ID", "Name", workAction.CustomerID)
-            ViewBag.OperationID = New SelectList(db.Operations, "ID", "Code", workAction.OperationID)
-            ViewBag.TypeID = New SelectList(db.ActionTypes, "ID", "Description", workAction.TypeID)
-            ViewBag.PlantID = New SelectList(db.Plants, "ID", "Code", workAction.PlantID)
-            Return View(workAction)
+        Function Create(newWorkAction As CreateWorkActionViewModel) As ActionResult
+            Try
+                If ModelState.IsValid Then
+                    Dim wa As WorkAction
+                    wa = AutoMapper.Mapper.Map(Of WorkAction)(newWorkAction)
+                    wa.Plant = _db.Plants.Find(newWorkAction.PlantID)
+
+                    _db.WorkActions.Add(wa)
+                    _db.SaveChanges()
+
+                    Return RedirectToAction("index", "plants", Nothing)
+                Else
+
+                    _mb.BindSelectListItems(newWorkAction)
+
+                    Return View(newWorkAction)
+                    
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
         ' GET: WorkActions/Edit/5
@@ -67,14 +94,14 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim workAction As WorkAction = db.Actions.Find(id)
+            Dim workAction As WorkAction = _db.WorkActions.Find(id)
             If IsNothing(workAction) Then
                 Return HttpNotFound()
             End If
-            ViewBag.AssignedOperatorID = New SelectList(db.WorkOperators, "ID", "Name", workAction.AssignedOperatorID)
-            ViewBag.CustomerID = New SelectList(db.Customers, "ID", "Name", workAction.CustomerID)
-            ViewBag.OperationID = New SelectList(db.Operations, "ID", "Code", workAction.OperationID)
-            ViewBag.TypeID = New SelectList(db.ActionTypes, "ID", "Description", workAction.TypeID)
+            ViewBag.AssignedOperatorID = New SelectList(_db.WorkOperators, "ID", "Name", workAction.AssignedOperatorID)
+            'ViewBag.CustomerID = New SelectList(_db.Customers, "ID", "Name", workAction.CustomerID)
+            ViewBag.OperationID = New SelectList(_db.Operations, "ID", "Code", workAction.OperationID)
+            ViewBag.TypeID = New SelectList(_db.ActionTypes, "ID", "Description", workAction.TypeID)
             Return View(workAction)
         End Function
 
@@ -85,14 +112,14 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,CustomerID,ActionDate,OperationID,AssignedOperatorID,TypeID")> ByVal workAction As WorkAction) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(workAction).State = EntityState.Modified
-                db.SaveChanges()
+                '_db.Entry(workAction).State = EntityState.Modified
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            ViewBag.AssignedOperatorID = New SelectList(db.WorkOperators, "ID", "Name", workAction.AssignedOperatorID)
-            ViewBag.CustomerID = New SelectList(db.Customers, "ID", "Name", workAction.CustomerID)
-            ViewBag.OperationID = New SelectList(db.Operations, "ID", "Code", workAction.OperationID)
-            ViewBag.TypeID = New SelectList(db.ActionTypes, "ID", "Description", workAction.TypeID)
+            ViewBag.AssignedOperatorID = New SelectList(_db.WorkOperators, "ID", "Name", workAction.AssignedOperatorID)
+            'ViewBag.CustomerID = New SelectList(_db.Customers, "ID", "Name", workAction.CustomerID)
+            ViewBag.OperationID = New SelectList(_db.Operations, "ID", "Code", workAction.OperationID)
+            ViewBag.TypeID = New SelectList(_db.ActionTypes, "ID", "Description", workAction.TypeID)
             Return View(workAction)
         End Function
 
@@ -101,7 +128,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim workAction As WorkAction = db.Actions.Find(id)
+            Dim workAction As WorkAction = _db.WorkActions.Find(id)
             If IsNothing(workAction) Then
                 Return HttpNotFound()
             End If
@@ -113,15 +140,15 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim workAction As WorkAction = db.Actions.Find(id)
-            db.Actions.Remove(workAction)
-            db.SaveChanges()
+            Dim workAction As WorkAction = _db.WorkActions.Find(id)
+            _db.WorkActions.Remove(workAction)
+            _db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                db.Dispose()
+                _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub

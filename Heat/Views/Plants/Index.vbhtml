@@ -69,7 +69,8 @@ End Code
         <td>
             @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
             @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |
-            @Html.ActionLink("Cancella", "Delete", New With {.id = item.ID})
+            @Html.ActionLink("Cancella", "Delete", New With {.id = item.ID}) |
+            @Html.ActionLink("Aggiungi un Generatore", "create", "ThermalUnits", New With {.plantID = item.ID}, Nothing)
         </td>
     </tr>
 Next

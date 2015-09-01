@@ -80,8 +80,10 @@ Namespace Controllers
                 _db.SaveChanges()
 
                 Return RedirectToAction("Index")
+            Else
+                Return View(newThermalUnit)
+
             End If
-            Return View(newThermalUnit)
         End Function
 
         ' GET: ThermalUnits/Edit/5

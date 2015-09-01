@@ -7,6 +7,19 @@ End Code
 
 <div>
     <h4>Plant</h4>
+
+    <ul class="nav nav-tabs" role="tablist" id="plantDetailsTab">
+        <li role="presentation" class="active"><a href="#pagina1" role="tab" data-toggle="tab">Pagina 1</a></li>
+        <li role="presentation"><a href="#pagina2" role="tab" data-toggle="tab">pagina 2</a></li>
+        <li role="presentation"><a href="#pagina3" role="tab" data-toggle="tab">Pagina 3</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="pagina1">Qui i dettagli dell'identificazione impianto</div>
+        <div role="tabpanel" class="tab-pane" id="pagina2">qui i dettagli tecnici del'impianto</div>
+        <div role="tabpanel" class="tab-pane" id="pagina3">qui lo stato della manutenzione</div>
+    </div>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -103,14 +116,6 @@ End Code
 
         <dd>
             @Html.DisplayFor(Function(model) model.PlantDistictCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Fuel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.Fuel)
         </dd>
 
     </dl>

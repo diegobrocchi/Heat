@@ -15,7 +15,7 @@ Namespace Migrations
         Inherits DbMigrationsConfiguration(Of HeatDBContext)
 
         Public Sub New()
-            AutomaticMigrationsEnabled = True
+            AutomaticMigrationsEnabled = False
             AutomaticMigrationDataLossAllowed = True
             ContextKey = "Heat.HeatDBContext"
         End Sub
@@ -170,6 +170,8 @@ Namespace Migrations
             Dim tuk1 As New Models.ThermalUnitKind
             Dim tuk2 As New Models.ThermalUnitKind
 
+            Dim pl1 As New Models.Plant
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -250,16 +252,16 @@ Namespace Migrations
             manu1.Name = "Beretta"
             manu2.Name = "Vaillant"
 
-            manuModel1.Manifacturer = manu1
-            manuModel1.Model = "ModelXYZ"
-
-            manuModel2.Manifacturer = manu2
-            manuModel2.Model = "ModelABC"
-
             flu1.Name = "Acqua"
             flu2.Name = "Vapore"
 
             tuk1.Description = "Gruppo termico singolo"
+
+            pl1.Address = "via Roma"
+            pl1.City = "Lecco"
+            pl1.Code = 999
+            pl1.Name = "impianto XYZ"
+            pl1.PlantTelephone1 = "331331133"
 
 
             '###################################
@@ -282,9 +284,17 @@ Namespace Migrations
 
             context.SerialSchemes.AddOrUpdate(Function(ss) ss.Name, simpleSchema)
 
-            'Commenta la riga sotto dopo il primo update-database
-            'finchè non capisci perchè dà un errore su violazione FK in UPDATE 
-            'context.Numberings.AddOrUpdate(Function(n) n.Code, number)
+            context.Plants.AddOrUpdate(Function(p) p.Name, pl1)
+
+
+            '*****************
+            'HACK HACK HACK
+            'assegna il valore alla proprietà ID dello schema, atrimenti si arrabbia
+            number.TempSerialSchemaID = simpleSchema.ID
+            number.FinalSerialSchemaID = simpleSchema.ID
+            'fine HACK
+
+            context.Numberings.AddOrUpdate(Function(n) n.Code, number)
             context.DocumentTypes.AddOrUpdate(Function(dt) dt.Name, FTC)
 
             context.Products.AddOrUpdate(Function(p) p.SKU, product1)
@@ -302,6 +312,20 @@ Namespace Migrations
 
             context.Manifacturers.AddOrUpdate(Function(m) m.Name, manu1)
             context.Manifacturers.AddOrUpdate(Function(m) m.Name, manu2)
+
+            '***********************************
+            'HACK HACK HACK
+            'altrimenti EF rompe con UPDATE e FOREIGN KEY
+            manuModel1.Manifacturer = manu1
+            manuModel1.ManifacturerID = manu1.ID
+            manuModel1.Model = "ModelXYZ"
+
+            manuModel2.Manifacturer = manu2
+            manuModel2.ManifacturerID = manu2.ID
+            manuModel2.Model = "ModelABC"
+
+            'l'hack consiste nel valorizzare manifacturerID con il suo attuale valore, altrimenti è 0 si arrabbia.
+            'FINE HACK
 
             context.ManifacturerModels.AddOrUpdate(Function(m) m.Model, manuModel1)
             context.ManifacturerModels.AddOrUpdate(Function(m) m.Model, manuModel2)
