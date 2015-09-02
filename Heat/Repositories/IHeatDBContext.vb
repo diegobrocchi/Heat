@@ -4,7 +4,10 @@ Imports Heat.Models
 Public Interface IHeatDBContext
     Inherits IDisposable
 
+    Property Addresses As DbSet(Of Address)
+    Property AddressTypes As DbSet(Of AddressType)
     Property Customers As DbSet(Of Customer)
+    Property Contacts As DbSet(Of Contact)
     Property Numberings As DbSet(Of Numbering)
     Property SerialSchemes As DbSet(Of SerialScheme)
     Property CausalWarehouses As DbSet(Of CausalWarehouse)

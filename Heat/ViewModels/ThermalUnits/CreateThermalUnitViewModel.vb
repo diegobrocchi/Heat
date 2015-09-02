@@ -6,6 +6,9 @@ Namespace ViewModels.ThermalUnits
         Property PlantID As Integer
         <Display(name:="Impianto")> _
         Property PlantDescription As String
+        Property PlantList As IEnumerable(Of SelectListItem)
+
+        Property PlantIDSelected As Boolean
 
         <Display(name:="Marca")> _
         Property ManifacturerID As String

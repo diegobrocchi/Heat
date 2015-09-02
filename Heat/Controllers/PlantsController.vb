@@ -9,6 +9,7 @@ Imports System.Web.Mvc
 Imports Heat
 Imports Heat.Repositories
 Imports Heat.Models
+Imports Heat.ViewModels.Plants
 
 
 Namespace Controllers
@@ -42,23 +43,120 @@ Namespace Controllers
             Return View(plant)
         End Function
 
-        ' GET: Plants/Create
+        <HttpGet> _
         Function Create() As ActionResult
-            Return View()
+            Try
+                'Dim model As CreatePlantViewModel
+                'model = _mb.getCreatePlantViewModel
+                'Return View(model)
+                Return View()
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
         End Function
 
-        ' POST: Plants/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+         
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,Code,Name,Address,StreetNumber,City,PostalCode,Area,Zone,PlantTelephone1,PlantTelephone2,PlantTelephone3,PlantDistictCode,Fuel")> ByVal plant As Plant) As ActionResult
-            If ModelState.IsValid Then
-                _db.Plants.Add(plant)
-                _db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            Return View(plant)
+        Function Create(newPlant As CreatePlantViewModel) As ActionResult
+            Try
+                If ModelState.IsValid Then
+                    Dim p As Plant
+
+                    p = AutoMapper.Mapper.Map(Of Plant)(newPlant)
+
+                    _db.Plants.Add(p)
+                    _db.SaveChanges()
+                    'dopo aver salvato i dati dell'ubicazione passo ai dati del contatto
+                    Return RedirectToAction("AddContact", New With {.plantID = p.ID})
+                Else
+                    'il modello non è valido
+                    Return View(newPlant)
+                End If
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
+        End Function
+
+        <HttpGet> _
+        Function AddContact(plantID As Integer) As ActionResult
+            Try
+                If IsNothing(plantID) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim plant As Plant = _db.Plants.Find(plantID)
+                If IsNothing(plant) Then
+                    Return HttpNotFound()
+                End If
+                Dim model As AddContactPlantViewModel
+
+                model = _mb.GetAddContactPlantViewModel(plantID)
+                Return View(model)
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
+        End Function
+
+        <HttpPost> _
+        <ValidateAntiForgeryToken> _
+        Function AddContact(newContact As AddContactPlantViewModel) As ActionResult
+            Try
+                If ModelState.IsValid Then
+                    Dim c As Contact
+                    Dim p As Plant
+
+                    c = AutoMapper.Mapper.Map(Of Contact)(newContact)
+                    p = _db.Plants.Find(newContact.PlantID)
+
+                    If Not IsNothing(p) Then
+                        p.Contacts.Add(c)
+                        _db.Contacts.Add(c)
+                        _db.SaveChanges()
+                        'dopo aver salvato i dati del contatto passo ai dati termici
+                        Return RedirectToAction("AddThermInfo", New With {.plantID = p.ID})
+                    Else
+                        ViewBag.message = "Impossibile aggiungere il contatto. Sembra che l'impianto con id(" & newContact.PlantID & ") non esista"
+                        Return View("error")
+                    End If
+
+                Else
+                    'ripasso al modelBuilder per ricostruire la selectlist
+                    Return View(_mb.GetAddContactPlantViewModel(newContact.PlantID))
+                End If
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+        End Function
+
+        <HttpGet> _
+        Function AddThermInfo(plantId As Integer) As ActionResult
+            Try
+                If IsNothing(plantId) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim plant As Plant = _db.Plants.Find(plantId)
+                If IsNothing(plant) Then
+                    Return HttpNotFound()
+                End If
+                Dim model As AddThermInfoPlantViewModel
+
+                model = _mb.GetAddThermInfoPlantViewModel(plantId)
+                Return View(model)
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
         ' GET: Plants/Edit/5
@@ -135,7 +233,7 @@ Namespace Controllers
             End If
         End Function
 
-        
+
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
                 _db.Dispose()

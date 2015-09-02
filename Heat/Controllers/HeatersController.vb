@@ -63,21 +63,30 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(newHeater As CreateHeaterViewModel) As ActionResult
-            If ModelState.IsValid Then
-                Dim tu As ThermalUnit
-                Dim h As Heater
+            Try
+                If ModelState.IsValid Then
+                    Dim tu As ThermalUnit
+                    Dim h As Heater
 
-                tu = _db.ThermalUnits.Find(newHeater.ThermalUnitID)
+                    'a causa della relazione tra ThermalUnit e Heater (1-a-molti)
+                    'devo assegnare il ThermalUnit al Heater che sto inserendo
+                    tu = _db.ThermalUnits.Find(newHeater.ThermalUnitID)
 
-                h = AutoMapper.Mapper.Map(Of Heater)(newHeater)
-                h.ThermalUnit = tu
+                    h = AutoMapper.Mapper.Map(Of Heater)(newHeater)
+                    h.ThermalUnit = tu
 
-                _db.Heaters.Add(h)
-                _db.SaveChanges()
-                Return RedirectToAction("Index")
-            Else
-                Return View(newHeater)
-            End If
+                    _db.Heaters.Add(h)
+                    _db.SaveChanges()
+                    Return RedirectToAction("Index")
+                Else
+                    Return View(newHeater)
+                End If
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
         ' GET: Heaters/Edit/5

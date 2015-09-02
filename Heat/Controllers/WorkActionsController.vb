@@ -8,7 +8,6 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Heat.Models
 Imports Heat.Repositories
-Imports Heat.ViewModels.WorkOperations
 Imports Heat.ViewModels.WorkActions
 
 Namespace Controllers
@@ -23,13 +22,15 @@ Namespace Controllers
             _mb = New WorkActionModelViewBuilder(_db)
         End Sub
 
-        ' GET: WorkActions
+        
+
+
         Function Index() As ActionResult
-            'Dim actions = _db.Actions.Include(Function(w) w.AssignedOperator).Include(Function(w) w.Customer).Include(Function(w) w.Operation).Include(Function(w) w.Type)
-            'Return View(workactions.ToList())
+            Dim workactions = _db.WorkActions.Include(Function(w) w.AssignedOperator).Include(Function(w) w.Operation).Include(Function(w) w.Type)
+            Return View(workactions.ToList())
         End Function
 
-        ' GET: WorkActions/Details/5
+
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -41,18 +42,28 @@ Namespace Controllers
             Return View(workAction)
         End Function
 
+         
+
         <HttpGet> _
-        Function Create(plantID As Integer) As ActionResult
+        Function Create(Optional plantID As Integer = -1) As ActionResult
             Try
-                If IsNothing(plantID) Then
-                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-                End If
-                If Not _db.Plants.Any(Function(x) x.ID = plantID) Then
-                    Return HttpNotFound()
+                Dim model As CreateWorkActionViewModel
+
+                If plantID = -1 Then
+
+                    model = _mb.GetCreateWorkActionViewModel
+
+                Else
+                    If Not _db.Plants.Any(Function(x) x.ID = plantID) Then
+                        Return HttpNotFound()
+                    End If
+
+                    model = _mb.GetCreateWorkActionViewModel(plantID)
                 End If
 
-                Dim model As CreateWorkActionViewModel
-                model = _mb.GetCreateWorkActionViewModel(plantID)
+                'If IsNothing(plantID) Then
+                '    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                'End If
 
                 Return View(model)
             Catch ex As Exception

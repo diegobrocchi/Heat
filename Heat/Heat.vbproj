@@ -455,6 +455,54 @@
       <DependentUpon>201509011532440_removeCustomerFromWorkAction.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.vb" />
+    <Compile Include="Migrations\201509021231257_thermalunitNullableDate.Designer.vb">
+      <DependentUpon>201509021231257_thermalunitNullableDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021231257_thermalunitNullableDate.vb" />
+    <Compile Include="Migrations\201509021354098_plantBuilding.Designer.vb">
+      <DependentUpon>201509021354098_plantBuilding.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021354098_plantBuilding.vb" />
+    <Compile Include="Migrations\201509021416399_removeAddressPlant.Designer.vb">
+      <DependentUpon>201509021416399_removeAddressPlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021416399_removeAddressPlant.vb" />
+    <Compile Include="Migrations\201509021621311_removeCustomerFromAddress.Designer.vb">
+      <DependentUpon>201509021621311_removeCustomerFromAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021621311_removeCustomerFromAddress.vb" />
+    <Compile Include="Migrations\201509021627168_renameDistrictInAddress.Designer.vb">
+      <DependentUpon>201509021627168_renameDistrictInAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021627168_renameDistrictInAddress.vb" />
+    <Compile Include="Migrations\201509021628240_removePhoneFromAddress.Designer.vb">
+      <DependentUpon>201509021628240_removePhoneFromAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021628240_removePhoneFromAddress.vb" />
+    <Compile Include="Migrations\201509021630431_renamePlantCOntact.Designer.vb">
+      <DependentUpon>201509021630431_renamePlantCOntact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021630431_renamePlantCOntact.vb" />
+    <Compile Include="Migrations\201509021657465_addresstype.Designer.vb">
+      <DependentUpon>201509021657465_addresstype.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021657465_addresstype.vb" />
+    <Compile Include="Migrations\201509021708219_addContactsTOPlant.Designer.vb">
+      <DependentUpon>201509021708219_addContactsTOPlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021708219_addContactsTOPlant.vb" />
+    <Compile Include="Migrations\201509021730503_removeTelephoneFromPlant.Designer.vb">
+      <DependentUpon>201509021730503_removeTelephoneFromPlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021730503_removeTelephoneFromPlant.vb" />
+    <Compile Include="Migrations\201509021738570_PlantClassType.Designer.vb">
+      <DependentUpon>201509021738570_PlantClassType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021738570_PlantClassType.vb" />
+    <Compile Include="Migrations\201509021757191_distinctCodePlant.Designer.vb">
+      <DependentUpon>201509021757191_distinctCodePlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021757191_distinctCodePlant.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
@@ -473,6 +521,7 @@
     <Compile Include="Models\CausalWarehouse.vb" />
     <Compile Include="Models\CausalWarehouseTypeEnum.vb" />
     <Compile Include="Models\DescriptiveInvoiceRow.vb" />
+    <Compile Include="Models\Enum\EnergyCategoryEnum.vb" />
     <Compile Include="Models\Enum\ThermalUnitKindEnum.vb" />
     <Compile Include="Models\Heater.vb" />
     <Compile Include="Models\HeatTransferFluid.vb" />
@@ -481,6 +530,8 @@
     <Compile Include="Models\ManifacturerModel.vb" />
     <Compile Include="Models\Operation.vb" />
     <Compile Include="Models\Periodicity.vb" />
+    <Compile Include="Models\PlantBuilding.vb" />
+    <Compile Include="Models\Contact.vb" />
     <Compile Include="Models\PlantService.vb" />
     <Compile Include="Models\ThermalUnit.vb" />
     <Compile Include="Models\ThermalUnitKind.vb" />
@@ -568,6 +619,9 @@
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\NumberingViewModels.vb" />
     <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.vb" />
+    <Compile Include="ViewModels\Plants\AddContactPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\AddThermInfoPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\CreatePlantViewModel.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
     <Compile Include="ViewModels\ThermalUnits\CreateThermalUnitViewModel.vb" />
     <Compile Include="ViewModels\WorkActions\CreateWorkActionViewModel.vb" />
@@ -728,6 +782,42 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509011532440_removeCustomerFromWorkAction.resx">
       <DependentUpon>201509011532440_removeCustomerFromWorkAction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021231257_thermalunitNullableDate.resx">
+      <DependentUpon>201509021231257_thermalunitNullableDate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021354098_plantBuilding.resx">
+      <DependentUpon>201509021354098_plantBuilding.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021416399_removeAddressPlant.resx">
+      <DependentUpon>201509021416399_removeAddressPlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021621311_removeCustomerFromAddress.resx">
+      <DependentUpon>201509021621311_removeCustomerFromAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021627168_renameDistrictInAddress.resx">
+      <DependentUpon>201509021627168_renameDistrictInAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021628240_removePhoneFromAddress.resx">
+      <DependentUpon>201509021628240_removePhoneFromAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021630431_renamePlantCOntact.resx">
+      <DependentUpon>201509021630431_renamePlantCOntact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021657465_addresstype.resx">
+      <DependentUpon>201509021657465_addresstype.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021708219_addContactsTOPlant.resx">
+      <DependentUpon>201509021708219_addContactsTOPlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021730503_removeTelephoneFromPlant.resx">
+      <DependentUpon>201509021730503_removeTelephoneFromPlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021738570_PlantClassType.resx">
+      <DependentUpon>201509021738570_PlantClassType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021757191_distinctCodePlant.resx">
+      <DependentUpon>201509021757191_distinctCodePlant.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1793,6 +1883,8 @@
     <Content Include="Views\PlantServices\Details.vbhtml" />
     <Content Include="Views\PlantServices\Edit.vbhtml" />
     <Content Include="Views\PlantServices\Index.vbhtml" />
+    <Content Include="Views\Plants\AddContact.vbhtml" />
+    <Content Include="Views\Plants\AddThermInfo.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -18,6 +18,10 @@ Public Class MvcApplication
         'http://www.codeproject.com/Articles/639458/Claims-Based-Authentication-and-Authorization
         AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name
 
+        'rimuove il motore di render per le pagine aspx
+        ViewEngines.Engines.Clear()
+        ViewEngines.Engines.Add(New RazorViewEngine())
+
         Mapper.CreateMap(Of SerialScheme, CreateSerialSchemeViewModel)().Bidirectional()
         Mapper.CreateMap(Of SerialScheme, IndexSerialSchemeViewModel)()
 
@@ -94,6 +98,31 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.Operation, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.Plant, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.Type, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of ViewModels.Plants.CreatePlantViewModel, PlantBuilding)()
+
+
+        Mapper.CreateMap(Of ViewModels.Plants.CreatePlantViewModel, Plant) _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantClass, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantDistinctCode, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantType, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Service, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.ThermalUnit, Sub(opt) opt.Ignore()) _
+        .ForMember(Function(dest) dest.Contacts, Sub(opt) opt.Ignore()) _
+        .ForMember(Function(dest) dest.PlantClassID, Sub(opt) opt.Ignore()) _
+        .ForMember(Function(dest) dest.PlantTypeID, Sub(opt) opt.Ignore()) _
+        .ForMember(Function(dest) dest.BuildingAddress, Sub(opt) opt.MapFrom(Function(src) Mapper.Map(Of ViewModels.Plants.CreatePlantViewModel, PlantBuilding)(src)))
+
+        Mapper.CreateMap(Of ViewModels.Plants.AddContactPlantViewModel, Address)() _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.AddressType, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.State, Sub(opt) opt.Ignore())
+
+
+        Mapper.CreateMap(Of ViewModels.Plants.AddContactPlantViewModel, Contact) _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Address, Sub(opt) opt.MapFrom(Function(src) Mapper.Map(Of ViewModels.Plants.AddContactPlantViewModel, Address)(src)))
 
 
         Mapper.AssertConfigurationIsValid()

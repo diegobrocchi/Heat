@@ -35,7 +35,9 @@ Namespace Repositories
         End Sub
 
         Property Customers As DbSet(Of Customer) Implements IHeatDBContext.Customers
-        Property Address As DbSet(Of Address)
+        Property Address As DbSet(Of Address) Implements IHeatDBContext.Addresses
+        Property AddressTypes As DbSet(Of AddressType) Implements IHeatDBContext.AddressTypes
+        Property Contacts As DbSet(Of Contact) Implements IHeatDBContext.Contacts
         Property WarehouseMovement As DbSet(Of WarehouseMovement) Implements IHeatDBContext.WarehouseMovements
         Property Plants As DbSet(Of Plant) Implements IHeatDBContext.Plants
         Property PlantTypes As DbSet(Of PlantType) Implements IHeatDBContext.PlantTypes
@@ -53,7 +55,6 @@ Namespace Repositories
         Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
         Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
         Property Products As DbSet(Of Product) Implements IHeatDBContext.Products
-        Property AddressTypes As System.Data.Entity.DbSet(Of Models.AddressType)
         Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow) Implements IHeatDBContext.DescriptiveInvoiceRows
         Property ProductInvoiceRows As DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
         Property ActionTypes As System.Data.Entity.DbSet(Of Models.ActionType) Implements IHeatDBContext.ActionTypes

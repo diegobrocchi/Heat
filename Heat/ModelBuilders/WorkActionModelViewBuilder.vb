@@ -7,10 +7,21 @@ Public Class WorkActionModelViewBuilder
         _db = dbContext
     End Sub
 
+    Function GetCreateWorkActionViewModel() As CreateWorkActionViewModel
+        Dim result = New CreateWorkActionViewModel
+        result.ActionDate = Now
+        result.PlantIDSelected = False
+        result.PlantList = _db.Plants.OrderBy(Function(x) x.Name).ToList.ToSelectListItems(Function(x) x.Name, Function(x) x.ID, "")
+        BindSelectListItems(result)
+        Return result
+
+    End Function
+
     Function GetCreateWorkActionViewModel(plantID As Integer) As CreateWorkActionViewModel
         Dim result As New CreateWorkActionViewModel
 
         result.PlantID = plantID
+        result.PlantIDSelected = True
         result.ActionDate = Now
 
         BindSelectListItems(result)

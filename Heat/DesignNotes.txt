@@ -5,6 +5,9 @@ pattern per costruttore e variabili private
 - private _mb as *model*viewmodelBuilder
 - sub new (dbcontext as idbcontext) e assegnazione
 
+pattern per action con parametro opzionale:
+ - dichiara il parametro opzionale con valore di default: function Action(optional param as int = -1 ) as ActionRresult
+ 
 
 pattern per le action GET:
 - check se id(o parametro) non è nullo;

@@ -14,9 +14,7 @@ End Code
             <th>
                 @Html.DisplayNameFor(Function(model) model.AssignedOperator.Name)
             </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.Customer.Name)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(Function(model) model.Operation.Code)
             </th>
@@ -36,12 +34,11 @@ End Code
         <td>
             @Html.DisplayFor(Function(modelItem) item.AssignedOperator.Name)
         </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Customer.Name)
-        </td>
+        
         <td>
             @Html.DisplayFor(Function(modelItem) item.Operation.Code)
         </td>
+
         <td>
             @Html.DisplayFor(Function(modelItem) item.Type.Description)
         </td>

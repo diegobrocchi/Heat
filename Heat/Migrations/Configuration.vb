@@ -170,6 +170,8 @@ Namespace Migrations
             Dim tuk1 As New Models.ThermalUnitKind
             Dim tuk2 As New Models.ThermalUnitKind
 
+            Dim plc1 As New Models.PlantClass
+            Dim pt1 As New Models.planttype
             Dim pl1 As New Models.Plant
 
 
@@ -257,12 +259,15 @@ Namespace Migrations
 
             tuk1.Description = "Gruppo termico singolo"
 
-            pl1.Address = "via Roma"
-            pl1.City = "Lecco"
+            plc1.Name = "Classe 1"
+
+            pt1.Name = "Climatizzazione"
+
             pl1.Code = 999
             pl1.Name = "impianto XYZ"
-            pl1.PlantTelephone1 = "331331133"
-
+            pl1.PlantClass = plc1
+            pl1.PlantType = pt1
+            pl1.BuildingAddress = New Models.PlantBuilding
 
             '###################################
             'Aggiunta dati al DB
@@ -284,7 +289,13 @@ Namespace Migrations
 
             context.SerialSchemes.AddOrUpdate(Function(ss) ss.Name, simpleSchema)
 
+            context.PlantClasses.AddOrUpdate(Function(pc) pc.Name, plc1)
+            context.PlantTypes.AddOrUpdate(Function(pt) pt.Name, pt1)
+
+            pl1.PlantClass = plc1
+            pl1.PlantType = pt1
             context.Plants.AddOrUpdate(Function(p) p.Name, pl1)
+
 
 
             '*****************

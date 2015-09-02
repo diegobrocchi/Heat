@@ -5,20 +5,39 @@ End Code
 
 <h2>Create</h2>
 
-@Using (Html.BeginForm()) 
+@Using (Html.BeginForm("create", "ThermalUnits"))
     @Html.AntiForgeryToken()
     
-    @Html.HiddenFor(Function(model) model.PlantID )
+   
     
     @<div class="form-horizontal">
         <h4>ThermalUnit</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
+           
+    
+    @* La vista visualizza elementi differenti nel caso di PlantID selezionato o da selezionare *@
 
+    @if Model.PlantIDSelected then
+         @<div class="form-group">
+             @Html.LabelFor(Function(model) model.PlantDescription, New With {.class = "control-label col-md-2"})
+            <div class="col-md-10 form-control-static">
+                @Html.DisplayFor(Function(model) model.PlantDescription)
+            </div>
+         </div>
+         @Html.HiddenFor(Function(model) model.PlantID)
+    else
+         @<div class="form-group">
+             @Html.LabelFor(Function(model) model.PlantID, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10 ">
+                 @Html.DropDownListFor(Function(model) model.PlantID, Model.PlantList, New With {.class = "form-control"})
+                 @Html.ValidationMessageFor(Function(model) model.PlantID, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+    end if
+
+    @* fine della parte *@
         
-        <div class="form-group">
-            @Html.LabelFor(Function(model) model.PlantDescription )
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(Function(model) model.ManifacturerID, htmlAttributes:=New With {.class = "control-label col-md-2"})

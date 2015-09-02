@@ -117,4 +117,10 @@ Public Class HeatDbContextMock
     Public Property WorkActions As Entity.DbSet(Of WorkAction) Implements IHeatDBContext.WorkActions
 
     Public Property Operations As Entity.DbSet(Of Operation) Implements IHeatDBContext.Operations
+
+    Public Property Contacts As Entity.DbSet(Of Contact) Implements IHeatDBContext.Contacts
+
+    Public Property Addresses As Entity.DbSet(Of Address) Implements IHeatDBContext.Addresses
+
+    Public Property AddressTypes As Entity.DbSet(Of AddressType) Implements IHeatDBContext.AddressTypes
 End Class

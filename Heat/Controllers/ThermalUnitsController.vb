@@ -39,20 +39,38 @@ Namespace Controllers
             Return View(thermalUnit)
         End Function
 
+        '<HttpGet> _
+        '<Route("ThermalUnits/Create")> _
+        'Function Create() As ActionResult
+        '    Try
+        '        Dim model As CreateThermalUnitViewModel
+        '        model = _mb.GetCreateThermalUnitViewModel
+        '        Return View(model)
+        '    Catch ex As Exception
+        '        ViewBag.message = ex.ToString
+        '        Return View("error")
+        '    End Try
+
+        'End Function
+
         <HttpGet> _
-        Function Create(plantID As Integer) As ActionResult
+        Function Create(Optional plantID As Integer = -1) As ActionResult
             Try
-                If IsNothing(plantID) Then
-                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-                End If
-                If Not _db.Plants.Any(Function(x) x.ID = plantID) Then
-                    Return HttpNotFound()
-                End If
-
                 Dim model As CreateThermalUnitViewModel
-                model = _mb.GetCreateThermalUnitViewModel(plantID)
+                If plantID = -1 Then
 
+                    model = _mb.GetCreateThermalUnitViewModel
+
+                Else
+                    If Not _db.Plants.Any(Function(x) x.ID = plantID) Then
+                        Return HttpNotFound()
+                    End If
+
+                    model = _mb.GetCreateThermalUnitViewModel(plantID)
+
+                End If
                 Return View(model)
+
 
             Catch ex As Exception
                 ViewBag.message = ex.Message
@@ -81,7 +99,17 @@ Namespace Controllers
 
                 Return RedirectToAction("Index")
             Else
-                Return View(newThermalUnit)
+                'il modello non è valido, quindi torna in view per correggere gli errori.
+                'il modelBuilder ricostruisce le select.
+
+                Dim model As CreateThermalUnitViewModel
+                If newThermalUnit.PlantID <> 0 Then
+                    model = _mb.GetCreateThermalUnitViewModel(newThermalUnit.PlantID)
+                Else
+                    model = _mb.GetCreateThermalUnitViewModel
+                End If
+
+                Return View(model)
 
             End If
         End Function
@@ -129,10 +157,18 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim thermalUnit As ThermalUnit = _db.ThermalUnits.Find(id)
-            _db.ThermalUnits.Remove(thermalUnit)
-            _db.SaveChanges()
-            Return RedirectToAction("Index")
+            Try
+                Dim thermalUnit As ThermalUnit = _db.ThermalUnits.Find(id)
+                Dim plant As Plant = _db.Plants.Where(Function(x) x.ThermalUnit.ID = thermalUnit.ID).First
+                plant.ThermalUnit = Nothing
+                _db.ThermalUnits.Remove(thermalUnit)
+                _db.SaveChanges()
+                Return RedirectToAction("Index")
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)

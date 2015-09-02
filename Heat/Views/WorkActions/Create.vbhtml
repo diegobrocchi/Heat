@@ -7,14 +7,34 @@ End Code
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()
-    
-    @Html.HiddenFor(Function(x) x.PlantID )
-        
+                
     @<div class="form-horizontal">
         <h4>WorkAction</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-         
+    
+    @* La vista visualizza elementi differenti nel caso di PlantID selezionato o da selezionare *@
+
+    @If Model.PlantIDSelected Then
+        @<div class="form-group">
+            @Html.LabelFor(Function(model) model.PlantDescription, New With {.class = "control-label col-md-2"})
+            <div class="col-md-10 form-control-static">
+                @Html.DisplayFor(Function(model) model.PlantDescription)
+            </div>
+        </div>
+        @Html.HiddenFor(Function(model) model.PlantID)
+    Else
+        @<div class="form-group">
+            @Html.LabelFor(Function(model) model.PlantID, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            <div class="col-md-10 ">
+                @Html.DropDownListFor(Function(model) model.PlantID, Model.PlantList, New With {.class = "form-control"})
+                @Html.ValidationMessageFor(Function(model) model.PlantID, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+    End If
+
+    @* fine della parte *@    
+     
         <div class="form-group">
             @Html.LabelFor(Function(model) model.ActionDate, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">

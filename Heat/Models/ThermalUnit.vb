@@ -19,9 +19,9 @@ Namespace Models
         Property Model As ManifacturerModel
         Property SerialNumber As String
         Property InstallationDate As DateTime
-        Property FirstStartUp As DateTime
+        Property FirstStartUp As Nullable(Of DateTime)
         Property Warranty As String
-        Property WarrantyExpiration As DateTime
+        Property WarrantyExpiration As Nullable(Of DateTime)
         'Fine proprietà copiate da Futura
 
         '************
