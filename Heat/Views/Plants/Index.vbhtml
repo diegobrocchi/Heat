@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of Heat.MOdels.Plant)
+﻿@ModelType IEnumerable(Of Heat.ViewModels.Plants.IndexPlantViewModel )
 @Code
     ViewData("Title") = "Impianti"
 End Code
@@ -12,28 +12,21 @@ End Code
     <thead >
         <tr>
             <th>
-                @Html.DisplayNameFor(Function(model) model.Code)
+                @Html.DisplayNameFor(Function(x) x.PlantDistinctCode)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.Name)
+                @Html.DisplayNameFor(Function(x) x.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.Address)
+                @Html.DisplayNameFor(Function(x) x.PlantClass)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.City)
+                @Html.DisplayNameFor(Function(x) x.PlantType)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.PostalCode)
+                @Html.DisplayNameFor(Function(x) x.Address)
             </th>
-             
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PlantTelephone1)
-            </th>
-             
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PlantDistictCode)
-            </th>
+            
              
             <th></th>
         </tr>
@@ -42,30 +35,20 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.Code)
+            @Html.DisplayFor(Function(modelItem) item.PlantDistinctCode)
         </td>
         <td>
             @Html.DisplayFor(Function(modelItem) item.Name)
         </td>
+       <td>
+           @Html.DisplayFor(Function(modelItem) item.PlantClass)
+       </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.PlantType)
+        </td>
         <td>
             @Html.DisplayFor(Function(modelItem) item.Address)
-        </td>
-         
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PostalCode)
-        </td>
-         
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PlantTelephone1)
-        </td>
-         
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PlantDistictCode)
-        </td>
-         
+        </td> 
         <td>
             @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
             @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |

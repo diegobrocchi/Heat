@@ -503,6 +503,10 @@
       <DependentUpon>201509021757191_distinctCodePlant.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201509021757191_distinctCodePlant.vb" />
+    <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.Designer.vb">
+      <DependentUpon>201509031007328_removePlantIdFromPlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
@@ -622,6 +626,11 @@
     <Compile Include="ViewModels\Plants\AddContactPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\AddThermInfoPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\CreatePlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\DetailsContactPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\DetailsIdentifyPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\DetailsPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\DetailsThermalPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\IndexPlantViewModel.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
     <Compile Include="ViewModels\ThermalUnits\CreateThermalUnitViewModel.vb" />
     <Compile Include="ViewModels\WorkActions\CreateWorkActionViewModel.vb" />
@@ -818,6 +827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509021757191_distinctCodePlant.resx">
       <DependentUpon>201509021757191_distinctCodePlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509031007328_removePlantIdFromPlant.resx">
+      <DependentUpon>201509031007328_removePlantIdFromPlant.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1885,6 +1897,9 @@
     <Content Include="Views\PlantServices\Index.vbhtml" />
     <Content Include="Views\Plants\AddContact.vbhtml" />
     <Content Include="Views\Plants\AddThermInfo.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsIdentify.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsThermal.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsContacts.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

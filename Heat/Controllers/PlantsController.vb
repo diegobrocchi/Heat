@@ -28,27 +28,43 @@ Namespace Controllers
 
         ' GET: Plants
         Function Index() As ActionResult
-            Return View(_db.Plants.ToList())
+            Try
+                Dim model As List(Of IndexPlantViewModel)
+
+                model = _mb.GetIndexPlantViewModel
+
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
-        ' GET: Plants/Details/5
+        <HttpGet> _
         Function Details(ByVal id As Integer?) As ActionResult
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
-            Dim plant As Plant = _db.Plants.Find(id)
-            If IsNothing(plant) Then
-                Return HttpNotFound()
-            End If
-            Return View(plant)
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim plant As Plant = _db.Plants.Find(id)
+                If IsNothing(_db.Plants.Any(Function(x) x.ID = id)) Then
+                    Return HttpNotFound()
+                End If
+                Dim model As DetailsPlantViewModel
+                model = _mb.GetDetailsPlantViewModel(id)
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
         <HttpGet> _
         Function Create() As ActionResult
             Try
-                'Dim model As CreatePlantViewModel
-                'model = _mb.getCreatePlantViewModel
-                'Return View(model)
+                
                 Return View()
             Catch ex As Exception
                 ViewBag.message = ex.ToString
@@ -157,6 +173,32 @@ Namespace Controllers
                 Return View("error")
             End Try
 
+        End Function
+
+        <HttpPost> _
+        Function AddThermInfo(newThermInfo As AddThermInfoPlantViewModel) As ActionResult
+            Try
+                If ModelState.IsValid Then
+                    Dim ActualPB As PlantBuilding
+                    Dim actualPlant As Plant
+
+                    actualPlant = _db.Plants.Find(newThermInfo.PlantID)
+                    ActualPB = actualPlant.BuildingAddress
+
+                    ActualPB = AutoMapper.Mapper.Map(Of AddThermInfoPlantViewModel, PlantBuilding)(newThermInfo, ActualPB)
+                    actualPlant.PlantDistinctCode = newThermInfo.PlantDistinctCode
+
+                    _db.SaveChanges()
+
+                    Return RedirectToAction("index")
+                Else
+                    'ripasso al modelBuilder per ricreare le selectlist
+                    Return View(_mb.GetAddThermInfoPlantViewModel(newThermInfo.PlantID))
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
         End Function
 
         ' GET: Plants/Edit/5

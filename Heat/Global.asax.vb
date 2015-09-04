@@ -22,6 +22,16 @@ Public Class MvcApplication
         ViewEngines.Engines.Clear()
         ViewEngines.Engines.Add(New RazorViewEngine())
 
+        ModelBinders.Binders.Add(GetType(Decimal), New DecimalModelBinder())
+
+        DoAutomapperConfig()
+
+    End Sub
+
+    Private Sub DoAutomapperConfig()
+
+        'Mapper.CreateMap(of SOURCE, DESTINATION).ForMember(UNA_PROPRIETA_NON_MAPPATA_DEL_DESTINATION, OPT.IGNORA)
+
         Mapper.CreateMap(Of SerialScheme, CreateSerialSchemeViewModel)().Bidirectional()
         Mapper.CreateMap(Of SerialScheme, IndexSerialSchemeViewModel)()
 
@@ -47,7 +57,7 @@ Public Class MvcApplication
             ForMember(Function(dest) dest.FinalSerialSchema, Sub(opt) opt.MapFrom(Function(source) source.FinalSerialSchema.Description)). _
             ForMember(Function(dest) dest.TempSerialSchema, Sub(opt) opt.MapFrom(Function(source) source.TempSerialSchema.Description))
 
-        Mapper.CreateMap(Of Customer, ViewModels.Customers.IndexCustomerGridViewModel)()  
+        Mapper.CreateMap(Of Customer, ViewModels.Customers.IndexCustomerGridViewModel)()
 
         Mapper.CreateMap(Of ViewModels.Customers.CreateCustomerViewModel, Customer)() _
             .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
@@ -101,7 +111,6 @@ Public Class MvcApplication
 
         Mapper.CreateMap(Of ViewModels.Plants.CreatePlantViewModel, PlantBuilding)()
 
-
         Mapper.CreateMap(Of ViewModels.Plants.CreatePlantViewModel, Plant) _
             .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.PlantClass, Sub(opt) opt.Ignore()) _
@@ -110,8 +119,6 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.Service, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.ThermalUnit, Sub(opt) opt.Ignore()) _
         .ForMember(Function(dest) dest.Contacts, Sub(opt) opt.Ignore()) _
-        .ForMember(Function(dest) dest.PlantClassID, Sub(opt) opt.Ignore()) _
-        .ForMember(Function(dest) dest.PlantTypeID, Sub(opt) opt.Ignore()) _
         .ForMember(Function(dest) dest.BuildingAddress, Sub(opt) opt.MapFrom(Function(src) Mapper.Map(Of ViewModels.Plants.CreatePlantViewModel, PlantBuilding)(src)))
 
         Mapper.CreateMap(Of ViewModels.Plants.AddContactPlantViewModel, Address)() _
@@ -124,13 +131,88 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.Address, Sub(opt) opt.MapFrom(Function(src) Mapper.Map(Of ViewModels.Plants.AddContactPlantViewModel, Address)(src)))
 
+        Mapper.CreateMap(Of ViewModels.Plants.AddThermInfoPlantViewModel, PlantBuilding) _
+            .ForMember(Function(dest) dest.Address, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Apartment, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Area, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Building, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.City, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.District, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PostalCode, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Stair, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.StreetNumber, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Zone, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of PlantBuilding, ViewModels.Plants.DetailsIdentifyPlantViewModel)() _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Name, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantDistinctCode, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of Plant, ViewModels.Plants.DetailsIdentifyPlantViewModel)() _
+            .ForMember(Function(dest) dest.Address, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Apartment, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Area, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Building, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.City, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.District, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PostalCode, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Stair, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.StreetNumber, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Zone, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of Plant, ViewModels.Plants.DetailsThermalPlantViewModel)() _
+            .ForMember(Function(dest) dest.FirstStartUp, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Fuel, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.HeatTransferFluid, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.InstallationDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Kind, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Model, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.NominalThermalPowerMax, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantClass, Sub(opt) opt.MapFrom(Function(src) src.PlantClass.Name)) _
+            .ForMember(Function(dest) dest.PlantType, Sub(opt) opt.MapFrom(Function(src) src.PlantType.Name)) _
+            .ForMember(Function(dest) dest.SerialNumber, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.ThermalEfficiencyPowerMax, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Warranty, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.WarrantyExpiration, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.IsSingleUnit, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.EnergyCategory, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.GrossCooledVolumeM3, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.GrossHeatedVolumeM3, Sub(opt) opt.Ignore())
+
+        Mapper.CreateMap(Of PlantBuilding, ViewModels.Plants.DetailsThermalPlantViewModel)() _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantClass, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantType, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Model, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.SerialNumber, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.InstallationDate, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.FirstStartUp, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Warranty, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.WarrantyExpiration, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Fuel, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.HeatTransferFluid, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.NominalThermalPowerMax, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.ThermalEfficiencyPowerMax, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Kind, Sub(opt) opt.Ignore())
+
+
+        Mapper.CreateMap(Of ThermalUnit, ViewModels.Plants.DetailsThermalPlantViewModel) _
+            .ForMember(Function(dest) dest.EnergyCategory, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Fuel, Sub(opt) opt.MapFrom(Function(src) src.Fuel.Name)) _
+            .ForMember(Function(dest) dest.GrossCooledVolumeM3, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.GrossHeatedVolumeM3, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.HeatTransferFluid, Sub(opt) opt.MapFrom(Function(src) src.HeatTransferFluid.Name)) _
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.IsSingleUnit, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Manifacturer, Sub(opt) opt.MapFrom(Function(src) src.Manifacturer.Name)) _
+            .ForMember(Function(dest) dest.Model, Sub(opt) opt.MapFrom(Function(src) src.Model.Model)) _
+            .ForMember(Function(dest) dest.PlantClass, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.PlantType, Sub(opt) opt.Ignore())
+
 
         Mapper.AssertConfigurationIsValid()
-
-        ModelBinders.Binders.Add(GetType(Decimal), New DecimalModelBinder())
-
     End Sub
-
-
 
 End Class
