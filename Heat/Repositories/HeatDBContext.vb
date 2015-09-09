@@ -19,8 +19,10 @@ Namespace Repositories
             'Entity.Database.SetInitializer(Of HeatDBContext)(Nothing)
             'Entity.Database.SetInitializer(Of HeatDBContext)(New HeatDBInitializer)
             'Me.Configuration.LazyLoadingEnabled = True
-            _logger = LogManager.GetLogger(GetType(HeatDBContext))
-            _logger.Debug("HeatDbContext created")
+
+            '_logger = LogManager.GetLogger(GetType(HeatDBContext))
+            '_logger.Debug("HeatDbContext created")
+
         End Sub
 
 
@@ -33,16 +35,17 @@ Namespace Repositories
         End Sub
 
         Property Customers As DbSet(Of Customer) Implements IHeatDBContext.Customers
-        Property Address As DbSet(Of Address)
-        Property Actions As DbSet(Of WorkAction)
+        Property Address As DbSet(Of Address) Implements IHeatDBContext.Addresses
+        Property AddressTypes As DbSet(Of AddressType) Implements IHeatDBContext.AddressTypes
+        Property Contacts As DbSet(Of Contact) Implements IHeatDBContext.Contacts
         Property WarehouseMovement As DbSet(Of WarehouseMovement) Implements IHeatDBContext.WarehouseMovements
-        Property Plants As DbSet(Of Plant)
-        Property PlantTypes As DbSet(Of PlantType)
-        Property PlantClasses As DbSet(Of PlantClass)
+        Property Plants As DbSet(Of Plant) Implements IHeatDBContext.Plants
+        Property PlantTypes As DbSet(Of PlantType) Implements IHeatDBContext.PlantTypes
+        Property PlantClasses As DbSet(Of PlantClass) Implements IHeatDBContext.PlantClasses
         Property Invoices As DbSet(Of Invoice) Implements IHeatDBContext.Invoices
         Property InvoiceRows As DbSet(Of InvoiceRow) Implements IHeatDBContext.InvoiceRows
         Property Payments As DbSet(Of Payment) Implements IHeatDBContext.Payments
-        Property Fuels As DbSet(Of Fuel)
+        Property Fuels As DbSet(Of Fuel) Implements IHeatDBContext.Fuels
         Property CausalDocuments As DbSet(Of CausalDocument)
         Property Numberings As DbSet(Of Numbering) Implements IHeatDBContext.Numberings
         Property DocumentTypes As DbSet(Of Models.DocumentType) Implements IHeatDBContext.DocumentTypes
@@ -52,16 +55,19 @@ Namespace Repositories
         Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
         Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
         Property Products As DbSet(Of Product) Implements IHeatDBContext.Products
-        Property AddressTypes As System.Data.Entity.DbSet(Of Models.AddressType)
-        Property Operations As System.Data.Entity.DbSet(Of Models.Operation)
         Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow) Implements IHeatDBContext.DescriptiveInvoiceRows
         Property ProductInvoiceRows As DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
         Property ActionTypes As System.Data.Entity.DbSet(Of Models.ActionType) Implements IHeatDBContext.ActionTypes
         Property WorkOperators As System.Data.Entity.DbSet(Of Models.WorkOperator) Implements IHeatDBContext.WorkOperators
+        Property WorkActions As DbSet(Of WorkAction) Implements IHeatDBContext.WorkActions
+        Property Operations As DbSet(Of Operation) Implements IHeatDBContext.Operations
         Property Manifacturers As DbSet(Of Manifacturer) Implements IHeatDBContext.Manifacturers
         Property ManifacturerModels As DbSet(Of ManifacturerModel) Implements IHeatDBContext.ManifacturerModels
-        Property BoilerHeaters As DbSet(Of BoilerHeater) Implements IHeatDBContext.BoilerHeaters
-        Property BoilerServicesTypes As DbSet(Of BoilerServiceType) Implements IHeatDBContext.BoilerServiceTypes
+        Property HeatTransferFluids As DbSet(Of HeatTransferFluid) Implements IHeatDBContext.HeatTransferFluids
+        Property ThermalUnits As System.Data.Entity.DbSet(Of Models.ThermalUnit) Implements IHeatDBContext.ThermalUnits
+        Property ThermalUnitKinds As DbSet(Of ThermalUnitKind) Implements IHeatDBContext.ThermalUnitKinds
+        Property Heaters As DbSet(Of Heater) Implements IHeatDBContext.Heaters
+        Property PlantServices As System.Data.Entity.DbSet(Of Models.PlantService) Implements IHeatDBContext.PlantServices
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges

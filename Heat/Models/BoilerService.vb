@@ -5,6 +5,7 @@
     ''' </summary>
     ''' <remarks></remarks>
     Public Class BoilerService
+
         Property ID As Integer
         Property Boiler As Boiler
         Property Type As BoilerServiceType

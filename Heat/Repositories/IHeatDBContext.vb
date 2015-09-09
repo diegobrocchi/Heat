@@ -4,7 +4,10 @@ Imports Heat.Models
 Public Interface IHeatDBContext
     Inherits IDisposable
 
+    Property Addresses As DbSet(Of Address)
+    Property AddressTypes As DbSet(Of AddressType)
     Property Customers As DbSet(Of Customer)
+    Property Contacts As DbSet(Of Contact)
     Property Numberings As DbSet(Of Numbering)
     Property SerialSchemes As DbSet(Of SerialScheme)
     Property CausalWarehouses As DbSet(Of CausalWarehouse)
@@ -21,10 +24,20 @@ Public Interface IHeatDBContext
     Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow)
     Property ActionTypes As DbSet(Of ActionType)
     Property WorkOperators As DbSet(Of WorkOperator)
+    Property WorkActions As DbSet(Of WorkAction)
+    Property Operations As DbSet(Of Operation)
     Property Manifacturers As DbSet(Of Manifacturer)
     Property ManifacturerModels As DbSet(Of ManifacturerModel)
-    Property BoilerHeaters As DbSet(Of BoilerHeater)
-    Property BoilerServiceTypes As DbSet(Of BoilerServiceType)
+    
+    Property HeatTransferFluids As DbSet(Of HeatTransferFluid)
+    Property ThermalUnitKinds As DbSet(Of ThermalUnitKind)
+    Property Plants As DbSet(Of Plant)
+    Property PlantTypes As DbSet(Of PlantType)
+    Property PlantClasses As DbSet(Of PlantClass)
+    Property PlantServices As DbSet(Of PlantService)
+    Property ThermalUnits As DbSet(Of ThermalUnit)
+    Property Fuels As DbSet(Of Fuel)
+    Property Heaters As DbSet(Of Heater)
 
 
 

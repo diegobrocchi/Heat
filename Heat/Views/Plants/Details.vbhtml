@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Plant
+﻿@ModelType Heat.ViewModels.Plants.DetailsPlantViewModel
 @Code
     ViewData("Title") = "Dettagli impianto"
 End Code
@@ -6,8 +6,29 @@ End Code
 <h2>Dettagli impianto</h2>
 
 <div>
-    <h4>Plant</h4>
-    <hr />
+    <h4>Impianto</h4>
+
+    <ul class="nav nav-tabs" role="tablist" id="plantDetailsTab">
+        <li role="presentation" class="active"><a href="#tabIdentify" role="tab" data-toggle="tab">Dati identificativi</a></li>
+        <li role="presentation"><a href="#tabThermal" role="tab" data-toggle="tab">Dati termici</a></li>
+        <li role="presentation"><a href="#tabContacts" role="tab" data-toggle="tab">Contatti</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tabIdentify">
+            @Html.Partial("partials/_DetailsIdentify", Model.IdentifyViewModel)
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tabThermal">
+            @Html.Partial("partials/_DetailsThermal", Model.ThermalViewModel)
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tabContacts">
+            @Html.Partial("partials/_DetailsContacts", Model.ContactViewModel)
+        </div>
+    </div>
+
+</div>
+
+    @*<hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(Function(model) model.Code)
@@ -26,91 +47,11 @@ End Code
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.Address)
+            @Html.DisplayNameFor(Function(model) model.PlantDistinctCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.StreetNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.StreetNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.PostalCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.PostalCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Area)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.Area)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Zone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.Zone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.PlantTelephone1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.PlantTelephone1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.PlantTelephone2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.PlantTelephone2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.PlantTelephone3)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.PlantTelephone3)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.PlantDistictCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.PlantDistictCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Fuel)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.Fuel)
+            @Html.DisplayFor(Function(model) model.PlantDistinctCode)
         </dd>
 
     </dl>
@@ -118,4 +59,4 @@ End Code
 <p>
     @Html.ActionLink("Edit", "Edit", New With { .id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

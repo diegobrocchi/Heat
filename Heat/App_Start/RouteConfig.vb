@@ -9,6 +9,9 @@ Public Module RouteConfig
     Public Sub RegisterRoutes(ByVal routes As RouteCollection)
         routes.IgnoreRoute("{resource}.axd/{*pathInfo}")
 
+
+        'routes.MapMvcAttributeRoutes()
+
         routes.MapRoute(
             name:="Default",
             url:="{controller}/{action}/{id}",

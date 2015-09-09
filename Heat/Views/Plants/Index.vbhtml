@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of Heat.Plant)
+﻿@ModelType IEnumerable(Of Heat.ViewModels.Plants.IndexPlantViewModel )
 @Code
     ViewData("Title") = "Impianti"
 End Code
@@ -12,44 +12,22 @@ End Code
     <thead >
         <tr>
             <th>
-                @Html.DisplayNameFor(Function(model) model.Code)
+                @Html.DisplayNameFor(Function(x) x.PlantDistinctCode)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.Name)
+                @Html.DisplayNameFor(Function(x) x.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.Address)
+                @Html.DisplayNameFor(Function(x) x.PlantClass)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.StreetNumber)
+                @Html.DisplayNameFor(Function(x) x.PlantType)
             </th>
             <th>
-                @Html.DisplayNameFor(Function(model) model.City)
+                @Html.DisplayNameFor(Function(x) x.Address)
             </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PostalCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.Area)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.Zone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PlantTelephone1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PlantTelephone2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PlantTelephone3)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.PlantDistictCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Function(model) model.Fuel)
-            </th>
+            
+             
             <th></th>
         </tr>
     </thead>
@@ -57,48 +35,25 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.Code)
+            @Html.DisplayFor(Function(modelItem) item.PlantDistinctCode)
         </td>
         <td>
             @Html.DisplayFor(Function(modelItem) item.Name)
         </td>
+       <td>
+           @Html.DisplayFor(Function(modelItem) item.PlantClass)
+       </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.PlantType)
+        </td>
         <td>
             @Html.DisplayFor(Function(modelItem) item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.StreetNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PostalCode)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Area)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Zone)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PlantTelephone1)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PlantTelephone2)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PlantTelephone3)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.PlantDistictCode)
-        </td>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Fuel)
-        </td>
+        </td> 
         <td>
             @Html.ActionLink("Modifica", "Edit", New With {.id = item.ID}) |
             @Html.ActionLink("Dettagli", "Details", New With {.id = item.ID}) |
-            @Html.ActionLink("Cancella", "Delete", New With {.id = item.ID})
+            @Html.ActionLink("Cancella", "Delete", New With {.id = item.ID}) |
+            @Html.ActionLink("Aggiungi un Generatore", "create", "ThermalUnits", New With {.plantID = item.ID}, Nothing)
         </td>
     </tr>
 Next

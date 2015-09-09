@@ -21,7 +21,5 @@
         ''' <remarks></remarks>
         Property Services As List(Of BoilerService)
 
-
-
     End Class
 End Namespace

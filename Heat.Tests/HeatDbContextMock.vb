@@ -96,7 +96,31 @@ Public Class HeatDbContextMock
 
     Public Property ManifacturerModels As Entity.DbSet(Of ManifacturerModel) Implements IHeatDBContext.ManifacturerModels
 
-    Public Property BoilerHeaters As Entity.DbSet(Of BoilerHeater) Implements IHeatDBContext.BoilerHeaters
+    Public Property HeatTransferFluids As Entity.DbSet(Of HeatTransferFluid) Implements IHeatDBContext.HeatTransferFluids
 
-    Public Property BoilerServiceTypes As Entity.DbSet(Of BoilerServiceType) Implements IHeatDBContext.BoilerServiceTypes
+    Public Property ThermalUnitKinds As Entity.DbSet(Of ThermalUnitKind) Implements IHeatDBContext.ThermalUnitKinds
+
+    Public Property PlantClasses As Entity.DbSet(Of PlantClass) Implements IHeatDBContext.PlantClasses
+
+    Public Property Plants As Entity.DbSet(Of Plant) Implements IHeatDBContext.Plants
+
+    Public Property PlantTypes As Entity.DbSet(Of PlantType) Implements IHeatDBContext.PlantTypes
+
+    Public Property Fuels As Entity.DbSet(Of Fuel) Implements IHeatDBContext.Fuels
+
+    Public Property ThermalUnits As Entity.DbSet(Of ThermalUnit) Implements IHeatDBContext.ThermalUnits
+
+    Public Property Heaters As Entity.DbSet(Of Heater) Implements IHeatDBContext.Heaters
+
+    Public Property PlantServices As Entity.DbSet(Of PlantService) Implements IHeatDBContext.PlantServices
+
+    Public Property WorkActions As Entity.DbSet(Of WorkAction) Implements IHeatDBContext.WorkActions
+
+    Public Property Operations As Entity.DbSet(Of Operation) Implements IHeatDBContext.Operations
+
+    Public Property Contacts As Entity.DbSet(Of Contact) Implements IHeatDBContext.Contacts
+
+    Public Property Addresses As Entity.DbSet(Of Address) Implements IHeatDBContext.Addresses
+
+    Public Property AddressTypes As Entity.DbSet(Of AddressType) Implements IHeatDBContext.AddressTypes
 End Class

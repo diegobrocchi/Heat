@@ -19,9 +19,9 @@ End Code
         <p><a class="btn btn-primary" href=@Url.Action("index", "customers")>Clienti</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Documenti</h2>
-        <p>Accedi all'area di gestione dei documenti aziendali</p>
-        <p><a class="btn btn-primary" href=@Url.Action("index", "Documents")>Documenti</a></p>
+        <h2>Fatture</h2>
+        <p>Visualizza le fatture</p>
+        <p><a class="btn btn-primary" href=@Url.Action("index", "Invoices")>Fatture</a></p>
     </div>
     <div class="col-md-4">
         <h2>Interventi</h2>
@@ -29,7 +29,8 @@ End Code
         <p><a class="btn btn-primary" href=@Url.Action("index", "WorkActions")>Interventi</a></p>
     </div>
 </div>
-<div class="row">
+
+@*<div class="row">
     <div class="col-md-12 ">
         <h1>Claims</h1>
         <div>
@@ -39,6 +40,6 @@ End Code
         </div>
     </div>
     
-</div>
+</div>*@
 
   

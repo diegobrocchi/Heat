@@ -11,15 +11,12 @@ Namespace Models
         Property StreetNumber As String
         Property City As String
         Property PostalCode As String
-        Property Province As String
+        Property District As String
         Property State As String
-        Property Phone As String
-        Property CellPhone As String
-        Property Fax As String
         Property Note As String
 
-        Property CustomerID As Nullable(Of Integer)
-        Overridable Property Customer As Customer
+        'Property CustomerID As Nullable(Of Integer)
+        'Overridable Property Customer As Customer
 
 
     End Class

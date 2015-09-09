@@ -1,5 +1,7 @@
 ﻿Imports System.IO
 Imports Heat.Repositories
+Imports Heat.Models
+
 
 Public Class ImportHelper
 
@@ -79,23 +81,26 @@ Public Class ImportHelper
                         fileRowFields = fileRows(i).Split(";")
 
                         Dim newPlant As New Plant
-                        newPlant.Address = fileRowFields(4)
-                        newPlant.Area = fileRowFields(16)
-                        newPlant.City = fileRowFields(12)
+                        'TODO: cambia l'associazione dell'indirizzo: non proprietà, ma complexType BuildingAddress
+                        'newPlant.Address = fileRowFields(4)
+                        'newPlant.Area = fileRowFields(16)
+                        'newPlant.City = fileRowFields(12)
+                        'newPlant.PostalCode = fileRowFields(13)
+                        'newPlant.StreetNumber = fileRowFields(5)
+                        'newPlant.Zone = fileRowFields(16)
                         newPlant.Code = fileRowFields(2)
-                        newPlant.Fuel = fileRowFields(17)
+                        'TODO: Fuel è un oggetto a se': aggiusta l'import!!!!
+                        'newPlant.Fuel = fileRowFields(17)
+                        '
                         newPlant.Name = fileRowFields(3)
                         Dim sPlantClass As String = fileRowFields(9)
                         newPlant.PlantClass = _context.PlantClasses.Where(Function(pc) pc.Name = sPlantClass).FirstOrDefault
-                        newPlant.PlantDistictCode = fileRowFields(11)
-                        newPlant.PlantTelephone1 = fileRowFields(6)
-                        newPlant.PlantTelephone2 = fileRowFields(7)
-                        newPlant.PlantTelephone3 = fileRowFields(8)
+                        newPlant.PlantDistinctCode = fileRowFields(11)
+                        'newPlant.PlantTelephone1 = fileRowFields(6)
+                        'newPlant.PlantTelephone2 = fileRowFields(7)
+                        'newPlant.PlantTelephone3 = fileRowFields(8)
                         Dim sPlantType As String = fileRowFields(10)
                         newPlant.PlantType = _context.PlantTypes.Where(Function(pt) pt.Name = sPlantType).FirstOrDefault
-                        newPlant.PostalCode = fileRowFields(13)
-                        newPlant.StreetNumber = fileRowFields(5)
-                        newPlant.Zone = fileRowFields(16)
 
                         newPlantList.Add(newPlant)
                     Next

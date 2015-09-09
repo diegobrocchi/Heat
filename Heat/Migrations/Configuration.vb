@@ -15,7 +15,7 @@ Namespace Migrations
         Inherits DbMigrationsConfiguration(Of HeatDBContext)
 
         Public Sub New()
-            AutomaticMigrationsEnabled = True
+            AutomaticMigrationsEnabled = False
             AutomaticMigrationDataLossAllowed = True
             ContextKey = "Heat.HeatDBContext"
         End Sub
@@ -158,6 +158,22 @@ Namespace Migrations
             Dim wop1 As New Models.WorkOperator
             Dim wop2 As New Models.WorkOperator
 
+            Dim manu1 As New Models.Manifacturer
+            Dim manu2 As New Models.Manifacturer
+
+            Dim manuModel1 As New Models.ManifacturerModel
+            Dim manuModel2 As New Models.ManifacturerModel
+
+            Dim flu1 As New Models.HeatTransferFluid
+            Dim flu2 As New Models.HeatTransferFluid
+
+            Dim tuk1 As New Models.ThermalUnitKind
+            Dim tuk2 As New Models.ThermalUnitKind
+
+            Dim plc1 As New Models.PlantClass
+            Dim pt1 As New Models.planttype
+            Dim pl1 As New Models.Plant
+
 
             Fuel1.Name = "Gasolio"
             Fuel2.Name = "Metano"
@@ -235,6 +251,24 @@ Namespace Migrations
             wop1.Name = "Diego Brocchi"
             wop2.Name = "Mario Rossi"
 
+            manu1.Name = "Beretta"
+            manu2.Name = "Vaillant"
+
+            flu1.Name = "Acqua"
+            flu2.Name = "Vapore"
+
+            tuk1.Description = "Gruppo termico singolo"
+
+            plc1.Name = "Classe 1"
+
+            pt1.Name = "Climatizzazione"
+
+            pl1.Code = 999
+            pl1.Name = "impianto XYZ"
+            pl1.PlantClass = plc1
+            pl1.PlantType = pt1
+            pl1.BuildingAddress = New Models.PlantBuilding
+
             '###################################
             'Aggiunta dati al DB
             '###################################
@@ -255,9 +289,23 @@ Namespace Migrations
 
             context.SerialSchemes.AddOrUpdate(Function(ss) ss.Name, simpleSchema)
 
-            'Commenta la riga sotto dopo il primo update-database
-            'finchè non capisci perchè dà un errore su violazione FK in UPDATE 
-            'context.Numberings.AddOrUpdate(Function(n) n.Code, number)
+            context.PlantClasses.AddOrUpdate(Function(pc) pc.Name, plc1)
+            context.PlantTypes.AddOrUpdate(Function(pt) pt.Name, pt1)
+
+            pl1.PlantClass = plc1
+            pl1.PlantType = pt1
+            context.Plants.AddOrUpdate(Function(p) p.Name, pl1)
+
+
+
+            '*****************
+            'HACK HACK HACK
+            'assegna il valore alla proprietà ID dello schema, atrimenti si arrabbia
+            number.TempSerialSchemaID = simpleSchema.ID
+            number.FinalSerialSchemaID = simpleSchema.ID
+            'fine HACK
+
+            context.Numberings.AddOrUpdate(Function(n) n.Code, number)
             context.DocumentTypes.AddOrUpdate(Function(dt) dt.Name, FTC)
 
             context.Products.AddOrUpdate(Function(p) p.SKU, product1)
@@ -272,6 +320,31 @@ Namespace Migrations
 
             context.WorkOperators.AddOrUpdate(Function(wo) wo.Name, wop1)
             context.WorkOperators.AddOrUpdate(Function(wo) wo.Name, wop2)
+
+            context.Manifacturers.AddOrUpdate(Function(m) m.Name, manu1)
+            context.Manifacturers.AddOrUpdate(Function(m) m.Name, manu2)
+
+            '***********************************
+            'HACK HACK HACK
+            'altrimenti EF rompe con UPDATE e FOREIGN KEY
+            manuModel1.Manifacturer = manu1
+            manuModel1.ManifacturerID = manu1.ID
+            manuModel1.Model = "ModelXYZ"
+
+            manuModel2.Manifacturer = manu2
+            manuModel2.ManifacturerID = manu2.ID
+            manuModel2.Model = "ModelABC"
+
+            'l'hack consiste nel valorizzare manifacturerID con il suo attuale valore, altrimenti è 0 si arrabbia.
+            'FINE HACK
+
+            context.ManifacturerModels.AddOrUpdate(Function(m) m.Model, manuModel1)
+            context.ManifacturerModels.AddOrUpdate(Function(m) m.Model, manuModel2)
+
+            context.HeatTransferFluids.AddOrUpdate(Function(x) x.Name, flu1)
+            context.HeatTransferFluids.AddOrUpdate(Function(x) x.Name, flu2)
+
+            context.ThermalUnitKinds.AddOrUpdate(Function(x) x.Description, tuk1)
 
             context.SaveChanges()
 

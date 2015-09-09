@@ -19,7 +19,24 @@ End Code
     
 </p>
 
-@Html.Partial("partials/_customerGrid", Model.Rows)
+@*@Html.Partial("partials/_customerGrid", Model.Rows)*@
+
+<table id="paged_table" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Indirizzo</th>
+            <th>Città</th>
+            <th>Telefono 1</th>
+            <th>Telefono 2</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
 
 @section scripts
      <script type="text/javascript"  src="~/Scripts/Views/Customers/index.js"></script>

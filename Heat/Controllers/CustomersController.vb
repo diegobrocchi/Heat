@@ -1,19 +1,14 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Data
-Imports System.Data.Entity
-Imports System.Linq
+﻿Imports System.Data.Entity
 Imports System.Net
-Imports System.Web
-Imports System.Web.Mvc
-Imports Heat
 Imports Heat.Models
-Imports Heat.Repositories
 Imports Heat.ViewModels.Customers
 Imports Heat.Manager
 Imports AutoMapper
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
+Imports DataTables.AspNet.Mvc5
+Imports DataTables.AspNet.Core
+Imports System.Linq.dynamic
 
 
 
@@ -88,7 +83,7 @@ Namespace Controllers
                     Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 End If
 
-                If Not _db.Customers.AsNoTracking.Any(Function(x) x.ID = id) Then
+                If Not _db.Customers.Any(Function(x) x.ID = id) Then
                     Return HttpNotFound()
                 End If
                 Dim model As EditCustomerViewModel
@@ -101,7 +96,7 @@ Namespace Controllers
 
         End Function
 
-        
+
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Edit(editedCustomer As EditCustomerViewModel) As ActionResult
@@ -149,12 +144,12 @@ Namespace Controllers
 
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function Import() As ActionResult
             Return View()
         End Function
 
-        <HttpPost> _
+        <HttpPost>
         Function Import(uploadFileCustomers As HttpPostedFileBase) As ActionResult
             If Not IsNothing(uploadFileCustomers) AndAlso uploadFileCustomers.ContentLength > 0 Then
                 Dim fileExt As String
@@ -179,12 +174,12 @@ Namespace Controllers
             End If
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function GetCustomersByName(searchText As String) As ActionResult
             Return Json(_db.Customers.Where(Function(x) x.Name.Contains(searchText)).Select(Function(x) New With {.id = x.ID, .name = x.Name}).ToList, JsonRequestBehavior.AllowGet)
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Public Function DisableCustomer(id As Integer) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -198,8 +193,8 @@ Namespace Controllers
             Return View(dc)
         End Function
 
-        <HttpPost> _
-        <ValidateAntiForgeryToken> _
+        <HttpPost>
+        <ValidateAntiForgeryToken>
         Public Function DisableCustomer(dc As DisableCustomerViewModel) As ActionResult
             If ModelState.IsValid Then
                 Try
@@ -227,7 +222,7 @@ Namespace Controllers
         End Function
 
 
-        <HttpGet> _
+        <HttpGet>
         Public Function EnableCustomer(id As Integer) As ActionResult
             Try
                 If IsNothing(id) Then
@@ -247,8 +242,8 @@ Namespace Controllers
 
         End Function
 
-        <HttpPost> _
-        <ValidateAntiForgeryToken> _
+        <HttpPost>
+        <ValidateAntiForgeryToken>
         Public Function EnableCustomer(ec As EnableCustomerViewModel) As ActionResult
             Try
                 If ModelState.IsValid Then
@@ -279,7 +274,7 @@ Namespace Controllers
             MyBase.Dispose(disposing)
         End Sub
 
-        <HttpGet> _
+        <HttpGet>
         Public Function Print(id As Integer) As ActionResult
             Dim d As New iTextSharp.text.Document
             PdfWriter.GetInstance(d, New System.IO.FileStream(Request.PhysicalApplicationPath & "\1.pdf", System.IO.FileMode.Create))
@@ -287,6 +282,38 @@ Namespace Controllers
             d.Add(New Paragraph("Hello " & id))
             d.Close()
             Return Redirect("~/1.pdf")
+
+        End Function
+
+        Public Function PageCustomerData(request As IDataTablesRequest) As ActionResult
+            Dim filteredData As IQueryable(Of Customer)
+            Dim pagedData As IQueryable(Of Customer)
+            Dim orderedData As IQueryable(Of Customer)
+
+            'prima filtra i dati
+            filteredData = _db.Customers.Where(Function(c) c.Name.Contains(request.Search.Value))
+
+            'poi ordina
+            Dim sortColumn As String = "name"
+            Dim sortDirection As String = "ASC"
+            For Each column In request.Columns
+                If column.IsSortable Then
+                    If Not IsNothing(column.Sort) Then
+                        sortColumn = column.Field
+                        If column.Sort.Direction = 0 Then
+                            sortDirection = "ASC"
+                        Else
+                            sortDirection = "DESC"
+                        End If
+                        Exit For
+                    End If
+                End If
+            Next
+            orderedData = filteredData.AsQueryable.OrderBy(sortColumn & " " & sortDirection)
+
+            pagedData = orderedData.Skip(request.Start).Take(request.Length)
+
+            Return New DataTablesJsonResult(DataTablesResponse.Create(request, _db.Customers.Count, filteredData.Count, pagedData), JsonRequestBehavior.AllowGet)
 
         End Function
 
