@@ -213,6 +213,8 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.PlantClass, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.PlantType, Sub(opt) opt.Ignore())
 
+        Mapper.CreateMap(Of Customer, ViewModels.Customers.IndexDataTableCustomerViewModel)()
+
 
         Mapper.AssertConfigurationIsValid()
     End Sub

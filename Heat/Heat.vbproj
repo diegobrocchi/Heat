@@ -136,9 +136,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.identitymodel.services" />
-    <Reference Include="System.Linq.Dynamic, Version=2.1.0.0, Culture=neutral, PublicKeyToken=667e828eb982ff2d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\System.Linq.Dynamic.dll</HintPath>
+    <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -568,6 +568,7 @@
     <Compile Include="ViewModels\Customers\EnableCustomerViewModel.vb" />
     <Compile Include="ViewModels\Customers\IndexCustomerGridViewModel.vb" />
     <Compile Include="ViewModels\Customers\IndexCustomerViewModel.vb" />
+    <Compile Include="ViewModels\Customers\IndexDataTableCustomerViewModel.vb" />
     <Compile Include="ViewModels\Heaters\CreateHeaterViewModel.vb" />
     <Compile Include="ViewModels\Invoices\AddNewDescriptiveInvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\Invoices\EditDescriptiveInvoiceRowViewModel.vb" />
@@ -1923,6 +1924,7 @@
     <Content Include="Views\Plants\Partials\_DetailsIdentify.vbhtml" />
     <Content Include="Views\Plants\Partials\_DetailsThermal.vbhtml" />
     <Content Include="Views\Plants\Partials\_DetailsContacts.vbhtml" />
+    <Content Include="Views\Customers\Manage.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

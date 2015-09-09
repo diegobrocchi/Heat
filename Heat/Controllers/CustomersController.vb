@@ -4,6 +4,7 @@ Imports Heat.Models
 Imports Heat.ViewModels.Customers
 Imports Heat.Manager
 Imports AutoMapper
+Imports AutoMapper.QueryableExtensions
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
 Imports DataTables.AspNet.Mvc5
@@ -285,22 +286,27 @@ Namespace Controllers
 
         End Function
 
+        <HttpGet> _
         Public Function PageCustomerData(request As IDataTablesRequest) As ActionResult
+            Dim baseData As IQueryable(Of Customer)
             Dim filteredData As IQueryable(Of Customer)
             Dim pagedData As IQueryable(Of Customer)
             Dim orderedData As IQueryable(Of Customer)
 
-            'prima filtra i dati
-            filteredData = _db.Customers.Where(Function(c) c.Name.Contains(request.Search.Value))
+            'per prima cosa seleziona dalla base dati solo i Customer abilitati
+            baseData = _db.Customers.Where(Function(c) c.IsEnabled = True)
 
-            'poi ordina
+            'poi filtra i dati in base alla indicazione dell'utente (Case Insensitive)
+            filteredData = baseData.Where(Function(c) c.Name.Contains(request.Search.Value))
+
+            'poi ordina (non è supportato l'ordinamento multicolonna, quindi ordina per la prima colonna su cui è imposto l'ordinamento)
             Dim sortColumn As String = "name"
             Dim sortDirection As String = "ASC"
             For Each column In request.Columns
                 If column.IsSortable Then
                     If Not IsNothing(column.Sort) Then
                         sortColumn = column.Field
-                        If column.Sort.Direction = 0 Then
+                        If column.Sort.Direction = DataTables.AspNet.Core.SortDirection.Ascending Then
                             sortDirection = "ASC"
                         Else
                             sortDirection = "DESC"
@@ -309,12 +315,18 @@ Namespace Controllers
                     End If
                 End If
             Next
-            orderedData = filteredData.AsQueryable.OrderBy(sortColumn & " " & sortDirection)
+
+            orderedData = filteredData.OrderBy(sortColumn & " " & sortDirection)
 
             pagedData = orderedData.Skip(request.Start).Take(request.Length)
 
-            Return New DataTablesJsonResult(DataTablesResponse.Create(request, _db.Customers.Count, filteredData.Count, pagedData), JsonRequestBehavior.AllowGet)
+            Return New DataTablesJsonResult(DataTablesResponse.Create(request, baseData.Count, filteredData.Count, pagedData.Project.To(Of IndexDataTableCustomerViewModel)), JsonRequestBehavior.AllowGet)
 
+        End Function
+
+        Public Function Manage(id As Integer) As ActionResult
+            ViewBag.id = id
+            Return View()
         End Function
 
     End Class

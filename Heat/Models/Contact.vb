@@ -12,8 +12,6 @@
         Property URL As String
 
 
-
-
     End Class
 End Namespace
 
