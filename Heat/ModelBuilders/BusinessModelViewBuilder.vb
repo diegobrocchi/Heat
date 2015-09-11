@@ -8,11 +8,11 @@ Public Class BusinessModelViewBuilder
         _db = context
     End Sub
 
-    Public Function GetSortedAndPagedCustomer(sortOrder As String, skip As Integer, take As Integer) As IList(Of Customer)
-        Dim cbl As New CustomerManager(_db)
+    'Public Function GetSortedAndPagedCustomer(sortOrder As String, skip As Integer, take As Integer) As IList(Of Customer)
+    '    Dim cbl As New CustomerManager(_db)
 
-        Return cbl.GetPagedCustomer(sortOrder, skip, take)
+    '    Return cbl.GetPagedCustomer(sortOrder, skip, take)
 
-    End Function
+    'End Function
 
 End Class

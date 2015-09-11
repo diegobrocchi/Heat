@@ -4,12 +4,10 @@ Imports Heat.Models
 Imports Heat.ViewModels.Customers
 Imports Heat.Manager
 Imports AutoMapper
-Imports AutoMapper.QueryableExtensions
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
 Imports DataTables.AspNet.Mvc5
 Imports DataTables.AspNet.Core
-Imports System.Linq.dynamic
 
 
 
@@ -286,41 +284,29 @@ Namespace Controllers
 
         End Function
 
+        ''' <summary>
+        ''' Risponde alla chiamata AJAX dell'oggetto Datatable con la lista paginata dei clienti abilitati.
+        ''' </summary>
+        ''' <param name="request"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         <HttpGet> _
-        Public Function PageCustomerData(request As IDataTablesRequest) As ActionResult
-            Dim baseData As IQueryable(Of Customer)
-            Dim filteredData As IQueryable(Of Customer)
-            Dim pagedData As IQueryable(Of Customer)
-            Dim orderedData As IQueryable(Of Customer)
+        Public Function PageCustomerEnabled(request As IDataTablesRequest) As ActionResult
 
-            'per prima cosa seleziona dalla base dati solo i Customer abilitati
-            baseData = _db.Customers.Where(Function(c) c.IsEnabled = True)
+            Return _cm.GetPagedCustomers(request, True)
 
-            'poi filtra i dati in base alla indicazione dell'utente (Case Insensitive)
-            filteredData = baseData.Where(Function(c) c.Name.Contains(request.Search.Value))
+        End Function
 
-            'poi ordina (non è supportato l'ordinamento multicolonna, quindi ordina per la prima colonna su cui è imposto l'ordinamento)
-            Dim sortColumn As String = "name"
-            Dim sortDirection As String = "ASC"
-            For Each column In request.Columns
-                If column.IsSortable Then
-                    If Not IsNothing(column.Sort) Then
-                        sortColumn = column.Field
-                        If column.Sort.Direction = DataTables.AspNet.Core.SortDirection.Ascending Then
-                            sortDirection = "ASC"
-                        Else
-                            sortDirection = "DESC"
-                        End If
-                        Exit For
-                    End If
-                End If
-            Next
+        ''' <summary>
+        ''' Risponde alla chiamata AJAX dell'oggetto Datatable con la lista paginata dei clienti disabilitati.
+        ''' </summary>
+        ''' <param name="request"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        <HttpGet> _
+        Public Function PageCustomerDisabled(request As IDataTablesRequest) As ActionResult
 
-            orderedData = filteredData.OrderBy(sortColumn & " " & sortDirection)
-
-            pagedData = orderedData.Skip(request.Start).Take(request.Length)
-
-            Return New DataTablesJsonResult(DataTablesResponse.Create(request, baseData.Count, filteredData.Count, pagedData.Project.To(Of IndexDataTableCustomerViewModel)), JsonRequestBehavior.AllowGet)
+            Return _cm.GetPagedCustomers(request, False)
 
         End Function
 
