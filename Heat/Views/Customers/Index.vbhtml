@@ -41,7 +41,7 @@ End Code
 
 <br />
 <h3>Elenco clienti non attivi</h3>
-<table id="tblPagedDisabledCustomers" class="table table-bordered table-hover table-striped">
+<table id="tblPagedDisabledCustomers" class="table table-bordered table-hover table-striped display compact">
     <thead>
         <tr>
 
@@ -49,12 +49,14 @@ End Code
             <th>Indirizzo</th>
             <th>Città</th>
             <th>Telefono</th>
-            <th><a href="@Url.Action("create")" class=" btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th>
+            <th></th>
         </tr>
 
     </thead>
     <tbody></tbody>
 </table>
+
+<input type="file" />
 
 @section scripts
      <script type="text/javascript"  src="~/Scripts/Views/Customers/index.js"></script>
