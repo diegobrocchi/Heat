@@ -33,8 +33,12 @@ Namespace ViewModels.Customers
         <Url> _
         Property Website As String
 
-        <Display(name:="Abilitato")> _
+        <Display(Name:="Abilitato")>
         Property IsEnabled As Boolean
+
+        <Display(Name:="Note")>
+        <DataType(DataType.MultilineText)>
+        Property Note As String
 
     End Class
 End Namespace

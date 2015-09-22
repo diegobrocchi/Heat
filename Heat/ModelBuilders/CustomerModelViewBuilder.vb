@@ -64,4 +64,16 @@ Public Class CustomerModelViewBuilder
         Return result
     End Function
 
+
+    Public Function GetManageCustomerViewModel(id As Integer) As ManageCustomerViewModel
+        Dim result As New ManageCustomerViewModel
+        Dim dbCustomer As Customer
+        dbCustomer = _db.Customers.Find(id)
+
+        result.ID = id
+        result.Name = dbCustomer.Name
+        result.IsEnabled = dbCustomer.IsEnabled
+
+        Return result
+    End Function
 End Class

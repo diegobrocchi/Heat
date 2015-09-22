@@ -67,6 +67,15 @@ End Code
                  @Html.ValidationMessageFor(Function(model) model.Telephone2, "", New With {.class = "text-danger"})
              </div>
          </div>
+
+        <div class="form-group">
+             @Html.LabelFor(Function(model) model.Telephone3, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.Telephone3, New With {.htmlAttributes = New With {.class = "form-control"}})
+                 @Html.ValidationMessageFor(Function(model) model.Telephone3, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
          <div class="form-group">
              @Html.LabelFor(Function(model) model.VAT_Number, htmlAttributes:=New With {.class = "control-label col-md-2"})
              <div class="col-md-10">
@@ -79,14 +88,6 @@ End Code
              <div class="col-md-10">
                  @Html.EditorFor(Function(model) model.IBAN, New With {.htmlAttributes = New With {.class = "form-control"}})
                  @Html.ValidationMessageFor(Function(model) model.IBAN, "", New With {.class = "text-danger"})
-             </div>
-         </div>
-
-         <div class="form-group">
-             @Html.LabelFor(Function(model) model.Telephone3, htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-10">
-                 @Html.EditorFor(Function(model) model.Telephone3, New With {.htmlAttributes = New With {.class = "form-control"}})
-                 @Html.ValidationMessageFor(Function(model) model.Telephone3, "", New With {.class = "text-danger"})
              </div>
          </div>
 
@@ -115,11 +116,19 @@ End Code
              </div>
          </div>
 
+         <div class="form-group">
+             @Html.LabelFor(Function(model) model.Note, htmlAttributes:=New With {.class = "control-label col-md-2"})
+             <div class="col-md-10">
+                 @Html.EditorFor(Function(model) model.Note, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.Note, "", New With {.class = "text-danger"})
+             </div>
+         </div>
+
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Aggiungi" class="btn btn-default" />
+                <input type="submit" value="Aggiungi" class="btn btn-success" />
                 @Html.ActionLink("Torna all'elenco clienti", "index", Nothing, New With {.class = "btn btn-primary"})
             </div>
         </div>

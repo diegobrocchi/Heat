@@ -268,6 +268,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Import\ImportHelper.vb" />
+    <Compile Include="Manager\PlantManager.vb" />
     <Compile Include="Manager\WarehouseMovementManager.vb" />
     <Compile Include="Migrations\201502221046383_InitialCreate.Designer.vb">
       <DependentUpon>201502221046383_InitialCreate.vb</DependentUpon>
@@ -529,6 +530,10 @@
       <DependentUpon>201509031007328_removePlantIdFromPlant.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.vb" />
+    <Compile Include="Migrations\201509211856188_customer_notes.Designer.vb">
+      <DependentUpon>201509211856188_customer_notes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509211856188_customer_notes.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
@@ -569,6 +574,7 @@
     <Compile Include="ViewModels\Customers\IndexCustomerGridViewModel.vb" />
     <Compile Include="ViewModels\Customers\IndexCustomerViewModel.vb" />
     <Compile Include="ViewModels\Customers\IndexDataTableCustomerViewModel.vb" />
+    <Compile Include="ViewModels\Customers\ManageCustomerViewModel.vb" />
     <Compile Include="ViewModels\Heaters\CreateHeaterViewModel.vb" />
     <Compile Include="ViewModels\Invoices\AddNewDescriptiveInvoiceRowViewModel.vb" />
     <Compile Include="ViewModels\Invoices\EditDescriptiveInvoiceRowViewModel.vb" />
@@ -653,6 +659,7 @@
     <Compile Include="ViewModels\Plants\DetailsIdentifyPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\DetailsPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\DetailsThermalPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\IndexDataTablePlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\IndexPlantViewModel.vb" />
     <Compile Include="ViewModels\SerialSchemeViewModels.vb" />
     <Compile Include="ViewModels\ThermalUnits\CreateThermalUnitViewModel.vb" />
@@ -853,6 +860,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509031007328_removePlantIdFromPlant.resx">
       <DependentUpon>201509031007328_removePlantIdFromPlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509211856188_customer_notes.resx">
+      <DependentUpon>201509211856188_customer_notes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

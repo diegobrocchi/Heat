@@ -215,6 +215,8 @@ Public Class MvcApplication
 
         Mapper.CreateMap(Of Customer, ViewModels.Customers.IndexDataTableCustomerViewModel)()
 
+        Mapper.CreateMap(Of Plant, ViewModels.Plants.IndexDataTablePlantViewModel)()
+
 
         Mapper.AssertConfigurationIsValid()
     End Sub

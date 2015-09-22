@@ -8,7 +8,23 @@ End Code
 <p>
     @Html.ActionLink("Crea un nuovo impianto", "Create", Nothing, New With {.class = "btn btn-success"})
 </p>
-<table id="index_table" class="table table-bordered table-hover table-striped">
+
+<table id="tblPagedPlants" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+
+            <th>Codice</th>
+            <th>Nome</th>
+            <th>Classe</th>
+            <th>Tipo</th>
+            <th><a href="@Url.Action("create")" class=" btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th>
+        </tr>
+
+    </thead>
+    <tbody></tbody>
+    </table> 
+
+<table id="tblPagedPlantsXXX" class="table table-bordered table-hover table-striped">
     <thead >
         <tr>
             <th>

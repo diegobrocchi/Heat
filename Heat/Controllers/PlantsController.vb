@@ -10,19 +10,23 @@ Imports Heat
 Imports Heat.Repositories
 Imports Heat.Models
 Imports Heat.ViewModels.Plants
-
+Imports DataTables.AspNet.Core
+Imports Heat.Manager
 
 Namespace Controllers
-    <Authorize> _
+    <Authorize>
     Public Class PlantsController
         Inherits System.Web.Mvc.Controller
 
         Private _db As IHeatDBContext
         Private _mb As PlantModelViewBuilder
+        Private _pm As PlantManager
+
 
         Sub New(dbcontext As IHeatDBContext)
             _db = dbcontext
             _mb = New PlantModelViewBuilder(_db)
+            _pm = New PlantManager(_db)
         End Sub
 
 
@@ -41,7 +45,7 @@ Namespace Controllers
 
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function Details(ByVal id As Integer?) As ActionResult
             Try
                 If IsNothing(id) Then
@@ -61,10 +65,10 @@ Namespace Controllers
 
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function Create() As ActionResult
             Try
-                
+
                 Return View()
             Catch ex As Exception
                 ViewBag.message = ex.ToString
@@ -72,7 +76,7 @@ Namespace Controllers
             End Try
         End Function
 
-         
+
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(newPlant As CreatePlantViewModel) As ActionResult
@@ -275,6 +279,10 @@ Namespace Controllers
             End If
         End Function
 
+        <HttpGet>
+        Public Function PagedPlants(request As IDataTablesRequest) As ActionResult
+            Return _pm.GetPagedPlants(request)
+        End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then

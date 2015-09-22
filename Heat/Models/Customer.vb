@@ -43,6 +43,9 @@ Namespace Models
         Property EnableDate As Nullable(Of DateTime)
         Property DisableDate As Nullable(Of DateTime)
 
+        Property Note As String
+
+
 
     End Class
 End Namespace

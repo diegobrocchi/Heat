@@ -1,9 +1,7 @@
 ﻿Imports Heat.Models
-Imports Heat.Repositories
 Imports DataTables.AspNet.Mvc5
 Imports DataTables.AspNet.Core
 Imports System.Linq.Dynamic
-Imports AutoMapper
 Imports AutoMapper.QueryableExtensions
 Imports Heat.ViewModels.Customers
 
@@ -35,14 +33,14 @@ Namespace Manager
 
             Dim baseData As IQueryable(Of Customer)
             Dim filteredData As IQueryable(Of Customer)
-            Dim pagedData As IQueryable(Of Customer)
             Dim orderedData As IQueryable(Of Customer)
+            Dim pagedData As IQueryable(Of Customer)
 
             'per prima cosa seleziona dalla base dati solo i Customer abilitati/disabilitati
             baseData = _db.Customers.Where(Function(c) c.IsEnabled = enabled)
 
             'poi filtra i dati in base alla indicazione dell'utente (Case Insensitive)
-            filteredData = baseData.Where(Function(c) c.Name.Contains(request.Search.Value))
+            filteredData = baseData.Where(Function(c) c.Name.Contains(request.Search.Value) Or c.City.Contains(request.Search.Value))
 
             'poi ordina (non è supportato l'ordinamento multicolonna, quindi ordina per la prima colonna su cui è imposto l'ordinamento)
             Dim sortColumn As String = "name"
@@ -68,7 +66,7 @@ Namespace Manager
             Return New DataTablesJsonResult(DataTablesResponse.Create(request, baseData.Count, filteredData.Count, pagedData.Project.To(Of IndexDataTableCustomerViewModel)), JsonRequestBehavior.AllowGet)
 
         End Function
-         
+
 
         Public Sub EnableCustomer(customer As Customer)
             Me.EnableCustomer(customer.ID)

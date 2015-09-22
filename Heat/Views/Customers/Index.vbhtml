@@ -44,7 +44,7 @@ End Code
 <table id="tblPagedDisabledCustomers" class="table table-bordered table-hover table-striped display compact">
     <thead>
         <tr>
-
+            
             <th>Nome</th>
             <th>Indirizzo</th>
             <th>Città</th>

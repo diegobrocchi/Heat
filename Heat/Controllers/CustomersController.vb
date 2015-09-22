@@ -311,8 +311,23 @@ Namespace Controllers
         End Function
 
         Public Function Manage(id As Integer) As ActionResult
-            ViewBag.id = id
-            Return View()
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                Dim customer As Customer = _db.Customers.Find(id)
+                If IsNothing(customer) Then
+                    Return HttpNotFound()
+                End If
+                Dim m As ManageCustomerViewModel
+                m = _mb.GetManageCustomerViewModel(id)
+                Return View(m)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+            'ViewBag.id = id
+            'Return View()
         End Function
 
     End Class
