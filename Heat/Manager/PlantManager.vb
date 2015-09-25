@@ -45,10 +45,14 @@ Namespace Manager
                     End If
                 End If
             Next
+
+            'ordina il set
             orderedData = filteredData.OrderBy(sortColumn & " " & sortDirection)
 
+            'pagina il set
             pagedData = orderedData.Skip(request.Start).Take(request.Length)
 
+            'json-izza e ritorna
             Return New DataTablesJsonResult(DataTablesResponse.Create(request, baseData.Count, filteredData.Count, pagedData.Project.To(Of IndexDataTablePlantViewModel)), JsonRequestBehavior.AllowGet)
 
         End Function

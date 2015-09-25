@@ -22,14 +22,10 @@ Namespace Controllers
             _mb = New WorkActionModelViewBuilder(_db)
         End Sub
 
-        
-
-
         Function Index() As ActionResult
             Dim workactions = _db.WorkActions.Include(Function(w) w.AssignedOperator).Include(Function(w) w.Operation).Include(Function(w) w.Type)
             Return View(workactions.ToList())
         End Function
-
 
         Function Details(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
@@ -41,8 +37,6 @@ Namespace Controllers
             End If
             Return View(workAction)
         End Function
-
-         
 
         <HttpGet> _
         Function Create(Optional plantID As Integer = -1) As ActionResult

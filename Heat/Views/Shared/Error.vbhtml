@@ -24,8 +24,9 @@ End Code
 </body>
 </html>*@
 
-<h1>Errore</h1>
-<h2>E' capitato un errore non gestito</h2>
+<h2>Errore</h2>
+<h4>Capita raramente, ma anche Heat sbaglia...</h4>
+<h5>Qui sotto c'è la descrizione abbastanza incomprensibile di cosa è successo. <br />Qualcuno capirà.</h5>
 
 
 <p>

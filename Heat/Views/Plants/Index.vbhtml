@@ -15,8 +15,8 @@ End Code
 
             <th>Codice</th>
             <th>Nome</th>
-            <th>Classe</th>
-            <th>Tipo</th>
+            @*<th>Classe</th>
+            <th>Tipo</th>*@
             <th><a href="@Url.Action("create")" class=" btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th>
         </tr>
 

@@ -326,8 +326,7 @@ Namespace Controllers
                 ViewBag.message = ex.Message
                 Return View("error")
             End Try
-            'ViewBag.id = id
-            'Return View()
+            
         End Function
 
     End Class

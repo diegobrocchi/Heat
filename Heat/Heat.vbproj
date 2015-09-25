@@ -1935,6 +1935,7 @@
     <Content Include="Views\Plants\Partials\_DetailsThermal.vbhtml" />
     <Content Include="Views\Plants\Partials\_DetailsContacts.vbhtml" />
     <Content Include="Views\Customers\Manage.vbhtml" />
+    <Content Include="Views\Plants\AddAnotherContact.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

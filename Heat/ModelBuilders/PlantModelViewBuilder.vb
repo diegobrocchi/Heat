@@ -92,9 +92,12 @@ Public Class PlantModelViewBuilder
 
     Function GetDetailsContactPlantViewModel(id As Integer) As DetailsContactPlantViewModel
         Dim result As New DetailsContactPlantViewModel
-        Dim p As Plant
-        p = _db.Plants.Find(id)
+        Dim cl As List(Of Contact)
+        cl = _db.Plants.Include(Function(p) p.Contacts.Select(Function(c) c.Address)).Where(Function(x) x.ID = id).First.Contacts
+
         'Map Plant --> DetailsContactPlantViewModel
+        result.ID = id
+        result.Contacts = cl
 
         Return result
     End Function

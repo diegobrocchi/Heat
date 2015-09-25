@@ -2,6 +2,10 @@
 
 
 Namespace ViewModels.Plants
+    ''' <summary>
+    ''' Oggetto con ottenuto con flattening parziale di Plant, Plant.BuildingAddress e Plant.ThermalUnit
+    ''' </summary>
+    ''' <remarks></remarks>
     Public Class DetailsThermalPlantViewModel
 
 #Region "Proprietà derivate da Plant"
@@ -27,7 +31,6 @@ Namespace ViewModels.Plants
         <Display(name:="Volume lordo raffrescato (m³)")> _
         Property GrossCooledVolumeM3 As Single
 #End Region
-
 
 #Region "Proprietà derivate da Plant.ThermalUnit"
         <Display(name:="Costruttore")>
@@ -56,7 +59,7 @@ Namespace ViewModels.Plants
         <DataType(DataType.Date)> _
         <DisplayFormat(dataformatstring:="{0:d}")> _
         Property WarrantyExpiration As Nullable(Of DateTime)
-        
+
         <Display(name:="Combustibile")> _
         Property Fuel As String
 

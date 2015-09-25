@@ -51,8 +51,8 @@ Namespace Controllers
                 If IsNothing(id) Then
                     Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 End If
-                Dim plant As Plant = _db.Plants.Find(id)
-                If IsNothing(_db.Plants.Any(Function(x) x.ID = id)) Then
+                'Dim plant As Plant = _db.Plants.Find(id)
+                If Not _db.Plants.Any(Function(p) p.ID = id) Then
                     Return HttpNotFound()
                 End If
                 Dim model As DetailsPlantViewModel
@@ -103,18 +103,19 @@ Namespace Controllers
         End Function
 
         <HttpGet> _
-        Function AddContact(plantID As Integer) As ActionResult
+        Function AddContact(ID As Integer) As ActionResult
             Try
-                If IsNothing(plantID) Then
+                If IsNothing(ID) Then
                     Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 End If
-                Dim plant As Plant = _db.Plants.Find(plantID)
-                If IsNothing(plant) Then
+                'Dim plant As Plant = _db.Plants.Find(plantID)
+                If Not _db.Plants.Any(Function(p) p.ID = ID) Then
                     Return HttpNotFound()
                 End If
+
                 Dim model As AddContactPlantViewModel
 
-                model = _mb.GetAddContactPlantViewModel(plantID)
+                model = _mb.GetAddContactPlantViewModel(ID)
                 Return View(model)
 
             Catch ex As Exception
@@ -141,6 +142,62 @@ Namespace Controllers
                         _db.SaveChanges()
                         'dopo aver salvato i dati del contatto passo ai dati termici
                         Return RedirectToAction("AddThermInfo", New With {.plantID = p.ID})
+                    Else
+                        ViewBag.message = "Impossibile aggiungere il contatto. Sembra che l'impianto con id(" & newContact.PlantID & ") non esista"
+                        Return View("error")
+                    End If
+
+                Else
+                    'ripasso al modelBuilder per ricostruire la selectlist
+                    Return View(_mb.GetAddContactPlantViewModel(newContact.PlantID))
+                End If
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+        End Function
+
+        <HttpGet> _
+        Function AddAnotherContact(ID As Integer) As ActionResult
+            Try
+                If IsNothing(ID) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+
+                If Not _db.Plants.Any(Function(p) p.ID = ID) Then
+                    Return HttpNotFound()
+                End If
+
+                Dim model As AddContactPlantViewModel
+
+                model = _mb.GetAddContactPlantViewModel(ID)
+                Return View(model)
+
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
+        End Function
+
+        <HttpPost> _
+        <ValidateAntiForgeryToken> _
+        Function AddAnotherContact(newContact As AddContactPlantViewModel) As ActionResult
+            Try
+                If ModelState.IsValid Then
+                    Dim c As Contact
+                    Dim p As Plant
+
+                    c = AutoMapper.Mapper.Map(Of Contact)(newContact)
+                    p = _db.Plants.Find(newContact.PlantID)
+
+                    If Not IsNothing(p) Then
+                        p.Contacts.Add(c)
+                        _db.Contacts.Add(c)
+                        _db.SaveChanges()
+                        'dopo aver salvato i dati del contatto torno ai dettagli dell'impianto
+                        Return RedirectToAction("details", New With {.ID = p.ID})
                     Else
                         ViewBag.message = "Impossibile aggiungere il contatto. Sembra che l'impianto con id(" & newContact.PlantID & ") non esista"
                         Return View("error")
@@ -279,9 +336,20 @@ Namespace Controllers
             End If
         End Function
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="request"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         <HttpGet>
         Public Function PagedPlants(request As IDataTablesRequest) As ActionResult
-            Return _pm.GetPagedPlants(request)
+            If ModelState.IsValid Then
+                Return _pm.GetPagedPlants(request)
+            Else
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                'Return Json(New With {.success = False, .responseText = "La richiesta non è valida!"}, JsonRequestBehavior.AllowGet)
+            End If
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
