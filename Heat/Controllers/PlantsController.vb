@@ -12,6 +12,7 @@ Imports Heat.Models
 Imports Heat.ViewModels.Plants
 Imports DataTables.AspNet.Core
 Imports Heat.Manager
+Imports System.IO
 
 Namespace Controllers
     <Authorize>
@@ -102,7 +103,7 @@ Namespace Controllers
 
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function AddContact(ID As Integer) As ActionResult
             Try
                 If IsNothing(ID) Then
@@ -125,8 +126,8 @@ Namespace Controllers
 
         End Function
 
-        <HttpPost> _
-        <ValidateAntiForgeryToken> _
+        <HttpPost>
+        <ValidateAntiForgeryToken>
         Function AddContact(newContact As AddContactPlantViewModel) As ActionResult
             Try
                 If ModelState.IsValid Then
@@ -158,7 +159,7 @@ Namespace Controllers
             End Try
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function AddAnotherContact(ID As Integer) As ActionResult
             Try
                 If IsNothing(ID) Then
@@ -181,8 +182,8 @@ Namespace Controllers
 
         End Function
 
-        <HttpPost> _
-        <ValidateAntiForgeryToken> _
+        <HttpPost>
+        <ValidateAntiForgeryToken>
         Function AddAnotherContact(newContact As AddContactPlantViewModel) As ActionResult
             Try
                 If ModelState.IsValid Then
@@ -214,7 +215,7 @@ Namespace Controllers
             End Try
         End Function
 
-        <HttpGet> _
+        <HttpGet>
         Function AddThermInfo(plantId As Integer) As ActionResult
             Try
                 If IsNothing(plantId) Then
@@ -236,7 +237,7 @@ Namespace Controllers
 
         End Function
 
-        <HttpPost> _
+        <HttpPost>
         Function AddThermInfo(newThermInfo As AddThermInfoPlantViewModel) As ActionResult
             Try
                 If ModelState.IsValid Then
@@ -311,7 +312,7 @@ Namespace Controllers
             Return RedirectToAction("Index")
         End Function
 
-        <HttpPost> _
+        <HttpPost>
         Function Import(uploadFilePlant As HttpPostedFileBase) As ActionResult
             If Not IsNothing(uploadFilePlant) AndAlso uploadFilePlant.ContentLength > 0 Then
                 Dim fileExt As String
@@ -350,6 +351,70 @@ Namespace Controllers
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 'Return Json(New With {.success = False, .responseText = "La richiesta non è valida!"}, JsonRequestBehavior.AllowGet)
             End If
+        End Function
+
+        <HttpGet>
+        Public Function AddMediumToPlant(plantID As Integer) As ActionResult
+            If IsNothing(plantID) Then
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End If
+
+            If Not _db.Plants.Any(Function(p) p.ID = plantID) Then
+                Return HttpNotFound()
+            End If
+            Try
+                Dim model As New AddMediumPlantViewModel
+                model.PlantId = plantID
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
+        End Function
+
+        <HttpPost>
+        <ValidateAntiForgeryToken>
+        Public Function AddMediumToPlant(newMedium As AddMediumPlantViewModel) As ActionResult
+            If IsNothing(newMedium.UploadFile) OrElse newMedium.UploadFile.ContentLength <= 0 Then
+                ModelState.AddModelError("UploadFile", "Il file è richiesto!")
+            End If
+            Try
+                If ModelState.IsValid Then
+                    Dim medium As New Medium
+                    Dim uploadDir As String
+                    Dim uploadFileName As String
+                    Dim uploadPath As String
+                    Dim uploadURL As String
+
+                    uploadDir = ConfigurationManager.AppSettings("MediaPlantFolder")
+                    uploadFileName = Guid.NewGuid().ToString & Path.GetExtension(newMedium.UploadFile.FileName)
+
+                    uploadPath = Path.Combine(Server.MapPath(uploadDir), uploadFileName)
+                    uploadURL = Path.Combine(uploadDir, uploadFileName)
+
+                    newMedium.UploadFile.SaveAs(uploadPath)
+
+                    medium.Description = newMedium.Description
+                    medium.Tags = newMedium.Tags
+                    medium.OriginalFilename = newMedium.UploadFile.FileName
+                    medium.UploadFilename = uploadFileName
+                    medium.ContentType = newMedium.UploadFile.ContentType
+                    medium.Lenght = newMedium.UploadFile.ContentLength
+
+                    Dim p As Plant = _db.Plants.Find(newMedium.PlantId)
+                    p.Media.Add(medium)
+                    _db.Media.Add(medium)
+                    _db.SaveChanges()
+                    Return RedirectToAction("index")
+                Else
+                    Return View(newMedium)
+                End If
+            Catch ex As Exception
+                ViewBag.message = ex.ToString
+                Return View("error")
+            End Try
+
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)

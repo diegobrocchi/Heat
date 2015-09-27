@@ -10,6 +10,7 @@ Namespace Models
 
         Sub New()
             Me.Contacts = New List(Of Contact)
+            Me.Media = New List(Of Medium)
         End Sub
 
         <Key> _
@@ -36,6 +37,8 @@ Namespace Models
         Property Contacts As List(Of Contact)
 
         Overridable Property Service As PlantService
+
+        Property Media As List(Of Medium)
 
     End Class
 

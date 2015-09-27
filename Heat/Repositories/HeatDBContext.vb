@@ -50,24 +50,26 @@ Namespace Repositories
         Property Numberings As DbSet(Of Numbering) Implements IHeatDBContext.Numberings
         Property DocumentTypes As DbSet(Of Models.DocumentType) Implements IHeatDBContext.DocumentTypes
         Property SerialSchemes As DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
-        Property Warehouses As System.Data.Entity.DbSet(Of Warehouse) Implements IHeatDBContext.Warehouses
-        Property CausalWarehouseGroups As System.Data.Entity.DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
-        Property CausalWarehouses As System.Data.Entity.DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
+        Property Warehouses As DbSet(Of Warehouse) Implements IHeatDBContext.Warehouses
+        Property CausalWarehouseGroups As DbSet(Of CausalWarehouseGroup) Implements IHeatDBContext.CausalWarehouseGroups
+        Property CausalWarehouses As DbSet(Of CausalWarehouse) Implements IHeatDBContext.CausalWarehouses
         Property Seller As DbSet(Of Seller) Implements IHeatDBContext.Sellers
         Property Products As DbSet(Of Product) Implements IHeatDBContext.Products
         Property DescriptiveInvoiceRows As DbSet(Of DescriptiveInvoiceRow) Implements IHeatDBContext.DescriptiveInvoiceRows
         Property ProductInvoiceRows As DbSet(Of ProductInvoiceRow) Implements IHeatDBContext.ProductInvoiceRows
-        Property ActionTypes As System.Data.Entity.DbSet(Of Models.ActionType) Implements IHeatDBContext.ActionTypes
-        Property WorkOperators As System.Data.Entity.DbSet(Of Models.WorkOperator) Implements IHeatDBContext.WorkOperators
+        Property ActionTypes As DbSet(Of Models.ActionType) Implements IHeatDBContext.ActionTypes
+        Property WorkOperators As DbSet(Of Models.WorkOperator) Implements IHeatDBContext.WorkOperators
         Property WorkActions As DbSet(Of WorkAction) Implements IHeatDBContext.WorkActions
         Property Operations As DbSet(Of Operation) Implements IHeatDBContext.Operations
         Property Manifacturers As DbSet(Of Manifacturer) Implements IHeatDBContext.Manifacturers
         Property ManifacturerModels As DbSet(Of ManifacturerModel) Implements IHeatDBContext.ManifacturerModels
         Property HeatTransferFluids As DbSet(Of HeatTransferFluid) Implements IHeatDBContext.HeatTransferFluids
-        Property ThermalUnits As System.Data.Entity.DbSet(Of Models.ThermalUnit) Implements IHeatDBContext.ThermalUnits
+        Property ThermalUnits As DbSet(Of Models.ThermalUnit) Implements IHeatDBContext.ThermalUnits
         Property ThermalUnitKinds As DbSet(Of ThermalUnitKind) Implements IHeatDBContext.ThermalUnitKinds
         Property Heaters As DbSet(Of Heater) Implements IHeatDBContext.Heaters
-        Property PlantServices As System.Data.Entity.DbSet(Of Models.PlantService) Implements IHeatDBContext.PlantServices
+        Property PlantServices As DbSet(Of Models.PlantService) Implements IHeatDBContext.PlantServices
+
+        Property Media As DbSet(Of Medium) Implements IHeatDBContext.Media
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges

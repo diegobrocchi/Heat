@@ -120,6 +120,7 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.PlantType, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.Service, Sub(opt) opt.Ignore()) _
             .ForMember(Function(dest) dest.ThermalUnit, Sub(opt) opt.Ignore()) _
+            .ForMember(Function(dest) dest.Media, Sub(opt) opt.Ignore()) _
         .ForMember(Function(dest) dest.Contacts, Sub(opt) opt.Ignore()) _
         .ForMember(Function(dest) dest.BuildingAddress, Sub(opt) opt.MapFrom(Function(src) Mapper.Map(Of ViewModels.Plants.CreatePlantViewModel, PlantBuilding)(src)))
 

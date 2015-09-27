@@ -38,6 +38,7 @@ Public Interface IHeatDBContext
     Property ThermalUnits As DbSet(Of ThermalUnit)
     Property Fuels As DbSet(Of Fuel)
     Property Heaters As DbSet(Of Heater)
+    Property Media As DbSet(Of Medium)
 
 
 

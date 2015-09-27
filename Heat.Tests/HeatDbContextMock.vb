@@ -1,10 +1,11 @@
-﻿Imports Heat.Models
+﻿Imports System.Data.Entity
+Imports Heat
+Imports Heat.Models
 
 'https://visualstudiomagazine.com/articles/2014/06/01/test-driven-development.aspx
 
 Public Class HeatDbContextMock
     Implements IHeatDBContext
-
 
     Public Property Numberings As Entity.DbSet(Of Models.Numbering) Implements IHeatDBContext.Numberings
     Public Property SerialScheme As Entity.DbSet(Of Models.SerialScheme) Implements IHeatDBContext.SerialSchemes
@@ -123,4 +124,13 @@ Public Class HeatDbContextMock
     Public Property Addresses As Entity.DbSet(Of Address) Implements IHeatDBContext.Addresses
 
     Public Property AddressTypes As Entity.DbSet(Of AddressType) Implements IHeatDBContext.AddressTypes
+
+    Public Property Media As DbSet(Of Medium) Implements IHeatDBContext.Media
+        Get
+            Throw New NotImplementedException()
+        End Get
+        Set(value As DbSet(Of Medium))
+            Throw New NotImplementedException()
+        End Set
+    End Property
 End Class
