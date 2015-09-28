@@ -10,6 +10,7 @@
         Property IdentifyViewModel As DetailsIdentifyPlantViewModel
         Property ThermalViewModel As DetailsThermalPlantViewModel
         Property ContactViewModel As DetailsContactPlantViewModel
+        Property MediaViewModel As DetailsMediaPlantViewModel
 
     End Class
 

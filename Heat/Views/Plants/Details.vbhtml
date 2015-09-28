@@ -12,6 +12,8 @@ End Code
         <li role="presentation" class="active"><a href="#tabIdentify" role="tab" data-toggle="tab">Dati identificativi</a></li>
         <li role="presentation"><a href="#tabThermal" role="tab" data-toggle="tab">Dati termici</a></li>
         <li role="presentation"><a href="#tabContacts" role="tab" data-toggle="tab">Contatti</a></li>
+        <li role="presentation"><a href="#tabMedia" role="tab" data-toggle="tab">Allegati</a></li>
+
     </ul>
 
     <div class="tab-content">
@@ -23,6 +25,9 @@ End Code
         </div>
         <div role="tabpanel" class="tab-pane" id="tabContacts">
             @Html.Partial("partials/_DetailsContacts", Model.ContactViewModel)
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tabMedia">
+            @Html.Partial("partials/_DetailsMedia", Model.MediaViewModel)
         </div>
     </div>
 

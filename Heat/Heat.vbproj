@@ -682,6 +682,7 @@
     <Compile Include="ViewModels\Plants\CreatePlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\DetailsContactPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\DetailsIdentifyPlantViewModel.vb" />
+    <Compile Include="ViewModels\Plants\DetailsMediaPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\DetailsPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\DetailsThermalPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\IndexDataTablePlantViewModel.vb" />
@@ -1755,6 +1756,7 @@
     <Content Include="Scripts\Views\Invoices\edit.js" />
     <Content Include="Scripts\Views\Plants\index.js" />
     <Content Include="Scripts\Views\WorkActions\index.js" />
+    <Content Include="UploadMedia\Plants\ae704525-a1fd-416e-9db9-8e7cfb58bfb2.jpg" />
     <Content Include="UploadMedia\Plants\index.html" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
@@ -1982,8 +1984,9 @@
     <Content Include="Views\Media\Details.vbhtml" />
     <Content Include="Views\Media\Edit.vbhtml" />
     <Content Include="Views\Media\Index.vbhtml" />
-    <Content Include="Views\Plants\AddMediumToPlant.vbhtml" />
+    <Content Include="Views\Plants\AddMedium.vbhtml" />
     <Content Include="Views\Shared\EditorTemplates\Upload.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsMedia.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

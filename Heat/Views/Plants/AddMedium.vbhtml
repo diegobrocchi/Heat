@@ -1,16 +1,16 @@
 ﻿@ModelType Heat.ViewModels.Plants.AddMediumPlantViewModel
 @Code
-    ViewData("Title") = "AddMediumToPlant"
+    ViewData("Title") = "Aggiungi un allegato all'impianto"
 End Code
 
-<h2>AddMediumToPlant</h2>
+<h2>Aggiungi un allegato all'impianto</h2>
 
 @Using (Html.BeginForm(Nothing, Nothing, FormMethod.Post, New With {.enctype = "multipart/form-data"}))
     @Html.AntiForgeryToken 
     @Html.HiddenFor(Function(m) Model.PlantId)
 
     @<div class="form-horizontal">
-        <h4>AddMediumPlantViewModel</h4>
+         
         <hr />
         @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
         
@@ -39,7 +39,11 @@ End Code
          </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Carica il file" class="btn btn-default" />
+
+                <label for="fileSubmit" class="btn btn-success">
+                <i class="glyphicon glyphicon-upload"></i>Carica il file</label>
+                <input id="fileSubmit" type="submit" value="Carica il file"  class="hidden" />
+                
             </div>
         </div>
     </div>

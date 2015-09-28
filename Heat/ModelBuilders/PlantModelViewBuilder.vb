@@ -66,6 +66,7 @@ Public Class PlantModelViewBuilder
         result.IdentifyViewModel = GetDetailsIdentifyPlantViewModel(id)
         result.ContactViewModel = GetDetailsContactPlantViewModel(id)
         result.ThermalViewModel = GetDetailsThermalPlantViewModel(id)
+        result.MediaViewModel = getDetailsMediaPlantViewModel(id)
 
         Return result
     End Function
@@ -102,7 +103,6 @@ Public Class PlantModelViewBuilder
         Return result
     End Function
 
-
     Function GetDetailsThermalPlantViewModel(id As Integer) As DetailsThermalPlantViewModel
         Dim result As New DetailsThermalPlantViewModel
         Dim p As Plant
@@ -131,5 +131,18 @@ Public Class PlantModelViewBuilder
         AutoMapper.Mapper.Map(Of ThermalUnit, DetailsThermalPlantViewModel)(tu, result)
 
         Return result
+    End Function
+
+    Function GetDetailsMediaPlantViewModel(id As Integer) As DetailsMediaPlantViewModel
+        Dim result As New DetailsMediaPlantViewModel
+        Dim p As Plant
+
+        p = _db.Plants.Include(Function(x) x.Media).Where(Function(x) x.ID = id).First
+
+        result.ID = id
+        result.Media = p.Media
+        result.BaseHref = ConfigurationManager.AppSettings("MediaPlantFolder")
+        Return result
+
     End Function
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports Heat.Models
 
 
 Namespace ViewModels.Plants
@@ -15,6 +16,7 @@ Namespace ViewModels.Plants
 
         <Display(name:="Tipologia impianto")> _
         Property PlantType As String
+
 
 #End Region
 

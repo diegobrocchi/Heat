@@ -353,18 +353,25 @@ Namespace Controllers
             End If
         End Function
 
+        ''' <summary>
+        ''' Aggiunge un file all'impianto, come allegato.
+        ''' E' possibile allegare qualunque tipo di file.
+        ''' </summary>
+        ''' <param name="ID"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
         <HttpGet>
-        Public Function AddMediumToPlant(plantID As Integer) As ActionResult
-            If IsNothing(plantID) Then
+        Public Function AddMedium(ID As Integer) As ActionResult
+            If IsNothing(ID) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
 
-            If Not _db.Plants.Any(Function(p) p.ID = plantID) Then
+            If Not _db.Plants.Any(Function(p) p.ID = ID) Then
                 Return HttpNotFound()
             End If
             Try
                 Dim model As New AddMediumPlantViewModel
-                model.PlantId = plantID
+                model.PlantId = ID
                 Return View(model)
             Catch ex As Exception
                 ViewBag.message = ex.ToString
@@ -375,7 +382,7 @@ Namespace Controllers
 
         <HttpPost>
         <ValidateAntiForgeryToken>
-        Public Function AddMediumToPlant(newMedium As AddMediumPlantViewModel) As ActionResult
+        Public Function AddMedium(newMedium As AddMediumPlantViewModel) As ActionResult
             If IsNothing(newMedium.UploadFile) OrElse newMedium.UploadFile.ContentLength <= 0 Then
                 ModelState.AddModelError("UploadFile", "Il file è richiesto!")
             End If
@@ -404,9 +411,10 @@ Namespace Controllers
 
                     Dim p As Plant = _db.Plants.Find(newMedium.PlantId)
                     p.Media.Add(medium)
+
                     _db.Media.Add(medium)
                     _db.SaveChanges()
-                    Return RedirectToAction("index")
+                    Return RedirectToAction("details", New With {.id = p.ID})
                 Else
                     Return View(newMedium)
                 End If
