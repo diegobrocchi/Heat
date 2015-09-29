@@ -1756,8 +1756,8 @@
     <Content Include="Scripts\Views\Invoices\edit.js" />
     <Content Include="Scripts\Views\Plants\index.js" />
     <Content Include="Scripts\Views\WorkActions\index.js" />
-    <Content Include="UploadMedia\Plants\ae704525-a1fd-416e-9db9-8e7cfb58bfb2.jpg" />
     <Content Include="UploadMedia\Plants\index.html" />
+    <Content Include="UploadMedia\Plants\ae704525-a1fd-416e-9db9-8e7cfb58bfb2.jpg" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
     <Content Include="Views\Account\ConfirmEmail.vbhtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />

@@ -362,6 +362,7 @@ Namespace Controllers
         ''' <remarks></remarks>
         <HttpGet>
         Public Function AddMedium(ID As Integer) As ActionResult
+            'http://cpratt.co/file-uploads-in-asp-net-mvc-with-view-models/
             If IsNothing(ID) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
@@ -386,6 +387,13 @@ Namespace Controllers
             If IsNothing(newMedium.UploadFile) OrElse newMedium.UploadFile.ContentLength <= 0 Then
                 ModelState.AddModelError("UploadFile", "Il file è richiesto!")
             End If
+
+            Dim validImageTypes As String() = New String() {"image/gif", "image/jpeg", "image/pjpeg", "image/png"}
+            If Not validImageTypes.Contains(newMedium.UploadFile.ContentType) Then
+                ModelState.AddModelError("UploadFile", "Questo tipo di file non è ancora supportato!")
+            End If
+
+           
             Try
                 If ModelState.IsValid Then
                     Dim medium As New Medium

@@ -28,6 +28,9 @@ http://geekswithblogs.net/MightyZot/archive/2014/12/28/implementing-rolemanager-
 routes:
 http://blogs.msdn.com/b/webdev/archive/2013/10/17/attribute-routing-in-asp-net-mvc-5.aspx
 
+upload images:
+http://cpratt.co/file-uploads-in-asp-net-mvc-with-view-models/
+
 processo emissione del documento.
 
 E' possibile inserire un nuovo documento e successivamente selezionare il cliente;
