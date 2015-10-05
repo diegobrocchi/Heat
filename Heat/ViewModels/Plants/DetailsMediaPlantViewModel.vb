@@ -11,4 +11,7 @@ Public Class DetailsMediaPlantViewModel
     Property BaseHref As String
     Property Media As List(Of Medium)
 
+
 End Class
+
+

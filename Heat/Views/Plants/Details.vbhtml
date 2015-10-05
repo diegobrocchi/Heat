@@ -11,6 +11,7 @@ End Code
     <ul class="nav nav-tabs" role="tablist" id="plantDetailsTab">
         <li role="presentation" class="active"><a href="#tabIdentify" role="tab" data-toggle="tab">Dati identificativi</a></li>
         <li role="presentation"><a href="#tabThermal" role="tab" data-toggle="tab">Dati termici</a></li>
+        <li role="presentation"><a href="#tabService" role="tab" data-toggle="tab">Manutenzione</a></li>
         <li role="presentation"><a href="#tabContacts" role="tab" data-toggle="tab">Contatti</a></li>
         <li role="presentation"><a href="#tabMedia" role="tab" data-toggle="tab">Allegati</a></li>
 
@@ -22,6 +23,9 @@ End Code
         </div>
         <div role="tabpanel" class="tab-pane" id="tabThermal">
             @Html.Partial("partials/_DetailsThermal", Model.ThermalViewModel)
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tabService">
+            @Html.Partial("partials/_DetailsService", Model.ServiceViewModel)
         </div>
         <div role="tabpanel" class="tab-pane" id="tabContacts">
             @Html.Partial("partials/_DetailsContacts", Model.ContactViewModel)

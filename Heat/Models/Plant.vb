@@ -36,7 +36,7 @@ Namespace Models
 
         Property Contacts As List(Of Contact)
 
-        Overridable Property Service As PlantService
+        Property Service As PlantService
 
         Property Media As List(Of Medium)
 

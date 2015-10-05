@@ -101,8 +101,8 @@ Public Class MvcApplication
             .ForMember(Function(dest) dest.Model, Sub(opt) opt.Ignore())
 
         Mapper.CreateMap(Of ViewModels.PlantServices.CreatePlantServiceViewModel, PlantService) _
-            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
-            .ForMember(Function(dest) dest.Plant, Sub(opt) opt.Ignore())
+            .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore())
+        '.ForMember(Function(dest) dest.Plant, Sub(opt) opt.Ignore())
 
         Mapper.CreateMap(Of ViewModels.WorkActions.CreateWorkActionViewModel, WorkAction) _
             .ForMember(Function(dest) dest.ID, Sub(opt) opt.Ignore()) _
@@ -217,6 +217,8 @@ Public Class MvcApplication
         Mapper.CreateMap(Of Customer, ViewModels.Customers.IndexDataTableCustomerViewModel)()
 
         Mapper.CreateMap(Of Plant, ViewModels.Plants.IndexDataTablePlantViewModel)()
+
+        Mapper.CreateMap(Of Product, ViewModels.Product.IndexDataTableProductViewModel)()
 
 
         Mapper.AssertConfigurationIsValid()

@@ -11,7 +11,7 @@
         Property ThermalViewModel As DetailsThermalPlantViewModel
         Property ContactViewModel As DetailsContactPlantViewModel
         Property MediaViewModel As DetailsMediaPlantViewModel
-
+        Property ServiceViewModel As DetailsServicePlantViewModel
     End Class
 
 End Namespace

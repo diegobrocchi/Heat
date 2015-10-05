@@ -54,3 +54,22 @@ End Code
 Next
 
 </table>
+
+<table id="tblPagedProducts" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+
+            <th>SKU</th>
+            <th>Descrizione</th>
+            <th>Prezzo</th>
+               
+            <th><a href="@Url.Action("create")" class=" btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th>
+        </tr>
+
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+    <script type="text/javascript" src="~/Scripts/Views/Products/index.js"></script>
+End Section

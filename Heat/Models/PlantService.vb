@@ -9,11 +9,12 @@ Namespace Models
     ''' <remarks></remarks>
     Public Class PlantService
 
-        <Key, ForeignKey("Plant")> _
+
         Property ID As Integer
 
-        Property PlantID As Integer
-        Property Plant As Plant
+        '<ForeignKey("Plant")>
+        'Property PlantID As Integer
+        'Property Plant As Plant
 
         ''' <summary>
         ''' Data della ultima manutenzione eseguita.

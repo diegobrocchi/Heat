@@ -25,8 +25,8 @@ Namespace Controllers
 
         ' GET: PlantServices
         Function Index() As ActionResult
-            Dim plantServices = _db.PlantServices.Include(Function(p) p.Plant)
-            Return View(plantServices.ToList())
+            'Dim plantServices = _db.PlantServices.Include(Function(p) p.Plant)
+            Return View(_db.PlantServices.ToList())
         End Function
 
         ' GET: PlantServices/Details/5
@@ -72,7 +72,7 @@ Namespace Controllers
                     Dim ps As PlantService
 
                     ps = AutoMapper.Mapper.Map(Of PlantService)(newPlantService)
-                    ps.Plant = _db.Plants.Find(newPlantService.PlantID)
+                    'ps.Plant = _db.Plants.Find(newPlantService.PlantID)
 
                     _db.PlantServices.Add(ps)
                     _db.SaveChanges()

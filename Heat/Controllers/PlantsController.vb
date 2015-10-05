@@ -52,7 +52,6 @@ Namespace Controllers
                 If IsNothing(id) Then
                     Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
                 End If
-                'Dim plant As Plant = _db.Plants.Find(id)
                 If Not _db.Plants.Any(Function(p) p.ID = id) Then
                     Return HttpNotFound()
                 End If
@@ -289,6 +288,30 @@ Namespace Controllers
             Return View(plant)
         End Function
 
+        ''' <summary>
+        ''' Prepara la pagina con i link alle operazioni che è possibile svolgere sull'impianto.
+        ''' </summary>
+        ''' <param name="id"></param>
+        ''' <returns></returns>
+        <HttpGet>
+        Public Function Manage(id As Integer) As ActionResult
+            Try
+                If IsNothing(id) Then
+                    Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+                End If
+                'Dim customer As Plant = _db.Plants.Find(id)
+                If Not _db.Plants.Any(Function(x) x.ID = id) Then
+                    Return HttpNotFound()
+                End If
+                Dim m As ManagePlantViewModel
+                m = _mb.GetManagePlantViewModel(id)
+                Return View(m)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+        End Function
+
         ' GET: Plants/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
@@ -357,7 +380,7 @@ Namespace Controllers
         ''' Aggiunge un file all'impianto, come allegato.
         ''' E' possibile allegare qualunque tipo di file.
         ''' </summary>
-        ''' <param name="ID"></param>
+        ''' <param name="ID">ID dell'impianto</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
         <HttpGet>
@@ -439,5 +462,6 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
+
     End Class
 End Namespace

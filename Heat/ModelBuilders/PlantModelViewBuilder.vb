@@ -66,7 +66,8 @@ Public Class PlantModelViewBuilder
         result.IdentifyViewModel = GetDetailsIdentifyPlantViewModel(id)
         result.ContactViewModel = GetDetailsContactPlantViewModel(id)
         result.ThermalViewModel = GetDetailsThermalPlantViewModel(id)
-        result.MediaViewModel = getDetailsMediaPlantViewModel(id)
+        result.MediaViewModel = GetDetailsMediaPlantViewModel(id)
+        result.ServiceViewModel = GetDetailsServicePlantViewModel(id)
 
         Return result
     End Function
@@ -141,8 +142,39 @@ Public Class PlantModelViewBuilder
 
         result.ID = id
         result.Media = p.Media
+
         result.BaseHref = ConfigurationManager.AppSettings("MediaPlantFolder")
         Return result
 
+    End Function
+
+    Function GetDetailsServicePlantViewModel(id As Integer) As DetailsServicePlantViewModel
+        Dim result As New DetailsServicePlantViewModel
+        Dim ps As PlantService
+
+        ps = _db.Plants.Include(Function(x) x.Service).Where(Function(x) x.ID = id).First.Service
+
+        If Not IsNothing(ps) Then
+
+            result.ID = ps.ID
+            result.PlantID = id
+            result.LegalExpirationDate = ps.LegalExpirationDate
+            result.Periodicity = ps.Periodicity
+            result.PlannedServiceDate = ps.PlannedServiceDate
+            result.PreviousServiceDate = ps.PreviousServiceDate
+        End If
+
+        Return result
+    End Function
+    Function GetManagePlantViewModel(id As Integer) As ManagePlantViewModel
+        Dim result As New ManagePlantViewModel
+        Dim p As Plant
+
+        p = _db.Plants.Find(id)
+
+        result.ID = id
+        result.Name = p.Name
+
+        Return result
     End Function
 End Class

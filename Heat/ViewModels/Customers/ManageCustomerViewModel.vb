@@ -7,8 +7,6 @@
 
         Property IsEnabled As Boolean
 
-
-
     End Class
 End Namespace
 

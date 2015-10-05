@@ -1,24 +1,25 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Data
-Imports System.Data.Entity
-Imports System.Linq
+﻿Imports System.Data.Entity
 Imports System.Net
-Imports System.Web
-Imports System.Web.Mvc
-Imports Heat
+Imports DataTables.AspNet.Core
 Imports Heat.Models
-Imports Heat.Repositories
+Imports Heat.Manager
+
 
 Namespace Controllers
     Public Class ProductsController
-        Inherits System.Web.Mvc.Controller
+        Inherits Controller
 
-        Private db As New HeatDBContext
+        Private _db As IHeatDBContext
+        Private _pm As ProductManager
+
+        Public Sub New(dbcontext As IHeatDBContext)
+            _db = dbcontext
+            _pm = New ProductManager(_db)
+        End Sub
 
         ' GET: Products
         Function Index() As ActionResult
-            Return View(db.Products.ToList())
+            Return View(_db.Products.ToList())
         End Function
 
         ' GET: Products/Details/5
@@ -26,7 +27,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim product As Product = db.Products.Find(id)
+            Dim product As Product = _db.Products.Find(id)
             If IsNothing(product) Then
                 Return HttpNotFound()
             End If
@@ -45,8 +46,8 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,SKU,Description,UnitPrice,Cost,ReorderLevel")> ByVal product As Product) As ActionResult
             If ModelState.IsValid Then
-                db.Products.Add(product)
-                db.SaveChanges()
+                _db.Products.Add(product)
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
             Return View(product)
@@ -57,7 +58,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim product As Product = db.Products.Find(id)
+            Dim product As Product = _db.Products.Find(id)
             If IsNothing(product) Then
                 Return HttpNotFound()
             End If
@@ -71,8 +72,9 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(<Bind(Include:="ID,SKU,Description,UnitPrice,Cost,ReorderLevel")> ByVal product As Product) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(product).State = EntityState.Modified
-                db.SaveChanges()
+                '_db.Entry(product).State = EntityState.Modified
+                _db.SetModified(product)
+                _db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
             Return View(product)
@@ -83,7 +85,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim product As Product = db.Products.Find(id)
+            Dim product As Product = _db.Products.Find(id)
             If IsNothing(product) Then
                 Return HttpNotFound()
             End If
@@ -95,15 +97,25 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim product As Product = db.Products.Find(id)
-            db.Products.Remove(product)
-            db.SaveChanges()
+            Dim product As Product = _db.Products.Find(id)
+            _db.Products.Remove(product)
+            _db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
 
+        <HttpGet>
+        Public Function GetPagedProducts(request As IDataTablesRequest) As ActionResult
+            If ModelState.IsValid Then
+                Return _pm.GetPagedProducts(request)
+            Else
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End If
+        End Function
+
+
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
-                db.Dispose()
+                _db.Dispose()
             End If
             MyBase.Dispose(disposing)
         End Sub
