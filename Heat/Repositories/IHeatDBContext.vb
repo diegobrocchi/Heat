@@ -39,6 +39,7 @@ Public Interface IHeatDBContext
     Property Fuels As DbSet(Of Fuel)
     Property Heaters As DbSet(Of Heater)
     Property Media As DbSet(Of Medium)
+    Property OutboundCalls As DbSet(Of OutboundCall)
 
 
 

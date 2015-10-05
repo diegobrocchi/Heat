@@ -239,6 +239,7 @@
     <Compile Include="Controllers\MediaController.vb" />
     <Compile Include="Controllers\NumberingsController.vb" />
     <Compile Include="Controllers\OperationsController.vb" />
+    <Compile Include="Controllers\OutboundCallsController.vb" />
     <Compile Include="Controllers\PlantServicesController.vb" />
     <Compile Include="Controllers\ProductInvoiceRowsController.vb" />
     <Compile Include="Controllers\SellersController.vb" />
@@ -567,6 +568,10 @@
       <DependentUpon>201510041741145_plantservice_identity.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201510041741145_plantservice_identity.vb" />
+    <Compile Include="Migrations\201510052013220_OutboundCalls.Designer.vb">
+      <DependentUpon>201510052013220_OutboundCalls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510052013220_OutboundCalls.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
@@ -924,6 +929,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510041741145_plantservice_identity.resx">
       <DependentUpon>201510041741145_plantservice_identity.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510052013220_OutboundCalls.resx">
+      <DependentUpon>201510052013220_OutboundCalls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -2010,6 +2018,11 @@
     <Content Include="Views\Plants\Partials\_DetailsMedia.vbhtml" />
     <Content Include="Views\Plants\Manage.vbhtml" />
     <Content Include="Views\Plants\Partials\_DetailsService.vbhtml" />
+    <Content Include="Views\OutboundCalls\Create.vbhtml" />
+    <Content Include="Views\OutboundCalls\Delete.vbhtml" />
+    <Content Include="Views\OutboundCalls\Details.vbhtml" />
+    <Content Include="Views\OutboundCalls\Edit.vbhtml" />
+    <Content Include="Views\OutboundCalls\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

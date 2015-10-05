@@ -162,6 +162,7 @@ Public Class PlantModelViewBuilder
             result.Periodicity = ps.Periodicity
             result.PlannedServiceDate = ps.PlannedServiceDate
             result.PreviousServiceDate = ps.PreviousServiceDate
+
         End If
 
         Return result

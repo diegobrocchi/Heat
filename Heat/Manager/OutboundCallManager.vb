@@ -16,6 +16,7 @@ Namespace Manager
             Dim plantList As List(Of Plant)
             plantList = _db.Plants.Where(Function(x) x.Service.LegalExpirationDate <= Now And Now < x.Service.LegalExpirationDate.AddDays(30)).ToList
 
+            Return 0
         End Function
     End Class
 End Namespace

@@ -70,6 +70,7 @@ Namespace Repositories
         Property PlantServices As DbSet(Of Models.PlantService) Implements IHeatDBContext.PlantServices
 
         Property Media As DbSet(Of Medium) Implements IHeatDBContext.Media
+        Property OutboundCalls As DbSet(Of OutboundCall) Implements IHeatDBContext.OutboundCalls
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges

@@ -76,7 +76,6 @@ Namespace Controllers
             End Try
         End Function
 
-
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Create(newPlant As CreatePlantViewModel) As ActionResult
