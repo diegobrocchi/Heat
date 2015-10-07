@@ -572,8 +572,13 @@
       <DependentUpon>201510052013220_OutboundCalls.vb</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201510052013220_OutboundCalls.vb" />
+    <Compile Include="Migrations\201510071958419_proposedCalls.Designer.vb">
+      <DependentUpon>201510071958419_proposedCalls.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510071958419_proposedCalls.vb" />
     <Compile Include="Migrations\Configuration.vb" />
     <Compile Include="ModelBinders\DecimalModelBinder.vb" />
+    <Compile Include="ModelBinders\PrincipalModelBinder.vb" />
     <Compile Include="ModelBuilders\BusinessModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\HeaterModelViewBuilder.vb" />
@@ -604,6 +609,7 @@
     <Compile Include="Models\PlantBuilding.vb" />
     <Compile Include="Models\Contact.vb" />
     <Compile Include="Models\PlantService.vb" />
+    <Compile Include="Models\ProposedOutBoundCall.vb" />
     <Compile Include="Models\ThermalUnit.vb" />
     <Compile Include="Models\ThermalUnitKind.vb" />
     <Compile Include="Models\WorkAction.vb" />
@@ -691,6 +697,7 @@
     <Compile Include="ViewModels\ManifacturerModels\EditManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.vb" />
     <Compile Include="ViewModels\NumberingViewModels.vb" />
+    <Compile Include="ViewModels\OutboundCalls\ProposedOutboundCallsViewModel.vb" />
     <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.vb" />
     <Compile Include="ViewModels\Plants\AddContactPlantViewModel.vb" />
     <Compile Include="ViewModels\Plants\AddMediumPlantViewModel.vb" />
@@ -932,6 +939,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510052013220_OutboundCalls.resx">
       <DependentUpon>201510052013220_OutboundCalls.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510071958419_proposedCalls.resx">
+      <DependentUpon>201510071958419_proposedCalls.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

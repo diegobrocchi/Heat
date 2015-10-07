@@ -22,6 +22,7 @@ Namespace Repositories
 
             '_logger = LogManager.GetLogger(GetType(HeatDBContext))
             '_logger.Debug("HeatDbContext created")
+            'Database.Log = Sub(s) Debug.WriteLine(s)
 
         End Sub
 
@@ -71,6 +72,7 @@ Namespace Repositories
 
         Property Media As DbSet(Of Medium) Implements IHeatDBContext.Media
         Property OutboundCalls As DbSet(Of OutboundCall) Implements IHeatDBContext.OutboundCalls
+        Property ProposedOutboundCalls As DbSet(Of ProposedOutBoundCall) Implements IHeatDBContext.ProposedOutboundCalls
 
         Public Overrides Function SaveChanges() As Integer Implements IHeatDBContext.SaveChanges
             Return MyBase.SaveChanges

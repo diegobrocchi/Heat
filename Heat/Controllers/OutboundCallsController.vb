@@ -4,6 +4,7 @@ Imports System.Data
 Imports System.Data.Entity
 Imports System.Linq
 Imports System.Net
+Imports System.Security.Principal
 Imports System.Web
 Imports System.Web.Mvc
 Imports Heat.Manager
@@ -115,8 +116,8 @@ Namespace Controllers
         End Function
 
         <HttpGet>
-        Public Function CreateList() As ActionResult
-            Return View(_ocm.GetNextOutboundCallSet("diego"))
+        Public Function CreateList(login As IPrincipal) As ActionResult
+            Return View(_ocm.GetNextOutboundCallSet(login.Identity.Name))
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)

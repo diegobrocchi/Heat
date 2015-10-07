@@ -143,5 +143,12 @@ Public Class HeatDbContextMock
         End Set
     End Property
 
-
+    Public Property ProposedOutboundCalls As DbSet(Of ProposedOutBoundCall) Implements IHeatDBContext.ProposedOutboundCalls
+        Get
+            Throw New NotImplementedException()
+        End Get
+        Set(value As DbSet(Of ProposedOutBoundCall))
+            Throw New NotImplementedException()
+        End Set
+    End Property
 End Class

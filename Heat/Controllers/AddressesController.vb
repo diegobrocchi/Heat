@@ -41,7 +41,7 @@ Namespace Controllers
 
         <HttpGet> _
         Function Create(customerID As Integer) As ActionResult
-
+            Return View()
         End Function
 
         ' POST: Addresses/Create

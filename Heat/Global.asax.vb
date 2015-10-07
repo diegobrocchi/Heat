@@ -4,7 +4,7 @@ Imports System.Security.Claims
 Imports System.IdentityModel.Services
 Imports AutoMapper
 Imports Heat.Models
-
+Imports System.Security.Principal
 
 Public Class MvcApplication
     Inherits System.Web.HttpApplication
@@ -23,6 +23,7 @@ Public Class MvcApplication
         ViewEngines.Engines.Add(New RazorViewEngine())
 
         ModelBinders.Binders.Add(GetType(Decimal), New DecimalModelBinder())
+        ModelBinders.Binders.Add(GetType(IPrincipal), New PrincipalModelBinder())
 
         DataTables.AspNet.Mvc5.Configuration.Register()
 

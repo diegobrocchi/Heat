@@ -38,8 +38,9 @@ Namespace Manager
             result.Lenght = file.ContentLength
             result.Extension = file.FileName.Substring(file.FileName.IndexOf("."))
             result.ContentType = file.ContentType
-            'result.AbsolutePath = server.MapPath(Path.Combine(_folder, file.FileName))
 
+            'result.AbsolutePath = server.MapPath(Path.Combine(_folder, file.FileName))
+            Return result
         End Function
 
     End Class

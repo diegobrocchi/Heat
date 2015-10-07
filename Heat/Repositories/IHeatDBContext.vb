@@ -40,6 +40,7 @@ Public Interface IHeatDBContext
     Property Heaters As DbSet(Of Heater)
     Property Media As DbSet(Of Medium)
     Property OutboundCalls As DbSet(Of OutboundCall)
+    Property ProposedOutboundCalls As DbSet(Of ProposedOutBoundCall)
 
 
 
