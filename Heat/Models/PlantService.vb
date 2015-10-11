@@ -12,10 +12,6 @@ Namespace Models
 
         Property ID As Integer
 
-        '<ForeignKey("Plant")>
-        'Property PlantID As Integer
-        'Property Plant As Plant
-
         ''' <summary>
         ''' Data della ultima manutenzione eseguita.
         ''' </summary>
@@ -34,6 +30,7 @@ Namespace Models
 
         ''' <summary>
         ''' Scadenza legale della manutenzione.
+        ''' Calcolata in base alla periodicità.
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>
@@ -41,7 +38,7 @@ Namespace Models
         Property LegalExpirationDate As DateTime
 
         ''' <summary>
-        ''' Data programmata di esecuzione della manutenzione. 
+        ''' Data programmata di esecuzione della manutenzione.
         ''' </summary>
         ''' <value></value>
         ''' <returns></returns>

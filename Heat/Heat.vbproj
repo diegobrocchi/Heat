@@ -583,6 +583,7 @@
     <Compile Include="ModelBuilders\CustomerModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\HeaterModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\ManifacturerModelViewBuilder.vb" />
+    <Compile Include="ModelBuilders\OutboundCallsModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\PlantModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\PlantServiceModelViewBuilder.vb" />
     <Compile Include="ModelBuilders\ThermalUnitModelViewBuilder.vb" />
@@ -2033,6 +2034,7 @@
     <Content Include="Views\OutboundCalls\Details.vbhtml" />
     <Content Include="Views\OutboundCalls\Edit.vbhtml" />
     <Content Include="Views\OutboundCalls\Index.vbhtml" />
+    <Content Include="Views\OutboundCalls\GetNextProposed.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

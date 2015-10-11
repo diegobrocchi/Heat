@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Heat", "Heat\Heat.vbproj", "{DFA4E706-A379-4522-9615-E8C814B00C4C}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Heat.Tests", "Heat.Tests\Heat.Tests.vbproj", "{068D4F13-2E2A-49EE-AE48-A1A4D33C156A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heat.Converted", "Heat.ConvertedToC#\Heat.Converted.csproj", "{E2750C34-A107-4956-BDA1-DDB4632AE955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{068D4F13-2E2A-49EE-AE48-A1A4D33C156A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{068D4F13-2E2A-49EE-AE48-A1A4D33C156A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{068D4F13-2E2A-49EE-AE48-A1A4D33C156A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2750C34-A107-4956-BDA1-DDB4632AE955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2750C34-A107-4956-BDA1-DDB4632AE955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2750C34-A107-4956-BDA1-DDB4632AE955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2750C34-A107-4956-BDA1-DDB4632AE955}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

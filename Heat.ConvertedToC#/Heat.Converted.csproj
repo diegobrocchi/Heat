@@ -1,0 +1,2106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion />
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E2750C34-A107-4956-BDA1-DDB4632AE955}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Heat</RootNamespace>
+    <AssemblyName>Heat</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.4</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Heat.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Heat.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>none</TypeScriptModuleKind>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="DataTables.AspNet.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Core.2.0.0-alpha2-070602\lib\net45\DataTables.AspNet.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DataTables.AspNet.Mvc5, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataTables.AspNet.Mvc5.2.0.0-alpha2-070602\lib\net45\DataTables.AspNet.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DynamicLINQ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicLINQ.1.0\lib\net40\DynamicLINQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="elmahappender_log4net">
+      <HintPath>..\packages\elmahappender_log4net.1.0.0.0\lib\net45\elmahappender_log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommons.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Authorize\ClaimsAutorizeAttribute.cs" />
+    <Compile Include="Authorize\ResourceAuthorizeAttribute.cs" />
+    <Compile Include="Authorize\ResourceClaimsAuthorizeManager.cs" />
+    <Compile Include="Claims\HeatClaimsPrincipal.cs" />
+    <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.cs" />
+    <Compile Include="Claims\ResourceOperations.cs" />
+    <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\ActionTypesController.cs" />
+    <Compile Include="Controllers\AddressesController.cs" />
+    <Compile Include="Controllers\AddressTypesController.cs" />
+    <Compile Include="Controllers\CausalDocumentsController.cs" />
+    <Compile Include="Controllers\CausalWarehouseGroupsController.cs" />
+    <Compile Include="Controllers\CausalWarehousesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DescriptiveInvoiceRowsController.cs" />
+    <Compile Include="Controllers\DocumentTypesController.cs" />
+    <Compile Include="Controllers\FuelsController.cs" />
+    <Compile Include="Controllers\HeatersController.cs" />
+    <Compile Include="Controllers\HeatTransferFluidsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceRowsController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\ManifacturerModelsController.cs" />
+    <Compile Include="Controllers\ManifacturersController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\NumberingsController.cs" />
+    <Compile Include="Controllers\OperationsController.cs" />
+    <Compile Include="Controllers\OutboundCallsController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Controllers\PlantClassesController.cs" />
+    <Compile Include="Controllers\PlantsController.cs" />
+    <Compile Include="Controllers\PlantServicesController.cs" />
+    <Compile Include="Controllers\PlantTypesController.cs" />
+    <Compile Include="Controllers\ProductInvoiceRowsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SellersController.cs" />
+    <Compile Include="Controllers\SerialSchemesController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\ThermalUnitsController.cs" />
+    <Compile Include="Controllers\WarehousesController.cs" />
+    <Compile Include="Controllers\WorkActionsController.cs" />
+    <Compile Include="Controllers\WorkOperatorsController.cs" />
+    <Compile Include="Extensions\AutomapperExtensions.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Import\ImportHelper.cs" />
+    <Compile Include="Manager\CustomerManager.cs" />
+    <Compile Include="Manager\InvoiceManager.cs" />
+    <Compile Include="Manager\MediaManager.cs" />
+    <Compile Include="Manager\NumeratorManager.cs" />
+    <Compile Include="Manager\OutboundCallManager.cs" />
+    <Compile Include="Manager\PlantManager.cs" />
+    <Compile Include="Manager\ProductManager.cs" />
+    <Compile Include="Manager\WarehouseMovementManager.cs" />
+    <Compile Include="Migrations\201502221046383_InitialCreate.Designer.cs">
+      <DependentUpon>201502221046383_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502221046383_InitialCreate.vb" />
+    <Compile Include="Migrations\201502221236522_CompanyName.cs" />
+    <Compile Include="Migrations\201502221236522_CompanyName.Designer.cs">
+      <DependentUpon>201502221236522_CompanyName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502221405010_1.cs" />
+    <Compile Include="Migrations\201502221405010_1.Designer.cs">
+      <DependentUpon>201502221405010_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503032010264_inventory.Designer.cs">
+      <DependentUpon>201503032010264_inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503032010264_inventory.vb" />
+    <Compile Include="Migrations\201503081525333_Allineamento_Anagrafica_Futura.cs" />
+    <Compile Include="Migrations\201503081525333_Allineamento_Anagrafica_Futura.Designer.cs">
+      <DependentUpon>201503081525333_Allineamento_Anagrafica_Futura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503081607255_rename_VAT.cs" />
+    <Compile Include="Migrations\201503081607255_rename_VAT.Designer.cs">
+      <DependentUpon>201503081607255_rename_VAT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503081659008_Plants.Designer.cs">
+      <DependentUpon>201503081659008_Plants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503081659008_Plants.vb" />
+    <Compile Include="Migrations\201503141410172_customername_required.cs" />
+    <Compile Include="Migrations\201503141410172_customername_required.Designer.cs">
+      <DependentUpon>201503141410172_customername_required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503210720459_products.Designer.cs">
+      <DependentUpon>201503210720459_products.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503210720459_products.vb" />
+    <Compile Include="Migrations\201503210743286_invoice.Designer.cs">
+      <DependentUpon>201503210743286_invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503210743286_invoice.vb" />
+    <Compile Include="Migrations\201503211612094_fuel.Designer.cs">
+      <DependentUpon>201503211612094_fuel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503211612094_fuel.vb" />
+    <Compile Include="Migrations\201503311921201_numbering.cs" />
+    <Compile Include="Migrations\201503311921201_numbering.Designer.cs">
+      <DependentUpon>201503311921201_numbering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503311930565_documenttype.Designer.cs">
+      <DependentUpon>201503311930565_documenttype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503311930565_documenttype.vb" />
+    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.cs" />
+    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.Designer.cs">
+      <DependentUpon>201505201054350_foreignkey_schema_numbering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231212567_foreignkey_warehouse.cs" />
+    <Compile Include="Migrations\201505231212567_foreignkey_warehouse.Designer.cs">
+      <DependentUpon>201505231212567_foreignkey_warehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231320467_causali.Designer.cs">
+      <DependentUpon>201505231320467_causali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231320467_causali.vb" />
+    <Compile Include="Migrations\201505231330392_gruppi_causali.Designer.cs">
+      <DependentUpon>201505231330392_gruppi_causali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505231330392_gruppi_causali.vb" />
+    <Compile Include="Migrations\201506130850422_seller.Designer.cs">
+      <DependentUpon>201506130850422_seller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506130850422_seller.vb" />
+    <Compile Include="Migrations\201506131333027_invoice_row.cs" />
+    <Compile Include="Migrations\201506131333027_invoice_row.Designer.cs">
+      <DependentUpon>201506131333027_invoice_row.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506290508292_sell.cs" />
+    <Compile Include="Migrations\201506290508292_sell.Designer.cs">
+      <DependentUpon>201506290508292_sell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201507270857483_VAT-single.cs" />
+    <Compile Include="Migrations\201507270857483_VAT-single.Designer.cs">
+      <DependentUpon>201507270857483_VAT-single.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508150930040_abstract_invoiceRow.Designer.cs">
+      <DependentUpon>201508150930040_abstract_invoiceRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508150930040_abstract_invoiceRow.vb" />
+    <Compile Include="Migrations\201508201708016_descriptiverowdescription.cs" />
+    <Compile Include="Migrations\201508201708016_descriptiverowdescription.Designer.cs">
+      <DependentUpon>201508201708016_descriptiverowdescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508201720303_rowVAT_double.cs" />
+    <Compile Include="Migrations\201508201720303_rowVAT_double.Designer.cs">
+      <DependentUpon>201508201720303_rowVAT_double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508251227002_descriptiverow.cs" />
+    <Compile Include="Migrations\201508251227002_descriptiverow.Designer.cs">
+      <DependentUpon>201508251227002_descriptiverow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508270855095_actiontypes.Designer.cs">
+      <DependentUpon>201508270855095_actiontypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508270855095_actiontypes.vb" />
+    <Compile Include="Migrations\201508271026383_renameActionToWorkAction.cs" />
+    <Compile Include="Migrations\201508271026383_renameActionToWorkAction.Designer.cs">
+      <DependentUpon>201508271026383_renameActionToWorkAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271028103_changeWorkAction.cs" />
+    <Compile Include="Migrations\201508271028103_changeWorkAction.Designer.cs">
+      <DependentUpon>201508271028103_changeWorkAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271033405_workoperator.Designer.cs">
+      <DependentUpon>201508271033405_workoperator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271033405_workoperator.vb" />
+    <Compile Include="Migrations\201508271044009_changeWorkAction1.cs" />
+    <Compile Include="Migrations\201508271044009_changeWorkAction1.Designer.cs">
+      <DependentUpon>201508271044009_changeWorkAction1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508271046448_changeWorkAction2.cs" />
+    <Compile Include="Migrations\201508271046448_changeWorkAction2.Designer.cs">
+      <DependentUpon>201508271046448_changeWorkAction2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508280931053_plant_toWorkAction.cs" />
+    <Compile Include="Migrations\201508280931053_plant_toWorkAction.Designer.cs">
+      <DependentUpon>201508280931053_plant_toWorkAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508291809059_add_manifacturer.Designer.cs">
+      <DependentUpon>201508291809059_add_manifacturer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508291809059_add_manifacturer.vb" />
+    <Compile Include="Migrations\201508291922035_add_BoilerServiceType.Designer.cs">
+      <DependentUpon>201508291922035_add_BoilerServiceType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508291922035_add_BoilerServiceType.vb" />
+    <Compile Include="Migrations\201508291936347_BoilerHeater_CertificationReference.cs" />
+    <Compile Include="Migrations\201508291936347_BoilerHeater_CertificationReference.Designer.cs">
+      <DependentUpon>201508291936347_BoilerHeater_CertificationReference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508300831308_manifacturermodelID.cs" />
+    <Compile Include="Migrations\201508300831308_manifacturermodelID.Designer.cs">
+      <DependentUpon>201508300831308_manifacturermodelID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508310959056_HeatTransferFluid.Designer.cs">
+      <DependentUpon>201508310959056_HeatTransferFluid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508310959056_HeatTransferFluid.vb" />
+    <Compile Include="Migrations\201508311015482_ThermalUnitKind.Designer.cs">
+      <DependentUpon>201508311015482_ThermalUnitKind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311015482_ThermalUnitKind.vb" />
+    <Compile Include="Migrations\201508311231239_ThermalUnit.cs" />
+    <Compile Include="Migrations\201508311231239_ThermalUnit.Designer.cs">
+      <DependentUpon>201508311231239_ThermalUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311355009_ThermalUnit.cs" />
+    <Compile Include="Migrations\201508311355009_ThermalUnit.Designer.cs">
+      <DependentUpon>201508311355009_ThermalUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010725042_heaterlist.Designer.cs">
+      <DependentUpon>201509010725042_heaterlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010725042_heaterlist.vb" />
+    <Compile Include="Migrations\201509010733216_add_heaters.cs" />
+    <Compile Include="Migrations\201509010733216_add_heaters.Designer.cs">
+      <DependentUpon>201509010733216_add_heaters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010738144_x.cs" />
+    <Compile Include="Migrations\201509010738144_x.Designer.cs">
+      <DependentUpon>201509010738144_x.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010845444_modHeater.cs" />
+    <Compile Include="Migrations\201509010845444_modHeater.Designer.cs">
+      <DependentUpon>201509010845444_modHeater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010849552_modHeater1.cs" />
+    <Compile Include="Migrations\201509010849552_modHeater1.Designer.cs">
+      <DependentUpon>201509010849552_modHeater1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509010853083_heatermod2.cs" />
+    <Compile Include="Migrations\201509010853083_heatermod2.Designer.cs">
+      <DependentUpon>201509010853083_heatermod2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011101143_plantService.Designer.cs">
+      <DependentUpon>201509011101143_plantService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011101143_plantService.vb" />
+    <Compile Include="Migrations\201509011212463_plantidToPlantservice.cs" />
+    <Compile Include="Migrations\201509011212463_plantidToPlantservice.Designer.cs">
+      <DependentUpon>201509011212463_plantidToPlantservice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.cs" />
+    <Compile Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.Designer.cs">
+      <DependentUpon>201509011245507_nullableLastServiceDateInPlantService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011255462_removeFuelFromPlant.cs" />
+    <Compile Include="Migrations\201509011255462_removeFuelFromPlant.Designer.cs">
+      <DependentUpon>201509011255462_removeFuelFromPlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011415459_removeBoiler.Designer.cs">
+      <DependentUpon>201509011415459_removeBoiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509011415459_removeBoiler.vb" />
+    <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.cs" />
+    <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.Designer.cs">
+      <DependentUpon>201509011532440_removeCustomerFromWorkAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021231257_thermalunitNullableDate.cs" />
+    <Compile Include="Migrations\201509021231257_thermalunitNullableDate.Designer.cs">
+      <DependentUpon>201509021231257_thermalunitNullableDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021354098_plantBuilding.cs" />
+    <Compile Include="Migrations\201509021354098_plantBuilding.Designer.cs">
+      <DependentUpon>201509021354098_plantBuilding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021416399_removeAddressPlant.cs" />
+    <Compile Include="Migrations\201509021416399_removeAddressPlant.Designer.cs">
+      <DependentUpon>201509021416399_removeAddressPlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021621311_removeCustomerFromAddress.cs" />
+    <Compile Include="Migrations\201509021621311_removeCustomerFromAddress.Designer.cs">
+      <DependentUpon>201509021621311_removeCustomerFromAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021627168_renameDistrictInAddress.cs" />
+    <Compile Include="Migrations\201509021627168_renameDistrictInAddress.Designer.cs">
+      <DependentUpon>201509021627168_renameDistrictInAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021628240_removePhoneFromAddress.cs" />
+    <Compile Include="Migrations\201509021628240_removePhoneFromAddress.Designer.cs">
+      <DependentUpon>201509021628240_removePhoneFromAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021630431_renamePlantCOntact.cs" />
+    <Compile Include="Migrations\201509021630431_renamePlantCOntact.Designer.cs">
+      <DependentUpon>201509021630431_renamePlantCOntact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021657465_addresstype.Designer.cs">
+      <DependentUpon>201509021657465_addresstype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021657465_addresstype.vb" />
+    <Compile Include="Migrations\201509021708219_addContactsTOPlant.cs" />
+    <Compile Include="Migrations\201509021708219_addContactsTOPlant.Designer.cs">
+      <DependentUpon>201509021708219_addContactsTOPlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021730503_removeTelephoneFromPlant.cs" />
+    <Compile Include="Migrations\201509021730503_removeTelephoneFromPlant.Designer.cs">
+      <DependentUpon>201509021730503_removeTelephoneFromPlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021738570_PlantClassType.cs" />
+    <Compile Include="Migrations\201509021738570_PlantClassType.Designer.cs">
+      <DependentUpon>201509021738570_PlantClassType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509021757191_distinctCodePlant.cs" />
+    <Compile Include="Migrations\201509021757191_distinctCodePlant.Designer.cs">
+      <DependentUpon>201509021757191_distinctCodePlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.cs" />
+    <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.Designer.cs">
+      <DependentUpon>201509031007328_removePlantIdFromPlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509211856188_customer_notes.cs" />
+    <Compile Include="Migrations\201509211856188_customer_notes.Designer.cs">
+      <DependentUpon>201509211856188_customer_notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509260913237_medium.Designer.cs">
+      <DependentUpon>201509260913237_medium.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509260913237_medium.vb" />
+    <Compile Include="Migrations\201509260923077_plant_medium.cs" />
+    <Compile Include="Migrations\201509260923077_plant_medium.Designer.cs">
+      <DependentUpon>201509260923077_plant_medium.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509260957200_medium_contentType.cs" />
+    <Compile Include="Migrations\201509260957200_medium_contentType.Designer.cs">
+      <DependentUpon>201509260957200_medium_contentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509261312561_rename_filenameMedium.cs" />
+    <Compile Include="Migrations\201509261312561_rename_filenameMedium.Designer.cs">
+      <DependentUpon>201509261312561_rename_filenameMedium.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509261314323_uploadFIlename_medium.cs" />
+    <Compile Include="Migrations\201509261314323_uploadFIlename_medium.Designer.cs">
+      <DependentUpon>201509261314323_uploadFIlename_medium.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510041715225_PlantService_key.cs" />
+    <Compile Include="Migrations\201510041715225_PlantService_key.Designer.cs">
+      <DependentUpon>201510041715225_PlantService_key.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510041741145_plantservice_identity.cs" />
+    <Compile Include="Migrations\201510041741145_plantservice_identity.Designer.cs">
+      <DependentUpon>201510041741145_plantservice_identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510052013220_OutboundCalls.Designer.cs">
+      <DependentUpon>201510052013220_OutboundCalls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510052013220_OutboundCalls.vb" />
+    <Compile Include="Migrations\201510071958419_proposedCalls.Designer.cs">
+      <DependentUpon>201510071958419_proposedCalls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510071958419_proposedCalls.vb" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelBinders\DecimalModelBinder.cs" />
+    <Compile Include="ModelBinders\PrincipalModelBinder.cs" />
+    <Compile Include="ModelBuilders\BusinessModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\CustomerModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\HeaterModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\InvoiceModelBuilder.cs" />
+    <Compile Include="ModelBuilders\ManifacturerModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\PlantModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\PlantServiceModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\ThermalUnitModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\WorkActionModelViewBuilder.cs" />
+    <Compile Include="Models\ActionType.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AddressType.cs" />
+    <Compile Include="Models\Boiler.cs" />
+    <Compile Include="Models\BoilerHeater.cs" />
+    <Compile Include="Models\BoilerService.cs" />
+    <Compile Include="Models\BoilerServiceType.cs" />
+    <Compile Include="Models\CausalDocument.cs" />
+    <Compile Include="Models\CausalWarehouse.cs" />
+    <Compile Include="Models\CausalWarehouseGroup.cs" />
+    <Compile Include="Models\CausalWarehouseTypeEnum.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DescriptiveInvoiceRow.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentType.cs" />
+    <Compile Include="Models\Enum\EnergyCategoryEnum.cs" />
+    <Compile Include="Models\Enum\ThermalUnitKindEnum.cs" />
+    <Compile Include="Models\Fuel.cs" />
+    <Compile Include="Models\Heater.cs" />
+    <Compile Include="Models\HeatTransferFluid.cs" />
+    <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\Interfaces\ISeller.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\InvoiceRow.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Manifacturer.cs" />
+    <Compile Include="Models\ManifacturerModel.cs" />
+    <Compile Include="Models\Medium.cs" />
+    <Compile Include="Models\Numbering.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\OutboundCall.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\Periodicity.cs" />
+    <Compile Include="Models\Plant.cs" />
+    <Compile Include="Models\PlantBuilding.cs" />
+    <Compile Include="Models\PlantClass.cs" />
+    <Compile Include="Models\PlantService.cs" />
+    <Compile Include="Models\PlantType.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductInvoiceRow.cs" />
+    <Compile Include="Models\ProposedOutBoundCall.cs" />
+    <Compile Include="Models\Seller.cs" />
+    <Compile Include="Models\SerialScheme.cs" />
+    <Compile Include="Models\ThermalUnit.cs" />
+    <Compile Include="Models\ThermalUnitKind.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\WarehouseMovement.cs" />
+    <Compile Include="Models\WorkAction.cs" />
+    <Compile Include="Models\WorkOperator.cs" />
+    <Compile Include="My Project\Application.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.cs" />
+    <Compile Include="My Project\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="MyNamespaceSupportForCSharp.cs" />
+    <Compile Include="Repositories\HeatDBContext.cs" />
+    <Compile Include="Repositories\IHeatDBContext.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Types\SerialNumber.cs" />
+    <Compile Include="Validation\EditableInvoiceValidator.cs" />
+    <Compile Include="Validation\Interfaces\IValidator.cs" />
+    <Compile Include="Validation\NameOrCompanyValidation.cs" />
+    <Compile Include="Validation\ValidationRules.cs" />
+    <Compile Include="ViewModelBuilders\NumberingViewModelsBuilder.cs" />
+    <Compile Include="ViewModelBuilders\SerialSchemeViewModelBuilder.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\Customers\CreateCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\DisableCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\EditCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\EnableCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\IndexCustomerGridViewModel.cs" />
+    <Compile Include="ViewModels\Customers\IndexCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\IndexDataTableCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customers\ManageCustomerViewModel.cs" />
+    <Compile Include="ViewModels\DocumentTypeAddViewModel.cs" />
+    <Compile Include="ViewModels\Heaters\CreateHeaterViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\AddNewDescriptiveInvoiceRowViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\AddNewProductInvoiceRowViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\confirmedIndexViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\confirmedInvoicesGridViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\ConfirmInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\DeleteInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\EditDescriptiveInvoiceRowViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\EditInvoiceViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\EditProductInvoiceRowViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\insertedIndexViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\InsertedInvoicesGridViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\InvoiceCreateViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\InvoiceDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\InvoicePaymentViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\InvoiceRowViewModel.cs" />
+    <Compile Include="ViewModels\Invoices\PresentationInvoiceRowViewModel.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ManifacturerModels\CreateManifacturerModelViewModel.cs" />
+    <Compile Include="ViewModels\ManifacturerModels\EditManifacturerModelViewModel.cs" />
+    <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.cs" />
+    <Compile Include="ViewModels\NumberingViewModels.cs" />
+    <Compile Include="ViewModels\OutboundCalls\ProposedOutboundCallsViewModel.cs" />
+    <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.cs" />
+    <Compile Include="ViewModels\Plants\AddContactPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\AddMediumPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\AddThermInfoPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\CreatePlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\DetailsContactPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\DetailsIdentifyPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\DetailsMediaPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\DetailsPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\DetailsServicePlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\DetailsThermalPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\IndexDataTablePlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\IndexPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\ManagePlantViewModel.cs" />
+    <Compile Include="ViewModels\Products\IndexDataTableProductViewModel.cs" />
+    <Compile Include="ViewModels\SerialSchemeViewModels.cs" />
+    <Compile Include="ViewModels\ThermalUnits\CreateThermalUnitViewModel.cs" />
+    <Compile Include="ViewModels\WorkActions\CreateWorkActionViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.Mvc" />
+    <Import Include="System.Web.Mvc.Ajax" />
+    <Import Include="System.Web.Mvc.Html" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.Routing" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.HtmlControls" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201502221046383_InitialCreate.resx">
+      <DependentUpon>201502221046383_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502221236522_CompanyName.resx">
+      <DependentUpon>201502221236522_CompanyName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502221405010_1.resx">
+      <DependentUpon>201502221405010_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503032010264_inventory.resx">
+      <DependentUpon>201503032010264_inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503081525333_Allineamento_Anagrafica_Futura.resx">
+      <DependentUpon>201503081525333_Allineamento_Anagrafica_Futura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503081607255_rename_VAT.resx">
+      <DependentUpon>201503081607255_rename_VAT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503081659008_Plants.resx">
+      <DependentUpon>201503081659008_Plants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503141410172_customername_required.resx">
+      <DependentUpon>201503141410172_customername_required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503210720459_products.resx">
+      <DependentUpon>201503210720459_products.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503210743286_invoice.resx">
+      <DependentUpon>201503210743286_invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503211612094_fuel.resx">
+      <DependentUpon>201503211612094_fuel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503311921201_numbering.resx">
+      <DependentUpon>201503311921201_numbering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503311930565_documenttype.resx">
+      <DependentUpon>201503311930565_documenttype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505201054350_foreignkey_schema_numbering.resx">
+      <DependentUpon>201505201054350_foreignkey_schema_numbering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231212567_foreignkey_warehouse.resx">
+      <DependentUpon>201505231212567_foreignkey_warehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231320467_causali.resx">
+      <DependentUpon>201505231320467_causali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505231330392_gruppi_causali.resx">
+      <DependentUpon>201505231330392_gruppi_causali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506130850422_seller.resx">
+      <DependentUpon>201506130850422_seller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506131333027_invoice_row.resx">
+      <DependentUpon>201506131333027_invoice_row.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506290508292_sell.resx">
+      <DependentUpon>201506290508292_sell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201507270857483_VAT-single.resx">
+      <DependentUpon>201507270857483_VAT-single.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508150930040_abstract_invoiceRow.resx">
+      <DependentUpon>201508150930040_abstract_invoiceRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508201708016_descriptiverowdescription.resx">
+      <DependentUpon>201508201708016_descriptiverowdescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508201720303_rowVAT_double.resx">
+      <DependentUpon>201508201720303_rowVAT_double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508251227002_descriptiverow.resx">
+      <DependentUpon>201508251227002_descriptiverow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508270855095_actiontypes.resx">
+      <DependentUpon>201508270855095_actiontypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271026383_renameActionToWorkAction.resx">
+      <DependentUpon>201508271026383_renameActionToWorkAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271028103_changeWorkAction.resx">
+      <DependentUpon>201508271028103_changeWorkAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271033405_workoperator.resx">
+      <DependentUpon>201508271033405_workoperator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271044009_changeWorkAction1.resx">
+      <DependentUpon>201508271044009_changeWorkAction1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508271046448_changeWorkAction2.resx">
+      <DependentUpon>201508271046448_changeWorkAction2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508280931053_plant_toWorkAction.resx">
+      <DependentUpon>201508280931053_plant_toWorkAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508291809059_add_manifacturer.resx">
+      <DependentUpon>201508291809059_add_manifacturer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508291922035_add_BoilerServiceType.resx">
+      <DependentUpon>201508291922035_add_BoilerServiceType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508291936347_BoilerHeater_CertificationReference.resx">
+      <DependentUpon>201508291936347_BoilerHeater_CertificationReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508300831308_manifacturermodelID.resx">
+      <DependentUpon>201508300831308_manifacturermodelID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508310959056_HeatTransferFluid.resx">
+      <DependentUpon>201508310959056_HeatTransferFluid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311015482_ThermalUnitKind.resx">
+      <DependentUpon>201508311015482_ThermalUnitKind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311231239_ThermalUnit.resx">
+      <DependentUpon>201508311231239_ThermalUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311355009_ThermalUnit.resx">
+      <DependentUpon>201508311355009_ThermalUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010725042_heaterlist.resx">
+      <DependentUpon>201509010725042_heaterlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010733216_add_heaters.resx">
+      <DependentUpon>201509010733216_add_heaters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010738144_x.resx">
+      <DependentUpon>201509010738144_x.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010845444_modHeater.resx">
+      <DependentUpon>201509010845444_modHeater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010849552_modHeater1.resx">
+      <DependentUpon>201509010849552_modHeater1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509010853083_heatermod2.resx">
+      <DependentUpon>201509010853083_heatermod2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011101143_plantService.resx">
+      <DependentUpon>201509011101143_plantService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011212463_plantidToPlantservice.resx">
+      <DependentUpon>201509011212463_plantidToPlantservice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.resx">
+      <DependentUpon>201509011245507_nullableLastServiceDateInPlantService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011255462_removeFuelFromPlant.resx">
+      <DependentUpon>201509011255462_removeFuelFromPlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011415459_removeBoiler.resx">
+      <DependentUpon>201509011415459_removeBoiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509011532440_removeCustomerFromWorkAction.resx">
+      <DependentUpon>201509011532440_removeCustomerFromWorkAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021231257_thermalunitNullableDate.resx">
+      <DependentUpon>201509021231257_thermalunitNullableDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021354098_plantBuilding.resx">
+      <DependentUpon>201509021354098_plantBuilding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021416399_removeAddressPlant.resx">
+      <DependentUpon>201509021416399_removeAddressPlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021621311_removeCustomerFromAddress.resx">
+      <DependentUpon>201509021621311_removeCustomerFromAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021627168_renameDistrictInAddress.resx">
+      <DependentUpon>201509021627168_renameDistrictInAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021628240_removePhoneFromAddress.resx">
+      <DependentUpon>201509021628240_removePhoneFromAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021630431_renamePlantCOntact.resx">
+      <DependentUpon>201509021630431_renamePlantCOntact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021657465_addresstype.resx">
+      <DependentUpon>201509021657465_addresstype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021708219_addContactsTOPlant.resx">
+      <DependentUpon>201509021708219_addContactsTOPlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021730503_removeTelephoneFromPlant.resx">
+      <DependentUpon>201509021730503_removeTelephoneFromPlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021738570_PlantClassType.resx">
+      <DependentUpon>201509021738570_PlantClassType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021757191_distinctCodePlant.resx">
+      <DependentUpon>201509021757191_distinctCodePlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509031007328_removePlantIdFromPlant.resx">
+      <DependentUpon>201509031007328_removePlantIdFromPlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509211856188_customer_notes.resx">
+      <DependentUpon>201509211856188_customer_notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509260913237_medium.resx">
+      <DependentUpon>201509260913237_medium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509260923077_plant_medium.resx">
+      <DependentUpon>201509260923077_plant_medium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509260957200_medium_contentType.resx">
+      <DependentUpon>201509260957200_medium_contentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509261312561_rename_filenameMedium.resx">
+      <DependentUpon>201509261312561_rename_filenameMedium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509261314323_uploadFIlename_medium.resx">
+      <DependentUpon>201509261314323_uploadFIlename_medium.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510041715225_PlantService_key.resx">
+      <DependentUpon>201510041715225_PlantService_key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510041741145_plantservice_identity.resx">
+      <DependentUpon>201510041741145_plantservice_identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510052013220_OutboundCalls.resx">
+      <DependentUpon>201510052013220_OutboundCalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510071958419_proposedCalls.resx">
+      <DependentUpon>201510071958419_proposedCalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\System.Linq.Dynamic.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\bootstrap-bootswatch.css" />
+    <Content Include="Content\bootstrap-bootswatch.css.map" />
+    <Content Include="Content\bootstrap-bootswatch.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap.css" />
+    <Content Include="Content\Images\colorful-stones.jpg" />
+    <Content Include="Content\Images\silhouette-of-colored-smoke.jpg" />
+    <Content Include="Content\Login.css" />
+    <Content Include="Content\signin.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="DesignNotes.txt" />
+    <Content Include="ELMAH-1.2-db-SQLServer.sql" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="readme.txt" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cldr.js" />
+    <Content Include="Scripts\cldr\event.js" />
+    <Content Include="Scripts\cldr\main\af-NA\currencies.json" />
+    <Content Include="Scripts\cldr\main\af-NA\numbers.json" />
+    <Content Include="Scripts\cldr\main\af\currencies.json" />
+    <Content Include="Scripts\cldr\main\af\numbers.json" />
+    <Content Include="Scripts\cldr\main\am\currencies.json" />
+    <Content Include="Scripts\cldr\main\am\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-AE\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-AE\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-BH\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-BH\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-DJ\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-DJ\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-DZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-DZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-EG\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-EG\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-EH\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-EH\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-ER\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-ER\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-IL\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-IL\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-IQ\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-IQ\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-JO\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-JO\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-KM\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-KM\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-KW\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-KW\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-LB\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-LB\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-LY\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-LY\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-MA\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-MA\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-MR\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-MR\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-OM\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-OM\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-PS\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-PS\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-QA\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-QA\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-SA\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-SA\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-SD\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-SD\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-SO\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-SO\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-SS\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-SS\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-SY\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-SY\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-TD\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-TD\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-TN\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-TN\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar-YE\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar-YE\numbers.json" />
+    <Content Include="Scripts\cldr\main\ar\currencies.json" />
+    <Content Include="Scripts\cldr\main\ar\numbers.json" />
+    <Content Include="Scripts\cldr\main\az-Latn\currencies.json" />
+    <Content Include="Scripts\cldr\main\az-Latn\numbers.json" />
+    <Content Include="Scripts\cldr\main\az\currencies.json" />
+    <Content Include="Scripts\cldr\main\az\numbers.json" />
+    <Content Include="Scripts\cldr\main\bg\currencies.json" />
+    <Content Include="Scripts\cldr\main\bg\numbers.json" />
+    <Content Include="Scripts\cldr\main\bn-IN\currencies.json" />
+    <Content Include="Scripts\cldr\main\bn-IN\numbers.json" />
+    <Content Include="Scripts\cldr\main\bn\currencies.json" />
+    <Content Include="Scripts\cldr\main\bn\numbers.json" />
+    <Content Include="Scripts\cldr\main\bs-Latn\currencies.json" />
+    <Content Include="Scripts\cldr\main\bs-Latn\numbers.json" />
+    <Content Include="Scripts\cldr\main\bs\currencies.json" />
+    <Content Include="Scripts\cldr\main\bs\numbers.json" />
+    <Content Include="Scripts\cldr\main\ca-AD\currencies.json" />
+    <Content Include="Scripts\cldr\main\ca-AD\numbers.json" />
+    <Content Include="Scripts\cldr\main\ca-ES-VALENCIA\currencies.json" />
+    <Content Include="Scripts\cldr\main\ca-ES-VALENCIA\numbers.json" />
+    <Content Include="Scripts\cldr\main\ca-FR\currencies.json" />
+    <Content Include="Scripts\cldr\main\ca-FR\numbers.json" />
+    <Content Include="Scripts\cldr\main\ca-IT\currencies.json" />
+    <Content Include="Scripts\cldr\main\ca-IT\numbers.json" />
+    <Content Include="Scripts\cldr\main\ca\currencies.json" />
+    <Content Include="Scripts\cldr\main\ca\numbers.json" />
+    <Content Include="Scripts\cldr\main\cs\currencies.json" />
+    <Content Include="Scripts\cldr\main\cs\numbers.json" />
+    <Content Include="Scripts\cldr\main\da-GL\currencies.json" />
+    <Content Include="Scripts\cldr\main\da-GL\numbers.json" />
+    <Content Include="Scripts\cldr\main\da\currencies.json" />
+    <Content Include="Scripts\cldr\main\da\numbers.json" />
+    <Content Include="Scripts\cldr\main\de-AT\currencies.json" />
+    <Content Include="Scripts\cldr\main\de-AT\numbers.json" />
+    <Content Include="Scripts\cldr\main\de-BE\currencies.json" />
+    <Content Include="Scripts\cldr\main\de-BE\numbers.json" />
+    <Content Include="Scripts\cldr\main\de-CH\currencies.json" />
+    <Content Include="Scripts\cldr\main\de-CH\numbers.json" />
+    <Content Include="Scripts\cldr\main\de-LI\currencies.json" />
+    <Content Include="Scripts\cldr\main\de-LI\numbers.json" />
+    <Content Include="Scripts\cldr\main\de-LU\currencies.json" />
+    <Content Include="Scripts\cldr\main\de-LU\numbers.json" />
+    <Content Include="Scripts\cldr\main\de\currencies.json" />
+    <Content Include="Scripts\cldr\main\de\numbers.json" />
+    <Content Include="Scripts\cldr\main\el-CY\currencies.json" />
+    <Content Include="Scripts\cldr\main\el-CY\numbers.json" />
+    <Content Include="Scripts\cldr\main\el\currencies.json" />
+    <Content Include="Scripts\cldr\main\el\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-001\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-001\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-150\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-150\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-AG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-AG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-AI\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-AI\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-AS\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-AS\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-AU\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-AU\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-BB\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-BB\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-BE\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-BE\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-BM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-BM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-BS\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-BS\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-BW\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-BW\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-BZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-BZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-CA\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-CA\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-CC\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-CC\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-CK\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-CK\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-CM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-CM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-CX\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-CX\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-DG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-DG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-DM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-DM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-ER\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-ER\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-FJ\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-FJ\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-FK\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-FK\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-FM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-FM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GB\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GB\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GD\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GD\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GH\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GH\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GI\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GI\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GU\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GU\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-GY\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-GY\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-HK\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-HK\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-IE\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-IE\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-IM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-IM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-IN\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-IN\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-IO\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-IO\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-JE\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-JE\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-JM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-JM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-KE\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-KE\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-KI\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-KI\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-KN\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-KN\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-KY\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-KY\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-LC\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-LC\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-LR\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-LR\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-LS\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-LS\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MH\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MH\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MO\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MO\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MP\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MP\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MS\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MS\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MT\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MT\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MU\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MU\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MW\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MW\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-MY\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-MY\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-NA\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-NA\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-NF\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-NF\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-NG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-NG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-NR\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-NR\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-NU\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-NU\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-NZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-NZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-PG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-PG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-PH\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-PH\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-PK\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-PK\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-PN\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-PN\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-PR\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-PR\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-PW\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-PW\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-RW\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-RW\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SB\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SB\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SC\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SC\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SD\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SD\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SH\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SH\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SL\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SL\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SS\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SS\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SX\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SX\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-SZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-SZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-TC\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-TC\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-TK\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-TK\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-TO\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-TO\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-TT\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-TT\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-TV\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-TV\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-TZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-TZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-UG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-UG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-UM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-UM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-US-POSIX\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-US-POSIX\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-VC\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-VC\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-VG\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-VG\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-VI\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-VI\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-VU\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-VU\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-WS\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-WS\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-ZA\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-ZA\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-ZM\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-ZM\numbers.json" />
+    <Content Include="Scripts\cldr\main\en-ZW\currencies.json" />
+    <Content Include="Scripts\cldr\main\en-ZW\numbers.json" />
+    <Content Include="Scripts\cldr\main\en\currencies.json" />
+    <Content Include="Scripts\cldr\main\en\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-419\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-419\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-AR\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-AR\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-BO\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-BO\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-CL\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-CL\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-CO\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-CO\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-CR\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-CR\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-CU\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-CU\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-DO\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-DO\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-EA\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-EA\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-EC\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-EC\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-GQ\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-GQ\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-GT\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-GT\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-HN\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-HN\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-IC\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-IC\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-MX\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-MX\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-NI\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-NI\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-PA\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-PA\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-PE\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-PE\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-PH\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-PH\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-PR\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-PR\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-PY\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-PY\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-SV\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-SV\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-US\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-US\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-UY\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-UY\numbers.json" />
+    <Content Include="Scripts\cldr\main\es-VE\currencies.json" />
+    <Content Include="Scripts\cldr\main\es-VE\numbers.json" />
+    <Content Include="Scripts\cldr\main\es\currencies.json" />
+    <Content Include="Scripts\cldr\main\es\numbers.json" />
+    <Content Include="Scripts\cldr\main\et\currencies.json" />
+    <Content Include="Scripts\cldr\main\et\numbers.json" />
+    <Content Include="Scripts\cldr\main\eu\currencies.json" />
+    <Content Include="Scripts\cldr\main\eu\numbers.json" />
+    <Content Include="Scripts\cldr\main\fa-AF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fa-AF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fa\currencies.json" />
+    <Content Include="Scripts\cldr\main\fa\numbers.json" />
+    <Content Include="Scripts\cldr\main\fil\currencies.json" />
+    <Content Include="Scripts\cldr\main\fil\numbers.json" />
+    <Content Include="Scripts\cldr\main\fi\currencies.json" />
+    <Content Include="Scripts\cldr\main\fi\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-BE\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-BE\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-BF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-BF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-BI\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-BI\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-BJ\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-BJ\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-BL\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-BL\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CA\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CA\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CD\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CD\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CG\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CG\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CH\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CH\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CI\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CI\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-CM\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-CM\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-DJ\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-DJ\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-DZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-DZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-GA\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-GA\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-GF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-GF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-GN\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-GN\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-GP\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-GP\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-GQ\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-GQ\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-HT\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-HT\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-KM\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-KM\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-LU\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-LU\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MA\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MA\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MC\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MC\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MG\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MG\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-ML\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-ML\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MQ\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MQ\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MR\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MR\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-MU\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-MU\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-NC\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-NC\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-NE\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-NE\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-PF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-PF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-PM\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-PM\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-RE\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-RE\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-RW\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-RW\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-SC\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-SC\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-SN\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-SN\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-SY\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-SY\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-TD\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-TD\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-TG\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-TG\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-TN\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-TN\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-VU\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-VU\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-WF\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-WF\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr-YT\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr-YT\numbers.json" />
+    <Content Include="Scripts\cldr\main\fr\currencies.json" />
+    <Content Include="Scripts\cldr\main\fr\numbers.json" />
+    <Content Include="Scripts\cldr\main\gl\currencies.json" />
+    <Content Include="Scripts\cldr\main\gl\numbers.json" />
+    <Content Include="Scripts\cldr\main\gu\currencies.json" />
+    <Content Include="Scripts\cldr\main\gu\numbers.json" />
+    <Content Include="Scripts\cldr\main\he\currencies.json" />
+    <Content Include="Scripts\cldr\main\he\numbers.json" />
+    <Content Include="Scripts\cldr\main\hi\currencies.json" />
+    <Content Include="Scripts\cldr\main\hi\numbers.json" />
+    <Content Include="Scripts\cldr\main\hr-BA\currencies.json" />
+    <Content Include="Scripts\cldr\main\hr-BA\numbers.json" />
+    <Content Include="Scripts\cldr\main\hr\currencies.json" />
+    <Content Include="Scripts\cldr\main\hr\numbers.json" />
+    <Content Include="Scripts\cldr\main\hu\currencies.json" />
+    <Content Include="Scripts\cldr\main\hu\numbers.json" />
+    <Content Include="Scripts\cldr\main\hy\currencies.json" />
+    <Content Include="Scripts\cldr\main\hy\numbers.json" />
+    <Content Include="Scripts\cldr\main\id\currencies.json" />
+    <Content Include="Scripts\cldr\main\id\numbers.json" />
+    <Content Include="Scripts\cldr\main\is\currencies.json" />
+    <Content Include="Scripts\cldr\main\is\numbers.json" />
+    <Content Include="Scripts\cldr\main\it-CH\currencies.json" />
+    <Content Include="Scripts\cldr\main\it-CH\numbers.json" />
+    <Content Include="Scripts\cldr\main\it-SM\currencies.json" />
+    <Content Include="Scripts\cldr\main\it-SM\numbers.json" />
+    <Content Include="Scripts\cldr\main\it\currencies.json" />
+    <Content Include="Scripts\cldr\main\it\numbers.json" />
+    <Content Include="Scripts\cldr\main\ja\currencies.json" />
+    <Content Include="Scripts\cldr\main\ja\numbers.json" />
+    <Content Include="Scripts\cldr\main\ka\currencies.json" />
+    <Content Include="Scripts\cldr\main\ka\numbers.json" />
+    <Content Include="Scripts\cldr\main\kk-Cyrl\currencies.json" />
+    <Content Include="Scripts\cldr\main\kk-Cyrl\numbers.json" />
+    <Content Include="Scripts\cldr\main\kk\currencies.json" />
+    <Content Include="Scripts\cldr\main\kk\numbers.json" />
+    <Content Include="Scripts\cldr\main\km\currencies.json" />
+    <Content Include="Scripts\cldr\main\km\numbers.json" />
+    <Content Include="Scripts\cldr\main\kn\currencies.json" />
+    <Content Include="Scripts\cldr\main\kn\numbers.json" />
+    <Content Include="Scripts\cldr\main\ko-KP\currencies.json" />
+    <Content Include="Scripts\cldr\main\ko-KP\numbers.json" />
+    <Content Include="Scripts\cldr\main\ko\currencies.json" />
+    <Content Include="Scripts\cldr\main\ko\numbers.json" />
+    <Content Include="Scripts\cldr\main\ky-Cyrl\currencies.json" />
+    <Content Include="Scripts\cldr\main\ky-Cyrl\numbers.json" />
+    <Content Include="Scripts\cldr\main\ky\currencies.json" />
+    <Content Include="Scripts\cldr\main\ky\numbers.json" />
+    <Content Include="Scripts\cldr\main\lo\currencies.json" />
+    <Content Include="Scripts\cldr\main\lo\numbers.json" />
+    <Content Include="Scripts\cldr\main\lt\currencies.json" />
+    <Content Include="Scripts\cldr\main\lt\numbers.json" />
+    <Content Include="Scripts\cldr\main\lv\currencies.json" />
+    <Content Include="Scripts\cldr\main\lv\numbers.json" />
+    <Content Include="Scripts\cldr\main\mk\currencies.json" />
+    <Content Include="Scripts\cldr\main\mk\numbers.json" />
+    <Content Include="Scripts\cldr\main\ml\currencies.json" />
+    <Content Include="Scripts\cldr\main\ml\numbers.json" />
+    <Content Include="Scripts\cldr\main\mn-Cyrl\currencies.json" />
+    <Content Include="Scripts\cldr\main\mn-Cyrl\numbers.json" />
+    <Content Include="Scripts\cldr\main\mn\currencies.json" />
+    <Content Include="Scripts\cldr\main\mn\numbers.json" />
+    <Content Include="Scripts\cldr\main\mr\currencies.json" />
+    <Content Include="Scripts\cldr\main\mr\numbers.json" />
+    <Content Include="Scripts\cldr\main\ms-Latn-BN\currencies.json" />
+    <Content Include="Scripts\cldr\main\ms-Latn-BN\numbers.json" />
+    <Content Include="Scripts\cldr\main\ms-Latn-SG\currencies.json" />
+    <Content Include="Scripts\cldr\main\ms-Latn-SG\numbers.json" />
+    <Content Include="Scripts\cldr\main\ms-Latn\currencies.json" />
+    <Content Include="Scripts\cldr\main\ms-Latn\numbers.json" />
+    <Content Include="Scripts\cldr\main\ms\currencies.json" />
+    <Content Include="Scripts\cldr\main\ms\numbers.json" />
+    <Content Include="Scripts\cldr\main\my\currencies.json" />
+    <Content Include="Scripts\cldr\main\my\numbers.json" />
+    <Content Include="Scripts\cldr\main\nb-SJ\currencies.json" />
+    <Content Include="Scripts\cldr\main\nb-SJ\numbers.json" />
+    <Content Include="Scripts\cldr\main\nb\currencies.json" />
+    <Content Include="Scripts\cldr\main\nb\numbers.json" />
+    <Content Include="Scripts\cldr\main\ne-IN\currencies.json" />
+    <Content Include="Scripts\cldr\main\ne-IN\numbers.json" />
+    <Content Include="Scripts\cldr\main\ne\currencies.json" />
+    <Content Include="Scripts\cldr\main\ne\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl-AW\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl-AW\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl-BE\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl-BE\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl-BQ\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl-BQ\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl-CW\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl-CW\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl-SR\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl-SR\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl-SX\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl-SX\numbers.json" />
+    <Content Include="Scripts\cldr\main\nl\currencies.json" />
+    <Content Include="Scripts\cldr\main\nl\numbers.json" />
+    <Content Include="Scripts\cldr\main\pa-Guru\currencies.json" />
+    <Content Include="Scripts\cldr\main\pa-Guru\numbers.json" />
+    <Content Include="Scripts\cldr\main\pa\currencies.json" />
+    <Content Include="Scripts\cldr\main\pa\numbers.json" />
+    <Content Include="Scripts\cldr\main\pl\currencies.json" />
+    <Content Include="Scripts\cldr\main\pl\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-AO\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-AO\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-CV\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-CV\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-GW\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-GW\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-MO\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-MO\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-MZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-MZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-PT\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-PT\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-ST\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-ST\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt-TL\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt-TL\numbers.json" />
+    <Content Include="Scripts\cldr\main\pt\currencies.json" />
+    <Content Include="Scripts\cldr\main\pt\numbers.json" />
+    <Content Include="Scripts\cldr\main\ro-MD\currencies.json" />
+    <Content Include="Scripts\cldr\main\ro-MD\numbers.json" />
+    <Content Include="Scripts\cldr\main\root\currencies.json" />
+    <Content Include="Scripts\cldr\main\root\numbers.json" />
+    <Content Include="Scripts\cldr\main\ro\currencies.json" />
+    <Content Include="Scripts\cldr\main\ro\numbers.json" />
+    <Content Include="Scripts\cldr\main\ru-BY\currencies.json" />
+    <Content Include="Scripts\cldr\main\ru-BY\numbers.json" />
+    <Content Include="Scripts\cldr\main\ru-KG\currencies.json" />
+    <Content Include="Scripts\cldr\main\ru-KG\numbers.json" />
+    <Content Include="Scripts\cldr\main\ru-KZ\currencies.json" />
+    <Content Include="Scripts\cldr\main\ru-KZ\numbers.json" />
+    <Content Include="Scripts\cldr\main\ru-MD\currencies.json" />
+    <Content Include="Scripts\cldr\main\ru-MD\numbers.json" />
+    <Content Include="Scripts\cldr\main\ru-UA\currencies.json" />
+    <Content Include="Scripts\cldr\main\ru-UA\numbers.json" />
+    <Content Include="Scripts\cldr\main\ru\currencies.json" />
+    <Content Include="Scripts\cldr\main\ru\numbers.json" />
+    <Content Include="Scripts\cldr\main\si\currencies.json" />
+    <Content Include="Scripts\cldr\main\si\numbers.json" />
+    <Content Include="Scripts\cldr\main\sk\currencies.json" />
+    <Content Include="Scripts\cldr\main\sk\numbers.json" />
+    <Content Include="Scripts\cldr\main\sl\currencies.json" />
+    <Content Include="Scripts\cldr\main\sl\numbers.json" />
+    <Content Include="Scripts\cldr\main\sq-MK\currencies.json" />
+    <Content Include="Scripts\cldr\main\sq-MK\numbers.json" />
+    <Content Include="Scripts\cldr\main\sq-XK\currencies.json" />
+    <Content Include="Scripts\cldr\main\sq-XK\numbers.json" />
+    <Content Include="Scripts\cldr\main\sq\currencies.json" />
+    <Content Include="Scripts\cldr\main\sq\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl-BA\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl-BA\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl-ME\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl-ME\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl-XK\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl-XK\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Cyrl\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn-BA\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn-BA\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn-ME\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn-ME\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn-XK\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn-XK\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr-Latn\numbers.json" />
+    <Content Include="Scripts\cldr\main\sr\currencies.json" />
+    <Content Include="Scripts\cldr\main\sr\numbers.json" />
+    <Content Include="Scripts\cldr\main\sv-AX\currencies.json" />
+    <Content Include="Scripts\cldr\main\sv-AX\numbers.json" />
+    <Content Include="Scripts\cldr\main\sv-FI\currencies.json" />
+    <Content Include="Scripts\cldr\main\sv-FI\numbers.json" />
+    <Content Include="Scripts\cldr\main\sv\currencies.json" />
+    <Content Include="Scripts\cldr\main\sv\numbers.json" />
+    <Content Include="Scripts\cldr\main\sw-CD\currencies.json" />
+    <Content Include="Scripts\cldr\main\sw-CD\numbers.json" />
+    <Content Include="Scripts\cldr\main\sw-KE\currencies.json" />
+    <Content Include="Scripts\cldr\main\sw-KE\numbers.json" />
+    <Content Include="Scripts\cldr\main\sw-UG\currencies.json" />
+    <Content Include="Scripts\cldr\main\sw-UG\numbers.json" />
+    <Content Include="Scripts\cldr\main\sw\currencies.json" />
+    <Content Include="Scripts\cldr\main\sw\numbers.json" />
+    <Content Include="Scripts\cldr\main\ta-LK\currencies.json" />
+    <Content Include="Scripts\cldr\main\ta-LK\numbers.json" />
+    <Content Include="Scripts\cldr\main\ta-MY\currencies.json" />
+    <Content Include="Scripts\cldr\main\ta-MY\numbers.json" />
+    <Content Include="Scripts\cldr\main\ta-SG\currencies.json" />
+    <Content Include="Scripts\cldr\main\ta-SG\numbers.json" />
+    <Content Include="Scripts\cldr\main\ta\currencies.json" />
+    <Content Include="Scripts\cldr\main\ta\numbers.json" />
+    <Content Include="Scripts\cldr\main\te\currencies.json" />
+    <Content Include="Scripts\cldr\main\te\numbers.json" />
+    <Content Include="Scripts\cldr\main\th\currencies.json" />
+    <Content Include="Scripts\cldr\main\th\numbers.json" />
+    <Content Include="Scripts\cldr\main\to\currencies.json" />
+    <Content Include="Scripts\cldr\main\to\numbers.json" />
+    <Content Include="Scripts\cldr\main\tr-CY\currencies.json" />
+    <Content Include="Scripts\cldr\main\tr-CY\numbers.json" />
+    <Content Include="Scripts\cldr\main\tr\currencies.json" />
+    <Content Include="Scripts\cldr\main\tr\numbers.json" />
+    <Content Include="Scripts\cldr\main\uk\currencies.json" />
+    <Content Include="Scripts\cldr\main\uk\numbers.json" />
+    <Content Include="Scripts\cldr\main\ur-IN\currencies.json" />
+    <Content Include="Scripts\cldr\main\ur-IN\numbers.json" />
+    <Content Include="Scripts\cldr\main\ur\currencies.json" />
+    <Content Include="Scripts\cldr\main\ur\numbers.json" />
+    <Content Include="Scripts\cldr\main\uz-Latn\currencies.json" />
+    <Content Include="Scripts\cldr\main\uz-Latn\numbers.json" />
+    <Content Include="Scripts\cldr\main\uz\currencies.json" />
+    <Content Include="Scripts\cldr\main\uz\numbers.json" />
+    <Content Include="Scripts\cldr\main\vi\currencies.json" />
+    <Content Include="Scripts\cldr\main\vi\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans-HK\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans-HK\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans-MO\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans-MO\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans-SG\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans-SG\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hans\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hant-HK\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hant-HK\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hant-MO\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hant-MO\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh-Hant\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh-Hant\numbers.json" />
+    <Content Include="Scripts\cldr\main\zh\currencies.json" />
+    <Content Include="Scripts\cldr\main\zh\numbers.json" />
+    <Content Include="Scripts\cldr\main\zu\currencies.json" />
+    <Content Include="Scripts\cldr\main\zu\numbers.json" />
+    <Content Include="Scripts\cldr\supplemental.js" />
+    <Content Include="Scripts\cldr\supplemental\aliases.json" />
+    <Content Include="Scripts\cldr\supplemental\calendarData.json" />
+    <Content Include="Scripts\cldr\supplemental\calendarPreferenceData.json" />
+    <Content Include="Scripts\cldr\supplemental\characterFallbacks.json" />
+    <Content Include="Scripts\cldr\supplemental\codeMappings.json" />
+    <Content Include="Scripts\cldr\supplemental\currencyData.json" />
+    <Content Include="Scripts\cldr\supplemental\gender.json" />
+    <Content Include="Scripts\cldr\supplemental\languageData.json" />
+    <Content Include="Scripts\cldr\supplemental\languageMatching.json" />
+    <Content Include="Scripts\cldr\supplemental\likelySubtags.json" />
+    <Content Include="Scripts\cldr\supplemental\measurementData.json" />
+    <Content Include="Scripts\cldr\supplemental\metaZones.json" />
+    <Content Include="Scripts\cldr\supplemental\numberingSystems.json" />
+    <Content Include="Scripts\cldr\supplemental\ordinals.json" />
+    <Content Include="Scripts\cldr\supplemental\parentLocales.json" />
+    <Content Include="Scripts\cldr\supplemental\plurals.json" />
+    <Content Include="Scripts\cldr\supplemental\postalCodeData.json" />
+    <Content Include="Scripts\cldr\supplemental\primaryZones.json" />
+    <Content Include="Scripts\cldr\supplemental\references.json" />
+    <Content Include="Scripts\cldr\supplemental\telephoneCodeData.json" />
+    <Content Include="Scripts\cldr\supplemental\territoryContainment.json" />
+    <Content Include="Scripts\cldr\supplemental\territoryInfo.json" />
+    <Content Include="Scripts\cldr\supplemental\timeData.json" />
+    <Content Include="Scripts\cldr\supplemental\weekData.json" />
+    <Content Include="Scripts\cldr\supplemental\windowsZones.json" />
+    <Content Include="Scripts\cldr\unresolved.js" />
+    <Content Include="Scripts\DataTableLocalization\it-IT.json" />
+    <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.css" />
+    <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables.min.css" />
+    <Content Include="Scripts\DataTables-1.10.5\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\back_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\back_enabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\back_enabled_hover.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\favicon.ico" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\forward_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\forward_enabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\forward_enabled_hover.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\Sorting icons.psd" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_asc.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_both.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_desc.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.5\media\js\jquery.dataTables.js" />
+    <Content Include="Scripts\DataTables-1.10.5\media\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\DataTables-1.10.5\media\js\jquery.js" />
+    <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize\currency.js" />
+    <Content Include="Scripts\globalize\date.js" />
+    <Content Include="Scripts\globalize\message.js" />
+    <Content Include="Scripts\globalize\number.js" />
+    <Content Include="Scripts\globalize\plural.js" />
+    <Content Include="Scripts\globalize\relative-time.js" />
+    <Content Include="Scripts\Heat.Globalize.js" />
+    <Content Include="Scripts\Heat.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.globalize.fix.js" />
+    <Content Include="Scripts\jquery.validate.globalize.fix.min.js">
+      <DependentUpon>jquery.validate.globalize.fix.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.globalize.fix.min.js.map">
+      <DependentUpon>jquery.validate.globalize.fix.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.globalize.js" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.bootstrap.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\mvcfoolproof.unobtrusive.min.js" />
+    <Content Include="Scripts\MvcFoolproofJQueryValidation.min.js" />
+    <Content Include="Scripts\MvcFoolproofValidation.min.js" />
+    <Content Include="Scripts\mvcvalidationextensions.unobtrusive.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Views\Customers\index.js" />
+    <Content Include="Scripts\Views\Invoices\create.js" />
+    <Content Include="Scripts\Views\Invoices\create.js.map" />
+    <Content Include="Scripts\Views\Invoices\edit.js" />
+    <Content Include="Scripts\Views\Invoices\edit.js.map" />
+    <Content Include="Scripts\Views\Plants\index.js" />
+    <Content Include="Scripts\Views\Products\index.js" />
+    <Content Include="Scripts\Views\WorkActions\index.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="UploadMedia\Plants\ae704525-a1fd-416e-9db9-8e7cfb58bfb2.jpg" />
+    <Content Include="UploadMedia\Plants\index.html" />
+    <Content Include="Views\Account\ConfirmEmail.vbhtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.vbhtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.vbhtml" />
+    <Content Include="Views\Account\ForgotPassword.vbhtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.vbhtml" />
+    <Content Include="Views\Account\Login.vbhtml" />
+    <Content Include="Views\Account\Register.vbhtml" />
+    <Content Include="Views\Account\ResetPassword.vbhtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.vbhtml" />
+    <Content Include="Views\Account\SendCode.vbhtml" />
+    <Content Include="Views\Account\VerifyCode.vbhtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.vbhtml" />
+    <Content Include="Views\Actions\Create.vbhtml" />
+    <Content Include="Views\Actions\Delete.vbhtml" />
+    <Content Include="Views\Actions\Details.vbhtml" />
+    <Content Include="Views\Actions\Edit.vbhtml" />
+    <Content Include="Views\Actions\Index.vbhtml" />
+    <Content Include="Views\ActionTypes\Create.vbhtml" />
+    <Content Include="Views\ActionTypes\Delete.vbhtml" />
+    <Content Include="Views\ActionTypes\Details.vbhtml" />
+    <Content Include="Views\ActionTypes\Edit.vbhtml" />
+    <Content Include="Views\ActionTypes\Index.vbhtml" />
+    <Content Include="Views\Addresses\Create.vbhtml" />
+    <Content Include="Views\Addresses\Delete.vbhtml" />
+    <Content Include="Views\Addresses\Details.vbhtml" />
+    <Content Include="Views\Addresses\Edit.vbhtml" />
+    <Content Include="Views\Addresses\Index.vbhtml" />
+    <Content Include="Views\AddressTypes\Create.vbhtml" />
+    <Content Include="Views\AddressTypes\Delete.vbhtml" />
+    <Content Include="Views\AddressTypes\Details.vbhtml" />
+    <Content Include="Views\AddressTypes\Edit.vbhtml" />
+    <Content Include="Views\AddressTypes\Index.vbhtml" />
+    <Content Include="Views\CausalDocuments\Create.vbhtml" />
+    <Content Include="Views\CausalDocuments\Delete.vbhtml" />
+    <Content Include="Views\CausalDocuments\Details.vbhtml" />
+    <Content Include="Views\CausalDocuments\Edit.vbhtml" />
+    <Content Include="Views\CausalDocuments\Index.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Create.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Delete.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Details.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Edit.vbhtml" />
+    <Content Include="Views\CausalWarehouseGroups\Index.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Create.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Delete.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Details.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Edit.vbhtml" />
+    <Content Include="Views\CausalWarehouses\Index.vbhtml" />
+    <Content Include="Views\Customers\Create.vbhtml" />
+    <Content Include="Views\Customers\Delete.vbhtml" />
+    <Content Include="Views\Customers\Details.vbhtml" />
+    <Content Include="Views\Customers\DisableCustomer.vbhtml" />
+    <Content Include="Views\Customers\Edit.vbhtml" />
+    <Content Include="Views\Customers\EnableCustomer.vbhtml" />
+    <Content Include="Views\Customers\Import.vbhtml" />
+    <Content Include="Views\Customers\Index.vbhtml" />
+    <Content Include="Views\Customers\Manage.vbhtml" />
+    <Content Include="Views\Customers\Partials\_customerGrid.vbhtml" />
+    <Content Include="Views\Customers\Search.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Create.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Delete.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Details.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Edit.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Index.vbhtml" />
+    <Content Include="Views\DocumentTypes\Create.vbhtml" />
+    <Content Include="Views\DocumentTypes\Delete.vbhtml" />
+    <Content Include="Views\DocumentTypes\Details.vbhtml" />
+    <Content Include="Views\DocumentTypes\Edit.vbhtml" />
+    <Content Include="Views\DocumentTypes\Index.vbhtml" />
+    <Content Include="Views\Fuels\Create.vbhtml" />
+    <Content Include="Views\Fuels\Delete.vbhtml" />
+    <Content Include="Views\Fuels\Details.vbhtml" />
+    <Content Include="Views\Fuels\Edit.vbhtml" />
+    <Content Include="Views\Fuels\Index.vbhtml" />
+    <Content Include="Views\Heaters\Create.vbhtml" />
+    <Content Include="Views\Heaters\Delete.vbhtml" />
+    <Content Include="Views\Heaters\Details.vbhtml" />
+    <Content Include="Views\Heaters\Edit.vbhtml" />
+    <Content Include="Views\Heaters\Index.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Create.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Delete.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Details.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Edit.vbhtml" />
+    <Content Include="Views\HeatTransferFluids\Index.vbhtml" />
+    <Content Include="Views\Home\About.vbhtml" />
+    <Content Include="Views\Home\Contact.vbhtml" />
+    <Content Include="Views\Home\Index.vbhtml" />
+    <Content Include="Views\InventoryMovements\Create.vbhtml" />
+    <Content Include="Views\InventoryMovements\Delete.vbhtml" />
+    <Content Include="Views\InventoryMovements\Details.vbhtml" />
+    <Content Include="Views\InventoryMovements\Edit.vbhtml" />
+    <Content Include="Views\InventoryMovements\Index.vbhtml" />
+    <Content Include="Views\InvoiceRows\Create.vbhtml" />
+    <Content Include="Views\InvoiceRows\Delete.vbhtml" />
+    <Content Include="Views\InvoiceRows\Details.vbhtml" />
+    <Content Include="Views\InvoiceRows\Edit.vbhtml" />
+    <Content Include="Views\InvoiceRows\Index.vbhtml" />
+    <Content Include="Views\Invoices\Confirm.vbhtml" />
+    <Content Include="Views\Invoices\confirmedIndex.vbhtml" />
+    <Content Include="Views\Invoices\Create.vbhtml" />
+    <Content Include="Views\Invoices\Delete.vbhtml" />
+    <Content Include="Views\Invoices\Details.vbhtml" />
+    <Content Include="Views\Invoices\Edit.vbhtml" />
+    <Content Include="Views\Invoices\EditPayment.vbhtml" />
+    <Content Include="Views\Invoices\InsertedIndex.vbhtml" />
+    <Content Include="Views\Invoices\Partials\_addInvoiceRows.vbhtml" />
+    <Content Include="Views\Invoices\Partials\_invoiceRows.vbhtml" />
+    <Content Include="Views\Invoices\Partials\_invoiceRowsIndex.vbhtml" />
+    <Content Include="Views\Invoices\SelectCustomer.vbhtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.vbhtml" />
+    <Content Include="Views\Manage\ChangePassword.vbhtml" />
+    <Content Include="Views\Manage\Index.vbhtml" />
+    <Content Include="Views\Manage\ManageLogins.vbhtml" />
+    <Content Include="Views\Manage\SetPassword.vbhtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Create.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Delete.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Details.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Edit.vbhtml" />
+    <Content Include="Views\ManifacturerModels\Index.vbhtml" />
+    <Content Include="Views\Manifacturers\Create.vbhtml" />
+    <Content Include="Views\Manifacturers\Delete.vbhtml" />
+    <Content Include="Views\Manifacturers\Details.vbhtml" />
+    <Content Include="Views\Manifacturers\Edit.vbhtml" />
+    <Content Include="Views\Manifacturers\Index.vbhtml" />
+    <Content Include="Views\Media\Create.vbhtml" />
+    <Content Include="Views\Media\Delete.vbhtml" />
+    <Content Include="Views\Media\Details.vbhtml" />
+    <Content Include="Views\Media\Edit.vbhtml" />
+    <Content Include="Views\Media\Index.vbhtml" />
+    <Content Include="Views\Numberings\Create.vbhtml" />
+    <Content Include="Views\Numberings\Delete.vbhtml" />
+    <Content Include="Views\Numberings\Details.vbhtml" />
+    <Content Include="Views\Numberings\Edit.vbhtml" />
+    <Content Include="Views\Numberings\Index.vbhtml" />
+    <Content Include="Views\Operations\Create.vbhtml" />
+    <Content Include="Views\Operations\Delete.vbhtml" />
+    <Content Include="Views\Operations\Details.vbhtml" />
+    <Content Include="Views\Operations\Edit.vbhtml" />
+    <Content Include="Views\Operations\Index.vbhtml" />
+    <Content Include="Views\OutboundCalls\Create.vbhtml" />
+    <Content Include="Views\OutboundCalls\Delete.vbhtml" />
+    <Content Include="Views\OutboundCalls\Details.vbhtml" />
+    <Content Include="Views\OutboundCalls\Edit.vbhtml" />
+    <Content Include="Views\OutboundCalls\Index.vbhtml" />
+    <Content Include="Views\Payments\Create.vbhtml" />
+    <Content Include="Views\Payments\Delete.vbhtml" />
+    <Content Include="Views\Payments\Details.vbhtml" />
+    <Content Include="Views\Payments\Edit.vbhtml" />
+    <Content Include="Views\Payments\Index.vbhtml" />
+    <Content Include="Views\PlantClasses\Create.vbhtml" />
+    <Content Include="Views\PlantClasses\Delete.vbhtml" />
+    <Content Include="Views\PlantClasses\Details.vbhtml" />
+    <Content Include="Views\PlantClasses\Edit.vbhtml" />
+    <Content Include="Views\PlantClasses\Index.vbhtml" />
+    <Content Include="Views\PlantServices\Create.vbhtml" />
+    <Content Include="Views\PlantServices\Delete.vbhtml" />
+    <Content Include="Views\PlantServices\Details.vbhtml" />
+    <Content Include="Views\PlantServices\Edit.vbhtml" />
+    <Content Include="Views\PlantServices\Index.vbhtml" />
+    <Content Include="Views\Plants\AddAnotherContact.vbhtml" />
+    <Content Include="Views\Plants\AddContact.vbhtml" />
+    <Content Include="Views\Plants\AddMedium.vbhtml" />
+    <Content Include="Views\Plants\AddThermInfo.vbhtml" />
+    <Content Include="Views\Plants\Create.vbhtml" />
+    <Content Include="Views\Plants\Delete.vbhtml" />
+    <Content Include="Views\Plants\Details.vbhtml" />
+    <Content Include="Views\Plants\Edit.vbhtml" />
+    <Content Include="Views\Plants\Index.vbhtml" />
+    <Content Include="Views\Plants\Manage.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsContacts.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsIdentify.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsMedia.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsService.vbhtml" />
+    <Content Include="Views\Plants\Partials\_DetailsThermal.vbhtml" />
+    <Content Include="Views\PlantTypes\Create.vbhtml" />
+    <Content Include="Views\PlantTypes\Delete.vbhtml" />
+    <Content Include="Views\PlantTypes\Details.vbhtml" />
+    <Content Include="Views\PlantTypes\Edit.vbhtml" />
+    <Content Include="Views\PlantTypes\Index.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Create.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Delete.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Details.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Edit.vbhtml" />
+    <Content Include="Views\ProductInvoiceRows\Index.vbhtml" />
+    <Content Include="Views\Products\Create.vbhtml" />
+    <Content Include="Views\Products\Delete.vbhtml" />
+    <Content Include="Views\Products\Details.vbhtml" />
+    <Content Include="Views\Products\Edit.vbhtml" />
+    <Content Include="Views\Products\Index.vbhtml" />
+    <Content Include="Views\Search\index.vbhtml" />
+    <Content Include="Views\Sellers\Create.vbhtml" />
+    <Content Include="Views\Sellers\Delete.vbhtml" />
+    <Content Include="Views\Sellers\Details.vbhtml" />
+    <Content Include="Views\Sellers\Edit.vbhtml" />
+    <Content Include="Views\Sellers\Index.vbhtml" />
+    <Content Include="Views\SerialSchemes\Create.vbhtml" />
+    <Content Include="Views\SerialSchemes\Delete.vbhtml" />
+    <Content Include="Views\SerialSchemes\Details.vbhtml" />
+    <Content Include="Views\SerialSchemes\Edit.vbhtml" />
+    <Content Include="Views\SerialSchemes\Index.vbhtml" />
+    <Content Include="Views\Settings\Index.vbhtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Periodicity.vbhtml" />
+    <Content Include="Views\Shared\EditorTemplates\Upload.vbhtml" />
+    <Content Include="Views\Shared\Error.vbhtml" />
+    <Content Include="Views\Shared\Lockout.vbhtml" />
+    <Content Include="Views\Shared\_indexPartial.vbhtml" />
+    <Content Include="Views\Shared\_Layout.vbhtml" />
+    <Content Include="Views\Shared\_LoginPartial.vbhtml" />
+    <Content Include="Views\Shared\_searchCustomer.vbhtml" />
+    <Content Include="Views\Shared\_SearchPartial.vbhtml" />
+    <Content Include="Views\ThermalUnits\Create.vbhtml" />
+    <Content Include="Views\ThermalUnits\Delete.vbhtml" />
+    <Content Include="Views\ThermalUnits\Details.vbhtml" />
+    <Content Include="Views\ThermalUnits\Edit.vbhtml" />
+    <Content Include="Views\ThermalUnits\Index.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Create.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Delete.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Details.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Edit.vbhtml" />
+    <Content Include="Views\WarehouseMovements\Index.vbhtml" />
+    <Content Include="Views\Warehouses\Create.vbhtml" />
+    <Content Include="Views\Warehouses\Delete.vbhtml" />
+    <Content Include="Views\Warehouses\Details.vbhtml" />
+    <Content Include="Views\Warehouses\Edit.vbhtml" />
+    <Content Include="Views\Warehouses\Index.vbhtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\WorkActions\Create.vbhtml" />
+    <Content Include="Views\WorkActions\Delete.vbhtml" />
+    <Content Include="Views\WorkActions\Details.vbhtml" />
+    <Content Include="Views\WorkActions\Edit.vbhtml" />
+    <Content Include="Views\WorkActions\Index.vbhtml" />
+    <Content Include="Views\WorkOperators\Create.vbhtml" />
+    <Content Include="Views\WorkOperators\Delete.vbhtml" />
+    <Content Include="Views\WorkOperators\Details.vbhtml" />
+    <Content Include="Views\WorkOperators\Edit.vbhtml" />
+    <Content Include="Views\WorkOperators\Index.vbhtml" />
+    <Content Include="Views\_ViewStart.vbhtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="My Project\PublishProfiles\Heat.pubxml" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Project_Readme.html" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\globalize\globalize.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery-validation-unobtrusive\jquery-validation-unobtrusive.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Invoices\create.ts" />
+    <TypeScriptCompile Include="Scripts\Views\Invoices\edit.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v14.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:23922/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

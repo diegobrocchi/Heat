@@ -1,27 +1,22 @@
-﻿Imports System
-Imports System.Collections.Generic
-Imports System.Data
-Imports System.Data.Entity
-Imports System.Linq
+﻿Imports System.Data.Entity
 Imports System.Net
 Imports System.Security.Principal
-Imports System.Web
-Imports System.Web.Mvc
 Imports Heat.Manager
 Imports Heat.Models
-Imports Heat.Repositories
+Imports Heat.ViewModels.OutboundCall
 
 Namespace Controllers
     Public Class OutboundCallsController
         Inherits System.Web.Mvc.Controller
 
         Private _db As IHeatDBContext
-        Private _ocm As OutboundCallManager
-
+        'Private _ocm As OutboundCallManager
+        Private _mb As OutboundCallsModelViewBuilder
 
         Public Sub New(dbContext As IHeatDBContext)
             _db = dbContext
-            _ocm = New OutboundCallManager(_db)
+            _mb = New OutboundCallsModelViewBuilder(_db)
+            '_ocm = New OutboundCallManager(_db)
         End Sub
 
         ' GET: OutboundCalls
@@ -116,8 +111,16 @@ Namespace Controllers
         End Function
 
         <HttpGet>
-        Public Function CreateList(login As IPrincipal) As ActionResult
-            Return View(_ocm.GetNextOutboundCallSet(login.Identity.Name))
+        Public Function GetNextProposed(login As IPrincipal) As ActionResult
+            Try
+                Dim model As ProposedOutboundCallsViewModel
+                model = _mb.GetNextProposed(login.Identity.Name)
+                Return View(model)
+            Catch ex As Exception
+                ViewBag.message = ex.Message
+                Return View("error")
+            End Try
+
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
