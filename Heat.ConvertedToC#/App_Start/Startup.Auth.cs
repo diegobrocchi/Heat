@@ -56,7 +56,7 @@ namespace Heat
 			app.UseCookieAuthentication(new CookieAuthenticationOptions {
 				AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
 				Provider = new CookieAuthenticationProvider {
-					OnException = c =>,
+					OnException = c => { } ,
 					OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<HeatUserManager, HeatUser>(validateInterval: TimeSpan.FromMinutes(30), regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
 				},
 				LoginPath = new PathString("/Account/Login")

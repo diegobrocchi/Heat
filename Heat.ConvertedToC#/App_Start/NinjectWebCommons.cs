@@ -30,7 +30,7 @@ using WebActivatorEx;
 using Ninject.Web.Common;
 using Heat.Repositories;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Heat.App_Start.NinjectMVC5), "StartNinject")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectMVC5), "StartNinject")]
 
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(Heat.App_Start.NinjectMVC5), "StopNinject")]
 namespace Heat.Heat.App_Start
