@@ -1218,9 +1218,9 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "Balboa panamenha",
-            "displayName-count-one": "Balboa panamenha",
-            "displayName-count-other": "Balboas panamenhas",
+            "displayName": "Balboa paNamenha",
+            "displayName-count-one": "Balboa paNamenha",
+            "displayName-count-other": "Balboas paNamenhas",
             "symbol": "PAB"
           },
           "PEI": {
@@ -1423,14 +1423,14 @@
           "SRD": {
             "displayName": "Dólar surinamês",
             "displayName-count-one": "Dólar surinamês",
-            "displayName-count-other": "Dólares surinameses",
+            "displayName-count-other": "Dólares suriNameses",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "Florim do Suriname",
-            "displayName-count-one": "Florim do Suriname",
-            "displayName-count-other": "Florins do Suriname",
+            "displayName": "Florim do SuriName",
+            "displayName-count-one": "Florim do SuriName",
+            "displayName-count-other": "Florins do SuriName",
             "symbol": "SRG"
           },
           "SSP": {

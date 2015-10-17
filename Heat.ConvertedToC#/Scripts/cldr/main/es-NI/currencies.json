@@ -1145,9 +1145,9 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "balboa panameño",
-            "displayName-count-one": "balboa panameño",
-            "displayName-count-other": "balboas panameños",
+            "displayName": "balboa paNameño",
+            "displayName-count-one": "balboa paNameño",
+            "displayName-count-other": "balboas paNameños",
             "symbol": "PAB"
           },
           "PEI": {
@@ -1348,7 +1348,7 @@
           "SRD": {
             "displayName": "dólar surinamés",
             "displayName-count-one": "dólar surinamés",
-            "displayName-count-other": "dólares surinameses",
+            "displayName-count-other": "dólares suriNameses",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },

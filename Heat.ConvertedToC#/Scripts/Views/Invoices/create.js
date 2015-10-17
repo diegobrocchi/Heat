@@ -11,7 +11,7 @@ function customerAutocomplete(id) {
                 data: { searchText: request.term },
                 success: function (data) {
                     response($.map(data, function (item) {
-                        return { label: item.name, value: item.value };
+                        return { label: item.Name, value: item.value };
                     }));
                 }
             });

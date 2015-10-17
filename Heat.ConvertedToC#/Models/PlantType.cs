@@ -30,7 +30,7 @@ namespace Heat.Models
 	{
 		[Key()]
 		public int ID { get; set; }
-		[Display(name = "Tipo impianto")]
+		[Display(Name = "Tipo impianto")]
 		public string Name { get; set; }
 
 	}

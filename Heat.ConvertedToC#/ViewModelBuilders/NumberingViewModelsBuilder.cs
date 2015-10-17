@@ -41,8 +41,8 @@ namespace Heat
 		public CreateNumberingViewModel GetCreateModel()
 		{
 			CreateNumberingViewModel result = new CreateNumberingViewModel();
-			result.FinalSerialSchemaList = _db.SerialSchemes.ToList().ToSelectListItems(x => x.Name, x => x.ID, "");
-			result.TempSerialSchemaList = _db.SerialSchemes.ToList().ToSelectListItems(x => x.Name, x => x.ID, "");
+			result.FinalSerialSchemaList = _db.SerialSchemes.ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
+			result.TempSerialSchemaList = _db.SerialSchemes.ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
 
 			return result;
 		}
@@ -57,8 +57,8 @@ namespace Heat
 
 			result = AutoMapper.Mapper.Map<EditNumberingViewModel>(editingItem);
 
-			result.FinalSerialSchemaList = _db.SerialSchemes.ToSelectListItems(x => x.Name(), x => x.ID(), editingItem.FinalSerialSchema.ID, false);
-			result.TempSerialSchemaList = _db.SerialSchemes.ToSelectListItems(x => x.Name(), x => x.ID(), editingItem.TempSerialSchema.ID, false);
+			result.FinalSerialSchemaList = _db.SerialSchemes.ToSelectListItems(x => x.Name, x => x.ID.ToString() , editingItem.FinalSerialSchema.ID.ToString(), false);
+			result.TempSerialSchemaList = _db.SerialSchemes.ToSelectListItems(x => x.Name, x => x.ID.ToString(), editingItem.TempSerialSchema.ID.ToString(), false);
 
 			return result;
 		}

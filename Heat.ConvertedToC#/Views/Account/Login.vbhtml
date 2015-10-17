@@ -17,9 +17,9 @@ End Code
                         @<h3 class="form-signin-heading">Accedi</h3>
                          
                         @<div class="form-group">
-                            @Html.LabelFor(Function(m) m.Username, htmlAttributes:=New With {.class = "sr-only"})
-                            @Html.TextBoxFor(Function(m) m.Username, New With {.class = "form-control", .placeholder = "Username", .autofocus="autofocus"})
-                            @Html.ValidationMessageFor(Function(m) m.Username, "", New With {.class = "valError"})
+                            @Html.LabelFor(Function(m) m.UserName, htmlAttributes:=New With {.class = "sr-only"})
+                            @Html.TextBoxFor(Function(m) m.UserName, New With {.class = "form-control", .placeholder = "UserName", .autofocus="autofocus"})
+                            @Html.ValidationMessageFor(Function(m) m.UserName, "", New With {.class = "valError"})
                         </div>
                         @<div class="form-group">
                             @Html.LabelFor(Function(m) m.Password, htmlAttributes:=New With {.class = "sr-only"})
@@ -57,9 +57,9 @@ End Code
                         @Using Html.BeginForm("Login", "Account", New With {.ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, New With {.class = "login", .role = "form"})
                             @Html.AntiForgeryToken()
                             @<div class="form-group">
-                            @Html.LabelFor(Function(m) m.Username)
-                            @Html.TextBoxFor(Function(m) m.Username, New With {.placeholder = "Username"})
-                            @Html.ValidationMessageFor(Function(m) m.Username, "", New With {.class = "valError"})
+                            @Html.LabelFor(Function(m) m.UserName)
+                            @Html.TextBoxFor(Function(m) m.UserName, New With {.placeholder = "UserName"})
+                            @Html.ValidationMessageFor(Function(m) m.UserName, "", New With {.class = "valError"})
                         </div>
 
     @<div class="form-group">

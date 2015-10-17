@@ -89,8 +89,8 @@ namespace Heat
 	public class LoginViewModel
 	{
 		[Required()]
-		[Display(Name = "Username")]
-		public string Username { get; set; }
+		[Display(Name = "UserName")]
+		public string UserName { get; set; }
 
 		//<Required>
 		//<Display(Name:="Email")>
@@ -117,8 +117,8 @@ namespace Heat
 		public string Email { get; set; }
 
 		[Required()]
-		[Display(name = "Username")]
-		public string Username { get; set; }
+		[Display(Name = "UserName")]
+		public string UserName { get; set; }
 
 		[Required()]
 		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
@@ -128,7 +128,7 @@ namespace Heat
 
 		[DataType(DataType.Password)]
 		[Display(Name = "Confirm password")]
-		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
 	}
 }
@@ -150,7 +150,7 @@ namespace Heat
 
 		[DataType(DataType.Password)]
 		[Display(Name = "Confirm password")]
-		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+		[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
 
 		public string Code { get; set; }

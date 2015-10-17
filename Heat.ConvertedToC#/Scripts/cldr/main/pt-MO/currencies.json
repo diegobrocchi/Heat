@@ -1424,16 +1424,16 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "Dólar do Suriname",
-            "displayName-count-one": "Dólar do Suriname",
-            "displayName-count-other": "Dólares do Suriname",
+            "displayName": "Dólar do SuriName",
+            "displayName-count-one": "Dólar do SuriName",
+            "displayName-count-other": "Dólares do SuriName",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "Florim do Suriname",
-            "displayName-count-one": "Florim do Suriname",
-            "displayName-count-other": "Florins do Suriname",
+            "displayName": "Florim do SuriName",
+            "displayName-count-one": "Florim do SuriName",
+            "displayName-count-other": "Florins do SuriName",
             "symbol": "SRG"
           },
           "SSP": {

@@ -32,29 +32,29 @@ namespace Heat.ViewModels.Plants
 
 		public int PlantID { get; set; }
 
-		[Display(name = "Classe impianto")]
+		[Display(Name = "Classe impianto")]
 		public int PlantClassID { get; set; }
 		public IEnumerable<SelectListItem> PlantClassList { get; set; }
 
-		[Display(name = "Tipologia impianto")]
+		[Display(Name = "Tipologia impianto")]
 		public int PlantTypeID { get; set; }
 		public IEnumerable<SelectListItem> PlantTypeList { get; set; }
 
 
-		[Display(name = "Codice dell'impianto per la provincia")]
+		[Display(Name = "Codice dell'impianto per la provincia")]
 		public string PlantDistinctCode { get; set; }
 
 
-		[Display(name = "Singola unità abitativa")]
+		[Display(Name = "Singola unità abitativa")]
 		public bool IsSingleUnit { get; set; }
 
-		[Display(name = "Categoria energetica")]
+		[Display(Name = "Categoria energetica")]
 		public EnergyCategoryEnum EnergyCategory { get; set; }
 
-		[Display(name = "Volume lordo riscaldato (m³)")]
+		[Display(Name = "Volume lordo riscaldato (m³)")]
 		public float GrossHeatedVolumeM3 { get; set; }
 
-		[Display(name = "Volume lordo raffrescato (m³)")]
+		[Display(Name = "Volume lordo raffrescato (m³)")]
 		public float GrossCooledVolumeM3 { get; set; }
 	}
 }

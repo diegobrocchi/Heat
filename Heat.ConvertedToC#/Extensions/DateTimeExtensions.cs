@@ -30,47 +30,45 @@ namespace Heat
 
 	public static class DateTimeExtensions
 	{
-		[Extension()]
-		public static DateTime EndOfDay(DateTime currentDate)
+		public static DateTime EndOfDay(this DateTime currentDate)
 		{
 			return new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 23, 59, 59, 999);
 		}
 
-		[Extension()]
-		public static DateTime EndOfWeek(DateTime currentDate)
+		public static DateTime EndOfWeek(this DateTime currentDate)
 		{
 			DateTime lastDayOfWeek = default(DateTime);
-			lastDayOfWeek = currentDate.AddDays(-currentDate.DayOfWeek).AddDays(7);
+			lastDayOfWeek = currentDate.AddDays(- (double) currentDate.DayOfWeek).AddDays(7);
 			return new DateTime(lastDayOfWeek.Year, lastDayOfWeek.Month, lastDayOfWeek.Day, 23, 59, 59, 999);
 
 		}
 
-		[Extension()]
-		public static DateTime EndOfMonth(DateTime currentDate)
+		public static DateTime EndOfMonth(this DateTime currentDate)
 		{
 			return new DateTime(currentDate.Year, currentDate.Month, DateTime.DaysInMonth(currentDate.Year, currentDate.Month), 23, 59, 59, 999);
 		}
 
-		[Extension()]
-		public static DateTime EndOfQuarter(DateTime currentDate)
+		public static DateTime EndOfQuarter(this DateTime currentDate)
 		{
 			switch (currentDate.Month) {
-				case  <=3: // ERROR: Case labels with binary operators are unsupported : LessThanOrEqual
-3:
+                case 1:
+                case 2:
+                case 3:
 					return new DateTime(currentDate.Year, 3, 31, 23, 59, 59, 999);
-				case  // ERROR: Case labels with binary operators are unsupported : LessThanOrEqual
-6:
+                case 4:
+                case 5:
+                case 6:
 					return new DateTime(currentDate.Year, 6, 30, 23, 59, 59, 999);
-				case  // ERROR: Case labels with binary operators are unsupported : LessThanOrEqual
-9:
+                case 7:
+                case 8:
+                case 9:
 					return new DateTime(currentDate.Year, 9, 30, 23, 59, 59, 999);
 				default:
 					return new DateTime(currentDate.Year, 12, 31, 23, 59, 59, 999);
 			}
 		}
 
-		[Extension()]
-		public static DateTime EndOfYear(DateTime currentDate)
+		public static DateTime EndOfYear(this DateTime currentDate)
 		{
 			int year = currentDate.Year;
 
@@ -79,8 +77,7 @@ namespace Heat
 
 		}
 
-		[Extension()]
-		public static int WeekOfTheYear(DateTime currentDate)
+		public static int WeekOfTheYear(this DateTime currentDate)
 		{
 			DayOfWeek day = currentDate.DayOfWeek;
 

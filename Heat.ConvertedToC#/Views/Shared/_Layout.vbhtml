@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta Name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="~/favicon.ico?">
      
     <title>@ViewBag.Title - Heat</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    <meta name="description" content="Heat gestionale manutenzione impianti termici" />
+    <meta Name="description" content="Heat gestionale manutenzione impianti termici" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

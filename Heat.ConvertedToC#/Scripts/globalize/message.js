@@ -67,7 +67,7 @@ MessageFormat._parse = (function() {
     this.line     = line;
     this.column   = column;
 
-    this.name     = "SyntaxError";
+    this.Name     = "SyntaxError";
   }
 
   peg$subclass(SyntaxError, Error);
@@ -1416,7 +1416,7 @@ MessageFormat._parse = (function() {
 
 /** Utility function for quoting an Object's key value iff required
  *  @private  */
-function propname(key, obj) {
+function propName(key, obj) {
   if (/^[A-Z_$][0-9A-Z_$]*$/i.test(key)) {
     return obj ? obj + '.' + key : key;
   } else {
@@ -1589,7 +1589,7 @@ MessageFormat.prototype.runtime = {
       var s = [];
       for (var i in o) if (i != 'toString') {
         if (level == 0) s.push('var ' + i + ' = ' + _stringify(o[i], level + 1) + ';\n');
-        else s.push(propname(i) + ': ' + _stringify(o[i], level + 1));
+        else s.push(propName(i) + ': ' + _stringify(o[i], level + 1));
       }
       if (level == 0) return s.join('');
       if (s.length == 0) return '{}';
@@ -1623,7 +1623,7 @@ MessageFormat.prototype._precompile = function(ast, data) {
     case 'messageFormatElement':
       data.pf_count = data.pf_count || 0;
       if ( ast.output ) {
-        return propname(ast.argumentIndex, 'd');
+        return propName(ast.argumentIndex, 'd');
       }
       else {
         data.keys[data.pf_count] = ast.argumentIndex;
@@ -1632,17 +1632,17 @@ MessageFormat.prototype._precompile = function(ast, data) {
       return '';
 
     case 'elementFormat':
-      args = [ propname(data.keys[data.pf_count], 'd') ];
+      args = [ propName(data.keys[data.pf_count], 'd') ];
       switch (ast.key) {
         case 'select':
           args.push(this._precompile(ast.val, data));
           return 'select(' + args.join(', ') + ')';
         case 'selectordinal':
-          args = args.concat([ 0, propname(this.lc[0], 'pluralFuncs'), this._precompile(ast.val, data), 1 ]);
+          args = args.concat([ 0, propName(this.lc[0], 'pluralFuncs'), this._precompile(ast.val, data), 1 ]);
           return 'plural(' + args.join(', ') + ')';
         case 'plural':
           data.offset[data.pf_count || 0] = ast.val.offset || 0;
-          args = args.concat([ data.offset[data.pf_count] || 0, propname(this.lc[0], 'pluralFuncs'), this._precompile(ast.val, data) ]);
+          args = args.concat([ data.offset[data.pf_count] || 0, propName(this.lc[0], 'pluralFuncs'), this._precompile(ast.val, data) ]);
           return 'plural(' + args.join(', ') + ')';
         default:
           if (this.withIntlSupport && !(ast.key in this.runtime.fmt) && (ast.key in MessageFormat.formatters)) {
@@ -1664,7 +1664,7 @@ MessageFormat.prototype._precompile = function(ast, data) {
         if (key === 'other') needOther = false;
         var data_copy = JSON.parse(JSON.stringify(data));
         data_copy.pf_count++;
-        r.push(propname(key) + ': function() { return ' + this._precompile(ast.pluralForms[i].val, data_copy) + ';}');
+        r.push(propName(key) + ': function() { return ' + this._precompile(ast.pluralForms[i].val, data_copy) + ';}');
       }
       if (needOther) throw new Error("No 'other' form found in " + ast.type + " " + data.pf_count);
       return '{ ' + r.join(', ') + ' }';
@@ -1674,7 +1674,7 @@ MessageFormat.prototype._precompile = function(ast, data) {
 
     case 'octothorpe':
       if (!data.pf_count) return '"#"';
-      args = [ propname(data.keys[data.pf_count-1], 'd') ];
+      args = [ propName(data.keys[data.pf_count-1], 'd') ];
       if (data.offset[data.pf_count-1]) args.push(data.offset[data.pf_count-1]);
       return 'number(' + args.join(', ') + ')';
 
@@ -1810,7 +1810,7 @@ MessageFormat.prototype.compile = function ( messages, opt ) {
         if (typeof r != 'object') return r;
         var o = [], indent = '';
         for (var i = 0; i < level; ++i) indent += '  ';
-        for (var k in r) o.push('\n' + indent + '  ' + propname(k) + ': ' + stringify(r[k], level + 1));
+        for (var k in r) o.push('\n' + indent + '  ' + propName(k) + ': ' + stringify(r[k], level + 1));
         return '{' + o.join(',') + '\n' + indent + '}';
       };
 
@@ -1843,14 +1843,14 @@ MessageFormat.prototype.compile = function ( messages, opt ) {
   switch (opt.global || '') {
     case 'exports':
       var o = [];
-      for (var k in r) o.push(propname(k, 'exports') + ' = ' + stringify(r[k]));
+      for (var k in r) o.push(propName(k, 'exports') + ' = ' + stringify(r[k]));
       return new Function(s + o.join(';\n'));
     case 'module.exports':
       return new Function(s + 'module.exports = ' + stringify(r));
     case '':
       return new Function(s + 'return ' + stringify(r));
     default:
-      return new Function('G', s + propname(opt.global, 'G') + ' = ' + stringify(r));
+      return new Function('G', s + propName(opt.global, 'G') + ' = ' + stringify(r));
   }
 };
 
@@ -1899,10 +1899,10 @@ var validateMessageType = function( path, value ) {
 
 
 
-var validateParameterTypeMessageVariables = function( value, name ) {
+var validateParameterTypeMessageVariables = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || isPlainObject( value ) || Array.isArray( value ),
 		"Array or Plain Object"
 	);

@@ -30,6 +30,8 @@ using Microsoft.Owin.Security.Cookies;
 //Imports Microsoft.Owin.Security.Google
 using Owin;
 using Heat.Repositories;
+using Heat.Models;
+
 namespace Heat
 {
 
@@ -56,7 +58,7 @@ namespace Heat
 			app.UseCookieAuthentication(new CookieAuthenticationOptions {
 				AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
 				Provider = new CookieAuthenticationProvider {
-					OnException = c => { } ,
+					OnException = context => { },
 					OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<HeatUserManager, HeatUser>(validateInterval: TimeSpan.FromMinutes(30), regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
 				},
 				LoginPath = new PathString("/Account/Login")

@@ -96,7 +96,7 @@ function focusable( element, isTabIndexNotNaN ) {
 		nodeName = element.nodeName.toLowerCase();
 	if ( "area" === nodeName ) {
 		map = element.parentNode;
-		mapName = map.name;
+		mapName = map.Name;
 		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
 			return false;
 		}
@@ -144,9 +144,9 @@ $.extend( $.expr[ ":" ], {
 
 // support: jQuery <1.8
 if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
-	$.each( [ "Width", "Height" ], function( i, name ) {
-		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
-			type = name.toLowerCase(),
+	$.each( [ "Width", "Height" ], function( i, Name ) {
+		var side = Name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
+			type = Name.toLowerCase(),
 			orig = {
 				innerWidth: $.fn.innerWidth,
 				innerHeight: $.fn.innerHeight,
@@ -167,9 +167,9 @@ if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
 			return size;
 		}
 
-		$.fn[ "inner" + name ] = function( size ) {
+		$.fn[ "inner" + Name ] = function( size ) {
 			if ( size === undefined ) {
-				return orig[ "inner" + name ].call( this );
+				return orig[ "inner" + Name ].call( this );
 			}
 
 			return this.each(function() {
@@ -177,9 +177,9 @@ if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
 			});
 		};
 
-		$.fn[ "outer" + name] = function( size, margin ) {
+		$.fn[ "outer" + Name] = function( size, margin ) {
 			if ( typeof size !== "number" ) {
-				return orig[ "outer" + name ].call( this, size );
+				return orig[ "outer" + Name ].call( this, size );
 			}
 
 			return this.each(function() {
@@ -287,9 +287,9 @@ $.ui.plugin = {
 			proto.plugins[ i ].push( [ option, set[ i ] ] );
 		}
 	},
-	call: function( instance, name, args, allowDisconnected ) {
+	call: function( instance, Name, args, allowDisconnected ) {
 		var i,
-			set = instance.plugins[ name ];
+			set = instance.plugins[ Name ];
 
 		if ( !set ) {
 			return;
@@ -342,15 +342,15 @@ $.cleanData = (function( orig ) {
 	};
 })( $.cleanData );
 
-$.widget = function( name, base, prototype ) {
+$.widget = function( Name, base, prototype ) {
 	var fullName, existingConstructor, constructor, basePrototype,
 		// proxiedPrototype allows the provided prototype to remain unmodified
 		// so that it can be used as a mixin for multiple widgets (#8876)
 		proxiedPrototype = {},
-		namespace = name.split( "." )[ 0 ];
+		namespace = Name.split( "." )[ 0 ];
 
-	name = name.split( "." )[ 1 ];
-	fullName = namespace + "-" + name;
+	Name = Name.split( "." )[ 1 ];
+	fullName = namespace + "-" + Name;
 
 	if ( !prototype ) {
 		prototype = base;
@@ -363,8 +363,8 @@ $.widget = function( name, base, prototype ) {
 	};
 
 	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
+	existingConstructor = $[ namespace ][ Name ];
+	constructor = $[ namespace ][ Name ] = function( options, element ) {
 		// allow instantiation without "new" keyword
 		if ( !this._createWidget ) {
 			return new constructor( options, element );
@@ -423,13 +423,13 @@ $.widget = function( name, base, prototype ) {
 	});
 	constructor.prototype = $.widget.extend( basePrototype, {
 		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
+		// always use the Name + a colon as the prefix, e.g., draggable:start
 		// don't prefix for widgets that aren't DOM-based
-		widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
+		widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || Name) : Name
 	}, proxiedPrototype, {
 		constructor: constructor,
 		namespace: namespace,
-		widgetName: name,
+		widgetName: Name,
 		widgetFullName: fullName
 	});
 
@@ -452,7 +452,7 @@ $.widget = function( name, base, prototype ) {
 		base._childConstructors.push( constructor );
 	}
 
-	$.widget.bridge( name, constructor );
+	$.widget.bridge( Name, constructor );
 
 	return constructor;
 };
@@ -483,9 +483,9 @@ $.widget.extend = function( target ) {
 	return target;
 };
 
-$.widget.bridge = function( name, object ) {
-	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
+$.widget.bridge = function( Name, object ) {
+	var fullName = object.prototype.widgetFullName || Name;
+	$.fn[ Name ] = function( options ) {
 		var isMethodCall = typeof options === "string",
 			args = widget_slice.call( arguments, 1 ),
 			returnValue = this;
@@ -499,11 +499,11 @@ $.widget.bridge = function( name, object ) {
 					return false;
 				}
 				if ( !instance ) {
-					return $.error( "cannot call methods on " + name + " prior to initialization; " +
+					return $.error( "cannot call methods on " + Name + " prior to initialization; " +
 						"attempted to call method '" + options + "'" );
 				}
 				if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
-					return $.error( "no such method '" + options + "' for " + name + " widget instance" );
+					return $.error( "no such method '" + options + "' for " + Name + " widget instance" );
 				}
 				methodValue = instance[ options ].apply( instance, args );
 				if ( methodValue !== instance && methodValue !== undefined ) {
@@ -554,7 +554,7 @@ $.Widget.prototype = {
 		element = $( element || this.defaultElement || this )[ 0 ];
 		this.element = $( element );
 		this.uuid = widget_uuid++;
-		this.eventNamespace = "." + this.widgetName + this.uuid;
+		this.eventnamespace = "." + this.widgetName + this.uuid;
 
 		this.bindings = $();
 		this.hoverable = $();
@@ -596,20 +596,20 @@ $.Widget.prototype = {
 		// we can probably remove the unbind calls in 2.0
 		// all event bindings should go through this._on()
 		this.element
-			.unbind( this.eventNamespace )
+			.unbind( this.eventnamespace )
 			.removeData( this.widgetFullName )
 			// support: jquery <1.6.3
 			// http://bugs.jquery.com/ticket/9413
 			.removeData( $.camelCase( this.widgetFullName ) );
 		this.widget()
-			.unbind( this.eventNamespace )
+			.unbind( this.eventnamespace )
 			.removeAttr( "aria-disabled" )
 			.removeClass(
 				this.widgetFullName + "-disabled " +
 				"ui-state-disabled" );
 
 		// clean up events and states
-		this.bindings.unbind( this.eventNamespace );
+		this.bindings.unbind( this.eventnamespace );
 		this.hoverable.removeClass( "ui-state-hover" );
 		this.focusable.removeClass( "ui-state-focus" );
 	},
@@ -733,7 +733,7 @@ $.Widget.prototype = {
 			}
 
 			var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
-				eventName = match[1] + instance.eventNamespace,
+				eventName = match[1] + instance.eventnamespace,
 				selector = match[2];
 			if ( selector ) {
 				delegateElement.delegate( selector, eventName, handlerProxy );
@@ -744,8 +744,8 @@ $.Widget.prototype = {
 	},
 
 	_off: function( element, eventName ) {
-		eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) +
-			this.eventNamespace;
+		eventName = (eventName || "").split( " " ).join( this.eventnamespace + " " ) +
+			this.eventnamespace;
 		element.unbind( eventName ).undelegate( eventName );
 
 		// Clear the stack to avoid memory leaks (#10056)
@@ -3390,15 +3390,15 @@ var lastActive,
 		}, 1 );
 	},
 	radioGroup = function( radio ) {
-		var name = radio.name,
+		var Name = radio.Name,
 			form = radio.form,
 			radios = $( [] );
-		if ( name ) {
-			name = name.replace( /'/g, "\\'" );
+		if ( Name ) {
+			Name = Name.replace( /'/g, "\\'" );
 			if ( form ) {
-				radios = $( form ).find( "[name='" + name + "'][type=radio]" );
+				radios = $( form ).find( "[Name='" + Name + "'][type=radio]" );
 			} else {
-				radios = $( "[name='" + name + "'][type=radio]", radio.ownerDocument )
+				radios = $( "[Name='" + Name + "'][type=radio]", radio.ownerDocument )
 					.filter(function() {
 						return !this.form;
 					});
@@ -3421,8 +3421,8 @@ $.widget( "ui.button", {
 	},
 	_create: function() {
 		this.element.closest( "form" )
-			.unbind( "reset" + this.eventNamespace )
-			.bind( "reset" + this.eventNamespace, formResetHandler );
+			.unbind( "reset" + this.eventnamespace )
+			.bind( "reset" + this.eventnamespace, formResetHandler );
 
 		if ( typeof this.options.disabled !== "boolean" ) {
 			this.options.disabled = !!this.element.prop( "disabled" );
@@ -3447,7 +3447,7 @@ $.widget( "ui.button", {
 		this.buttonElement
 			.addClass( baseClasses )
 			.attr( "role", "button" )
-			.bind( "mouseenter" + this.eventNamespace, function() {
+			.bind( "mouseenter" + this.eventnamespace, function() {
 				if ( options.disabled ) {
 					return;
 				}
@@ -3455,13 +3455,13 @@ $.widget( "ui.button", {
 					$( this ).addClass( "ui-state-active" );
 				}
 			})
-			.bind( "mouseleave" + this.eventNamespace, function() {
+			.bind( "mouseleave" + this.eventnamespace, function() {
 				if ( options.disabled ) {
 					return;
 				}
 				$( this ).removeClass( activeClass );
 			})
-			.bind( "click" + this.eventNamespace, function( event ) {
+			.bind( "click" + this.eventnamespace, function( event ) {
 				if ( options.disabled ) {
 					event.preventDefault();
 					event.stopImmediatePropagation();
@@ -3480,19 +3480,19 @@ $.widget( "ui.button", {
 		});
 
 		if ( toggleButton ) {
-			this.element.bind( "change" + this.eventNamespace, function() {
+			this.element.bind( "change" + this.eventnamespace, function() {
 				that.refresh();
 			});
 		}
 
 		if ( this.type === "checkbox" ) {
-			this.buttonElement.bind( "click" + this.eventNamespace, function() {
+			this.buttonElement.bind( "click" + this.eventnamespace, function() {
 				if ( options.disabled ) {
 					return false;
 				}
 			});
 		} else if ( this.type === "radio" ) {
-			this.buttonElement.bind( "click" + this.eventNamespace, function() {
+			this.buttonElement.bind( "click" + this.eventnamespace, function() {
 				if ( options.disabled ) {
 					return false;
 				}
@@ -3510,7 +3510,7 @@ $.widget( "ui.button", {
 			});
 		} else {
 			this.buttonElement
-				.bind( "mousedown" + this.eventNamespace, function() {
+				.bind( "mousedown" + this.eventnamespace, function() {
 					if ( options.disabled ) {
 						return false;
 					}
@@ -3520,13 +3520,13 @@ $.widget( "ui.button", {
 						lastActive = null;
 					});
 				})
-				.bind( "mouseup" + this.eventNamespace, function() {
+				.bind( "mouseup" + this.eventnamespace, function() {
 					if ( options.disabled ) {
 						return false;
 					}
 					$( this ).removeClass( "ui-state-active" );
 				})
-				.bind( "keydown" + this.eventNamespace, function(event) {
+				.bind( "keydown" + this.eventnamespace, function(event) {
 					if ( options.disabled ) {
 						return false;
 					}
@@ -3536,7 +3536,7 @@ $.widget( "ui.button", {
 				})
 				// see #8559, we bind to blur here in case the button element loses
 				// focus between keydown and keyup, it would be left in an "active" state
-				.bind( "keyup" + this.eventNamespace + " blur" + this.eventNamespace, function() {
+				.bind( "keyup" + this.eventnamespace + " blur" + this.eventnamespace, function() {
 					$( this ).removeClass( "ui-state-active" );
 				});
 
@@ -3815,14 +3815,14 @@ function Datepicker() {
 	this._datepickerShowing = false; // True if the popup picker is showing , false if not
 	this._inDialog = false; // True if showing within a "dialog", false if not
 	this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
-	this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
-	this._appendClass = "ui-datepicker-append"; // The name of the append marker class
-	this._triggerClass = "ui-datepicker-trigger"; // The name of the trigger marker class
-	this._dialogClass = "ui-datepicker-dialog"; // The name of the dialog marker class
-	this._disableClass = "ui-datepicker-disabled"; // The name of the disabled covering marker class
-	this._unselectableClass = "ui-datepicker-unselectable"; // The name of the unselectable cell marker class
-	this._currentClass = "ui-datepicker-current-day"; // The name of the current day marker class
-	this._dayOverClass = "ui-datepicker-days-cell-over"; // The name of the day hover marker class
+	this._inlineClass = "ui-datepicker-inline"; // The Name of the inline marker class
+	this._appendClass = "ui-datepicker-append"; // The Name of the append marker class
+	this._triggerClass = "ui-datepicker-trigger"; // The Name of the trigger marker class
+	this._dialogClass = "ui-datepicker-dialog"; // The Name of the dialog marker class
+	this._disableClass = "ui-datepicker-disabled"; // The Name of the disabled covering marker class
+	this._unselectableClass = "ui-datepicker-unselectable"; // The Name of the unselectable cell marker class
+	this._currentClass = "ui-datepicker-current-day"; // The Name of the current day marker class
+	this._dayOverClass = "ui-datepicker-days-cell-over"; // The Name of the day hover marker class
 	this.regional = []; // Available regional settings, indexed by language code
 	this.regional[""] = { // Default regional settings
 		closeText: "Done", // Display text for close link
@@ -3874,7 +3874,7 @@ function Datepicker() {
 		maxDate: null, // The latest selectable date, or null for no limit
 		duration: "fast", // Duration of display/closure
 		beforeShowDay: null, // Function that takes a date and returns an array with
-			// [0] = true if selectable, false if not, [1] = custom CSS class name(s) or "",
+			// [0] = true if selectable, false if not, [1] = custom CSS class Name(s) or "",
 			// [2] = cell title (optional), e.g. $.datepicker.noWeekends
 		beforeShow: null, // Function that takes an input field and
 			// returns a set of custom settings for the date picker
@@ -3899,13 +3899,13 @@ function Datepicker() {
 }
 
 $.extend(Datepicker.prototype, {
-	/* Class name added to elements to indicate already configured with a date picker. */
+	/* Class Name added to elements to indicate already configured with a date picker. */
 	markerClassName: "hasDatepicker",
 
 	//Keep track of the maximum number of rows displayed (see #7043)
 	maxRows: 4,
 
-	// TODO rename to "widget" when switching to widget factory
+	// TODO reName to "widget" when switching to widget factory
 	_widgetDatepicker: function() {
 		return this.dpDiv;
 	},
@@ -4026,12 +4026,12 @@ $.extend(Datepicker.prototype, {
 				dateFormat = this._get(inst, "dateFormat");
 
 			if (dateFormat.match(/[DM]/)) {
-				findMax = function(names) {
+				findMax = function(Names) {
 					max = 0;
 					maxI = 0;
-					for (i = 0; i < names.length; i++) {
-						if (names[i].length > max) {
-							max = names[i].length;
+					for (i = 0; i < Names.length; i++) {
+						if (Names[i].length > max) {
+							max = Names[i].length;
 							maxI = i;
 						}
 					}
@@ -4238,27 +4238,27 @@ $.extend(Datepicker.prototype, {
 
 	/* Update or retrieve the settings for a date picker attached to an input field or division.
 	 * @param  target  element - the target input field or division or span
-	 * @param  name	object - the new settings to update or
-	 *				string - the name of the setting to change or retrieve,
+	 * @param  Name	object - the new settings to update or
+	 *				string - the Name of the setting to change or retrieve,
 	 *				when retrieving also "all" for all instance settings or
 	 *				"defaults" for all global defaults
 	 * @param  value   any - the new value for the setting
 	 *				(omit if above is an object or to retrieve a value)
 	 */
-	_optionDatepicker: function(target, name, value) {
+	_optionDatepicker: function(target, Name, value) {
 		var settings, date, minDate, maxDate,
 			inst = this._getInst(target);
 
-		if (arguments.length === 2 && typeof name === "string") {
-			return (name === "defaults" ? $.extend({}, $.datepicker._defaults) :
-				(inst ? (name === "all" ? $.extend({}, inst.settings) :
-				this._get(inst, name)) : null));
+		if (arguments.length === 2 && typeof Name === "string") {
+			return (Name === "defaults" ? $.extend({}, $.datepicker._defaults) :
+				(inst ? (Name === "all" ? $.extend({}, inst.settings) :
+				this._get(inst, Name)) : null));
 		}
 
-		settings = name || {};
-		if (typeof name === "string") {
+		settings = Name || {};
+		if (typeof Name === "string") {
 			settings = {};
-			settings[name] = value;
+			settings[Name] = value;
 		}
 
 		if (inst) {
@@ -4293,8 +4293,8 @@ $.extend(Datepicker.prototype, {
 	},
 
 	// change method deprecated
-	_changeDatepicker: function(target, name, value) {
-		this._optionDatepicker(target, name, value);
+	_changeDatepicker: function(target, Name, value) {
+		this._optionDatepicker(target, Name, value);
 	},
 
 	/* Redraw the date picker attached to an input field or division.
@@ -4856,10 +4856,10 @@ $.extend(Datepicker.prototype, {
 	 * @param  value string - the date in the above format
 	 * @param  settings Object - attributes include:
 	 *					shortYearCutoff  number - the cutoff year for determining the century (optional)
-	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
-	 *					dayNames		string[7] - names of the days from Sunday (optional)
-	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
-	 *					monthNames		string[12] - names of the months (optional)
+	 *					dayNamesShort	string[7] - abbreviated Names of the days from Sunday (optional)
+	 *					dayNames		string[7] - Names of the days from Sunday (optional)
+	 *					monthNamesShort string[12] - abbreviated Names of the months (optional)
+	 *					monthNames		string[12] - Names of the months (optional)
 	 * @return  Date - the extracted date value or null if value is blank
 	 */
 	parseDate: function (format, value, settings) {
@@ -4909,27 +4909,27 @@ $.extend(Datepicker.prototype, {
 				iValue += num[0].length;
 				return parseInt(num[0], 10);
 			},
-			// Extract a name from the string value and convert to an index
+			// Extract a Name from the string value and convert to an index
 			getName = function(match, shortNames, longNames) {
 				var index = -1,
-					names = $.map(lookAhead(match) ? longNames : shortNames, function (v, k) {
+					Names = $.map(lookAhead(match) ? longNames : shortNames, function (v, k) {
 						return [ [k, v] ];
 					}).sort(function (a, b) {
 						return -(a[1].length - b[1].length);
 					});
 
-				$.each(names, function (i, pair) {
-					var name = pair[1];
-					if (value.substr(iValue, name.length).toLowerCase() === name.toLowerCase()) {
+				$.each(Names, function (i, pair) {
+					var Name = pair[1];
+					if (value.substr(iValue, Name.length).toLowerCase() === Name.toLowerCase()) {
 						index = pair[0];
-						iValue += name.length;
+						iValue += Name.length;
 						return false;
 					}
 				});
 				if (index !== -1) {
 					return index + 1;
 				} else {
-					throw "Unknown name at position " + iValue;
+					throw "Unknown Name at position " + iValue;
 				}
 			},
 			// Confirm that a literal character matches the string value
@@ -5049,12 +5049,12 @@ $.extend(Datepicker.prototype, {
 	 * dd - day of month (two digit)
 	 * o  - day of year (no leading zeros)
 	 * oo - day of year (three digit)
-	 * D  - day name short
-	 * DD - day name long
+	 * D  - day Name short
+	 * DD - day Name long
 	 * m  - month of year (no leading zero)
 	 * mm - month of year (two digit)
-	 * M  - month name short
-	 * MM - month name long
+	 * M  - month Name short
+	 * MM - month Name long
 	 * y  - year (two digit)
 	 * yy - year (four digit)
 	 * @ - Unix timestamp (ms since 01/01/1970)
@@ -5065,10 +5065,10 @@ $.extend(Datepicker.prototype, {
 	 * @param  format string - the desired format of the date
 	 * @param  date Date - the date value to format
 	 * @param  settings Object - attributes include:
-	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
-	 *					dayNames		string[7] - names of the days from Sunday (optional)
-	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
-	 *					monthNames		string[12] - names of the months (optional)
+	 *					dayNamesShort	string[7] - abbreviated Names of the days from Sunday (optional)
+	 *					dayNames		string[7] - Names of the days from Sunday (optional)
+	 *					monthNamesShort string[12] - abbreviated Names of the months (optional)
+	 *					monthNames		string[12] - Names of the months (optional)
 	 * @return  string - the date in the above format
 	 */
 	formatDate: function (format, date, settings) {
@@ -5099,7 +5099,7 @@ $.extend(Datepicker.prototype, {
 				}
 				return num;
 			},
-			// Format a name, short or long as requested
+			// Format a Name, short or long as requested
 			formatName = function(match, value, shortNames, longNames) {
 				return (lookAhead(match) ? longNames[value] : shortNames[value]);
 			},
@@ -5202,9 +5202,9 @@ $.extend(Datepicker.prototype, {
 	},
 
 	/* Get a setting value, defaulting if necessary. */
-	_get: function(inst, name) {
-		return inst.settings[name] !== undefined ?
-			inst.settings[name] : this._defaults[name];
+	_get: function(inst, Name) {
+		return inst.settings[Name] !== undefined ?
+			inst.settings[Name] : this._defaults[Name];
 	},
 
 	/* Parse existing date and initialise date picker. */
@@ -5781,9 +5781,9 @@ function datepicker_handleMouseover() {
 /* jQuery extend now ignores nulls! */
 function datepicker_extendRemove(target, props) {
 	$.extend(target, props);
-	for (var name in props) {
-		if (props[name] == null) {
-			target[name] = props[name];
+	for (var Name in props) {
+		if (props[Name] == null) {
+			target[Name] = props[Name];
 		}
 	}
 	return target;
@@ -7025,7 +7025,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 
 	_create: function() {
 
-		var n, i, handle, axis, hname,
+		var n, i, handle, axis, hName,
 			that = this,
 			o = this.options;
 		this.element.addClass("ui-resizable");
@@ -7113,8 +7113,8 @@ $.widget("ui.resizable", $.ui.mouse, {
 			for (i = 0; i < n.length; i++) {
 
 				handle = $.trim(n[i]);
-				hname = "ui-resizable-" + handle;
-				axis = $("<div class='ui-resizable-handle " + hname + "'></div>");
+				hName = "ui-resizable-" + handle;
+				axis = $("<div class='ui-resizable-handle " + hName + "'></div>");
 
 				axis.css({ zIndex: o.zIndex });
 
@@ -7774,8 +7774,8 @@ $.ui.plugin.add( "resizable", "containment", {
 		} else {
 			element = $( ce );
 			p = [];
-			$([ "Top", "Right", "Left", "Bottom" ]).each(function( i, name ) {
-				p[ i ] = that._num( element.css( "padding" + name ) );
+			$([ "Top", "Right", "Left", "Bottom" ]).each(function( i, Name ) {
+				p[ i ] = that._num( element.css( "padding" + Name ) );
 			});
 
 			that.containerOffset = element.offset();
@@ -8537,10 +8537,10 @@ var dialog = $.widget( "ui.dialog", {
 			return;
 		}
 
-		$.each( buttons, function( name, props ) {
+		$.each( buttons, function( Name, props ) {
 			var click, buttonOptions;
 			props = $.isFunction( props ) ?
-				{ click: props, text: name } :
+				{ click: props, text: Name } :
 				props;
 			// Default to a non-submitting button
 			props = $.extend( { type: "button" }, props );
@@ -9493,7 +9493,7 @@ $.effects = {
 	// element for support tests
 	supportElem = jQuery( "<p>" )[ 0 ],
 
-	// colors = jQuery.Color.names
+	// colors = jQuery.Color.Names
 	colors,
 
 	// local aliases of functions called often
@@ -9503,7 +9503,7 @@ $.effects = {
 supportElem.style.cssText = "background-color:rgba(1,1,1,.5)";
 support.rgba = supportElem.style.backgroundColor.indexOf( "rgba" ) > -1;
 
-// define cache name and alpha properties
+// define cache Name and alpha properties
 // for rgba and hsla spaces
 each( spaces, function( spaceName, space ) {
 	space.cache = "_" + spaceName;
@@ -9576,7 +9576,7 @@ function stringParse( string ) {
 		return inst;
 	}
 
-	// named colors
+	// Named colors
 	return colors[ string ];
 }
 
@@ -9935,7 +9935,7 @@ each( spaces, function( spaceName, space ) {
 	});
 });
 
-// add cssHook and .fx.step function for each named hook.
+// add cssHook and .fx.step function for each Named hook.
 // accept a space separated string of properties
 color.hook = function( hook ) {
 	var hooks = hook.split( " " );
@@ -9999,10 +9999,10 @@ jQuery.cssHooks.borderColor = {
 	}
 };
 
-// Basic color names only.
-// Usage of any of the other color names requires adding yourself or including
-// jquery.color.svg-names.js.
-colors = jQuery.Color.names = {
+// Basic color Names only.
+// Usage of any of the other color Names requires adding yourself or including
+// jquery.color.svg-Names.js.
+colors = jQuery.Color.Names = {
 	// 4.1. Basic color keywords
 	aqua: "#00ffff",
 	black: "#000000",
@@ -10085,14 +10085,14 @@ function getElementStyles( elem ) {
 
 function styleDifference( oldStyle, newStyle ) {
 	var diff = {},
-		name, value;
+		Name, value;
 
-	for ( name in newStyle ) {
-		value = newStyle[ name ];
-		if ( oldStyle[ name ] !== value ) {
-			if ( !shorthandStyles[ name ] ) {
-				if ( $.fx.step[ name ] || !isNaN( parseFloat( value ) ) ) {
-					diff[ name ] = value;
+	for ( Name in newStyle ) {
+		value = newStyle[ Name ];
+		if ( oldStyle[ Name ] !== value ) {
+			if ( !shorthandStyles[ Name ] ) {
+				if ( $.fx.step[ Name ] || !isNaN( parseFloat( value ) ) ) {
+					diff[ Name ] = value;
 				}
 			}
 		}
@@ -10456,7 +10456,7 @@ function _normalizeArguments( effect, options, speed, callback ) {
 }
 
 function standardAnimationOption( option ) {
-	// Valid standard speeds (nothing, number, named speed)
+	// Valid standard speeds (nothing, number, Named speed)
 	if ( !option || typeof option === "number" || $.fx.speeds[ option ] ) {
 		return true;
 	}
@@ -10589,8 +10589,8 @@ $.fn.extend({
 
 var baseEasings = {};
 
-$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
-	baseEasings[ name ] = function( p ) {
+$.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, Name ) {
+	baseEasings[ Name ] = function( p ) {
 		return Math.pow( p, i + 2 );
 	};
 });
@@ -10618,12 +10618,12 @@ $.extend( baseEasings, {
 	}
 });
 
-$.each( baseEasings, function( name, easeIn ) {
-	$.easing[ "easeIn" + name ] = easeIn;
-	$.easing[ "easeOut" + name ] = function( p ) {
+$.each( baseEasings, function( Name, easeIn ) {
+	$.easing[ "easeIn" + Name ] = easeIn;
+	$.easing[ "easeOut" + Name ] = function( p ) {
 		return 1 - easeIn( 1 - p );
 	};
-	$.easing[ "easeInOut" + name ] = function( p ) {
+	$.easing[ "easeInOut" + Name ] = function( p ) {
 		return p < 0.5 ?
 			easeIn( p * 2 ) / 2 :
 			1 - easeIn( p * -2 + 2 ) / 2;
@@ -14279,7 +14279,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 				update: function(container, p) {
 
 					// 1. If a className is set as 'placeholder option, we don't force sizes - the class is responsible for that
-					// 2. The option 'forcePlaceholderSize can be enabled to force it even if a class name is specified
+					// 2. The option 'forcePlaceholderSize can be enabled to force it even if a class Name is specified
 					if(className && !o.forcePlaceholderSize) {
 						return;
 					}
@@ -15654,7 +15654,7 @@ var tabs = $.widget( "ui.tabs", {
 			.attr( "role", "tablist" )
 
 			// Prevent users from focusing disabled tabs via click
-			.delegate( "> li", "mousedown" + this.eventNamespace, function( event ) {
+			.delegate( "> li", "mousedown" + this.eventnamespace, function( event ) {
 				if ( $( this ).is( ".ui-state-disabled" ) ) {
 					event.preventDefault();
 				}
@@ -15666,7 +15666,7 @@ var tabs = $.widget( "ui.tabs", {
 			// We don't have to worry about focusing the previously focused
 			// element since clicking on a non-focusable element should focus
 			// the body anyway.
-			.delegate( ".ui-tabs-anchor", "focus" + this.eventNamespace, function() {
+			.delegate( ".ui-tabs-anchor", "focus" + this.eventnamespace, function() {
 				if ( $( this ).closest( "li" ).is( ".ui-state-disabled" ) ) {
 					this.blur();
 				}
@@ -15995,7 +15995,7 @@ var tabs = $.widget( "ui.tabs", {
 			.removeAttr( "tabIndex" )
 			.removeUniqueId();
 
-		this.tablist.unbind( this.eventNamespace );
+		this.tablist.unbind( this.eventnamespace );
 
 		this.tabs.add( this.panels ).each(function() {
 			if ( $.data( this, "ui-tabs-destroy" ) ) {

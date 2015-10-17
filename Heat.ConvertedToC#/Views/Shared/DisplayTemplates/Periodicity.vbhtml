@@ -7,7 +7,7 @@
     If Not IsNothing(field) Then
         Dim display = field.GetCustomAttributes(GetType(DisplayAttribute), False).FirstOrDefault
         If Not IsNothing(field) Then
-            @display.name
+            @display.Name
         End If
 End If
 End Code

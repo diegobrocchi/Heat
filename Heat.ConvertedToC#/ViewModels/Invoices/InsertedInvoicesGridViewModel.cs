@@ -37,17 +37,17 @@ namespace Heat.ViewModels.Invoices
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Cliente")]
+		[Display(Name = "Cliente")]
 		public string Customer { get; set; }
 
-		[Display(name = "Data emissione")]
-		[DisplayFormat(dataformatstring = "{0: d}")]
+		[Display(Name = "Data emissione")]
+		[DisplayFormat(DataFormatString = "{0: d}")]
 		public DateTime InvoiceDate { get; set; }
 
-		[Display(name = "Numero Provvisorio")]
+		[Display(Name = "Numero Provvisorio")]
 		public string InvoiceNumber { get; set; }
 
-		[Display(name = "Numero righe")]
+		[Display(Name = "Numero righe")]
 		public int RowCount { get; set; }
 
 	}

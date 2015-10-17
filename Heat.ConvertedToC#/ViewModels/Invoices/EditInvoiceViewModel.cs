@@ -32,13 +32,13 @@ namespace Heat.ViewModels.Invoices
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Cliente")]
+		[Display(Name = "Cliente")]
 		public string CustomerName { get; set; }
 
-		[Display(name = "Numero documento")]
+		[Display(Name = "Numero documento")]
 		public string InvoiceNumber { get; set; }
 
-		[Display(name = "Data documento")]
+		[Display(Name = "Data documento")]
 		public string InvoiceDate { get; set; }
 
 		public List<PresentationInvoiceRowViewModel> Rows { get; set; }

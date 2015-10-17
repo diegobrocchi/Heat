@@ -1935,7 +1935,7 @@
             "Paramaribo": [
               {
                 "usesMetazone": {
-                  "_mzone": "Suriname",
+                  "_mzone": "SuriName",
                   "_from": "1975-11-20 03:30"
                 }
               },
@@ -5240,7 +5240,7 @@
         },
         {
           "mapZone": {
-            "_other": "Suriname",
+            "_other": "SuriName",
             "_territory": "001",
             "_type": "America/Paramaribo"
           }

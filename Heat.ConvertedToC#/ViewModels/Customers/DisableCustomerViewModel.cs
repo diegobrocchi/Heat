@@ -32,7 +32,7 @@ namespace Heat.ViewModels.Customers
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Cliente")]
+		[Display(Name = "Cliente")]
 		public string CustomerName { get; set; }
 
 

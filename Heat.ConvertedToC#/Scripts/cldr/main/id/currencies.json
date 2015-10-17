@@ -1136,13 +1136,13 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "Dolar Suriname",
-            "displayName-count-other": "Dolar Suriname",
+            "displayName": "Dolar SuriName",
+            "displayName-count-other": "Dolar SuriName",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "Guilder Suriname",
+            "displayName": "Guilder SuriName",
             "symbol": "SRG"
           },
           "SSP": {

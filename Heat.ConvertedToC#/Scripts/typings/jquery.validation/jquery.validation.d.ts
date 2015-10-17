@@ -9,7 +9,7 @@
 
 declare module JQueryValidation 
 {
-    type RulesDictionary = { [name: string]: any };
+    type RulesDictionary = { [Name: string]: any };
 
     type ShouldValidatePredicate = boolean|((element: HTMLElement, event: JQueryEventObject) => void);
 
@@ -60,7 +60,7 @@ declare module JQueryValidation
          */
         focusInvalid?: boolean;
         /**
-         * Specify grouping of error messages. A group consists of an arbitrary group name as the key and a space separated list of element names as the value. Use errorPlacement to control where the group message is placed.
+         * Specify grouping of error messages. A group consists of an arbitrary group Name as the key and a space separated list of element Names as the value. Use errorPlacement to control where the group message is placed.
          */
         groups?: { [groupName: string]: string };
         /**
@@ -84,7 +84,7 @@ declare module JQueryValidation
          */
         invalidHandler?: (event: JQueryEventObject, validator: Validator) => void;
         /**
-         * Key/value pairs defining custom messages. Key is the name of an element, value the message to display for that element. Instead of a plain message, another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator, with the rule's parameters as the first argument and the element as the second, and must return a String to display as the message.
+         * Key/value pairs defining custom messages. Key is the Name of an element, value the message to display for that element. Instead of a plain message, another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator, with the rule's parameters as the first argument and the element as the second, and must return a String to display as the message.
          * 
          * default: the default message for the method used
          */
@@ -157,7 +157,7 @@ declare module JQueryValidation
 
     interface ErrorDictionary
     {
-        [name: string]: string;
+        [Name: string]: string;
     }
 
     interface ErrorListItem
@@ -171,10 +171,10 @@ declare module JQueryValidation
         /**
          * Add a compound class method - useful to refactor common combinations of rules into a single class.
          * 
-         * @param name The name of the class rule to add
+         * @param Name The Name of the class rule to add
          * @param rules The compound rules
          */
-        addClassRules(name: string, rules: RulesDictionary): void;
+        addClassRules(Name: string, rules: RulesDictionary): void;
         /**
          * Add a compound class method - useful to refactor common combinations of rules into a single class.
          * 
@@ -182,12 +182,12 @@ declare module JQueryValidation
          */
         addClassRules(rules: RulesDictionary): void;
         /**
-         * Add a custom validation method. It must consist of a name (must be a legal javascript identifier), a javascript based function and a default string message.
+         * Add a custom validation method. It must consist of a Name (must be a legal javascript identifier), a javascript based function and a default string message.
          * 
-         * @param name The name of the method used to identify it and referencing it; this must be a valid JavaScript identifier
+         * @param Name The Name of the method used to identify it and referencing it; this must be a valid JavaScript identifier
          * @param method The actual method implementation, returning true if an element is valid. First argument: Current value. Second argument: Validated element. Third argument: Parameters.
          */
-        addMethod(name: string, method: (value: any, element: HTMLElement, params: any) => boolean, message?: string): void;
+        addMethod(Name: string, method: (value: any, element: HTMLElement, params: any) => boolean, message?: string): void;
         /**
          * Replaces {n} placeholders with arguments.
          * 
@@ -229,7 +229,7 @@ declare module JQueryValidation
         /**
          * Show the specified messages.
          * 
-         * @param errors One or more key/value pairs of input names and messages.
+         * @param errors One or more key/value pairs of input Names and messages.
          */
         showErrors(errors: any): void;
 
@@ -249,7 +249,7 @@ interface JQuery
     /**
      * Remove the specified attributes from the first matched element and return them.
      * 
-     * @param attributes A space-separated list of attribute names to remove.
+     * @param attributes A space-separated list of attribute Names to remove.
      */
     removeAttrs(attributes: string): any;
 
@@ -269,7 +269,7 @@ interface JQuery
      * Removes the specified rules and returns all rules for the first matched element.
      * 
      * @param command "remove"
-     * @param rules The space-separated names of rules to remove and return. Manipulates only rules specified via rules-option or via rules("add").
+     * @param rules The space-separated Names of rules to remove and return. Manipulates only rules specified via rules-option or via rules("add").
      */
     rules(command: string, rules: string): any;
     /**

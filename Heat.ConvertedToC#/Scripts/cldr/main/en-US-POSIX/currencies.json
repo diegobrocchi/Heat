@@ -1428,16 +1428,16 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "Surinamese Dollar",
-            "displayName-count-one": "Surinamese dollar",
-            "displayName-count-other": "Surinamese dollars",
+            "displayName": "SuriNamese Dollar",
+            "displayName-count-one": "SuriNamese dollar",
+            "displayName-count-other": "SuriNamese dollars",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "Surinamese Guilder",
-            "displayName-count-one": "Surinamese guilder",
-            "displayName-count-other": "Surinamese guilders",
+            "displayName": "SuriNamese Guilder",
+            "displayName-count-one": "SuriNamese guilder",
+            "displayName-count-other": "SuriNamese guilders",
             "symbol": "SRG"
           },
           "SSP": {
@@ -1646,16 +1646,16 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "Vietnamese Dong",
-            "displayName-count-one": "Vietnamese dong",
-            "displayName-count-other": "Vietnamese dong",
+            "displayName": "VietNamese Dong",
+            "displayName-count-one": "VietNamese dong",
+            "displayName-count-other": "VietNamese dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },
           "VNN": {
-            "displayName": "Vietnamese Dong (1978–1985)",
-            "displayName-count-one": "Vietnamese dong (1978–1985)",
-            "displayName-count-other": "Vietnamese dong (1978–1985)",
+            "displayName": "VietNamese Dong (1978–1985)",
+            "displayName-count-one": "VietNamese dong (1978–1985)",
+            "displayName-count-other": "VietNamese dong (1978–1985)",
             "symbol": "VNN"
           },
           "VUV": {

@@ -41,7 +41,7 @@ namespace Heat
 			var result = new CreateWorkActionViewModel();
 			result.ActionDate = DateAndTime.Now;
 			result.PlantIDSelected = false;
-			result.PlantList = _db.Plants.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID, "");
+			result.PlantList = _db.Plants.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
 			BindSelectListItems(result);
 			return result;
 
@@ -64,14 +64,14 @@ namespace Heat
 		/// Crea le associazioni delle proprietà con le liste delle opzioni tra cui l'utente sceglie.
 		/// E' necessario ricreare le liste di SelectListItem per le SelectList, dopo il POST.
 		/// </summary>
-		/// <param name="model"></param>
+		/// <param Name="model"></param>
 		/// <remarks></remarks>
 
 		public void BindSelectListItems(CreateWorkActionViewModel model)
 		{
-			model.TypeList = _db.ActionTypes.OrderBy(x => x.Description).ToList().ToSelectListItems(x => x.Description, x => x.ID, model.TypeID);
-			model.OperationList = _db.Operations.OrderBy(x => x.Description).ToList().ToSelectListItems(x => x.Description, x => x.ID, model.OperationID);
-			model.AssignedOperatorList = _db.WorkOperators.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID, model.AssignedOperatorID);
+			model.TypeList = _db.ActionTypes.OrderBy(x => x.Description).ToList().ToSelectListItems(x => x.Description, x => x.ID.ToString(), model.TypeID.ToString());
+			model.OperationList = _db.Operations.OrderBy(x => x.Description).ToList().ToSelectListItems(x => x.Description, x => x.ID.ToString(), model.OperationID.ToString());
+			model.AssignedOperatorList = _db.WorkOperators.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), model.AssignedOperatorID.ToString());
 
 		}
 	}

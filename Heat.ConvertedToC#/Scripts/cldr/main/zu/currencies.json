@@ -1037,7 +1037,7 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "i-Surinamese Dollar",
+            "displayName": "i-SuriNamese Dollar",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
@@ -1197,7 +1197,7 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "i-Vietnamese Dong",
+            "displayName": "i-VietNamese Dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },

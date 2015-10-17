@@ -1222,9 +1222,9 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "Dola ya Suriname",
-            "displayName-count-one": "Dola ya Suriname",
-            "displayName-count-other": "Dola za Suriname",
+            "displayName": "Dola ya SuriName",
+            "displayName-count-one": "Dola ya SuriName",
+            "displayName-count-other": "Dola za SuriName",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },

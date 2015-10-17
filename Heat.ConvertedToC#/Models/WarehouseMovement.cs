@@ -38,7 +38,7 @@ namespace Heat.Models
 		public Product Product { get; set; }
 
 		public double Quantity { get; set; }
-		[DataType(DataType.Date), DisplayFormat(dataformatstring = "{0:yyyy-MM-dd}", applyFormatInEditMode = true)]
+		[DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public System.DateTime ExecDate { get; set; }
 		public string Note { get; set; }
 

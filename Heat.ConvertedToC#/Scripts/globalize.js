@@ -62,17 +62,17 @@ var toString = function( variable ) {
  *
  * - formatMessage( "{0}/{1}", ["m", "s"] ); // m/s
  *
- * - formatMessage( "{name} <{email}>", {
- *     name: "Foo",
+ * - formatMessage( "{Name} <{email}>", {
+ *     Name: "Foo",
  *     email: "bar@baz.qux"
  *   }); // Foo <bar@baz.qux>
  */
 var formatMessage = function( message, data ) {
 
 	// Replace {attribute}'s
-	message = message.replace( /{[0-9a-zA-Z-_. ]+}/g, function( name ) {
-		name = name.replace( /^{([^}]*)}$/, "$1" );
-		return toString( data[ name ] );
+	message = message.replace( /{[0-9a-zA-Z-_. ]+}/g, function( Name ) {
+		Name = Name.replace( /^{([^}]*)}$/, "$1" );
+		return toString( data[ Name ] );
 	});
 
 	return message;
@@ -153,34 +153,34 @@ var validateDefaultLocale = function( value ) {
 
 
 
-var validateParameterPresence = function( value, name ) {
-	validate( "E_MISSING_PARAMETER", "Missing required parameter `{name}`.",
-		value !== undefined, { name: name });
+var validateParameterPresence = function( value, Name ) {
+	validate( "E_MISSING_PARAMETER", "Missing required parameter `{Name}`.",
+		value !== undefined, { Name: Name });
 };
 
 
 
 
 /**
- * range( value, name, minimum, maximum )
+ * range( value, Name, minimum, maximum )
  *
  * @value [Number].
  *
- * @name [String] name of variable.
+ * @Name [String] Name of variable.
  *
  * @minimum [Number]. The lowest valid value, inclusive.
  *
  * @maximum [Number]. The greatest valid value, inclusive.
  */
-var validateParameterRange = function( value, name, minimum, maximum ) {
+var validateParameterRange = function( value, Name, minimum, maximum ) {
 	validate(
 		"E_PAR_OUT_OF_RANGE",
-		"Parameter `{name}` has value `{value}` out of range [{minimum}, {maximum}].",
+		"Parameter `{Name}` has value `{value}` out of range [{minimum}, {maximum}].",
 		value === undefined || value >= minimum && value <= maximum,
 		{
 			maximum: maximum,
 			minimum: minimum,
-			name: name,
+			Name: Name,
 			value: value
 		}
 	);
@@ -189,14 +189,14 @@ var validateParameterRange = function( value, name, minimum, maximum ) {
 
 
 
-var validateParameterType = function( value, name, check, expected ) {
+var validateParameterType = function( value, Name, check, expected ) {
 	validate(
 		"E_INVALID_PAR_TYPE",
-		"Invalid `{name}` parameter ({value}). {expected} expected.",
+		"Invalid `{Name}` parameter ({value}). {expected} expected.",
 		check,
 		{
 			expected: expected,
-			name: name,
+			Name: Name,
 			value: value
 		}
 	);
@@ -205,10 +205,10 @@ var validateParameterType = function( value, name, check, expected ) {
 
 
 
-var validateParameterTypeLocale = function( value, name ) {
+var validateParameterTypeLocale = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || typeof value === "string" || value instanceof Cldr,
 		"String or Cldr instance"
 	);
@@ -227,10 +227,10 @@ var isPlainObject = function( obj ) {
 
 
 
-var validateParameterTypePlainObject = function( value, name ) {
+var validateParameterTypePlainObject = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || isPlainObject( value ),
 		"Plain Object"
 	);

@@ -44,7 +44,7 @@ namespace Heat.Manager
 		/// <summary>
 		/// Esegue una ricerca sui Plants in base alla request del datatable.
 		/// </summary>
-		/// <param name="request"></param>
+		/// <param Name="request"></param>
 		/// <returns></returns>
 		public DataTablesJsonResult GetPagedPlants(IDataTablesRequest request)
 		{
@@ -61,8 +61,7 @@ namespace Heat.Manager
 
 			string sortColumn = "plantdistinctcode";
 			string sortDirection = "ASC";
-			foreach (IColumn column_loopVariable in request.Columns) {
-				column = column_loopVariable;
+			foreach (IColumn column in request.Columns) {
 				if (column.IsSortable) {
 					if ((column.Sort != null)) {
 						sortColumn = column.Field;
@@ -77,10 +76,10 @@ namespace Heat.Manager
 			}
 
 			//ordina il set
-			orderedData = filteredData.OrderBy(sortColumn + " " + sortDirection);
+			orderedData =(IOrderedQueryable<Models.Plant>) filteredData.OrderBy(sortColumn + " " + sortDirection);
 
 			//pagina il set
-			pagedData = orderedData.Skip(request.Start).Take(request.Length);
+			pagedData =(IOrderedQueryable<Models.Plant>) orderedData.Skip(request.Start).Take(request.Length);
 
 			//json-izza e ritorna
 			return new DataTablesJsonResult(DataTablesResponse.Create(request, baseData.Count(), filteredData.Count(), pagedData.Project().To<IndexDataTablePlantViewModel>()), JsonRequestBehavior.AllowGet);

@@ -57,12 +57,12 @@ namespace Heat
 		{
 			CreateManifacturerModelViewModel result = new CreateManifacturerModelViewModel();
 
-			result.ManifacturerList = _db.Manifacturers.ToList().OrderBy(x => x.Name).ToSelectListItems(x => x.Name, x => x.ID, "");
+			result.ManifacturerList = _db.Manifacturers.ToList().OrderBy(x => x.Name).ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
 
 			return result;
 		}
 
-		public EditManifacturerModelViewModel GetEditManifacturerModelViewModel(id)
+		public EditManifacturerModelViewModel GetEditManifacturerModelViewModel(int id)
 		{
 			EditManifacturerModelViewModel result = new EditManifacturerModelViewModel();
 			ManifacturerModel dbItem = null;
@@ -72,7 +72,7 @@ namespace Heat
 			result.ID = id;
 			result.ManifacturerID = dbItem.ManifacturerID;
 			result.Model = dbItem.Model;
-			result.ManifacturerList = _db.Manifacturers.ToList().OrderBy(x => x.Name).ToSelectListItems(x => x.Name, x => x.ID, result.ManifacturerID);
+			result.ManifacturerList = _db.Manifacturers.ToList().OrderBy(x => x.Name).ToSelectListItems(x => x.Name, x => x.ID.ToString(), result.ManifacturerID.ToString());
 
 			return result;
 

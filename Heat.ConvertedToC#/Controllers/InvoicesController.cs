@@ -33,7 +33,7 @@ using Heat.ViewModels.Invoices;
 
 namespace Heat.Controllers
 {
-	[OutputCache(duration = 0, NoStore = true, varybyParam = "*")]
+	[OutputCache(Duration = 0, NoStore = true, VaryByParam = "*")]
 	[HandleError()]
 	public class InvoicesController : System.Web.Mvc.Controller
 	{
@@ -72,7 +72,7 @@ namespace Heat.Controllers
 		}
 
 		[HttpGet()]
-		public ActionResult Details(int? id)
+		public ActionResult Details(int id)
 		{
 			try {
 				if ((id == null)) {
@@ -116,10 +116,10 @@ namespace Heat.Controllers
 		}
 
 		[HttpGet()]
-		public ActionResult Edit(int? id)
+		public ActionResult Edit(int  id)
 		{
 			//secondo passo della creazione della fattura: aggiunta righe
-			//la funzione è chiamata solo da GET per permettere l'aggiornamento
+			//la funzione è chiamata solo da GET per permettere l'aggiorNamento
 			//facile della view durante l'immissione delle righe.
 
 			try {
@@ -250,7 +250,7 @@ namespace Heat.Controllers
 
 
 		// GET: Invoices/Delete/5
-		public ActionResult Delete(int? id)
+		public ActionResult Delete(int  id)
 		{
 			try {
 				if ((id == null)) {

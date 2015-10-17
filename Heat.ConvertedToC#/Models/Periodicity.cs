@@ -29,25 +29,25 @@ namespace Heat
 
 	public enum Periodicity
 	{
-		[Display(name = "Nessuna")]
+		[Display(Name = "Nessuna")]
 		None = 0,
-		[Display(name = "Giornaliera")]
+		[Display(Name = "Giornaliera")]
 		Daily = 1,
-		[Display(name = "Settimanale")]
+		[Display(Name = "Settimanale")]
 		Weekly = 2,
-		[Display(name = "Mensile")]
+		[Display(Name = "Mensile")]
 		Monthly = 3,
-		[Display(name = "Trimestrale")]
+		[Display(Name = "Trimestrale")]
 		Quarterly = 4,
-		[Display(name = "Annuale")]
+		[Display(Name = "Annuale")]
 		Yearly = 5,
-		[Display(name = "Biennale")]
+		[Display(Name = "Biennale")]
 		Biennial = 6,
-		[Display(name = "Triennale")]
+		[Display(Name = "Triennale")]
 		Three_year = 7,
-		[Display(name = "Quadriennale")]
+		[Display(Name = "Quadriennale")]
 		Four_year = 8,
-		[Display(name = "Quinquennale")]
+		[Display(Name = "Quinquennale")]
 		quinquennial = 9
 
 	}

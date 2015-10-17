@@ -107,7 +107,7 @@ namespace Heat.Controllers
 		}
 
 		// GET: Customers/Edit/5
-		public ActionResult Edit(int? id)
+		public ActionResult Edit(int id)
 		{
 			try {
 				if ((id == null)) {
@@ -216,7 +216,7 @@ namespace Heat.Controllers
 		{
 			return Json(_db.Customers.Where(x => x.Name.Contains(searchText)).Select(x => new {
 				id = x.ID,
-				name = x.Name
+				Name = x.Name
 			}).ToList(), JsonRequestBehavior.AllowGet);
 		}
 
@@ -335,7 +335,7 @@ namespace Heat.Controllers
 		/// <summary>
 		/// Risponde alla chiamata AJAX dell'oggetto Datatable con la lista paginata dei clienti abilitati.
 		/// </summary>
-		/// <param name="request"></param>
+		/// <param Name="request"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		[HttpGet()]
@@ -349,7 +349,7 @@ namespace Heat.Controllers
 		/// <summary>
 		/// Risponde alla chiamata AJAX dell'oggetto Datatable con la lista paginata dei clienti disabilitati.
 		/// </summary>
-		/// <param name="request"></param>
+		/// <param Name="request"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		[HttpGet()]

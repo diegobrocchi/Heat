@@ -134,10 +134,10 @@
                 $.validator.unobtrusive.adapters.add(customValidators[i].type, customValidators[i].params,
                 (function (i) {
                     return function (options) {
-                        var prefix = getModelPrefix(options.element.name),
+                        var prefix = getModelPrefix(options.element.Name),
                             otherProperty = options.params.otherproperty,
                             fullOtherName = appendModelPrefix(otherProperty, prefix),
-                            element = $(options.form).find(':input').filter("[name='" + escapeAttributeValue(fullOtherName) + "']")[0];
+                            element = $(options.form).find(':input').filter("[Name='" + escapeAttributeValue(fullOtherName) + "']")[0];
 
                         if ($(element).is(':hidden') && options.message != null) {
                             options.message = options.message.replace(otherProperty, $(element).val());

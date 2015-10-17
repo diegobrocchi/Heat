@@ -1045,8 +1045,8 @@
           },
           "PAB": {
             "displayName": "balboa di Panama",
-            "displayName-count-one": "balboa panamense",
-            "displayName-count-other": "balboa panamensi",
+            "displayName-count-one": "balboa paNamense",
+            "displayName-count-other": "balboa paNamensi",
             "symbol": "PAB"
           },
           "PEI": {
@@ -1227,14 +1227,14 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "dollaro surinamese",
-            "displayName-count-one": "dollaro surinamese",
-            "displayName-count-other": "dollari surinamesi",
+            "displayName": "dollaro suriNamese",
+            "displayName-count-one": "dollaro suriNamese",
+            "displayName-count-other": "dollari suriNamesi",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "fiorino del Suriname",
+            "displayName": "fiorino del SuriName",
             "symbol": "SRG"
           },
           "SSP": {

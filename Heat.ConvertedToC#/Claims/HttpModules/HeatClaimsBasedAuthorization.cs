@@ -39,7 +39,7 @@ namespace Heat
 		{
 			context.PostAuthenticateRequest += ReplacePrincipal;
 		}
-		private static void ReplacePrincipal()
+		private static void ReplacePrincipal(object sender, EventArgs e)
 		{
 			if ((HttpContext.Current.User != null) && HttpContext.Current.User.Identity.IsAuthenticated) {
 				ClaimsPrincipal cp = CreateClaimsBasedPrincipal();

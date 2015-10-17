@@ -51,16 +51,16 @@ var createError = Globalize._createError,
 	validateParameterTypeString = Globalize._validateParameterTypeString;
 
 
-var validateParameterTypeDate = function( value, name ) {
-	validateParameterType( value, name, value === undefined || value instanceof Date, "Date" );
+var validateParameterTypeDate = function( value, Name ) {
+	validateParameterType( value, Name, value === undefined || value instanceof Date, "Date" );
 };
 
 
 
 
-var createErrorInvalidParameterValue = function( name, value ) {
-	return createError( "E_INVALID_PAR_VALUE", "Invalid `{name}` value ({value}).", {
-		name: name,
+var createErrorInvalidParameterValue = function( Name, value ) {
+	return createError( "E_INVALID_PAR_VALUE", "Invalid `{Name}` value ({value}).", {
+		Name: Name,
 		value: value
 	});
 };
@@ -157,7 +157,7 @@ var dateExpandPattern = function( options, cldr ) {
 
 		default:
 			throw createErrorInvalidParameterValue({
-				name: "options",
+				Name: "options",
 				value: options
 			});
 	}
@@ -642,7 +642,7 @@ var dateFormatProperties = function( pattern, cldr ) {
 				break;
 
 			case "u": // Extended year. Need to be implemented.
-			case "U": // Cyclic year name. Need to be implemented.
+			case "U": // Cyclic year Name. Need to be implemented.
 				throw createErrorUnsupportedFeature({
 					feature: "year pattern `" + chr + "`"
 				});
@@ -727,7 +727,7 @@ var dateFormatProperties = function( pattern, cldr ) {
 				}
 				if ( length === 6 ) {
 
-					// If short day names are not explicitly specified, abbreviated day names are
+					// If short day Names are not explicitly specified, abbreviated day Names are
 					// used instead.
 					// http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					// http://unicode.org/cldr/trac/ticket/6790
@@ -1421,8 +1421,8 @@ var dateTokenizer = function( value, numberParser, properties ) {
 			/* falls through */
 			case "E":
 				if ( length === 6 ) {
-					// Note: if short day names are not explicitly specified, abbreviated day
-					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
+					// Note: if short day Names are not explicitly specified, abbreviated day
+					// Names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					lookup([
 						"gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
@@ -1607,7 +1607,7 @@ var dateTokenizerProperties = function( pattern, cldr ) {
 
 			// Year
 			case "u": // Extended year. Need to be implemented.
-			case "U": // Cyclic year name. Need to be implemented.
+			case "U": // Cyclic year Name. Need to be implemented.
 				throw createErrorUnsupportedFeature({
 					feature: "year pattern `" + chr + "`"
 				});
@@ -1656,8 +1656,8 @@ var dateTokenizerProperties = function( pattern, cldr ) {
 			/* falls through */
 			case "E":
 				if ( length === 6 ) {
-					// Note: if short day names are not explicitly specified, abbreviated day
-					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
+					// Note: if short day Names are not explicitly specified, abbreviated day
+					// Names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					cldr.main([
 						"dates/calendars/gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],

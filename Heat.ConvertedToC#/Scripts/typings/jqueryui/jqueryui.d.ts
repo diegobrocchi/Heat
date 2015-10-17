@@ -116,7 +116,7 @@ declare module JQueryUI {
         /**
          * A function that takes a date as a parameter and must return an array with:
          * [0]: true/false indicating whether or not this date is selectable
-         * [1]: a CSS class name to add to the date's cell or "" for the default presentation
+         * [1]: a CSS class Name to add to the date's cell or "" for the default presentation
          * [2]: an optional popup tooltip for this date
          * The function is called for each day in the datepicker before it is displayed.
          */
@@ -162,15 +162,15 @@ declare module JQueryUI {
          */
         dateFormat?: string;
         /**
-         * The list of long day names, starting from Sunday, for use as requested via the dateFormat option.
+         * The list of long day Names, starting from Sunday, for use as requested via the dateFormat option.
          */
         dayNames?: string[];
         /**
-         * The list of minimised day names, starting from Sunday, for use as column headers within the datepicker.
+         * The list of minimised day Names, starting from Sunday, for use as column headers within the datepicker.
          */
         dayNamesMin?: string[];
         /**
-         * The list of abbreviated day names, starting from Sunday, for use as requested via the dateFormat option.
+         * The list of abbreviated day Names, starting from Sunday, for use as requested via the dateFormat option.
          */
         dayNamesShort?: string[];
         /**
@@ -218,15 +218,15 @@ declare module JQueryUI {
          */
         minDate?: any; // Date, number or string
         /**
-         * The list of full month names, for use as requested via the dateFormat option.
+         * The list of full month Names, for use as requested via the dateFormat option.
          */
         monthNames?: string[];
         /**
-         * The list of abbreviated month names, as used in the month header on each datepicker and as requested via the dateFormat option.
+         * The list of abbreviated month Names, as used in the month header on each datepicker and as requested via the dateFormat option.
          */
         monthNamesShort?: string[];
         /**
-         * Whether the prevText and nextText options should be parsed as dates by the formatDate function, allowing them to display the target month names for example.
+         * Whether the prevText and nextText options should be parsed as dates by the formatDate function, allowing them to display the target month Names for example.
          */
         navigationAsDateFormat?: boolean;
         /**
@@ -268,7 +268,7 @@ declare module JQueryUI {
          */
         shortYearCutoff?: any; // number or string
         /**
-         * The name of the animation used to show and hide the datepicker. Use "show" (the default), "slideDown", "fadeIn", any of the jQuery UI effects. Set to an empty string to disable animation.
+         * The Name of the animation used to show and hide the datepicker. Use "show" (the default), "slideDown", "fadeIn", any of the jQuery UI effects. Set to an empty string to disable animation.
          */
         showAnim?: string;
         /**
@@ -953,8 +953,8 @@ declare module JQueryUI {
         (optionLiteral: string, options: WidgetOptions): any;
         (optionLiteral: string, optionName: string, optionValue: any): JQuery;
 
-        (name: string, prototype: any): JQuery;
-        (name: string, base: Function, prototype: any): JQuery;
+        (Name: string, prototype: any): JQuery;
+        (Name: string, base: Function, prototype: any): JQuery;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1223,7 +1223,7 @@ interface JQuery {
      * @param optionName 'beforeShowDay'
      * @param beforeShowDayValue A function that takes a date as a parameter and must return an array with:
      * [0]: true/false indicating whether or not this date is selectable
-     * [1]: a CSS class name to add to the date's cell or "" for the default presentation
+     * [1]: a CSS class Name to add to the date's cell or "" for the default presentation
      * [2]: an optional popup tooltip for this date
      * The function is called for each day in the datepicker before it is displayed.
      */
@@ -1401,7 +1401,7 @@ interface JQuery {
      *
      * @param methodName 'option'
      * @param optionName 'dayNames'
-     * @param dayNamesValue The list of long day names, starting from Sunday, for use as requested via the dateFormat option.
+     * @param dayNamesValue The list of long day Names, starting from Sunday, for use as requested via the dateFormat option.
      */
     datepicker(methodName: 'option', optionName: 'dayNames', dayNamesValue: string[]): JQuery;
 
@@ -1417,7 +1417,7 @@ interface JQuery {
      *
      * @param methodName 'option'
      * @param optionName 'dayNamesMin'
-     * @param dayNamesMinValue The list of minimised day names, starting from Sunday, for use as column headers within the datepicker.
+     * @param dayNamesMinValue The list of minimised day Names, starting from Sunday, for use as column headers within the datepicker.
      */
     datepicker(methodName: 'option', optionName: 'dayNamesMin', dayNamesMinValue: string[]): JQuery;
 
@@ -1433,7 +1433,7 @@ interface JQuery {
      *
      * @param methodName 'option'
      * @param optionName 'dayNamesShort'
-     * @param dayNamesShortValue The list of abbreviated day names, starting from Sunday, for use as requested via the dateFormat option.
+     * @param dayNamesShortValue The list of abbreviated day Names, starting from Sunday, for use as requested via the dateFormat option.
      */
     datepicker(methodName: 'option', optionName: 'dayNamesShort', dayNamesShortValue: string[]): JQuery;
 
@@ -1521,7 +1521,7 @@ interface JQuery {
      * Gets the value currently associated with the specified optionName.
      *
      * @param methodName 'option'
-     * @param optionName The name of the option to get.
+     * @param optionName The Name of the option to get.
      */
     datepicker(methodName: 'option', optionName: string): any;
 

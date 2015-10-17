@@ -31,9 +31,9 @@ namespace Heat
 	public class HeatClaimsPrincipal : ClaimsPrincipal
 	{
 
-		public HeatClaimsPrincipal(string username)
+		public HeatClaimsPrincipal(string userName)
 		{
-			GenericIdentity gi = new GenericIdentity(username, "Heat Custom authentication");
+			GenericIdentity gi = new GenericIdentity(userName, "Heat Custom authentication");
 			ClaimsIdentity ci = new ClaimsIdentity(gi);
 
 			this.AddIdentity(ci);

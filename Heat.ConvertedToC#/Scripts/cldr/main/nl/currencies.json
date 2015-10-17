@@ -1228,9 +1228,9 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "Panamese balboa",
-            "displayName-count-one": "Panamese balboa",
-            "displayName-count-other": "Panamese balboa",
+            "displayName": "PaNamese balboa",
+            "displayName-count-one": "PaNamese balboa",
+            "displayName-count-other": "PaNamese balboa",
             "symbol": "PAB"
           },
           "PEI": {
@@ -1649,16 +1649,16 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "Vietnamese dong",
-            "displayName-count-one": "Vietnamese dong",
-            "displayName-count-other": "Vietnamese dong",
+            "displayName": "VietNamese dong",
+            "displayName-count-one": "VietNamese dong",
+            "displayName-count-other": "VietNamese dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },
           "VNN": {
-            "displayName": "Oude Vietnamese dong (1978–1985)",
-            "displayName-count-one": "oude Vietnamese dong (1978–1985)",
-            "displayName-count-other": "oude Vietnamese dong (1978–1985)",
+            "displayName": "Oude VietNamese dong (1978–1985)",
+            "displayName-count-one": "oude VietNamese dong (1978–1985)",
+            "displayName-count-other": "oude VietNamese dong (1978–1985)",
             "symbol": "VNN"
           },
           "VUV": {

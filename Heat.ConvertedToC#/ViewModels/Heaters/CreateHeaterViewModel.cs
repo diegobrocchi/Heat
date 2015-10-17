@@ -31,36 +31,36 @@ namespace Heat.ViewModels.Heaters
 	{
 
 		public int ThermalUnitID { get; set; }
-		[Display(name = "Generatore di riferimento")]
+		[Display(Name = "Generatore di riferimento")]
 		public string ThermalUnitDescription { get; set; }
 
-		[Display(name = "Marca")]
+		[Display(Name = "Marca")]
 		public string ManifacturerID { get; set; }
 		public IEnumerable<SelectListItem> ManifacturerList { get; set; }
 
-		[Display(name = "Modello")]
+		[Display(Name = "Modello")]
 		public int ModelID { get; set; }
 		public IEnumerable<SelectListItem> ModelList { get; set; }
 
-		[Display(name = "Matricola")]
+		[Display(Name = "Matricola")]
 		public string SerialNumber { get; set; }
 
-		[Display(name = "Portata termica minima nominale (kW)")]
+		[Display(Name = "Portata termica minima nominale (kW)")]
 		public float MinimumPowerKW { get; set; }
 
-		[Display(name = "Portata termica massima nominale (kW)")]
+		[Display(Name = "Portata termica massima nominale (kW)")]
 		public float MaximumPowerKW { get; set; }
 
-		[Display(name = "Tipologia")]
+		[Display(Name = "Tipologia")]
 		public string Type { get; set; }
 
-		[Display(name = "Data di installazione")]
+		[Display(Name = "Data di installazione")]
 		public DateTime InstallationDate { get; set; }
 
-		[Display(name = "Data di dismissione")]
+		[Display(Name = "Data di dismissione")]
 		public Nullable<DateTime> DismissDate { get; set; }
 
-		[Display(name = "Combustibile")]
+		[Display(Name = "Combustibile")]
 		public int FuelID { get; set; }
 		public IEnumerable<SelectListItem> FuelList { get; set; }
 

@@ -35,7 +35,7 @@ SELECT
 FROM 
     master.dbo.sysdatabases 
 WHERE 
-    name = DB_NAME()
+    Name = DB_Name()
 
 IF @DBCompatibilityLevel <> 80
 BEGIN
@@ -58,7 +58,7 @@ BEGIN
     you can ensure compatibility by executing the following statement:
     
     ALTER DATABASE [' 
-    + DB_NAME() 
+    + DB_Name() 
     + N'] 
     SET COMPATIBILITY_LEVEL = 80
 

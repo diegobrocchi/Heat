@@ -30,6 +30,7 @@ namespace Heat.ViewModels.OutboundCall
 	{
 
 		public int ID { get; set; }
+
 		public string User { get; set; }
 		public string Name { get; set; }
 		public int PlantID { get; set; }

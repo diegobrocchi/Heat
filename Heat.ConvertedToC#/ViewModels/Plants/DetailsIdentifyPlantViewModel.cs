@@ -33,40 +33,40 @@ namespace Heat.ViewModels.Plants
 
 		public int ID { get; set; }
 
-		[Display(name = "Nominativo")]
+		[Display(Name = "Nominativo")]
 		public string Name { get; set; }
 
-		[Display(name = "Codice dell'impianto per la provincia")]
+		[Display(Name = "Codice dell'impianto per la provincia")]
 		public string PlantDistinctCode { get; set; }
 
-		[Display(name = "Indirizzo")]
+		[Display(Name = "Indirizzo")]
 		public string Address { get; set; }
 
-		[Display(name = "Numero Civico")]
+		[Display(Name = "Numero Civico")]
 		public string StreetNumber { get; set; }
 
-		[Display(name = "Palazzo")]
+		[Display(Name = "Palazzo")]
 		public string Building { get; set; }
 
-		[Display(name = "Scala")]
+		[Display(Name = "Scala")]
 		public string Stair { get; set; }
 
-		[Display(name = "Interno")]
+		[Display(Name = "Interno")]
 		public string Apartment { get; set; }
 
-		[Display(name = "Località")]
+		[Display(Name = "Località")]
 		public string City { get; set; }
 
-		[Display(name = "CAP")]
+		[Display(Name = "CAP")]
 		public string PostalCode { get; set; }
 
-		[Display(name = "Area")]
+		[Display(Name = "Area")]
 		public string Area { get; set; }
 
-		[Display(name = "Zona")]
+		[Display(Name = "Zona")]
 		public string Zone { get; set; }
 
-		[Display(name = "Provincia")]
+		[Display(Name = "Provincia")]
 		public string District { get; set; }
 
 	}

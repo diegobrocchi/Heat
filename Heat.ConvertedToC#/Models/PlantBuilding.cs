@@ -34,49 +34,49 @@ namespace Heat.Models
 	public class PlantBuilding
 	{
 
-		[Display(name = "Indirizzo")]
+		[Display(Name = "Indirizzo")]
 		public string Address { get; set; }
 
-		[Display(name = "Numero Civico")]
+		[Display(Name = "Numero Civico")]
 		public string StreetNumber { get; set; }
 
-		[Display(name = "Palazzo")]
+		[Display(Name = "Palazzo")]
 		public string Building { get; set; }
 
-		[Display(name = "Scala")]
+		[Display(Name = "Scala")]
 		public string Stair { get; set; }
 
-		[Display(name = "Interno")]
+		[Display(Name = "Interno")]
 		public string Apartment { get; set; }
 
-		[Display(name = "Località")]
+		[Display(Name = "Località")]
 		public string City { get; set; }
 
-		[Display(name = "CAP")]
+		[Display(Name = "CAP")]
 		public string PostalCode { get; set; }
 
-		[Display(name = "Area")]
+		[Display(Name = "Area")]
 		public string Area { get; set; }
 
-		[Display(name = "Zona")]
+		[Display(Name = "Zona")]
 		public string Zone { get; set; }
 
-		[Display(name = "Provincia")]
+		[Display(Name = "Provincia")]
 		public string District { get; set; }
 
 		//*************
 		//forse queste proprietà non dovrebbero stare qui, ma nel Plant
 		//sono qui perchè il Libretto di Impianto le mette nel 'Ubicazione e destinazione dell'edificio'
-		[Display(name = "Singola unità abitativa")]
+		[Display(Name = "Singola unità abitativa")]
 		public bool IsSingleUnit { get; set; }
 
-		[Display(name = "Categoria energetica")]
+		[Display(Name = "Categoria energetica")]
 		public EnergyCategoryEnum EnergyCategory { get; set; }
 
-		[Display(name = "Volume lordo riscaldato (m³)")]
+		[Display(Name = "Volume lordo riscaldato (m³)")]
 		public float GrossHeatedVolumeM3 { get; set; }
 
-		[Display(name = "Volume lordo raffrescato (m³)")]
+		[Display(Name = "Volume lordo raffrescato (m³)")]
 		public float GrossCooledVolumeM3 { get; set; }
 
 	}

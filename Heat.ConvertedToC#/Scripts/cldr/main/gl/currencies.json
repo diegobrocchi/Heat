@@ -1073,9 +1073,9 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "Balboa panameño",
-            "displayName-count-one": "balboa panameño",
-            "displayName-count-other": "balboas panameños",
+            "displayName": "Balboa paNameño",
+            "displayName-count-one": "balboa paNameño",
+            "displayName-count-other": "balboas paNameños",
             "symbol": "PAB"
           },
           "PEI": {

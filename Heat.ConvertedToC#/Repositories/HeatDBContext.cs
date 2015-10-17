@@ -63,18 +63,11 @@ namespace Heat.Repositories
 		}
 
 		public DbSet<Customer> Customers { get; set; }
-		public DbSet<Address> Address { get; set; }
-		DbSet<Address> IHeatDBContext.Addresses {
-			get { return Address; }
-			set { Address = value; }
-		}
+		public DbSet<Address> Addresses { get; set; }
+			
 		public DbSet<AddressType> AddressTypes { get; set; }
 		public DbSet<Contact> Contacts { get; set; }
-		public DbSet<WarehouseMovement> WarehouseMovement { get; set; }
-		DbSet<WarehouseMovement> IHeatDBContext.WarehouseMovements {
-			get { return WarehouseMovement; }
-			set { WarehouseMovement = value; }
-		}
+
 		public DbSet<Plant> Plants { get; set; }
 		public DbSet<PlantType> PlantTypes { get; set; }
 		public DbSet<PlantClass> PlantClasses { get; set; }
@@ -89,11 +82,8 @@ namespace Heat.Repositories
 		public DbSet<Warehouse> Warehouses { get; set; }
 		public DbSet<CausalWarehouseGroup> CausalWarehouseGroups { get; set; }
 		public DbSet<CausalWarehouse> CausalWarehouses { get; set; }
-		public DbSet<Seller> Seller { get; set; }
-		DbSet<Seller> IHeatDBContext.Sellers {
-			get { return Seller; }
-			set { Seller = value; }
-		}
+		
+
 		public DbSet<Product> Products { get; set; }
 		public DbSet<DescriptiveInvoiceRow> DescriptiveInvoiceRows { get; set; }
 		public DbSet<ProductInvoiceRow> ProductInvoiceRows { get; set; }
@@ -113,7 +103,11 @@ namespace Heat.Repositories
 		public DbSet<OutboundCall> OutboundCalls { get; set; }
 		public DbSet<ProposedOutBoundCall> ProposedOutboundCalls { get; set; }
 
-		public override int SaveChanges()
+        public DbSet<WarehouseMovement> WarehouseMovements { get; set; }
+        
+        public DbSet<Seller> Sellers { get; set; }
+
+        public override int SaveChanges()
 		{
 			return base.SaveChanges();
 		}

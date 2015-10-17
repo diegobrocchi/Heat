@@ -1,39 +1,16 @@
 using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Xml.Linq;
-using System.Diagnostics;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Caching;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Mvc.Html;
-using System.Web.Routing;
-using System.Web.SessionState;
-using System.Web.Security;
-using System.Web.Profile;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 namespace Heat.Models
 {
 
 
 
-	/// <summary>
-	/// Rappresenta un numero di serie. Controllare la proprietà IsValid prima di utilizzarlo nel programma.
-	/// 
-	/// </summary>
-	/// <remarks></remarks>
-	public class SerialNumber
+    /// <summary>
+    /// Rappresenta un numero di serie. Controllare la proprietà IsValid prima di utilizzarlo nel programma.
+    /// 
+    /// </summary>
+    /// <remarks></remarks>
+    public class SerialNumber
 	{
 		public SerialNumber()
 		{
@@ -41,10 +18,10 @@ namespace Heat.Models
 
 		public SerialNumber(int serialInt, string serialString, bool isValid, string invalidError)
 		{
-			_SerialInteger = serialInt;
-			_SerialString = serialString;
-			_IsValid = isValid;
-			_InvalidError = invalidError;
+			SerialInteger = serialInt;
+			SerialString = serialString;
+			IsValid = isValid;
+			InvalidError = invalidError;
 		}
 
 		public int SerialInteger { get; set; }
@@ -54,16 +31,16 @@ namespace Heat.Models
 		/// <summary>
 		/// TODO!!!
 		/// </summary>
-		/// <param name="value"></param>
-		/// <param name="scheme"></param>
+		/// <param Name="value"></param>
+		/// <param Name="scheme"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public string Stringify(int value, SerialScheme scheme)
 		{
 			string result = null;
 
-			scheme.FormatMask = scheme.FormatMask.Replace("{{yyyy}}", DateAndTime.Now.Year);
-			scheme.FormatMask = scheme.FormatMask.Replace("{{ww}}", DateAndTime.Now.WeekOfTheYear());
+			scheme.FormatMask = scheme.FormatMask.Replace("{{yyyy}}", DateAndTime.Now.Year.ToString());
+			scheme.FormatMask = scheme.FormatMask.Replace("{{ww}}", DateAndTime.Now.WeekOfTheYear().ToString());
 			if (!string.IsNullOrEmpty(scheme.FormatMask)) {
 				result = string.Format(scheme.FormatMask, value);
 			} else {
@@ -77,12 +54,12 @@ namespace Heat.Models
 		/// Controlla la scadenza dello schema, la sua periodicità, i valori massimi e minimi e genera il successivo.
 		/// La proprietà IsValid indica se è stato possibile generare un numero di serie conforme allo schema.
 		/// </summary>
-		/// <param name="scheme"></param>
+		/// <param Name="scheme"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public SerialNumber Increment(SerialScheme scheme)
 		{
-			if (!_IsValid) {
+			if (!IsValid) {
 				throw new Exception("Cannot increment invalid SerialNumber!");
 			}
 			if ((scheme.ExpiryDate == null)) {
@@ -117,7 +94,7 @@ namespace Heat.Models
 					}
 				} else {
 					//lo schema non è scaduto e non ha raggiunto il limite massimo: 
-					return new SerialNumber(_SerialInteger + scheme.Increment, Stringify(_SerialInteger + scheme.Increment, scheme), true, string.Empty);
+					return new SerialNumber(SerialInteger + scheme.Increment, Stringify(SerialInteger + scheme.Increment, scheme), true, string.Empty);
 				}
 			} else {
 				//lo schema è scaduto

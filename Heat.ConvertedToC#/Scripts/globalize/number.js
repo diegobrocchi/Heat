@@ -57,10 +57,10 @@ var createErrorUnsupportedFeature = function( feature ) {
 
 
 
-var validateParameterTypeNumber = function( value, name ) {
+var validateParameterTypeNumber = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || typeof value === "number",
 		"Number"
 	);
@@ -69,10 +69,10 @@ var validateParameterTypeNumber = function( value, name ) {
 
 
 
-var validateParameterTypeString = function( value, name ) {
+var validateParameterTypeString = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || typeof value === "string",
 		"a string"
 	);
@@ -614,18 +614,18 @@ var numberPatternProperties = function( pattern ) {
 
 
 /**
- * Symbol( name, cldr )
+ * Symbol( Name, cldr )
  *
- * @name [String] Symbol name.
+ * @Name [String] Symbol Name.
  *
  * @cldr [Cldr instance].
  *
- * Return the localized symbol given its name.
+ * Return the localized symbol given its Name.
  */
-var numberSymbol = function( name, cldr ) {
+var numberSymbol = function( Name, cldr ) {
 	return cldr.main([
 		"numbers/symbols-numberSystem-" + numberNumberingSystem( cldr ),
-		name
+		Name
 	]);
 };
 
@@ -1069,7 +1069,7 @@ var numberParseProperties = function( pattern, cldr ) {
 	// 1: @invertedSymbolMap [Object] Inverted symbol map augmented with sanity check.
 	//    The sanity check prevents permissive parsing, i.e., it prevents symbols that doesn't
 	//    belong to the localized set to pass through. This is obtained with the result of the
-	//    inverted map object overloading symbol name map object (the remaining symbol name
+	//    inverted map object overloading symbol Name map object (the remaining symbol Name
 	//    mappings will invalidate parsing, working as the sanity check).
 	// 2: @negativePrefix [String] Negative prefix.
 	// 3: @negativeSuffix [String] Negative suffix with percent or per mille stripped out.

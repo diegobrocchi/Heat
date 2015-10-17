@@ -47,10 +47,10 @@ var alwaysArray = Globalize._alwaysArray,
 	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject;
 
 
-var validateParameterTypeCurrency = function( value, name ) {
+var validateParameterTypeCurrency = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || typeof value === "string" && ( /^[A-Za-z]{3}$/ ).test( value ),
 		"3-letter currency code string as defined by ISO 4217"
 	);
@@ -140,9 +140,9 @@ var currencyCodeProperties = function( currency, cldr ) {
 
 
 /**
- * nameFormat( formattedNumber, pluralForm, properties )
+ * NameFormat( formattedNumber, pluralForm, properties )
  *
- * Return the appropriate name form currency format.
+ * Return the appropriate Name form currency format.
  */
 var currencyNameFormat = function( formattedNumber, pluralForm, properties ) {
 	var displayName, unitPattern,
@@ -163,7 +163,7 @@ var currencyNameFormat = function( formattedNumber, pluralForm, properties ) {
 
 
 /**
- * nameProperties( currency, cldr )
+ * NameProperties( currency, cldr )
  *
  * Return number pattern with the appropriate currency code in as literal.
  */
@@ -304,7 +304,7 @@ function validateRequiredCldr( path, value ) {
  * @currency [String] 3-letter currency code as defined by ISO 4217.
  *
  * @options [Object]:
- * - style: [String] "symbol" (default), "accounting", "code" or "name".
+ * - style: [String] "symbol" (default), "accounting", "code" or "Name".
  * - see also number/format options.
  *
  * Return a function that formats a currency according to the given options and default/instance
@@ -325,12 +325,12 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	validateDefaultLocale( cldr );
 
-	// Get properties given style ("symbol" default, "code" or "name").
+	// Get properties given style ("symbol" default, "code" or "Name").
 	cldr.on( "get", validateRequiredCldr );
 	properties = ({
 		accounting: currencySymbolProperties,
 		code: currencyCodeProperties,
-		name: currencyNameProperties,
+		Name: currencyNameProperties,
 		symbol: currencySymbolProperties
 	}[ style ] )( currency, cldr, options );
 	cldr.off( "get", validateRequiredCldr );
@@ -344,7 +344,7 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 		return this.numberFormatter( options );
 	}
 
-	// Return formatter when style is "code" or "name".
+	// Return formatter when style is "code" or "Name".
 	validatePluralModulePresence();
 	numberFormatter = this.numberFormatter( options );
 	plural = this.pluralGenerator();

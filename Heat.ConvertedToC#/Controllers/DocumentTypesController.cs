@@ -27,7 +27,7 @@ using System.Data.Entity;
 using System.Net;
 using Heat.Models;
 using Heat.Repositories;
-using Heat.Viewmodels;
+using Heat.ViewModels;
 
 namespace Heat.Controllers
 {

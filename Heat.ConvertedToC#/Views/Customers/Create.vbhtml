@@ -102,7 +102,7 @@ End Code
         <div class="form-group">
             @Html.LabelFor(Function(model) model.Website, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input class="form-control text-box single-line" id="Website" name="Website" type="text" value="">
+                <input class="form-control text-box single-line" id="Website" Name="Website" type="text" value="">
                 <span class="field-validation-valid text-danger" data-valmsg-for="Website" data-valmsg-replace="true"></span>
             </div>
         </div>

@@ -46,7 +46,7 @@ namespace Heat.Models
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public decimal GrossAmount {
-			get { return UnitPrice * Quantity; }
+			get { return UnitPrice * (decimal) Quantity; }
 		}
 		/// <summary>
 		/// Totale IMPONIBILE: LORDO - SCONTI
@@ -84,7 +84,7 @@ namespace Heat.Models
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public decimal TaxAmount {
-			get { return DiscountedAmount * VAT_Rate / 100; }
+			get { return DiscountedAmount * (decimal) VAT_Rate / 100; }
 		}
 		/// <summary>
 		/// Importo TOTALE.

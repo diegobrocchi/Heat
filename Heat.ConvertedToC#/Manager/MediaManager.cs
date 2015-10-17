@@ -54,7 +54,7 @@ namespace Heat.Manager
 		/// <summary>
 		/// Trasforma un file caricato dall'utente in un oggetto Medium
 		/// </summary>
-		/// <param name="file"></param>
+		/// <param Name="file"></param>
 		/// <returns></returns>
 		public Medium GetMedium(HttpPostedFileBase file, string description, string tags)
 		{
@@ -62,7 +62,7 @@ namespace Heat.Manager
 			Medium result = new Medium();
 			result.Description = description ?? string.Empty;
 			result.Tags = tags ?? string.Empty;
-			result.OriginalFilename = Path.GetFileName(file.FileName);
+			result.OriginalFileName = Path.GetFileName(file.FileName);
 			result.Lenght = file.ContentLength;
 			result.Extension = file.FileName.Substring(file.FileName.IndexOf("."));
 			result.ContentType = file.ContentType;

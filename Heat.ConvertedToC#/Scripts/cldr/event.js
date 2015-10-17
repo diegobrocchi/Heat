@@ -79,13 +79,13 @@ EventEmitter = (function () {
 	/**
 	 * Alias a method while keeping the context correct, to allow for overwriting of target method.
 	 *
-	 * @param {String} name The name of the target method.
+	 * @param {String} Name The Name of the target method.
 	 * @return {Function} The aliased method
 	 * @api private
 	 */
-	function alias(name) {
+	function alias(Name) {
 		return function aliasClosure() {
-			return this[name].apply(this, arguments);
+			return this[Name].apply(this, arguments);
 		};
 	}
 
@@ -159,7 +159,7 @@ EventEmitter = (function () {
 	 * Adds a listener function to the specified event.
 	 * The listener will not be added if it is a duplicate.
 	 * If the listener returns true then it will be removed after it is called.
-	 * If you pass a regular expression as the event name then the listener will be added to all events that match it.
+	 * If you pass a regular expression as the event Name then the listener will be added to all events that match it.
 	 *
 	 * @param {String|RegExp} evt Name of the event to attach the listener to.
 	 * @param {Function} listener Method to be called when the event is emitted. If the function returns true then it will be removed after calling.
@@ -208,8 +208,8 @@ EventEmitter = (function () {
 	proto.once = alias('addOnceListener');
 
 	/**
-	 * Defines an event name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
-	 * You need to tell it what event names should be matched by a regex.
+	 * Defines an event Name. This is required if you want to use a regex to add a listener to multiple events at once. If you don't do this then how do you expect it to know what event to add to? Should it just add to every possible match for a regex? No. That is scary and bad.
+	 * You need to tell it what event Names should be matched by a regex.
 	 *
 	 * @param {String} evt Name of the event to create.
 	 * @return {Object} Current instance of EventEmitter for chaining.
@@ -222,7 +222,7 @@ EventEmitter = (function () {
 	/**
 	 * Uses defineEvent to define multiple events.
 	 *
-	 * @param {String[]} evts An array of event names to define.
+	 * @param {String[]} evts An array of event Names to define.
 	 * @return {Object} Current instance of EventEmitter for chaining.
 	 */
 	proto.defineEvents = function defineEvents(evts) {
@@ -234,7 +234,7 @@ EventEmitter = (function () {
 
 	/**
 	 * Removes a listener function from the specified event.
-	 * When passed a regular expression as the event name, it will remove the listener from all events that match it.
+	 * When passed a regular expression as the event Name, it will remove the listener from all events that match it.
 	 *
 	 * @param {String|RegExp} evt Name of the event to remove the listener from.
 	 * @param {Function} listener Method to remove from the event.
@@ -265,11 +265,11 @@ EventEmitter = (function () {
 
 	/**
 	 * Adds listeners in bulk using the manipulateListeners method.
-	 * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event name and an array of listeners to be added.
+	 * If you pass an object as the second argument you can add to multiple events at once. The object should contain key value pairs of events and listeners or listener arrays. You can also pass it an event Name and an array of listeners to be added.
 	 * You can also pass it a regular expression to add the array of listeners to all events that match it.
 	 * Yeah, this function does quite a bit. That's probably a bad thing.
 	 *
-	 * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
+	 * @param {String|Object|RegExp} evt An event Name if you will pass an array of listeners next. An object if you wish to add to multiple events at once.
 	 * @param {Function[]} [listeners] An optional array of listener functions to add.
 	 * @return {Object} Current instance of EventEmitter for chaining.
 	 */
@@ -281,10 +281,10 @@ EventEmitter = (function () {
 	/**
 	 * Removes listeners in bulk using the manipulateListeners method.
 	 * If you pass an object as the second argument you can remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
-	 * You can also pass it an event name and an array of listeners to be removed.
+	 * You can also pass it an event Name and an array of listeners to be removed.
 	 * You can also pass it a regular expression to remove the listeners from all events that match it.
 	 *
-	 * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
+	 * @param {String|Object|RegExp} evt An event Name if you will pass an array of listeners next. An object if you wish to remove from multiple events at once.
 	 * @param {Function[]} [listeners] An optional array of listener functions to remove.
 	 * @return {Object} Current instance of EventEmitter for chaining.
 	 */
@@ -297,11 +297,11 @@ EventEmitter = (function () {
 	 * Edits listeners in bulk. The addListeners and removeListeners methods both use this to do their job. You should really use those instead, this is a little lower level.
 	 * The first argument will determine if the listeners are removed (true) or added (false).
 	 * If you pass an object as the second argument you can add/remove from multiple events at once. The object should contain key value pairs of events and listeners or listener arrays.
-	 * You can also pass it an event name and an array of listeners to be added/removed.
+	 * You can also pass it an event Name and an array of listeners to be added/removed.
 	 * You can also pass it a regular expression to manipulate the listeners of all events that match it.
 	 *
 	 * @param {Boolean} remove True if you want to remove listeners, false if you want to add.
-	 * @param {String|Object|RegExp} evt An event name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
+	 * @param {String|Object|RegExp} evt An event Name if you will pass an array of listeners next. An object if you wish to add/remove from multiple events at once.
 	 * @param {Function[]} [listeners] An optional array of listener functions to add/remove.
 	 * @return {Object} Current instance of EventEmitter for chaining.
 	 */
@@ -345,7 +345,7 @@ EventEmitter = (function () {
 	 * That means every event will be emptied.
 	 * You can also pass a regex to remove all events that match it.
 	 *
-	 * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
+	 * @param {String|RegExp} [evt] Optional Name of the event to remove all listeners for. Will remove from every event if not passed.
 	 * @return {Object} Current instance of EventEmitter for chaining.
 	 */
 	proto.removeEvent = function removeEvent(evt) {
@@ -432,7 +432,7 @@ EventEmitter = (function () {
 
 	/**
 	 * Subtly different from emitEvent in that it will pass its arguments on to the listeners, as opposed to taking a single array of arguments to pass on.
-	 * As with emitEvent, you can pass a regex in place of the event name to emit to all events that match it.
+	 * As with emitEvent, you can pass a regex in place of the event Name to emit to all events that match it.
 	 *
 	 * @param {String|RegExp} evt Name of the event to emit and execute listeners for.
 	 * @param {...*} Optional additional arguments to be passed to each listener.
@@ -499,8 +499,8 @@ EventEmitter = (function () {
 
 
 
-	var validateTypeFunction = function( value, name ) {
-		validateType( value, name, typeof value === "undefined" || typeof value === "function", "Function" );
+	var validateTypeFunction = function( value, Name ) {
+		validateType( value, Name, typeof value === "undefined" || typeof value === "function", "Function" );
 	};
 
 
@@ -509,8 +509,8 @@ EventEmitter = (function () {
 	var superGet, superInit,
 		globalEe = new EventEmitter();
 
-	function validateTypeEvent( value, name ) {
-		validateType( value, name, typeof value === "string" || value instanceof RegExp, "String or RegExp" );
+	function validateTypeEvent( value, Name ) {
+		validateType( value, Name, typeof value === "string" || value instanceof RegExp, "String or RegExp" );
 	}
 
 	function validateThenCall( method, self ) {

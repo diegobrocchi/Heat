@@ -15,7 +15,7 @@ End Code
     @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
     <p class="text-info">
         You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
+        Please enter a user Name for this site below and click the Register button to finish
         logging in.
     </p>
     <div class="form-group">

@@ -54,7 +54,7 @@ namespace Heat.Manager
 		/// <summary>
 		/// Esegue una ricerca sui clienti in base alla richiesta del controllo Datatable.
 		/// </summary>
-		/// <param name="request"></param>
+		/// <param Name="request"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public DataTablesJsonResult GetPagedCustomers(IDataTablesRequest request, bool enabled)
@@ -71,11 +71,11 @@ namespace Heat.Manager
 			//poi filtra i dati in base alla indicazione dell'utente (Case Insensitive)
 			filteredData = baseData.Where(c => c.Name.Contains(request.Search.Value) | c.City.Contains(request.Search.Value));
 
-			//poi ordina (non è supportato l'ordinamento multicolonna, quindi ordina per la prima colonna su cui è imposto l'ordinamento)
-			string sortColumn = "name";
+			//poi ordina (non è supportato l'ordiNamento multicolonna, quindi ordina per la prima colonna su cui è imposto l'ordiNamento)
+			string sortColumn = "Name";
 			string sortDirection = "ASC";
-			foreach (IColumn column_loopVariable in request.Columns) {
-				column = column_loopVariable;
+			foreach (IColumn column in request.Columns) {
+				
 				if (column.IsSortable) {
 					if ((column.Sort != null)) {
 						sortColumn = column.Field;

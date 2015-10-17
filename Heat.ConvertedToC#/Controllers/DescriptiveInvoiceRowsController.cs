@@ -59,7 +59,7 @@ namespace Heat.Controllers
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			DescriptiveInvoiceRow descriptiveInvoiceRow = _db.InvoiceRows.Find(id);
+			DescriptiveInvoiceRow descriptiveInvoiceRow =(DescriptiveInvoiceRow)  _db.InvoiceRows.Find(id);
 			if ((descriptiveInvoiceRow == null)) {
 				return HttpNotFound();
 			}
@@ -91,9 +91,9 @@ namespace Heat.Controllers
 
 				invoiceRowDB.RowDescription = descriptiveInvoiceRow.RowDescription;
 				invoiceRowDB.Quantity = descriptiveInvoiceRow.Quantity;
-				invoiceRowDB.RateDiscount1 = descriptiveInvoiceRow.Discount1;
-				invoiceRowDB.RateDiscount2 = descriptiveInvoiceRow.Discount2;
-				invoiceRowDB.RateDiscount3 = descriptiveInvoiceRow.Discount3;
+				invoiceRowDB.RateDiscount1 = (decimal) descriptiveInvoiceRow.Discount1;
+				invoiceRowDB.RateDiscount2 = (decimal) descriptiveInvoiceRow.Discount2;
+				invoiceRowDB.RateDiscount3 = (decimal) descriptiveInvoiceRow.Discount3;
 				invoiceRowDB.UnitPrice = descriptiveInvoiceRow.UnitPrice;
 				invoiceRowDB.VAT_Rate = descriptiveInvoiceRow.VAT;
 
@@ -107,7 +107,7 @@ namespace Heat.Controllers
 		}
 
 		// GET: DescriptiveInvoiceRows/Edit/5
-		public ActionResult Edit(int? id)
+		public ActionResult Edit(int id)
 		{
 			try {
 				if ((id == null)) {
@@ -137,9 +137,9 @@ namespace Heat.Controllers
 				dbRow = _db.DescriptiveInvoiceRows.Find(editedDescriptiveInvoiceRow.ID);
 
 				dbRow.Quantity = editedDescriptiveInvoiceRow.Quantity;
-				dbRow.RateDiscount1 = editedDescriptiveInvoiceRow.Discount1;
-				dbRow.RateDiscount2 = editedDescriptiveInvoiceRow.Discount2;
-				dbRow.RateDiscount3 = editedDescriptiveInvoiceRow.Discount3;
+				dbRow.RateDiscount1 = (decimal) editedDescriptiveInvoiceRow.Discount1;
+				dbRow.RateDiscount2 = (decimal)editedDescriptiveInvoiceRow.Discount2;
+				dbRow.RateDiscount3 = (decimal)editedDescriptiveInvoiceRow.Discount3;
 				dbRow.RowDescription = editedDescriptiveInvoiceRow.RowDescription;
 				dbRow.UnitPrice = editedDescriptiveInvoiceRow.UnitPrice;
 				dbRow.VAT_Rate = editedDescriptiveInvoiceRow.VAT;
@@ -160,7 +160,7 @@ namespace Heat.Controllers
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			DescriptiveInvoiceRow descriptiveInvoiceRow = _db.InvoiceRows.Find(id);
+			DescriptiveInvoiceRow descriptiveInvoiceRow = (DescriptiveInvoiceRow) _db.InvoiceRows.Find(id);
 			if ((descriptiveInvoiceRow == null)) {
 				return HttpNotFound();
 			}
@@ -173,7 +173,7 @@ namespace Heat.Controllers
 		[ValidateAntiForgeryToken()]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			DescriptiveInvoiceRow descriptiveInvoiceRow = _db.InvoiceRows.Find(id);
+			DescriptiveInvoiceRow descriptiveInvoiceRow = (DescriptiveInvoiceRow)  _db.InvoiceRows.Find(id);
 			_db.InvoiceRows.Remove(descriptiveInvoiceRow);
 			_db.SaveChanges();
 			return RedirectToAction("Index");

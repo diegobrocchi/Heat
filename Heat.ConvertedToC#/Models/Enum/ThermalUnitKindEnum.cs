@@ -29,16 +29,16 @@ namespace Heat
 
 	public enum ThermalUnitKindEnum
 	{
-		[Display(name = "Gruppo termico singolo")]
+		[Display(Name = "Gruppo termico singolo")]
 		SingleThermalUnit = 1,
 
-		[Display(name = "Tubo/nastro radiante")]
+		[Display(Name = "Tubo/nastro radiante")]
 		TubeOrRadiantStrip = 2,
 
-		[Display(name = "Gruppo termico modulare")]
+		[Display(Name = "Gruppo termico modulare")]
 		ModularThermalUnit = 3,
 
-		[Display(name = "Generatore di aria calda")]
+		[Display(Name = "Generatore di aria calda")]
 		HotAirGenerator = 4
 
 	}

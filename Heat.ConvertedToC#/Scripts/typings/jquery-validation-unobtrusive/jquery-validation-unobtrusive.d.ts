@@ -9,7 +9,7 @@ declare module MicrosoftJQueryUnobtrusiveValidation {
     type JQuerySelector = string | Document | Element | JQuery;
 
     interface Adapter {
-        name: string;
+        Name: string;
         params: string[];
         adapt: Function
     }

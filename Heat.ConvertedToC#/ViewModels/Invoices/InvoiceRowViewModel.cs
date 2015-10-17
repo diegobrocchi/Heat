@@ -36,34 +36,34 @@ namespace Heat.ViewModels.Invoices
 
 		public int InvoiceID { get; set; }
 
-		[Display(name = "Item")]
+		[Display(Name = "Item")]
 		public int Item { get; set; }
 
-		[Display(name = "Prodotto")]
+		[Display(Name = "Prodotto")]
 		public string Product { get; set; }
 
-		[Display(name = "Quantità")]
+		[Display(Name = "Quantità")]
 		public float Quantity { get; set; }
 
-		[Display(name = "Prezzo")]
+		[Display(Name = "Prezzo")]
 		public decimal UnitPrice { get; set; }
 
-		[Display(name = "IVA")]
+		[Display(Name = "IVA")]
 		public float VAT { get; set; }
 
-		[Display(name = "Sconto 1")]
+		[Display(Name = "Sconto 1")]
 		public float Discount1 { get; set; }
 
-		[Display(name = "Sconto 2")]
+		[Display(Name = "Sconto 2")]
 		public float Discount2 { get; set; }
 
-		[Display(name = "Sconto 3")]
+		[Display(Name = "Sconto 3")]
 		public float Discount3 { get; set; }
 
-		[Display(name = "Totale imponibile")]
+		[Display(Name = "Totale imponibile")]
 		public decimal TotalBeforeTax { get; set; }
 
-		[Display(name = "TOTALE")]
+		[Display(Name = "TOTALE")]
 		public decimal Total { get; set; }
 
 

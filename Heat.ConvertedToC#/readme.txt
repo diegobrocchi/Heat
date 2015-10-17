@@ -1,5 +1,5 @@
 ﻿claims:
-https://stack247.wordpress.com/2013/02/22/antiforgerytoken-a-claim-of-type-nameidentifier-or-identityprovider-was-not-present-on-provided-claimsidentity/
+https://stack247.wordpress.com/2013/02/22/antiforgerytoken-a-claim-of-type-Nameidentifier-or-identityprovider-was-not-present-on-provided-claimsidentity/
 http://stackoverflow.com/questions/19977833/anti-forgery-token-issue-mvc-5
 http://www.codeproject.com/Articles/639458/Claims-Based-Authentication-and-Authorization
 http://chris.59north.com/post/2013/03/27/Claims-based-identities-in-ASPNET-MVC-45-using-the-standard-ASPNET-providers.aspx
@@ -12,7 +12,7 @@ http://typecastexception.com/post/2014/06/22/ASPNET-Identity-20-Customizing-User
 http://leastprivilege.com/2012/10/26/using-claims-based-authorization-in-mvc-and-web-api/
 
 
-https://visualstudiomagazine.com/Articles/2013/09/01/Going-Beyond-Usernames-and-Roles.aspx?Page=1
+https://visualstudiomagazine.com/Articles/2013/09/01/Going-Beyond-UserNames-and-Roles.aspx?Page=1
 
 IHttpModules:
 https://msdn.microsoft.com/en-us/library/vstudio/ms227673(v=vs.100).aspx

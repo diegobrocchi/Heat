@@ -23,7 +23,7 @@
       "R1003": "While Cyrillic is customary, the vast majority of the population can read both.For languages not customarily written, the writing populiation is artificially set to 5% in the absence of better information.",
       "R1004": {
         "_value": "The figure includes 'Vlaams' population from Ethnologue",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=NL"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=NL"
       },
       "R1005": {
         "_value": "It is estimated that Walloon is used actively by 10-20% of the total population of Wallonia or between 300,000 and 600,000 people. For languages not customarily written, the writing population is artificially set to 5% in the absence of better information.",
@@ -31,11 +31,11 @@
       },
       "R1006": {
         "_value": "http://en.wikipedia.org/wiki/Demographics_of_Switzerland Literacy rate for gsw is 5% of reported speaker population; literacy is mostly in standard German. For languages not customarily written, the writing population is artificially set to 5% in the absence of better information.",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=CH"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=CH"
       },
       "R1007": {
         "_value": "Arabic official, the figure is derived from literacy * lang pop",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=Bahrain"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=Bahrain"
       },
       "R1008": {
         "_value": "Spanish is the official language, only about 60-70% of the population speaks it at all ;",
@@ -80,7 +80,7 @@
       },
       "R1019": {
         "_value": "French official; the figure is derived from literacy * lang pop",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=GF"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=GF"
       },
       "R1020": {
         "_value": "[missing]",
@@ -96,7 +96,7 @@
       },
       "R1023": {
         "_value": "French official; the figure is derived from literacy * lang pop",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=GP"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=GP"
       },
       "R1024": {
         "_value": "Some 99% of users are literate in French or German. For languages not customarily written, the writing population is artificially set to 5% in the absence of better information.",
@@ -128,11 +128,11 @@
       },
       "R1031": {
         "_value": "Official language, 37-77% literacy",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=CV"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=CV"
       },
       "R1032": {
         "_value": "Official language, used in some schools.",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=ER"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=ER"
       },
       "R1033": {
         "_value": "http://www.censusindia.net/cendat/datatable26.html",
@@ -189,7 +189,7 @@
       },
       "R1047": {
         "_value": "Lesotho English-using pop estimated at 5%, no figs available. Probably too low.",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=LS"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=LS"
       },
       "R1048": {
         "_value": "Russian 8%",
@@ -201,7 +201,7 @@
       },
       "R1050": {
         "_value": "Ethnologue says 80k users of French. No other figures found yet, but this seems too low.",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=MA"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=MA"
       },
       "R1051": {
         "_value": "Russian 5.8%.",
@@ -431,7 +431,7 @@
       },
       "R1109": {
         "_value": "[missing]",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=Bahrain"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=Bahrain"
       },
       "R1110": {
         "_value": "[missing]",
@@ -447,7 +447,7 @@
       },
       "R1113": {
         "_value": "[missing]",
-        "_uri": "http://www.ethnologue.com/show_country.asp?name=United+Kingdom"
+        "_uri": "http://www.ethnologue.com/show_country.asp?Name=United+Kingdom"
       },
       "R1114": {
         "_value": "[missing]",
@@ -622,8 +622,8 @@
         "_uri": "https://www.cia.gov/cia/publications/factbook/fields/2098.html"
       },
       "R1163": {
-        "_value": "Dutch is spoken as a mother tongue by about 60% of the Surinamese, while most others speak it as a second or third language.",
-        "_uri": "http://en.wikipedia.org/wiki/Suriname#Languages"
+        "_value": "Dutch is spoken as a mother tongue by about 60% of the SuriNamese, while most others speak it as a second or third language.",
+        "_uri": "http://en.wikipedia.org/wiki/SuriName#Languages"
       },
       "R1164": {
         "_value": "main language of trade and comm. in Isan region, except ... media where it gives way to Thai; now largely an unwritten language. 10% writing pop estimated in absence of other data",
@@ -790,7 +790,7 @@
       },
       "R1207": {
         "_value": "[missing]",
-        "_uri": "http://www12.statcan.ca/census-recensement/2006/dp-pd/tbt/Rp-eng.cfm?LANG=E&APATH=3&DETAIL=0&DIM=0&FL=A&FREE=0&GC=0&GID=837928&GK=0&GRP=1&PID=89189&PRID=0&PTYPE=88971,97154&S=0&SHOWALL=0&SUB=0&Temporal=2006&THEME=70&VID=0&VNAMEE=&VNAMEF="
+        "_uri": "http://www12.statcan.ca/census-recensement/2006/dp-pd/tbt/Rp-eng.cfm?LANG=E&APATH=3&DETAIL=0&DIM=0&FL=A&FREE=0&GC=0&GID=837928&GK=0&GRP=1&PID=89189&PRID=0&PTYPE=88971,97154&S=0&SHOWALL=0&SUB=0&Temporal=2006&THEME=70&VID=0&VNameE=&VNameF="
       },
       "R1208": {
         "_value": "1st lang literacy 8%",
@@ -818,7 +818,7 @@
       },
       "R1218": {
         "_value": "(could be higher if 2nd lang included; no data yet)",
-        "_uri": "http://en.wikipedia.org/wiki/Vietnamese_language"
+        "_uri": "http://en.wikipedia.org/wiki/VietNamese_language"
       },
       "R1219": {
         "_value": "Modern use of Arabic (Jawi) seems to be minimal, but is co-official with ms_Latn; set to 5% for now.",

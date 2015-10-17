@@ -29,10 +29,11 @@ using Ninject.Web.Mvc;
 using WebActivatorEx;
 using Ninject.Web.Common;
 using Heat.Repositories;
+using Heat.Heat.App_Start;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectMVC5), "StartNinject")]
 
-[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(Heat.App_Start.NinjectMVC5), "StopNinject")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(NinjectMVC5), "StopNinject")]
 namespace Heat.Heat.App_Start
 {
 	public static class NinjectMVC5
@@ -72,7 +73,7 @@ namespace Heat.Heat.App_Start
 		/// <summary>
 		/// Load your modules or register your services here!
 		/// </summary>
-		/// <param name="kernel">The kernel.</param>
+		/// <param Name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
 			kernel.Bind<IHeatDBContext>().To<HeatDBContext>().InRequestScope();

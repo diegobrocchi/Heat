@@ -38,7 +38,7 @@ namespace Heat.Controllers
 		// GET: Addresses
 		public ActionResult Index()
 		{
-			var address = db.Address.Include(a => a.AddressType);
+			var address = db.Addresses.Include(a => a.AddressType);
 			return View(address.ToList());
 		}
 
@@ -48,7 +48,7 @@ namespace Heat.Controllers
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Address address = db.Address.Find(id);
+			Address address = db.Addresses.Find(id);
 			if ((address == null)) {
 				return HttpNotFound();
 			}
@@ -77,7 +77,7 @@ namespace Heat.Controllers
 Address address)
 		{
 			if (ModelState.IsValid) {
-				db.Address.Add(address);
+				db.Addresses.Add(address);
 				db.SaveChanges();
 				return RedirectToAction("Index");
 			}
@@ -91,7 +91,7 @@ Address address)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Address address = db.Address.Find(id);
+			Address address = db.Addresses.Find(id);
 			if ((address == null)) {
 				return HttpNotFound();
 			}
@@ -122,7 +122,7 @@ Address address)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Address address = db.Address.Find(id);
+			Address address = db.Addresses.Find(id);
 			if ((address == null)) {
 				return HttpNotFound();
 			}
@@ -135,8 +135,8 @@ Address address)
 		[ValidateAntiForgeryToken()]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Address address = db.Address.Find(id);
-			db.Address.Remove(address);
+			Address address = db.Addresses.Find(id);
+			db.Addresses.Remove(address);
 			db.SaveChanges();
 			return RedirectToAction("Index");
 		}

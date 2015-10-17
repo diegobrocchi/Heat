@@ -95,7 +95,7 @@
     ret = eminpx = parseFloat(ret);
     return ret;
   }, applyMedia = function(fromResize) {
-    var name = "clientWidth", docElemProp = docElem[name], currWidth = doc.compatMode === "CSS1Compat" && docElemProp || doc.body[name] || docElemProp, styleBlocks = {}, lastLink = links[links.length - 1], now = new Date().getTime();
+    var Name = "clientWidth", docElemProp = docElem[Name], currWidth = doc.compatMode === "CSS1Compat" && docElemProp || doc.body[Name] || docElemProp, styleBlocks = {}, lastLink = links[links.length - 1], now = new Date().getTime();
     if (fromResize && lastCall && now - lastCall < resizeThrottle) {
       w.clearTimeout(resizeDefer);
       resizeDefer = w.setTimeout(applyMedia, resizeThrottle);

@@ -38,7 +38,7 @@ namespace Heat.Controllers
 		// GET: Sellers
 		public ActionResult Index()
 		{
-			return View(db.Seller.ToList());
+			return View(db.Sellers.ToList());
 		}
 
 		// GET: Sellers/Details/5
@@ -47,7 +47,7 @@ namespace Heat.Controllers
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Seller seller = db.Seller.Find(id);
+			Seller seller = db.Sellers.Find(id);
 			if ((seller == null)) {
 				return HttpNotFound();
 			}
@@ -69,7 +69,7 @@ namespace Heat.Controllers
 Seller seller)
 		{
 			if (ModelState.IsValid) {
-				db.Seller.Add(seller);
+				db.Sellers.Add(seller);
 				db.SaveChanges();
 				return RedirectToAction("Index");
 			}
@@ -82,7 +82,7 @@ Seller seller)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Seller seller = db.Seller.Find(id);
+			Seller seller = db.Sellers.Find(id);
 			if ((seller == null)) {
 				return HttpNotFound();
 			}
@@ -111,7 +111,7 @@ Seller seller)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Seller seller = db.Seller.Find(id);
+			Seller seller = db.Sellers.Find(id);
 			if ((seller == null)) {
 				return HttpNotFound();
 			}
@@ -124,8 +124,8 @@ Seller seller)
 		[ValidateAntiForgeryToken()]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Seller seller = db.Seller.Find(id);
-			db.Seller.Remove(seller);
+			Seller seller = db.Sellers.Find(id);
+			db.Sellers.Remove(seller);
 			db.SaveChanges();
 			return RedirectToAction("Index");
 		}

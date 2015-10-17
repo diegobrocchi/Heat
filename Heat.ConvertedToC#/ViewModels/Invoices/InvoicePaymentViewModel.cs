@@ -35,28 +35,28 @@ namespace Heat.ViewModels.Invoices
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Cliente")]
+		[Display(Name = "Cliente")]
 		public string CustomerName { get; set; }
 
-		[Display(name = "Numero fattura provvisoria")]
+		[Display(Name = "Numero fattura provvisoria")]
 		public string InvoiceNumber { get; set; }
 
-		[Display(name = "Data documento")]
+		[Display(Name = "Data documento")]
 		public string InvoiceDate { get; set; }
 
 		public List<PresentationInvoiceRowViewModel> Rows { get; set; }
 		//Property Rows As List(Of InvoiceRowViewModel)
 
 		[Required()]
-		[Display(name = "Condizioni di pagamento")]
+		[Display(Name = "Condizioni di pagamento")]
 		public int PaymentID { get; set; }
 
 		public IEnumerable<SelectListItem> PaymentList { get; set; }
 
-		[Display(name = "Fattura esente")]
+		[Display(Name = "Fattura esente")]
 		public bool IsTaxExempt { get; set; }
 
-		[Display(name = "Esenzione")]
+		[Display(Name = "Esenzione")]
 		public string TaxExemption { get; set; }
 
 

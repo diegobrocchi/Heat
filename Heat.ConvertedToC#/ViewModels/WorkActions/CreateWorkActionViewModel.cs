@@ -30,27 +30,27 @@ namespace Heat.ViewModels.WorkActions
 	public class CreateWorkActionViewModel
 	{
 
-		[Display(name = "Impianto")]
+		[Display(Name = "Impianto")]
 		public int PlantID { get; set; }
-		[Display(name = "Riferita all'impianto")]
+		[Display(Name = "Riferita all'impianto")]
 		public string PlantDescription { get; set; }
 		public IEnumerable<SelectListItem> PlantList { get; set; }
 		public bool PlantIDSelected { get; set; }
 
-		[Display(name = "Data di esecuzione")]
+		[Display(Name = "Data di esecuzione")]
 		[DataType(DataType.Date)]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime ActionDate { get; set; }
 
-		[Display(name = "Tipo di operazione")]
+		[Display(Name = "Tipo di operazione")]
 		public int OperationID { get; set; }
 		public IEnumerable<SelectListItem> OperationList { get; set; }
 
-		[Display(name = "Operatore assegnato")]
+		[Display(Name = "Operatore assegnato")]
 		public int AssignedOperatorID { get; set; }
 		public IEnumerable<SelectListItem> AssignedOperatorList { get; set; }
 
-		[Display(name = "Tipo di operazione")]
+		[Display(Name = "Tipo di operazione")]
 		public int TypeID { get; set; }
 		public IEnumerable<SelectListItem> TypeList { get; set; }
 

@@ -39,10 +39,6 @@ namespace Heat.Models
 
 		public int ID { get; set; }
 
-		//<ForeignKey("Plant")>
-		//Property PlantID As Integer
-		//Property Plant As Plant
-
 		/// <summary>
 		/// Data della ultima manutenzione eseguita.
 		/// </summary>
@@ -61,6 +57,7 @@ namespace Heat.Models
 
 		/// <summary>
 		/// Scadenza legale della manutenzione.
+		/// Calcolata in base alla periodicità.
 		/// </summary>
 		/// <value></value>
 		/// <returns></returns>
@@ -68,7 +65,7 @@ namespace Heat.Models
 		public DateTime LegalExpirationDate { get; set; }
 
 		/// <summary>
-		/// Data programmata di esecuzione della manutenzione. 
+		/// Data programmata di esecuzione della manutenzione.
 		/// </summary>
 		/// <value></value>
 		/// <returns></returns>

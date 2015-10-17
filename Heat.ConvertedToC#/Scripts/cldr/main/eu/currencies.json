@@ -1220,9 +1220,9 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "Surinameko dolarra",
-            "displayName-count-one": "Surinameko dolar",
-            "displayName-count-other": "Surinameko dolar",
+            "displayName": "SuriNameko dolarra",
+            "displayName-count-one": "SuriNameko dolar",
+            "displayName-count-other": "SuriNameko dolar",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
@@ -1410,9 +1410,9 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "Vietnameko donga",
-            "displayName-count-one": "Vietnameko dong",
-            "displayName-count-other": "Vietnameko dong",
+            "displayName": "VietNameko donga",
+            "displayName-count-one": "VietNameko dong",
+            "displayName-count-other": "VietNameko dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },

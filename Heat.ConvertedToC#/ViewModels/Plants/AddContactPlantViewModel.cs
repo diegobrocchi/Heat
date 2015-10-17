@@ -33,47 +33,47 @@ namespace Heat.ViewModels.Plants
 		public int PlantID { get; set; }
 
 		[Required()]
-		[Display(name = "Nominativo")]
+		[Display(Name = "Nominativo")]
 		public string Name { get; set; }
 
-		[Display(name = "Tipo contatto")]
+		[Display(Name = "Tipo contatto")]
 		public int AddressTypeID { get; set; }
 		public IEnumerable<SelectListItem> AddressTypeList { get; set; }
 
-		[Display(name = "Indirizzo")]
+		[Display(Name = "Indirizzo")]
 		public string Street { get; set; }
 
-		[Display(name = "Numero civico")]
+		[Display(Name = "Numero civico")]
 		public string StreetNumber { get; set; }
 
-		[Display(name = "Località")]
+		[Display(Name = "Località")]
 		public string City { get; set; }
 
-		[Display(name = "CAP")]
+		[Display(Name = "CAP")]
 		public string PostalCode { get; set; }
 
-		[Display(name = "Provincia")]
+		[Display(Name = "Provincia")]
 		public string District { get; set; }
 
 
-		[Display(name = "Note")]
+		[Display(Name = "Note")]
 		[DataType(DataType.MultilineText)]
 		public string Note { get; set; }
 
-		[Display(name = "Telefono")]
+		[Display(Name = "Telefono")]
 		public string Phone { get; set; }
 
-		[Display(name = "Cellulare")]
+		[Display(Name = "Cellulare")]
 		public string CellPhone { get; set; }
 
-		[Display(name = "Fax")]
+		[Display(Name = "Fax")]
 		public string Fax { get; set; }
 
-		[Display(name = "Email")]
+		[Display(Name = "Email")]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 
-		[Display(name = "Web")]
+		[Display(Name = "Web")]
 		[DataType(DataType.Url)]
 		public string URL { get; set; }
 

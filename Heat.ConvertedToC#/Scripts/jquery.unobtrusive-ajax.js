@@ -117,12 +117,12 @@
             }
         });
 
-        options.data.push({ name: "X-Requested-With", value: "XMLHttpRequest" });
+        options.data.push({ Name: "X-Requested-With", value: "XMLHttpRequest" });
 
         method = options.type.toUpperCase();
         if (!isMethodProxySafe(method)) {
             options.type = "POST";
-            options.data.push({ name: "X-HTTP-Method-Override", value: method });
+            options.data.push({ Name: "X-HTTP-Method-Override", value: method });
         }
 
         $.ajax(options);
@@ -143,14 +143,14 @@
     });
 
     $(document).on("click", "form[data-ajax=true] input[type=image]", function (evt) {
-        var name = evt.target.name,
+        var Name = evt.target.Name,
             target = $(evt.target),
             form = $(target.parents("form")[0]),
             offset = target.offset();
 
         form.data(data_click, [
-            { name: name + ".x", value: Math.round(evt.pageX - offset.left) },
-            { name: name + ".y", value: Math.round(evt.pageY - offset.top) }
+            { Name: Name + ".x", value: Math.round(evt.pageX - offset.left) },
+            { Name: Name + ".y", value: Math.round(evt.pageY - offset.top) }
         ]);
 
         setTimeout(function () {
@@ -159,11 +159,11 @@
     });
 
     $(document).on("click", "form[data-ajax=true] :submit", function (evt) {
-        var name = evt.currentTarget.name,
+        var Name = evt.currentTarget.Name,
             target = $(evt.target),
             form = $(target.parents("form")[0]);
 
-        form.data(data_click, name ? [{ name: name, value: evt.currentTarget.value }] : []);
+        form.data(data_click, Name ? [{ Name: Name, value: evt.currentTarget.value }] : []);
         form.data(data_target, target);
 
         setTimeout(function () {

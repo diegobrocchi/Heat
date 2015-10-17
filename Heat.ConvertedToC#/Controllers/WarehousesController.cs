@@ -34,7 +34,7 @@ namespace Heat.Controllers
 	{
 
 
-		private HeatDBContext _db;
+		private IHeatDBContext _db;
 		public WarehousesController(IHeatDBContext context)
 		{
 			_db = context;
@@ -104,7 +104,7 @@ Warehouse warehouse)
 Warehouse warehouse)
 		{
 			if (ModelState.IsValid) {
-				_db.Entry(warehouse).State = EntityState.Modified;
+                _db.SetModified(warehouse);
 				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}

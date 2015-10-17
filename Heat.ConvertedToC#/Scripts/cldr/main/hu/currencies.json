@@ -1271,14 +1271,14 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "suriname-i dollár",
-            "displayName-count-one": "suriname-i dollár",
-            "displayName-count-other": "suriname-i dollár",
+            "displayName": "suriName-i dollár",
+            "displayName-count-one": "suriName-i dollár",
+            "displayName-count-other": "suriName-i dollár",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "Suriname-i gulden",
+            "displayName": "SuriName-i gulden",
             "symbol": "SRG"
           },
           "SSP": {

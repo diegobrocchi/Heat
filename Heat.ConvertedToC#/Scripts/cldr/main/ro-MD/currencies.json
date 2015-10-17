@@ -1238,10 +1238,10 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "balboa panameză",
-            "displayName-count-one": "balboa panameză",
-            "displayName-count-few": "balboa panameze",
-            "displayName-count-other": "balboa panameze",
+            "displayName": "balboa paNameză",
+            "displayName-count-one": "balboa paNameză",
+            "displayName-count-few": "balboa paNameze",
+            "displayName-count-other": "balboa paNameze",
             "symbol": "PAB"
           },
           "PEI": {
@@ -1464,10 +1464,10 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "dolar surinamez",
-            "displayName-count-one": "dolar surinamez",
-            "displayName-count-few": "dolari surinamezi",
-            "displayName-count-other": "dolari surinamezi",
+            "displayName": "dolar suriNamez",
+            "displayName-count-one": "dolar suriNamez",
+            "displayName-count-few": "dolari suriNamezi",
+            "displayName-count-other": "dolari suriNamezi",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
@@ -1710,10 +1710,10 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "dong vietnamez",
-            "displayName-count-one": "dong vietnamez",
-            "displayName-count-few": "dongi vietnamezi",
-            "displayName-count-other": "dongi vietnamezi",
+            "displayName": "dong vietNamez",
+            "displayName-count-one": "dong vietNamez",
+            "displayName-count-few": "dongi vietNamezi",
+            "displayName-count-other": "dongi vietNamezi",
             "symbol": "VND",
             "symbol-alt-narrow": "₫"
           },

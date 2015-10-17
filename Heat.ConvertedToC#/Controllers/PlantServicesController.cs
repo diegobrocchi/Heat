@@ -83,7 +83,7 @@ namespace Heat.Controllers
 				ViewBag.message = ex.Message;
 				return View("error");
 			}
-			ViewBag.ID() = new SelectList(_db.Plants, "ID", "Name");
+			ViewBag.ID  = new SelectList(_db.Plants, "ID", "Name");
 			return View();
 		}
 
@@ -126,7 +126,7 @@ namespace Heat.Controllers
 			if ((plantService == null)) {
 				return HttpNotFound();
 			}
-			ViewBag.ID() = new SelectList(_db.Plants, "ID", "Name", plantService.ID);
+			ViewBag.ID  = new SelectList(_db.Plants, "ID", "Name", plantService.ID);
 			return View(plantService);
 		}
 
@@ -143,7 +143,7 @@ PlantService plantService)
 				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
-			ViewBag.ID() = new SelectList(_db.Plants, "ID", "Name", plantService.ID);
+			ViewBag.ID  = new SelectList(_db.Plants, "ID", "Name", plantService.ID);
 			return View(plantService);
 		}
 

@@ -33,16 +33,16 @@ namespace Heat
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Codice")]
+		[Display(Name = "Codice")]
 		public string Code { get; set; }
 
-		[Display(name = "Descrizione")]
+		[Display(Name = "Descrizione")]
 		public string Description { get; set; }
 
-		[Display(name = "Schema di numerazione provvisorio")]
+		[Display(Name = "Schema di numerazione provvisorio")]
 		public string TempSerialSchema { get; set; }
 
-		[Display(name = "Schema di numerazione definitivo")]
+		[Display(Name = "Schema di numerazione definitivo")]
 		public string FinalSerialSchema { get; set; }
 
 	}
@@ -54,21 +54,21 @@ namespace Heat
 	{
 
 		[Required()]
-		[Display(name = "Codice")]
+		[Display(Name = "Codice")]
 		public string Code { get; set; }
 
 		[Required()]
-		[Display(name = "Descrizione")]
+		[Display(Name = "Descrizione")]
 		public string Description { get; set; }
 
 		[Required()]
-		[Display(name = "Schema di numerazione provvisorio")]
+		[Display(Name = "Schema di numerazione provvisorio")]
 		public int TempSerialSchemaID { get; set; }
 
 		public IEnumerable<SelectListItem> TempSerialSchemaList { get; set; }
 
 		[Required()]
-		[Display(name = "Schema di numerazione definitivo")]
+		[Display(Name = "Schema di numerazione definitivo")]
 		public int FinalSerialSchemaID { get; set; }
 
 		public IEnumerable<SelectListItem> FinalSerialSchemaList { get; set; }
@@ -85,20 +85,20 @@ namespace Heat
 		public int ID { get; set; }
 
 		[Required()]
-		[Display(name = "Codice")]
+		[Display(Name = "Codice")]
 		public string Code { get; set; }
 
 		[Required()]
-		[Display(name = "Descrizione")]
+		[Display(Name = "Descrizione")]
 		public string Description { get; set; }
 
 		[Required()]
-		[Display(name = "Schema di numerazione provvisorio")]
+		[Display(Name = "Schema di numerazione provvisorio")]
 		public int TempSerialSchemaID { get; set; }
 		public IEnumerable<SelectListItem> TempSerialSchemaList { get; set; }
 
 		[Required()]
-		[Display(name = "Schema di numerazione definitivo")]
+		[Display(Name = "Schema di numerazione definitivo")]
 		public int FinalSerialSchemaID { get; set; }
 		public IEnumerable<SelectListItem> FinalSerialSchemaList { get; set; }
 
@@ -111,19 +111,19 @@ namespace Heat
 
 //Public Class CreateNumberingViewModel
 //    <Required> _
-//    <Display(name:="Codice")> _
+//    <Display(Name:="Codice")> _
 //    Property Code As String
 
 //    <Required> _
-//    <Display(name:="Descrizione")> _
+//    <Display(Name:="Descrizione")> _
 //    Property Description As String
 
 //    <Required> _
-//    <Display(name:="Schema di numerazione progressivo")> _
+//    <Display(Name:="Schema di numerazione progressivo")> _
 //    Property TempSerialSchema As IEnumerable(Of SelectListItem)
 
 //    <Required> _
-//    <Display(name:="Schema di numerazione definitivo")> _
+//    <Display(Name:="Schema di numerazione definitivo")> _
 //    Property FinalSerialSchema As IEnumerable(Of SelectListItem)
 
 //End Class

@@ -54,7 +54,7 @@ End Code
                 @<div id="socialLoginList">
                 <p>
                     @For Each p As AuthenticationDescription In Model.OtherLogins
-                        @<button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                        @<button type="submit" class="btn btn-default" id="@p.AuthenticationType" Name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
                     Next
                 </p>
                 </div>

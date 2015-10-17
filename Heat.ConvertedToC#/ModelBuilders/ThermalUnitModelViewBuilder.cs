@@ -48,7 +48,7 @@ namespace Heat
 			CreateThermalUnitViewModel result = new CreateThermalUnitViewModel();
 			result.PlantIDSelected = false;
 
-			result.PlantList = _db.Plants.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID, "");
+			result.PlantList = _db.Plants.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
 
 			BindSelectLists(result);
 
@@ -61,7 +61,7 @@ namespace Heat
 		/// <summary>
 		/// Genera il modello della view Create, con il PlantID specificato.
 		/// </summary>
-		/// <param name="plantID"></param>
+		/// <param Name="plantID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public CreateThermalUnitViewModel GetCreateThermalUnitViewModel(int plantID)
@@ -81,10 +81,10 @@ namespace Heat
 
 		public void BindSelectLists(CreateThermalUnitViewModel model)
 		{
-			model.ManifacturerList = _db.Manifacturers.OrderBy(m => m.Name).ToList().ToSelectListItems(m => m.Name, m => m.ID, "");
-			model.ModelList = _db.ManifacturerModels.Include(mm => mm.Manifacturer).OrderBy(mm => mm.Manifacturer.Name).ThenBy(mm => mm.Model).ToList().ToSelectListItems(x => x.Model, x => x.ID, "");
-			model.FuelList = _db.Fuels.OrderBy(f => f.Name).ToList().ToSelectListItems(f => f.Name, f => f.ID, "");
-			model.HeatTransferFluidList = _db.HeatTransferFluids.OrderBy(htf => htf.Name).ToList().ToSelectListItems(htf => htf.Name, htf => htf.ID, "");
+			model.ManifacturerList = _db.Manifacturers.OrderBy(m => m.Name).ToList().ToSelectListItems(m => m.Name, m => m.ID.ToString(), "");
+			model.ModelList = _db.ManifacturerModels.Include(mm => mm.Manifacturer).OrderBy(mm => mm.Manifacturer.Name).ThenBy(mm => mm.Model).ToList().ToSelectListItems(x => x.Model, x => x.ID.ToString(), "");
+			model.FuelList = _db.Fuels.OrderBy(f => f.Name).ToList().ToSelectListItems(f => f.Name, f => f.ID.ToString(), "");
+			model.HeatTransferFluidList = _db.HeatTransferFluids.OrderBy(htf => htf.Name).ToList().ToSelectListItems(htf => htf.Name, htf => htf.ID.ToString(), "");
 
 		}
 

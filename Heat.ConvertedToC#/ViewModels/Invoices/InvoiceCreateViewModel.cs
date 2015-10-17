@@ -38,13 +38,13 @@ namespace Heat.ViewModels.Invoices
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Cliente")]
+		[Display(Name = "Cliente")]
 		public string CustomerName { get; set; }
 
-		[Display(name = "Numero documento")]
+		[Display(Name = "Numero documento")]
 		public string TempNumber { get; set; }
 
-		[Display(name = "Data emissione")]
+		[Display(Name = "Data emissione")]
 		public System.DateTime EmissionDate { get; set; }
 
 

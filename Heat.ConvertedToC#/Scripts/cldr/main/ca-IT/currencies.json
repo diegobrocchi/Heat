@@ -1221,9 +1221,9 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "balboa panameny",
-            "displayName-count-one": "balboa panameny",
-            "displayName-count-other": "balboes panamenys",
+            "displayName": "balboa paNameny",
+            "displayName-count-one": "balboa paNameny",
+            "displayName-count-other": "balboes paNamenys",
             "symbol": "PAB"
           },
           "PEI": {

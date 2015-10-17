@@ -63,7 +63,7 @@ namespace Heat
 				//se il valore è nullo allora non deve essere nullo quello dell'altra proprietà.
 				var pi = validationContext.ObjectType.GetProperty(Other);
 				if ((pi != null)) {
-					if (string.IsNullOrEmpty(pi.GetValue(validationContext.ObjectInstance))) {
+					if (string.IsNullOrEmpty(pi.GetValue(validationContext.ObjectInstance).ToString())) {
 						return new ValidationResult(string.Format("Questo valore è richiesto se {0} è nullo", Other));
 					} else {
 						return ValidationResult.Success;

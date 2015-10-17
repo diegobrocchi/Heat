@@ -108,7 +108,7 @@ namespace Heat.Controllers
 		}
 
 		// GET: ManifacturerModels/Edit/5
-		public ActionResult Edit(int? id)
+		public ActionResult Edit(int id)
 		{
 
 			try {

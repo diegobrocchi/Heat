@@ -42,7 +42,7 @@ namespace Heat
 			_db = dbContext;
 		}
 
-		public override bool CheckAccess(AuthorizationContext context)
+		public override bool CheckAccess(System.Security.Claims.AuthorizationContext context)
 		{
 			var resource = context.Resource.First();
 			var claims = context.Principal.Claims.ToList();
@@ -51,13 +51,14 @@ namespace Heat
 			//http://stackoverflow.com/questions/26464848/custom-authorization-in-asp-net-webapi-what-a-mess
 			ResourceOperations authRequired = default(ResourceOperations);
 
-			authRequired = Enum.Parse(typeof(ResourceOperations), action.Value());
+			authRequired =(ResourceOperations) Enum.Parse(typeof(ResourceOperations), action.Value);
 
-			foreach (? Claim_loopVariable in claims) {
-				Claim = Claim_loopVariable;
-				if (Claim.Type == "http://scheme.diegobrocchi.it/claims/2015/operation") {
-					ResourceOperations authOwned = Enum.Parse(typeof(ResourceOperations), Claim.Value());
-					if (authOwned & authRequired == authRequired) {
+			foreach (Claim singleClaim in claims) {
+				 
+				if (singleClaim.Type == "http://scheme.diegobrocchi.it/claims/2015/operation")
+                {
+					ResourceOperations authOwned = (ResourceOperations) Enum.Parse(typeof(ResourceOperations), singleClaim.Value);
+					if ((authOwned & authRequired) == authRequired) {
 						return true;
 					}
 				}

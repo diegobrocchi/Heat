@@ -31,7 +31,7 @@ namespace Heat.ViewModels.ManifacturerModels
 	public class CreateManifacturerModelViewModel
 	{
 		[Required()]
-		[Display(name = "Marca")]
+		[Display(Name = "Marca")]
 		public int ManifacturerID { get; set; }
 		public IEnumerable<SelectListItem> ManifacturerList { get; set; }
 		[Required()]

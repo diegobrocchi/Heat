@@ -32,6 +32,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using System.Data.Entity;
 using Heat.Repositories;
+using Heat.Models;
+
 namespace Heat
 {
 
@@ -73,7 +75,7 @@ namespace Heat
 		{
 			var manager = new HeatUserManager(new UserStore<HeatUser>(context.Get<HeatDBContext>()));
 
-			// Configure validation logic for usernames
+			// Configure validation logic for userNames
 			manager.UserValidator = new UserValidator<HeatUser>(manager) {
 				AllowOnlyAlphanumericUserNames = false,
 				RequireUniqueEmail = false
@@ -150,7 +152,7 @@ namespace Heat
 	//        'Dim um As HeatUserManager = HttpContext.Current.GetOwinContext().GetUserManager(Of HeatUserManager)()
 	//        'Dim rm As HeatRoleManager = HttpContext.Current.GetOwinContext().Get(Of HeatRoleManager)()
 
-	//        'Const username As String = "demo"
+	//        'Const userName As String = "demo"
 	//        'Const password As String = "demo"
 	//        'Const role As String = "canView"
 
@@ -161,9 +163,9 @@ namespace Heat
 	//        '    Dim result = rm.Create(cr)
 	//        'End If
 
-	//        'Dim cu = um.FindByName(username)
+	//        'Dim cu = um.FindByName(userName)
 	//        'If IsNothing(cu) Then
-	//        '    cu = New HeatUser With {.UserName = username}
+	//        '    cu = New HeatUser With {.UserName = userName}
 	//        '    Dim result = um.Create(cu, password)
 	//        '    result = um.SetLockoutEnabled(cu.Id, False)
 	//        'End If

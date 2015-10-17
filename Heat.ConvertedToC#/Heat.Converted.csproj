@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion />
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E2750C34-A107-4956-BDA1-DDB4632AE955}</ProjectGuid>
+    <ProjectGuid>{CC9E76A9-F8A3-4DFE-9F0C-CFB5F074E7A9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>Heat</RootNamespace>
@@ -207,7 +207,7 @@
     <Compile Include="Claims\HeatClaimsPrincipal.cs" />
     <Compile Include="Claims\HttpModules\HeatClaimsBasedAuthorization.cs" />
     <Compile Include="Claims\ResourceOperations.cs" />
-    <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActionTypesController.cs" />
     <Compile Include="Controllers\AddressesController.cs" />
     <Compile Include="Controllers\AddressTypesController.cs" />
@@ -223,7 +223,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceRowsController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
-    <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManifacturerModelsController.cs" />
     <Compile Include="Controllers\ManifacturersController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
@@ -260,306 +260,10 @@
     <Compile Include="Manager\PlantManager.cs" />
     <Compile Include="Manager\ProductManager.cs" />
     <Compile Include="Manager\WarehouseMovementManager.cs" />
-    <Compile Include="Migrations\201502221046383_InitialCreate.Designer.cs">
-      <DependentUpon>201502221046383_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201510171534198_Initial.cs" />
+    <Compile Include="Migrations\201510171534198_Initial.Designer.cs">
+      <DependentUpon>201510171534198_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502221046383_InitialCreate.vb" />
-    <Compile Include="Migrations\201502221236522_CompanyName.cs" />
-    <Compile Include="Migrations\201502221236522_CompanyName.Designer.cs">
-      <DependentUpon>201502221236522_CompanyName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502221405010_1.cs" />
-    <Compile Include="Migrations\201502221405010_1.Designer.cs">
-      <DependentUpon>201502221405010_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503032010264_inventory.Designer.cs">
-      <DependentUpon>201503032010264_inventory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503032010264_inventory.vb" />
-    <Compile Include="Migrations\201503081525333_Allineamento_Anagrafica_Futura.cs" />
-    <Compile Include="Migrations\201503081525333_Allineamento_Anagrafica_Futura.Designer.cs">
-      <DependentUpon>201503081525333_Allineamento_Anagrafica_Futura.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503081607255_rename_VAT.cs" />
-    <Compile Include="Migrations\201503081607255_rename_VAT.Designer.cs">
-      <DependentUpon>201503081607255_rename_VAT.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503081659008_Plants.Designer.cs">
-      <DependentUpon>201503081659008_Plants.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503081659008_Plants.vb" />
-    <Compile Include="Migrations\201503141410172_customername_required.cs" />
-    <Compile Include="Migrations\201503141410172_customername_required.Designer.cs">
-      <DependentUpon>201503141410172_customername_required.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503210720459_products.Designer.cs">
-      <DependentUpon>201503210720459_products.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503210720459_products.vb" />
-    <Compile Include="Migrations\201503210743286_invoice.Designer.cs">
-      <DependentUpon>201503210743286_invoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503210743286_invoice.vb" />
-    <Compile Include="Migrations\201503211612094_fuel.Designer.cs">
-      <DependentUpon>201503211612094_fuel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503211612094_fuel.vb" />
-    <Compile Include="Migrations\201503311921201_numbering.cs" />
-    <Compile Include="Migrations\201503311921201_numbering.Designer.cs">
-      <DependentUpon>201503311921201_numbering.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503311930565_documenttype.Designer.cs">
-      <DependentUpon>201503311930565_documenttype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503311930565_documenttype.vb" />
-    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.cs" />
-    <Compile Include="Migrations\201505201054350_foreignkey_schema_numbering.Designer.cs">
-      <DependentUpon>201505201054350_foreignkey_schema_numbering.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505231212567_foreignkey_warehouse.cs" />
-    <Compile Include="Migrations\201505231212567_foreignkey_warehouse.Designer.cs">
-      <DependentUpon>201505231212567_foreignkey_warehouse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505231320467_causali.Designer.cs">
-      <DependentUpon>201505231320467_causali.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505231320467_causali.vb" />
-    <Compile Include="Migrations\201505231330392_gruppi_causali.Designer.cs">
-      <DependentUpon>201505231330392_gruppi_causali.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505231330392_gruppi_causali.vb" />
-    <Compile Include="Migrations\201506130850422_seller.Designer.cs">
-      <DependentUpon>201506130850422_seller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506130850422_seller.vb" />
-    <Compile Include="Migrations\201506131333027_invoice_row.cs" />
-    <Compile Include="Migrations\201506131333027_invoice_row.Designer.cs">
-      <DependentUpon>201506131333027_invoice_row.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201506290508292_sell.cs" />
-    <Compile Include="Migrations\201506290508292_sell.Designer.cs">
-      <DependentUpon>201506290508292_sell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201507270857483_VAT-single.cs" />
-    <Compile Include="Migrations\201507270857483_VAT-single.Designer.cs">
-      <DependentUpon>201507270857483_VAT-single.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508150930040_abstract_invoiceRow.Designer.cs">
-      <DependentUpon>201508150930040_abstract_invoiceRow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508150930040_abstract_invoiceRow.vb" />
-    <Compile Include="Migrations\201508201708016_descriptiverowdescription.cs" />
-    <Compile Include="Migrations\201508201708016_descriptiverowdescription.Designer.cs">
-      <DependentUpon>201508201708016_descriptiverowdescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508201720303_rowVAT_double.cs" />
-    <Compile Include="Migrations\201508201720303_rowVAT_double.Designer.cs">
-      <DependentUpon>201508201720303_rowVAT_double.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508251227002_descriptiverow.cs" />
-    <Compile Include="Migrations\201508251227002_descriptiverow.Designer.cs">
-      <DependentUpon>201508251227002_descriptiverow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508270855095_actiontypes.Designer.cs">
-      <DependentUpon>201508270855095_actiontypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508270855095_actiontypes.vb" />
-    <Compile Include="Migrations\201508271026383_renameActionToWorkAction.cs" />
-    <Compile Include="Migrations\201508271026383_renameActionToWorkAction.Designer.cs">
-      <DependentUpon>201508271026383_renameActionToWorkAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508271028103_changeWorkAction.cs" />
-    <Compile Include="Migrations\201508271028103_changeWorkAction.Designer.cs">
-      <DependentUpon>201508271028103_changeWorkAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508271033405_workoperator.Designer.cs">
-      <DependentUpon>201508271033405_workoperator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508271033405_workoperator.vb" />
-    <Compile Include="Migrations\201508271044009_changeWorkAction1.cs" />
-    <Compile Include="Migrations\201508271044009_changeWorkAction1.Designer.cs">
-      <DependentUpon>201508271044009_changeWorkAction1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508271046448_changeWorkAction2.cs" />
-    <Compile Include="Migrations\201508271046448_changeWorkAction2.Designer.cs">
-      <DependentUpon>201508271046448_changeWorkAction2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508280931053_plant_toWorkAction.cs" />
-    <Compile Include="Migrations\201508280931053_plant_toWorkAction.Designer.cs">
-      <DependentUpon>201508280931053_plant_toWorkAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508291809059_add_manifacturer.Designer.cs">
-      <DependentUpon>201508291809059_add_manifacturer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508291809059_add_manifacturer.vb" />
-    <Compile Include="Migrations\201508291922035_add_BoilerServiceType.Designer.cs">
-      <DependentUpon>201508291922035_add_BoilerServiceType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508291922035_add_BoilerServiceType.vb" />
-    <Compile Include="Migrations\201508291936347_BoilerHeater_CertificationReference.cs" />
-    <Compile Include="Migrations\201508291936347_BoilerHeater_CertificationReference.Designer.cs">
-      <DependentUpon>201508291936347_BoilerHeater_CertificationReference.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508300831308_manifacturermodelID.cs" />
-    <Compile Include="Migrations\201508300831308_manifacturermodelID.Designer.cs">
-      <DependentUpon>201508300831308_manifacturermodelID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508310959056_HeatTransferFluid.Designer.cs">
-      <DependentUpon>201508310959056_HeatTransferFluid.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508310959056_HeatTransferFluid.vb" />
-    <Compile Include="Migrations\201508311015482_ThermalUnitKind.Designer.cs">
-      <DependentUpon>201508311015482_ThermalUnitKind.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508311015482_ThermalUnitKind.vb" />
-    <Compile Include="Migrations\201508311231239_ThermalUnit.cs" />
-    <Compile Include="Migrations\201508311231239_ThermalUnit.Designer.cs">
-      <DependentUpon>201508311231239_ThermalUnit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508311355009_ThermalUnit.cs" />
-    <Compile Include="Migrations\201508311355009_ThermalUnit.Designer.cs">
-      <DependentUpon>201508311355009_ThermalUnit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010725042_heaterlist.Designer.cs">
-      <DependentUpon>201509010725042_heaterlist.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010725042_heaterlist.vb" />
-    <Compile Include="Migrations\201509010733216_add_heaters.cs" />
-    <Compile Include="Migrations\201509010733216_add_heaters.Designer.cs">
-      <DependentUpon>201509010733216_add_heaters.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010738144_x.cs" />
-    <Compile Include="Migrations\201509010738144_x.Designer.cs">
-      <DependentUpon>201509010738144_x.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010845444_modHeater.cs" />
-    <Compile Include="Migrations\201509010845444_modHeater.Designer.cs">
-      <DependentUpon>201509010845444_modHeater.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010849552_modHeater1.cs" />
-    <Compile Include="Migrations\201509010849552_modHeater1.Designer.cs">
-      <DependentUpon>201509010849552_modHeater1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509010853083_heatermod2.cs" />
-    <Compile Include="Migrations\201509010853083_heatermod2.Designer.cs">
-      <DependentUpon>201509010853083_heatermod2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011101143_plantService.Designer.cs">
-      <DependentUpon>201509011101143_plantService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011101143_plantService.vb" />
-    <Compile Include="Migrations\201509011212463_plantidToPlantservice.cs" />
-    <Compile Include="Migrations\201509011212463_plantidToPlantservice.Designer.cs">
-      <DependentUpon>201509011212463_plantidToPlantservice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.cs" />
-    <Compile Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.Designer.cs">
-      <DependentUpon>201509011245507_nullableLastServiceDateInPlantService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011255462_removeFuelFromPlant.cs" />
-    <Compile Include="Migrations\201509011255462_removeFuelFromPlant.Designer.cs">
-      <DependentUpon>201509011255462_removeFuelFromPlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011415459_removeBoiler.Designer.cs">
-      <DependentUpon>201509011415459_removeBoiler.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011415459_removeBoiler.vb" />
-    <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.cs" />
-    <Compile Include="Migrations\201509011532440_removeCustomerFromWorkAction.Designer.cs">
-      <DependentUpon>201509011532440_removeCustomerFromWorkAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021231257_thermalunitNullableDate.cs" />
-    <Compile Include="Migrations\201509021231257_thermalunitNullableDate.Designer.cs">
-      <DependentUpon>201509021231257_thermalunitNullableDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021354098_plantBuilding.cs" />
-    <Compile Include="Migrations\201509021354098_plantBuilding.Designer.cs">
-      <DependentUpon>201509021354098_plantBuilding.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021416399_removeAddressPlant.cs" />
-    <Compile Include="Migrations\201509021416399_removeAddressPlant.Designer.cs">
-      <DependentUpon>201509021416399_removeAddressPlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021621311_removeCustomerFromAddress.cs" />
-    <Compile Include="Migrations\201509021621311_removeCustomerFromAddress.Designer.cs">
-      <DependentUpon>201509021621311_removeCustomerFromAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021627168_renameDistrictInAddress.cs" />
-    <Compile Include="Migrations\201509021627168_renameDistrictInAddress.Designer.cs">
-      <DependentUpon>201509021627168_renameDistrictInAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021628240_removePhoneFromAddress.cs" />
-    <Compile Include="Migrations\201509021628240_removePhoneFromAddress.Designer.cs">
-      <DependentUpon>201509021628240_removePhoneFromAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021630431_renamePlantCOntact.cs" />
-    <Compile Include="Migrations\201509021630431_renamePlantCOntact.Designer.cs">
-      <DependentUpon>201509021630431_renamePlantCOntact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021657465_addresstype.Designer.cs">
-      <DependentUpon>201509021657465_addresstype.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021657465_addresstype.vb" />
-    <Compile Include="Migrations\201509021708219_addContactsTOPlant.cs" />
-    <Compile Include="Migrations\201509021708219_addContactsTOPlant.Designer.cs">
-      <DependentUpon>201509021708219_addContactsTOPlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021730503_removeTelephoneFromPlant.cs" />
-    <Compile Include="Migrations\201509021730503_removeTelephoneFromPlant.Designer.cs">
-      <DependentUpon>201509021730503_removeTelephoneFromPlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021738570_PlantClassType.cs" />
-    <Compile Include="Migrations\201509021738570_PlantClassType.Designer.cs">
-      <DependentUpon>201509021738570_PlantClassType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021757191_distinctCodePlant.cs" />
-    <Compile Include="Migrations\201509021757191_distinctCodePlant.Designer.cs">
-      <DependentUpon>201509021757191_distinctCodePlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.cs" />
-    <Compile Include="Migrations\201509031007328_removePlantIdFromPlant.Designer.cs">
-      <DependentUpon>201509031007328_removePlantIdFromPlant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509211856188_customer_notes.cs" />
-    <Compile Include="Migrations\201509211856188_customer_notes.Designer.cs">
-      <DependentUpon>201509211856188_customer_notes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509260913237_medium.Designer.cs">
-      <DependentUpon>201509260913237_medium.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509260913237_medium.vb" />
-    <Compile Include="Migrations\201509260923077_plant_medium.cs" />
-    <Compile Include="Migrations\201509260923077_plant_medium.Designer.cs">
-      <DependentUpon>201509260923077_plant_medium.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509260957200_medium_contentType.cs" />
-    <Compile Include="Migrations\201509260957200_medium_contentType.Designer.cs">
-      <DependentUpon>201509260957200_medium_contentType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509261312561_rename_filenameMedium.cs" />
-    <Compile Include="Migrations\201509261312561_rename_filenameMedium.Designer.cs">
-      <DependentUpon>201509261312561_rename_filenameMedium.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509261314323_uploadFIlename_medium.cs" />
-    <Compile Include="Migrations\201509261314323_uploadFIlename_medium.Designer.cs">
-      <DependentUpon>201509261314323_uploadFIlename_medium.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510041715225_PlantService_key.cs" />
-    <Compile Include="Migrations\201510041715225_PlantService_key.Designer.cs">
-      <DependentUpon>201510041715225_PlantService_key.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510041741145_plantservice_identity.cs" />
-    <Compile Include="Migrations\201510041741145_plantservice_identity.Designer.cs">
-      <DependentUpon>201510041741145_plantservice_identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510052013220_OutboundCalls.Designer.cs">
-      <DependentUpon>201510052013220_OutboundCalls.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510052013220_OutboundCalls.vb" />
-    <Compile Include="Migrations\201510071958419_proposedCalls.Designer.cs">
-      <DependentUpon>201510071958419_proposedCalls.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510071958419_proposedCalls.vb" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\DecimalModelBinder.cs" />
     <Compile Include="ModelBinders\PrincipalModelBinder.cs" />
@@ -568,6 +272,7 @@
     <Compile Include="ModelBuilders\HeaterModelViewBuilder.cs" />
     <Compile Include="ModelBuilders\InvoiceModelBuilder.cs" />
     <Compile Include="ModelBuilders\ManifacturerModelViewBuilder.cs" />
+    <Compile Include="ModelBuilders\OutboundCallsModelViewBuilder.cs" />
     <Compile Include="ModelBuilders\PlantModelViewBuilder.cs" />
     <Compile Include="ModelBuilders\PlantServiceModelViewBuilder.cs" />
     <Compile Include="ModelBuilders\ThermalUnitModelViewBuilder.cs" />
@@ -593,7 +298,7 @@
     <Compile Include="Models\Fuel.cs" />
     <Compile Include="Models\Heater.cs" />
     <Compile Include="Models\HeatTransferFluid.cs" />
-    <Compile Include="Models\IdentityModels.vb" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interfaces\ISeller.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\InvoiceRow.cs" />
@@ -638,6 +343,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="MyNamespaceSupportForCSharp.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\HeatDBContext.cs" />
     <Compile Include="Repositories\IHeatDBContext.cs" />
     <Compile Include="Startup.cs" />
@@ -729,236 +439,18 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502221046383_InitialCreate.resx">
-      <DependentUpon>201502221046383_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502221236522_CompanyName.resx">
-      <DependentUpon>201502221236522_CompanyName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502221405010_1.resx">
-      <DependentUpon>201502221405010_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503032010264_inventory.resx">
-      <DependentUpon>201503032010264_inventory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503081525333_Allineamento_Anagrafica_Futura.resx">
-      <DependentUpon>201503081525333_Allineamento_Anagrafica_Futura.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503081607255_rename_VAT.resx">
-      <DependentUpon>201503081607255_rename_VAT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503081659008_Plants.resx">
-      <DependentUpon>201503081659008_Plants.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503141410172_customername_required.resx">
-      <DependentUpon>201503141410172_customername_required.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503210720459_products.resx">
-      <DependentUpon>201503210720459_products.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503210743286_invoice.resx">
-      <DependentUpon>201503210743286_invoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503211612094_fuel.resx">
-      <DependentUpon>201503211612094_fuel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503311921201_numbering.resx">
-      <DependentUpon>201503311921201_numbering.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503311930565_documenttype.resx">
-      <DependentUpon>201503311930565_documenttype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505201054350_foreignkey_schema_numbering.resx">
-      <DependentUpon>201505201054350_foreignkey_schema_numbering.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505231212567_foreignkey_warehouse.resx">
-      <DependentUpon>201505231212567_foreignkey_warehouse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505231320467_causali.resx">
-      <DependentUpon>201505231320467_causali.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505231330392_gruppi_causali.resx">
-      <DependentUpon>201505231330392_gruppi_causali.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506130850422_seller.resx">
-      <DependentUpon>201506130850422_seller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506131333027_invoice_row.resx">
-      <DependentUpon>201506131333027_invoice_row.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201506290508292_sell.resx">
-      <DependentUpon>201506290508292_sell.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201507270857483_VAT-single.resx">
-      <DependentUpon>201507270857483_VAT-single.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508150930040_abstract_invoiceRow.resx">
-      <DependentUpon>201508150930040_abstract_invoiceRow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508201708016_descriptiverowdescription.resx">
-      <DependentUpon>201508201708016_descriptiverowdescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508201720303_rowVAT_double.resx">
-      <DependentUpon>201508201720303_rowVAT_double.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508251227002_descriptiverow.resx">
-      <DependentUpon>201508251227002_descriptiverow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508270855095_actiontypes.resx">
-      <DependentUpon>201508270855095_actiontypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271026383_renameActionToWorkAction.resx">
-      <DependentUpon>201508271026383_renameActionToWorkAction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271028103_changeWorkAction.resx">
-      <DependentUpon>201508271028103_changeWorkAction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271033405_workoperator.resx">
-      <DependentUpon>201508271033405_workoperator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271044009_changeWorkAction1.resx">
-      <DependentUpon>201508271044009_changeWorkAction1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508271046448_changeWorkAction2.resx">
-      <DependentUpon>201508271046448_changeWorkAction2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508280931053_plant_toWorkAction.resx">
-      <DependentUpon>201508280931053_plant_toWorkAction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508291809059_add_manifacturer.resx">
-      <DependentUpon>201508291809059_add_manifacturer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508291922035_add_BoilerServiceType.resx">
-      <DependentUpon>201508291922035_add_BoilerServiceType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508291936347_BoilerHeater_CertificationReference.resx">
-      <DependentUpon>201508291936347_BoilerHeater_CertificationReference.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508300831308_manifacturermodelID.resx">
-      <DependentUpon>201508300831308_manifacturermodelID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508310959056_HeatTransferFluid.resx">
-      <DependentUpon>201508310959056_HeatTransferFluid.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508311015482_ThermalUnitKind.resx">
-      <DependentUpon>201508311015482_ThermalUnitKind.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508311231239_ThermalUnit.resx">
-      <DependentUpon>201508311231239_ThermalUnit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508311355009_ThermalUnit.resx">
-      <DependentUpon>201508311355009_ThermalUnit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010725042_heaterlist.resx">
-      <DependentUpon>201509010725042_heaterlist.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010733216_add_heaters.resx">
-      <DependentUpon>201509010733216_add_heaters.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010738144_x.resx">
-      <DependentUpon>201509010738144_x.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010845444_modHeater.resx">
-      <DependentUpon>201509010845444_modHeater.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010849552_modHeater1.resx">
-      <DependentUpon>201509010849552_modHeater1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509010853083_heatermod2.resx">
-      <DependentUpon>201509010853083_heatermod2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011101143_plantService.resx">
-      <DependentUpon>201509011101143_plantService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011212463_plantidToPlantservice.resx">
-      <DependentUpon>201509011212463_plantidToPlantservice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011245507_nullableLastServiceDateInPlantService.resx">
-      <DependentUpon>201509011245507_nullableLastServiceDateInPlantService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011255462_removeFuelFromPlant.resx">
-      <DependentUpon>201509011255462_removeFuelFromPlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011415459_removeBoiler.resx">
-      <DependentUpon>201509011415459_removeBoiler.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011532440_removeCustomerFromWorkAction.resx">
-      <DependentUpon>201509011532440_removeCustomerFromWorkAction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021231257_thermalunitNullableDate.resx">
-      <DependentUpon>201509021231257_thermalunitNullableDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021354098_plantBuilding.resx">
-      <DependentUpon>201509021354098_plantBuilding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021416399_removeAddressPlant.resx">
-      <DependentUpon>201509021416399_removeAddressPlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021621311_removeCustomerFromAddress.resx">
-      <DependentUpon>201509021621311_removeCustomerFromAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021627168_renameDistrictInAddress.resx">
-      <DependentUpon>201509021627168_renameDistrictInAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021628240_removePhoneFromAddress.resx">
-      <DependentUpon>201509021628240_removePhoneFromAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021630431_renamePlantCOntact.resx">
-      <DependentUpon>201509021630431_renamePlantCOntact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021657465_addresstype.resx">
-      <DependentUpon>201509021657465_addresstype.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021708219_addContactsTOPlant.resx">
-      <DependentUpon>201509021708219_addContactsTOPlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021730503_removeTelephoneFromPlant.resx">
-      <DependentUpon>201509021730503_removeTelephoneFromPlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021738570_PlantClassType.resx">
-      <DependentUpon>201509021738570_PlantClassType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021757191_distinctCodePlant.resx">
-      <DependentUpon>201509021757191_distinctCodePlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509031007328_removePlantIdFromPlant.resx">
-      <DependentUpon>201509031007328_removePlantIdFromPlant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509211856188_customer_notes.resx">
-      <DependentUpon>201509211856188_customer_notes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509260913237_medium.resx">
-      <DependentUpon>201509260913237_medium.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509260923077_plant_medium.resx">
-      <DependentUpon>201509260923077_plant_medium.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509260957200_medium_contentType.resx">
-      <DependentUpon>201509260957200_medium_contentType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509261312561_rename_filenameMedium.resx">
-      <DependentUpon>201509261312561_rename_filenameMedium.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509261314323_uploadFIlename_medium.resx">
-      <DependentUpon>201509261314323_uploadFIlename_medium.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510041715225_PlantService_key.resx">
-      <DependentUpon>201510041715225_PlantService_key.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510041741145_plantservice_identity.resx">
-      <DependentUpon>201510041741145_plantservice_identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510052013220_OutboundCalls.resx">
-      <DependentUpon>201510052013220_OutboundCalls.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510071958419_proposedCalls.resx">
-      <DependentUpon>201510071958419_proposedCalls.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510171534198_Initial.resx">
+      <DependentUpon>201510171534198_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1950,6 +1442,7 @@
     <Content Include="Views\OutboundCalls\Delete.vbhtml" />
     <Content Include="Views\OutboundCalls\Details.vbhtml" />
     <Content Include="Views\OutboundCalls\Edit.vbhtml" />
+    <Content Include="Views\OutboundCalls\GetNextProposed.vbhtml" />
     <Content Include="Views\OutboundCalls\Index.vbhtml" />
     <Content Include="Views\Payments\Create.vbhtml" />
     <Content Include="Views\Payments\Delete.vbhtml" />
@@ -2066,12 +1559,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Project_Readme.html" />
+    <None Include="Properties\PublishProfiles\Heat c#.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Mamage\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
@@ -2093,7 +1588,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:23922/</IISUrl>
+          <IISUrl>http://localhost:8726/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

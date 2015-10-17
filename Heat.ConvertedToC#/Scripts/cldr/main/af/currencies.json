@@ -1034,9 +1034,9 @@
             "symbol": "OMR"
           },
           "PAB": {
-            "displayName": "Panamese balboa",
-            "displayName-count-one": "Panamese balboa",
-            "displayName-count-other": "Panamese balboa",
+            "displayName": "PaNamese balboa",
+            "displayName-count-one": "PaNamese balboa",
+            "displayName-count-other": "PaNamese balboa",
             "symbol": "PAB"
           },
           "PEI": {
@@ -1405,9 +1405,9 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "Viëtnamese dong",
-            "displayName-count-one": "Viëtnamese dong",
-            "displayName-count-other": "Viëtnamese dong",
+            "displayName": "ViëtNamese dong",
+            "displayName-count-one": "ViëtNamese dong",
+            "displayName-count-other": "ViëtNamese dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },

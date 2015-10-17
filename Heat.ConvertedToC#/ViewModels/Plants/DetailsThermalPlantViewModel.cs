@@ -38,70 +38,70 @@ namespace Heat.ViewModels.Plants
 
 		#region "Proprietà derivate da Plant"
 		public int ID { get; set; }
-		[Display(name = "Classe impianto")]
+		[Display(Name = "Classe impianto")]
 		public string PlantClass { get; set; }
 
-		[Display(name = "Tipologia impianto")]
+		[Display(Name = "Tipologia impianto")]
 		public string PlantType { get; set; }
 
 
 		#endregion
 
 		#region "Proprietà derivate da Plant.BuidingAddress"
-		[Display(name = "Singola unità abitativa")]
+		[Display(Name = "Singola unità abitativa")]
 		public bool IsSingleUnit { get; set; }
 
-		[Display(name = "Categoria energetica")]
+		[Display(Name = "Categoria energetica")]
 		public EnergyCategoryEnum EnergyCategory { get; set; }
 
-		[Display(name = "Volume lordo riscaldato (m³)")]
+		[Display(Name = "Volume lordo riscaldato (m³)")]
 		public float GrossHeatedVolumeM3 { get; set; }
 
-		[Display(name = "Volume lordo raffrescato (m³)")]
+		[Display(Name = "Volume lordo raffrescato (m³)")]
 		public float GrossCooledVolumeM3 { get; set; }
 		#endregion
 
 		#region "Proprietà derivate da Plant.ThermalUnit"
-		[Display(name = "Costruttore")]
+		[Display(Name = "Costruttore")]
 		public string Manifacturer { get; set; }
 
-		[Display(name = "Modello")]
+		[Display(Name = "Modello")]
 		public string Model { get; set; }
 
-		[Display(name = "Matricola")]
+		[Display(Name = "Matricola")]
 		public string SerialNumber { get; set; }
 
-		[Display(name = "Data di installazione")]
+		[Display(Name = "Data di installazione")]
 		[DataType(DataType.Date)]
-		[DisplayFormat(dataformatstring = "{0:d}")]
+		[DisplayFormat(DataFormatString = "{0:d}")]
 		public DateTime InstallationDate { get; set; }
 
-		[Display(name = "Data di prima accensione")]
+		[Display(Name = "Data di prima accensione")]
 		[DataType(DataType.Date)]
-		[DisplayFormat(dataformatstring = "{0:d}")]
+		[DisplayFormat(DataFormatString = "{0:d}")]
 		public Nullable<DateTime> FirstStartUp { get; set; }
 
-		[Display(name = "Garanzia")]
+		[Display(Name = "Garanzia")]
 		public string Warranty { get; set; }
 
-		[Display(name = "Scadenza garanzia")]
+		[Display(Name = "Scadenza garanzia")]
 		[DataType(DataType.Date)]
-		[DisplayFormat(dataformatstring = "{0:d}")]
+		[DisplayFormat(DataFormatString = "{0:d}")]
 		public Nullable<DateTime> WarrantyExpiration { get; set; }
 
-		[Display(name = "Combustibile")]
+		[Display(Name = "Combustibile")]
 		public string Fuel { get; set; }
 
-		[Display(name = "Potenza termica utile nominale Pn max (kW)")]
+		[Display(Name = "Potenza termica utile nominale Pn max (kW)")]
 		public float NominalThermalPowerMax { get; set; }
 
-		[Display(name = "Fluido termovettore")]
+		[Display(Name = "Fluido termovettore")]
 		public string HeatTransferFluid { get; set; }
 
-		[Display(name = "Rendimento termico utile a Pn max (%)")]
+		[Display(Name = "Rendimento termico utile a Pn max (%)")]
 		public float ThermalEfficiencyPowerMax { get; set; }
 
-		[Display(name = "Tipo di unità termica")]
+		[Display(Name = "Tipo di unità termica")]
 		public ThermalUnitKindEnum Kind { get; set; }
 
 		//Property Heaters As List(Of Heater)

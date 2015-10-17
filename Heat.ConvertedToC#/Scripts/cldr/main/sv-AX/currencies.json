@@ -1430,14 +1430,14 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "surinamesisk dollar",
-            "displayName-count-one": "surinamesisk dollar",
-            "displayName-count-other": "surinamesiska dollar",
+            "displayName": "suriNamesisk dollar",
+            "displayName-count-one": "suriNamesisk dollar",
+            "displayName-count-other": "suriNamesiska dollar",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
           "SRG": {
-            "displayName": "surinamesisk gulden",
+            "displayName": "suriNamesisk gulden",
             "displayName-count-one": "Surinam-gulden",
             "displayName-count-other": "Surinam-gulden",
             "symbol": "SRG"
@@ -1648,16 +1648,16 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "vietnamesisk dong",
-            "displayName-count-one": "vietnamesisk dong",
-            "displayName-count-other": "vietnamesiska dong",
+            "displayName": "vietNamesisk dong",
+            "displayName-count-one": "vietNamesisk dong",
+            "displayName-count-other": "vietNamesiska dong",
             "symbol": "VND",
             "symbol-alt-narrow": "₫"
           },
           "VNN": {
-            "displayName": "vietnamesisk dong (1978–1985)",
-            "displayName-count-one": "vietnamesisk dong (1978–1985)",
-            "displayName-count-other": "vietnamesiska dong (1978–1985)",
+            "displayName": "vietNamesisk dong (1978–1985)",
+            "displayName-count-one": "vietNamesisk dong (1978–1985)",
+            "displayName-count-other": "vietNamesiska dong (1978–1985)",
             "symbol": "VNN"
           },
           "VUV": {
@@ -1776,9 +1776,9 @@
             "symbol": "XRE"
           },
           "XSU": {
-            "displayName": "latinamerikansk sucre",
-            "displayName-count-one": "latinamerikansk sucre",
-            "displayName-count-other": "latinamerikanska sucre",
+            "displayName": "latiNamerikansk sucre",
+            "displayName-count-one": "latiNamerikansk sucre",
+            "displayName-count-other": "latiNamerikanska sucre",
             "symbol": "XSU"
           },
           "XTS": {

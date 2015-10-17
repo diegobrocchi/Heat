@@ -50,7 +50,7 @@ namespace Heat
 			AddContactPlantViewModel result = new AddContactPlantViewModel();
 
 			result.PlantID = plantID;
-			result.AddressTypeList = _db.AddressTypes.OrderBy(x => x.Description).ToList().ToSelectListItems(x => x.Description, x => x.ID, "");
+			result.AddressTypeList = _db.AddressTypes.OrderBy(x => x.Description).ToList().ToSelectListItems(x => x.Description, x => x.ID.ToString(), "");
 
 			return result;
 
@@ -62,8 +62,8 @@ namespace Heat
 			AddThermInfoPlantViewModel result = new AddThermInfoPlantViewModel();
 
 			result.PlantID = plantID;
-			result.PlantClassList = _db.PlantClasses.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID, "");
-			result.PlantTypeList = _db.PlantTypes.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID, "");
+			result.PlantClassList = _db.PlantClasses.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
+			result.PlantTypeList = _db.PlantTypes.OrderBy(x => x.Name).ToList().ToSelectListItems(x => x.Name, x => x.ID.ToString(), "");
 
 			return result;
 
@@ -90,7 +90,7 @@ namespace Heat
 		/// Costruisce il modello per la vista di dettaglio dell'impianto.
 		/// La vista di dettaglio è organizzata in tab e in ogni tab una partial con un modello dedicato.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param Name="id"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public DetailsPlantViewModel GetDetailsPlantViewModel(int id)

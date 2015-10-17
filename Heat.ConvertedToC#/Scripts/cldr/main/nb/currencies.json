@@ -1644,16 +1644,16 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "vietnamesiske dong",
-            "displayName-count-one": "vietnamesisk dong",
-            "displayName-count-other": "vietnamesiske dong",
+            "displayName": "vietNamesiske dong",
+            "displayName-count-one": "vietNamesisk dong",
+            "displayName-count-other": "vietNamesiske dong",
             "symbol": "VND",
             "symbol-alt-narrow": "₫"
           },
           "VNN": {
-            "displayName": "vietnamesiske dong (1978–1985)",
-            "displayName-count-one": "vietnamesisk dong (1978–1985)",
-            "displayName-count-other": "vietnamesiske dong (1978–1985)",
+            "displayName": "vietNamesiske dong (1978–1985)",
+            "displayName-count-one": "vietNamesisk dong (1978–1985)",
+            "displayName-count-other": "vietNamesiske dong (1978–1985)",
             "symbol": "VNN"
           },
           "VUV": {

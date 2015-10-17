@@ -8,7 +8,7 @@ End Code
 @*<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta Name="viewport" content="width=device-width" />
     <title>Errore inatteso dell'applicazione</title>
 </head>
 <body>

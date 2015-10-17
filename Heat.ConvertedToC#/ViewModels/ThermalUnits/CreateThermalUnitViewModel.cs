@@ -31,55 +31,55 @@ namespace Heat.ViewModels.ThermalUnits
 	{
 
 		public int PlantID { get; set; }
-		[Display(name = "Impianto")]
+		[Display(Name = "Impianto")]
 		public string PlantDescription { get; set; }
 		public IEnumerable<SelectListItem> PlantList { get; set; }
 
 		public bool PlantIDSelected { get; set; }
 
-		[Display(name = "Marca")]
+		[Display(Name = "Marca")]
 		public string ManifacturerID { get; set; }
 		public IEnumerable<SelectListItem> ManifacturerList { get; set; }
 
-		[Display(name = "Modello")]
+		[Display(Name = "Modello")]
 		public int ModelID { get; set; }
 		public IEnumerable<SelectListItem> ModelList { get; set; }
 
-		[Display(name = "Matricola")]
+		[Display(Name = "Matricola")]
 		public string SerialNumber { get; set; }
 
-		[Display(name = "Data di installazione")]
+		[Display(Name = "Data di installazione")]
 		[DataType(DataType.Date)]
 		public DateTime InstallationDate { get; set; }
 
-		[Display(name = "Data di prima accensione")]
+		[Display(Name = "Data di prima accensione")]
 		[DataType(DataType.Date)]
 		public Nullable<DateTime> FirstStartUp { get; set; }
 
-		[Display(name = "Garanzia")]
+		[Display(Name = "Garanzia")]
 		public string Warranty { get; set; }
 
-		[Display(name = "Scadenza garanzia")]
+		[Display(Name = "Scadenza garanzia")]
 		[DataType(DataType.Date)]
 		public Nullable<DateTime> WarrantyExpiration { get; set; }
 
 		[Required()]
-		[Display(name = "Combustibile")]
+		[Display(Name = "Combustibile")]
 		public int FuelID { get; set; }
 		public IEnumerable<SelectListItem> FuelList { get; set; }
 
-		[Display(name = "Potenza termica utile nominale Pn max (kW)")]
+		[Display(Name = "Potenza termica utile nominale Pn max (kW)")]
 		public float NominalThermalPowerMax { get; set; }
 
-		[Display(name = "Fluido termovettore")]
+		[Display(Name = "Fluido termovettore")]
 		public int HeatTransferFluidID { get; set; }
 		public IEnumerable<SelectListItem> HeatTransferFluidList { get; set; }
 
-		[Display(name = "Rendimento termico utile a Pn max (%)")]
+		[Display(Name = "Rendimento termico utile a Pn max (%)")]
 		public float ThermalEfficiencyPowerMax { get; set; }
 
 		[Required()]
-		[Display(name = "Tipo di unità")]
+		[Display(Name = "Tipo di unità")]
 		public ThermalUnitKindEnum Kind { get; set; }
 
 

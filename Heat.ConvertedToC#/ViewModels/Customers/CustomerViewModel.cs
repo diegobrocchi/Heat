@@ -30,13 +30,13 @@ namespace Heat.ViewModels
 	public class CustomerViewModel
 	{
 		public int ID { get; set; }
-		[Display(name = "Nome")]
+		[Display(Name = "Nome")]
 		public string Name { get; set; }
 
-		[Display(name = "Indirizzo")]
+		[Display(Name = "Indirizzo")]
 		public string Address { get; set; }
 
-		[Display(name = "Telefono")]
+		[Display(Name = "Telefono")]
 		public string Telephone { get; set; }
 	}
 }

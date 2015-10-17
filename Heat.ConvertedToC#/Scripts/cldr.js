@@ -49,9 +49,9 @@
 			.replace( /^cldr\// , "" ); /* 2 */
 
 		// Replace {attribute}'s
-		path = path.replace( /{[a-zA-Z]+}/g, function( name ) {
-			name = name.replace( /^{([^}]*)}$/, "$1" );
-			return attributes[ name ];
+		path = path.replace( /{[a-zA-Z]+}/g, function( Name ) {
+			Name = Name.replace( /^{([^}]*)}$/, "$1" );
+			return attributes[ Name ];
 		});
 
 		return path.split( "/" );
@@ -348,19 +348,19 @@
 
 
 
-	var validatePresence = function( value, name ) {
+	var validatePresence = function( value, Name ) {
 		validate( "E_MISSING_PARAMETER", typeof value !== "undefined", {
-			name: name
+			Name: Name
 		});
 	};
 
 
 
 
-	var validateType = function( value, name, check, expected ) {
+	var validateType = function( value, Name, check, expected ) {
 		validate( "E_INVALID_PAR_TYPE", check, {
 			expected: expected,
-			name: name,
+			Name: Name,
 			value: value
 		});
 	};
@@ -368,8 +368,8 @@
 
 
 
-	var validateTypePath = function( value, name ) {
-		validateType( value, name, typeof value === "string" || arrayIsArray( value ), "String or Array" );
+	var validateTypePath = function( value, Name ) {
+		validateType( value, Name, typeof value === "string" || arrayIsArray( value ), "String or Array" );
 	};
 
 
@@ -385,15 +385,15 @@
 
 
 
-	var validateTypePlainObject = function( value, name ) {
-		validateType( value, name, typeof value === "undefined" || isPlainObject( value ), "Plain Object" );
+	var validateTypePlainObject = function( value, Name ) {
+		validateType( value, Name, typeof value === "undefined" || isPlainObject( value ), "Plain Object" );
 	};
 
 
 
 
-	var validateTypeString = function( value, name ) {
-		validateType( value, name, typeof value === "string", "a string" );
+	var validateTypeString = function( value, Name ) {
+		validateType( value, Name, typeof value === "string", "a string" );
 	};
 
 

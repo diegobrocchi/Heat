@@ -34,7 +34,7 @@ namespace Heat.Models
 	{
 		public int ID { get; set; }
 		public int ManifacturerID { get; set; }
-		public manifacturer Manifacturer { get; set; }
+		public Manifacturer Manifacturer { get; set; }
 		public string Model { get; set; }
 		public List<BoilerService> Services { get; set; }
 

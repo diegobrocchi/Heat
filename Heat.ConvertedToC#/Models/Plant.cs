@@ -44,18 +44,18 @@ namespace Heat.Models
 		[Key()]
 		public int ID { get; set; }
 
-		[Display(name = "Codice impianto")]
+		[Display(Name = "Codice impianto")]
 		public int Code { get; set; }
-		[Display(name = "Nominativo")]
+		[Display(Name = "Nominativo")]
 		public string Name { get; set; }
 
-		[Display(name = "Classe impianto")]
+		[Display(Name = "Classe impianto")]
 		public PlantClass PlantClass { get; set; }
 
-		[Display(name = "Tipologia impianto")]
+		[Display(Name = "Tipologia impianto")]
 		public PlantType PlantType { get; set; }
 
-		[Display(name = "Codice dell'impianto per la provincia")]
+		[Display(Name = "Codice dell'impianto per la provincia")]
 		public string PlantDistinctCode { get; set; }
 
 		public PlantBuilding BuildingAddress { get; set; }

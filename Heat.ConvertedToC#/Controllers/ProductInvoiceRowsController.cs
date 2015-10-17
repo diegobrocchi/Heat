@@ -90,9 +90,9 @@ namespace Heat.Controllers
 				}
 				invoiceRowDB.Product = _db.Products.Find(invoiceRow.ProductID);
 				invoiceRowDB.Quantity = invoiceRow.Quantity;
-				invoiceRowDB.RateDiscount1 = invoiceRow.Discount1;
-				invoiceRowDB.RateDiscount2 = invoiceRow.Discount2;
-				invoiceRowDB.RateDiscount3 = invoiceRow.Discount3;
+				invoiceRowDB.RateDiscount1 = (decimal) invoiceRow.Discount1;
+				invoiceRowDB.RateDiscount2 = (decimal)invoiceRow.Discount2;
+				invoiceRowDB.RateDiscount3 = (decimal)invoiceRow.Discount3;
 				invoiceRowDB.UnitPrice = invoiceRow.UnitPrice;
 				invoiceRowDB.VAT_Rate = invoiceRow.VAT;
 
@@ -108,7 +108,7 @@ namespace Heat.Controllers
 		}
 
 
-		public ActionResult Edit(int? id)
+		public ActionResult Edit(int  id)
 		{
 			try {
 				if ((id == null)) {
@@ -144,9 +144,9 @@ namespace Heat.Controllers
 
 				dbInvoiceRow.Product = _db.Products.Find(editedProductInvoiceRow.ProductID);
 				dbInvoiceRow.Quantity = editedProductInvoiceRow.Quantity;
-				dbInvoiceRow.RateDiscount1 = editedProductInvoiceRow.Discount1;
-				dbInvoiceRow.RateDiscount2 = editedProductInvoiceRow.Discount2;
-				dbInvoiceRow.RateDiscount3 = editedProductInvoiceRow.Discount3;
+				dbInvoiceRow.RateDiscount1 = (decimal) editedProductInvoiceRow.Discount1;
+				dbInvoiceRow.RateDiscount2 = (decimal) editedProductInvoiceRow.Discount2;
+				dbInvoiceRow.RateDiscount3 = (decimal) editedProductInvoiceRow.Discount3;
 				dbInvoiceRow.UnitPrice = editedProductInvoiceRow.UnitPrice;
 				dbInvoiceRow.VAT_Rate = editedProductInvoiceRow.VAT;
 

@@ -7,8 +7,8 @@ End Code
 @Using Html.BeginForm("Import", "Customers", FormMethod.Post, New With {.enctype = "multipart/form-data"})
     @<div class="form-horizontal">
     <div class="form-group">
-    <label for="uploadFileCustomers">Filename:</label>
-    <input id="uploadFileCustomers" type="file" name="uploadFileCustomers" />
+    <label for="uploadFileCustomers">FileName:</label>
+    <input id="uploadFileCustomers" type="file" Name="uploadFileCustomers" />
             </div>
      </div>
     @<input type="submit" value="Carica clienti" class="btn btn-primary" />
@@ -22,8 +22,8 @@ End Using
 @Using Html.BeginForm("Import", "Plants", FormMethod.Post, New With {.enctype = "multipart/form-data"})
     @<div class="form-horizontal">
     <div class="form-group">
-        <label for="uploadFilePlant">Filename:</label>
-        <input id="uploadFilePlant" type="file" name="uploadFilePlant" />
+        <label for="uploadFilePlant">FileName:</label>
+        <input id="uploadFilePlant" type="file" Name="uploadFilePlant" />
     </div>
 </div>
 @<input type="submit" value="Carica impianti" class="btn btn-primary" />

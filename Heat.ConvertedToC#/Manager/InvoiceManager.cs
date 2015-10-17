@@ -46,10 +46,10 @@ namespace Heat.Manager
 		/// <summary>
 		/// Prepara una fattura temporanea per il cliente indicato
 		/// </summary>
-		/// <param name="customerID"></param>
+		/// <param Name="customerID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
-		public Invoice GetTemporaryDocument(customerID)
+		public Invoice GetTemporaryDocument(int customerID)
 		{
 			Invoice result = new Invoice();
 			NumeratorManager numberGenerator = NumeratorManager.Instance;
@@ -59,7 +59,8 @@ namespace Heat.Manager
 
 			result.Customer = _db.Customers.Find(customerID);
 			result.InvoiceDate = DateTime.Now;
-			result.InsertedNumber = numberGenerator.GetNextTemp(ref d.Numbering);
+            Numbering num = d.Numbering;
+			result.InsertedNumber = numberGenerator.GetNextTemp(ref num);
 			result.ConfirmedNumber = new SerialNumber();
 			result.IsTaxExempt = false;
 			//result.Payment = 
@@ -72,7 +73,7 @@ namespace Heat.Manager
 		/// <summary>
 		/// Conferma il documento con ID specificato.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param Name="id"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public bool SetConfirmedDocument(int id)
@@ -109,7 +110,7 @@ namespace Heat.Manager
 		/// Recupera la lista delle righe di tipo 'Prodotto' e le righe di tipo 'Descrittiva' 
 		/// e compone una lista di righe fattura di tipo 'Presentazione'.
 		/// </summary>
-		/// <param name="invoiceID"></param>
+		/// <param Name="invoiceID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public List<PresentationInvoiceRowViewModel> GetInvoiceRows(int invoiceID)
@@ -131,9 +132,9 @@ namespace Heat.Manager
 				Product = x.Product.Description,
 				Quantity = x.Quantity,
 				UnitPrice = x.UnitPrice,
-				Discount1 = x.RateDiscount1,
-				Discount2 = x.RateDiscount2,
-				Discount3 = x.RateDiscount3,
+				Discount1 =(double) x.RateDiscount1,
+				Discount2 = (double) x.RateDiscount2,
+				Discount3 = (double) x.RateDiscount3,
 				VAT = x.VAT_Rate,
 				TotalBeforeTax = x.DiscountedAmount,
 				Total = x.TotalAmount,
@@ -148,9 +149,9 @@ namespace Heat.Manager
 				Product = x.RowDescription,
 				Quantity = x.Quantity,
 				UnitPrice = x.UnitPrice,
-				Discount1 = x.RateDiscount1,
-				Discount2 = x.RateDiscount2,
-				Discount3 = x.RateDiscount3,
+				Discount1 =(double) x.RateDiscount1,
+				Discount2 = (double) x.RateDiscount2,
+				Discount3 = (double) x.RateDiscount3,
 				VAT = x.VAT_Rate,
 				TotalBeforeTax = x.DiscountedAmount,
 				Total = x.TotalAmount,

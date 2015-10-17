@@ -30,21 +30,22 @@ namespace Heat.Manager
 	/// <summary>
 	/// Il gestore delle chiamate ai contatti.
 	/// </summary>
-	public class OutboundCallManager
+	public class OutboundCallsManager
 	{
 
 
 		private IHeatDBContext _db;
-		public OutboundCallManager(IHeatDBContext dbContext)
+		public OutboundCallsManager(IHeatDBContext dbContext)
 		{
 			_db = dbContext;
 		}
 
 		/// <summary>
 		/// Genera una lista di chiamate da effettuare.
+		/// Le chiamate sono relative agli impianti con la manutenzione scaduta o in scadenza.
 		/// Genera una lista diversa per ogni utente.
 		/// </summary>
-		/// <param name="login"></param>
+		/// <param Name="login"></param>
 		/// <returns></returns>
 		public List<ProposedOutBoundCall> GetNextOutboundCallSet(string login)
 		{
@@ -52,8 +53,9 @@ namespace Heat.Manager
 			List<Plant> expiringServicePlants = null;
 
 			//cerca gli impianti con la manutenzione scaduta o in scadenza nei prossimi 30 giorni
+			//esclude gli impianti che abbiano una data di manutenzione fissata nel futuro
 			System.DateTime stopDate = DateAndTime.Now.AddDays(30);
-			expiringServicePlants = _db.Plants.Where(x => x.Service.LegalExpirationDate <= stopDate).ToList();
+			expiringServicePlants = _db.Plants.Where(x => x.Service.LegalExpirationDate <= stopDate & x.Service.PlannedServiceDate < DateAndTime.Now).ToList();
 
 			//esclude quelli per i quali sono già assegnate chiamate
 			List<Plant> pendingCallPlants = null;

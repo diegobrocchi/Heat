@@ -33,8 +33,8 @@ namespace Heat
 	public class ImportHelper
 	{
 
-		private HeatDBContext _context;
-		public ImportHelper(HeatDBContext context)
+		private IHeatDBContext _context;
+		public ImportHelper(IHeatDBContext context)
 		{
 			_context = context;
 		}
@@ -42,7 +42,7 @@ namespace Heat
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="fileContent"></param>
+		/// <param Name="fileContent"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public bool Customer(string fileContent)
@@ -53,14 +53,14 @@ namespace Heat
 
 			try {
 				//controlla se la prima riga è nel formato giusto
-				fileRows = fileContent.Split(Constants.vbCrLf);
+				fileRows = fileContent.Split(new char[] {} );
 
 				if (!string.IsNullOrEmpty(fileRows[0])) {
-					fileRowFields = fileRows[0].Split(";");
+					fileRowFields = fileRows[0].Split(new char[] {';'});
 
 					if (fileRowFields.Count() == 16) {
-						for (i = 1; i <= fileRows.Count() - 2; i++) {
-							fileRowFields = fileRows[i].Split(";");
+						for (int i = 1; i <= fileRows.Count() - 2; i++) {
+							fileRowFields = fileRows[i].Split(new char[] { ';' });
 
 							Models.Customer newCustomer = new Models.Customer();
 							newCustomer.Address = fileRowFields[4];
@@ -84,8 +84,8 @@ namespace Heat
 					}
 				}
 				_context.Customers.RemoveRange(_context.Customers.ToList());
-				foreach (Customer c_loopVariable in NewCustomersList) {
-					c = c_loopVariable;
+				foreach (Customer c  in NewCustomersList) {
+					 
 					_context.Customers.Add(c);
 				}
 				_context.SaveChanges();
@@ -105,12 +105,12 @@ namespace Heat
 			List<Plant> newPlantList = new List<Plant>();
 
 			try {
-				fileRows = fileContent.Split(Constants.vbCrLf);
+				fileRows = fileContent.Split(new char[] { '\n' });
 				if (!string.IsNullOrEmpty(fileRows[0])) {
-					fileRowFields = fileRows[0].Split(";");
+					fileRowFields = fileRows[0].Split(new char[] { ';' });
 					if (fileRowFields.Count() == 19) {
-						for (i = 1; i <= fileRows.Count() - 2; i++) {
-							fileRowFields = fileRows[i].Split(";");
+						for (int i = 1; i <= fileRows.Count() - 2; i++) {
+							fileRowFields = fileRows[i].Split(new char[] { ';' });
 
 							Plant newPlant = new Plant();
 							//TODO: cambia l'associazione dell'indirizzo: non proprietà, ma complexType BuildingAddress
@@ -120,7 +120,7 @@ namespace Heat
 							//newPlant.PostalCode = fileRowFields(13)
 							//newPlant.StreetNumber = fileRowFields(5)
 							//newPlant.Zone = fileRowFields(16)
-							newPlant.Code = fileRowFields[2];
+							newPlant.Code =Convert.ToInt32( fileRowFields[2]);
 							//TODO: Fuel è un oggetto a se': aggiusta l'import!!!!
 							//newPlant.Fuel = fileRowFields(17)
 							//

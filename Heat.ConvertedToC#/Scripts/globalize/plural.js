@@ -227,8 +227,8 @@ var MakePlural = (function () {
         }
     }, {
         key: 'fnToString',
-        value: function fnToString(name) {
-            return Function.prototype.toString.call(this.fn).replace(/^function( \w+)?/, name ? 'function ' + name : 'function').replace('\n/**/', '');
+        value: function fnToString(Name) {
+            return Function.prototype.toString.call(this.fn).replace(/^function( \w+)?/, Name ? 'function ' + Name : 'function').replace('\n/**/', '');
         }
     }], [{
         key: 'load',
@@ -264,10 +264,10 @@ return MakePlural;
 /* jshint ignore:end */
 
 
-var validateParameterTypeNumber = function( value, name ) {
+var validateParameterTypeNumber = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || typeof value === "number",
 		"Number"
 	);
@@ -276,10 +276,10 @@ var validateParameterTypeNumber = function( value, name ) {
 
 
 
-var validateParameterTypePluralType = function( value, name ) {
+var validateParameterTypePluralType = function( value, Name ) {
 	validateParameterType(
 		value,
-		name,
+		Name,
 		value === undefined || value === "cardinal" || value === "ordinal",
 		"String \"cardinal\" or \"ordinal\""
 	);

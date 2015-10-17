@@ -52,7 +52,7 @@ namespace Heat
 		/// </summary>
 		/// <returns></returns>
 		/// <remarks></remarks>
-		public Viewmodels.Invoices.confirmedIndexViewModel GetConfirmedInvoicesIndexViewModel()
+		public confirmedIndexViewModel GetConfirmedInvoicesIndexViewModel()
 		{
 
 			ViewModels.Invoices.confirmedIndexViewModel result = new ViewModels.Invoices.confirmedIndexViewModel();
@@ -78,9 +78,9 @@ namespace Heat
 		/// </summary>
 		/// <returns></returns>
 		/// <remarks></remarks>
-		public Viewmodels.Invoices.insertedIndexViewModel GetInsertedInvoicesIndexViewModel()
+		public insertedIndexViewModel GetInsertedInvoicesIndexViewModel()
 		{
-			Viewmodels.Invoices.insertedIndexViewModel result = new Viewmodels.Invoices.insertedIndexViewModel();
+			  insertedIndexViewModel result = new   insertedIndexViewModel();
 
 			result.State = DocumentState.Inserted;
 			result.InsertedInvoiceList = _db.Invoices.Include(x => x.InvoiceRows).Where(x => x.State == DocumentState.Inserted).Select(x => new InsertedInvoicesGridViewModel {
@@ -97,7 +97,7 @@ namespace Heat
 		/// <summary>
 		/// Prepara il modello per la view di Edit della fattura.
 		/// </summary>
-		/// <param name="tempDoc"></param>
+		/// <param Name="tempDoc"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public EditInvoiceViewModel GetEditInvoiceViewModel(Invoice tempDoc)
@@ -127,9 +127,9 @@ namespace Heat
 				Product = x.Product.Description,
 				Quantity = x.Quantity,
 				UnitPrice = x.UnitPrice,
-				Discount1 = x.RateDiscount1,
-				Discount2 = x.RateDiscount2,
-				Discount3 = x.RateDiscount3,
+				Discount1 = (double) x.RateDiscount1,
+				Discount2 = (double) x.RateDiscount2,
+				Discount3 =(double)  x.RateDiscount3,
 				TotalBeforeTax = x.DiscountedAmount,
 				Total = x.TotalAmount,
 				VAT = x.VAT_Rate,
@@ -144,9 +144,9 @@ namespace Heat
 				Product = x.RowDescription,
 				Quantity = x.Quantity,
 				UnitPrice = x.UnitPrice,
-				Discount1 = x.RateDiscount1,
-				Discount2 = x.RateDiscount2,
-				Discount3 = x.RateDiscount3,
+				Discount1 = (double) x.RateDiscount1,
+				Discount2 = (double) x.RateDiscount2,
+				Discount3 = (double) x.RateDiscount3,
 				TotalBeforeTax = x.DiscountedAmount,
 				Total = x.TotalAmount,
 				VAT = x.VAT_Rate,
@@ -165,7 +165,7 @@ namespace Heat
 		/// <summary>
 		/// Produce il modello per la vista Create di una riga fattura di tipo 'Prodotto'. 
 		/// </summary>
-		/// <param name="invoiceID"></param>
+		/// <param Name="invoiceID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public AddNewProductInvoiceRowViewModel GetAddProductInvoiceRowViewModel(int invoiceID)
@@ -173,7 +173,7 @@ namespace Heat
 			AddNewProductInvoiceRowViewModel result = new AddNewProductInvoiceRowViewModel();
 
 			result.InvoiceID = invoiceID;
-			result.ProductList = _db.Products.ToList().OrderBy(x => x.Description).ToSelectListItems(p => p.Description, p => p.ID, "");
+			result.ProductList = _db.Products.ToList().OrderBy(x => x.Description).ToSelectListItems(p => p.Description, p => p.ID.ToString(), "");
 			result.VAT = 22;
 
 			return result;
@@ -183,7 +183,7 @@ namespace Heat
 		/// <summary>
 		/// Produce il modello per la vista Edit di una riga fattura di tipo 'Prodotto'.
 		/// </summary>
-		/// <param name="ID"></param>
+		/// <param Name="ID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public EditProductInvoiceRowViewModel GetEditProductInvoiceRowViewModel(int ID)
@@ -194,15 +194,15 @@ namespace Heat
 			dbRow = _db.ProductInvoiceRows.Include(x => x.Invoice).Include(x => x.Product).Where(x => x.ID == ID).Single();
 
 			result.ID = ID;
-			result.Discount1 = dbRow.RateDiscount1;
-			result.Discount2 = dbRow.RateDiscount2;
-			result.Discount3 = dbRow.RateDiscount3;
+			result.Discount1 = (float) dbRow.RateDiscount1;
+			result.Discount2 = (float)  dbRow.RateDiscount2;
+			result.Discount3 = (float) dbRow.RateDiscount3;
 			result.InvoiceID = dbRow.Invoice.ID;
 			result.ProductID = dbRow.Product.ID;
-			result.ProductList = _db.Products.ToList().OrderBy(x => x.Description).ToSelectListItems(p => p.Description, p => p.ID, dbRow.Product.ID);
-			result.Quantity = dbRow.Quantity;
+			result.ProductList = _db.Products.ToList().OrderBy(x => x.Description).ToSelectListItems(p => p.Description, p => p.ID.ToString(), dbRow.Product.ID.ToString());
+			result.Quantity = (float)  dbRow.Quantity;
 			result.UnitPrice = dbRow.UnitPrice;
-			result.VAT = dbRow.VAT_Rate;
+			result.VAT = (float) dbRow.VAT_Rate;
 
 			return result;
 
@@ -211,7 +211,7 @@ namespace Heat
 		/// <summary>
 		/// Produce il modello per la vista Create di una riga fattura di tipo 'Descrittivo'.
 		/// </summary>
-		/// <param name="invoiceID"></param>
+		/// <param Name="invoiceID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public AddNewDescriptiveInvoiceRowViewModel GetAddDescriptiveInvoiceRowViewModel(int invoiceID)
@@ -228,7 +228,7 @@ namespace Heat
 		/// <summary>
 		/// Produce il modello per la vista Edit di una riga fattura di tipo 'Descrittivo'.
 		/// </summary>
-		/// <param name="ID"></param>
+		/// <param Name="ID"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public EditDescriptiveInvoiceRowViewModel GetEditDescriptiveInvoiceRowViewModel(int ID)
@@ -239,11 +239,11 @@ namespace Heat
 			dbRow = _db.DescriptiveInvoiceRows.Include(x => x.Invoice).Where(x => x.ID == ID).Single();
 
 			result.ID = dbRow.ID;
-			result.Discount1 = dbRow.RateDiscount1;
-			result.Discount2 = dbRow.RateDiscount2;
-			result.Discount3 = dbRow.RateDiscount3;
+			result.Discount1 = (float) dbRow.RateDiscount1;
+			result.Discount2 = (float) dbRow.RateDiscount2;
+			result.Discount3 = (float) dbRow.RateDiscount3;
 			result.InvoiceID = dbRow.Invoice.ID;
-			result.Quantity = dbRow.Quantity;
+			result.Quantity =(float)  dbRow.Quantity;
 			result.RowDescription = dbRow.RowDescription;
 			result.UnitPrice = dbRow.UnitPrice;
 			result.VAT = dbRow.VAT_Rate;
@@ -254,7 +254,7 @@ namespace Heat
 		/// <summary>
 		/// Produce il modello per la view in cui si scelgono le condizioni di pagamento per la fattura.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param Name="id"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public InvoicePaymentViewModel getEditInvoicePaymentViewModel(int id)
@@ -295,7 +295,7 @@ namespace Heat
 				result.PaymentID = dbInvoice.Payment.ID;
 			}
 
-			result.PaymentList = _db.Payments.ToList().ToSelectListItems(x => x.Description, x => x.ID, result.PaymentID);
+			result.PaymentList = _db.Payments.ToList().ToSelectListItems(x => x.Description, x => x.ID.ToString(), result.PaymentID.ToString());
 			result.TaxExemption = dbInvoice.TaxExemption;
 
 			return result;
@@ -305,7 +305,7 @@ namespace Heat
 		/// <summary>
 		/// Produce il modello per la view in cui confermare la fattura.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param Name="id"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public ConfirmInvoiceViewModel getConfirmInvoiceViewModel(int id)
@@ -357,7 +357,7 @@ namespace Heat
 		/// <summary>
 		/// Prepara il modello per la vista di dettaglio di una fattura.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param Name="id"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public InvoiceDetailsViewModel GetDetailsInvoiceViewModel(int id)

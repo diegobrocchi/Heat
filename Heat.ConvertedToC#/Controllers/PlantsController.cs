@@ -69,7 +69,7 @@ namespace Heat.Controllers
 		}
 
 		[HttpGet()]
-		public ActionResult Details(int? id)
+		public ActionResult Details(int  id)
 		{
 			try {
 				if ((id == null)) {
@@ -324,7 +324,7 @@ Plant plant)
 		/// <summary>
 		/// Prepara la pagina con i link alle operazioni che è possibile svolgere sull'impianto.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <param Name="id"></param>
 		/// <returns></returns>
 		[HttpGet()]
 		public ActionResult Manage(int id)
@@ -400,7 +400,7 @@ Plant plant)
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="request"></param>
+		/// <param Name="request"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		[HttpGet()]
@@ -418,7 +418,7 @@ Plant plant)
 		/// Aggiunge un file all'impianto, come allegato.
 		/// E' possibile allegare qualunque tipo di file.
 		/// </summary>
-		/// <param name="ID">ID dell'impianto</param>
+		/// <param Name="ID">ID dell'impianto</param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		[HttpGet()]
@@ -480,8 +480,8 @@ Plant plant)
 
 					medium.Description = newMedium.Description;
 					medium.Tags = newMedium.Tags;
-					medium.OriginalFilename = newMedium.UploadFile.FileName;
-					medium.UploadFilename = uploadFileName;
+					medium.OriginalFileName = newMedium.UploadFile.FileName;
+					medium.UploadFileName = uploadFileName;
 					medium.ContentType = newMedium.UploadFile.ContentType;
 					medium.Lenght = newMedium.UploadFile.ContentLength;
 

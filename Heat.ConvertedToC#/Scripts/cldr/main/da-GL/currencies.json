@@ -1582,9 +1582,9 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "Vietnamesisk dong",
-            "displayName-count-one": "Vietnamesisk dong",
-            "displayName-count-other": "Vietnamesiske dong",
+            "displayName": "VietNamesisk dong",
+            "displayName-count-one": "VietNamesisk dong",
+            "displayName-count-other": "VietNamesiske dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },

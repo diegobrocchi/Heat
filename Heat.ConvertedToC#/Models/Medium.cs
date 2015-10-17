@@ -33,8 +33,8 @@ namespace Heat.Models
 	{
 
 		public int ID { get; set; }
-		public string OriginalFilename { get; set; }
-		public string UploadFilename { get; set; }
+		public string OriginalFileName { get; set; }
+		public string UploadFileName { get; set; }
 		public string RelativePath { get; set; }
 		public string AbsolutePath { get; set; }
 		public int Lenght { get; set; }

@@ -33,27 +33,27 @@ namespace Heat.ViewModels.Customers
 		public int ID { get; set; }
 
 		[Required()]
-		[Display(name = "Nome")]
+		[Display(Name = "Nome")]
 		public string Name { get; set; }
-		[Display(name = "Indirizzo")]
+		[Display(Name = "Indirizzo")]
 		public string Address { get; set; }
-		[Display(name = "Città")]
+		[Display(Name = "Città")]
 		public string City { get; set; }
 		[Display(Name = "CAP")]
 		public string PostalCode { get; set; }
-		[Display(name = "Provincia")]
+		[Display(Name = "Provincia")]
 		public string District { get; set; }
-		[Display(name = "Telefono 1")]
+		[Display(Name = "Telefono 1")]
 		public string Telephone1 { get; set; }
-		[Display(name = "Telefono 2")]
+		[Display(Name = "Telefono 2")]
 		public string Telephone2 { get; set; }
-		[Display(name = "Telefono 3")]
+		[Display(Name = "Telefono 3")]
 		public string Telephone3 { get; set; }
-		[Display(name = "Codice fiscale")]
+		[Display(Name = "Codice fiscale")]
 		public string Taxcode { get; set; }
-		[Display(name = "Partita IVA")]
+		[Display(Name = "Partita IVA")]
 		public string VAT_Number { get; set; }
-		[Display(name = "IBAN")]
+		[Display(Name = "IBAN")]
 		public string IBAN { get; set; }
 
 		[EmailAddress()]

@@ -35,7 +35,7 @@ namespace Heat.Controllers
 	public class NumberingsController : System.Web.Mvc.Controller
 	{
 
-		private HeatDBContext _db = new HeatDBContext();
+		private IHeatDBContext _db;
 
 		private NumberingViewModelsBuilder _modelBuilder;
 		public NumberingsController(IHeatDBContext context)
@@ -90,7 +90,7 @@ namespace Heat.Controllers
 		}
 
 		// GET: Numerators/Edit/5
-		public ActionResult Edit(int? id)
+		public ActionResult Edit(int  id)
 		{
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

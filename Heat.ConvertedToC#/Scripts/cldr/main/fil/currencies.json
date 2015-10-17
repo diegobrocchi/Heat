@@ -1217,9 +1217,9 @@
             "symbol": "SOS"
           },
           "SRD": {
-            "displayName": "Dolyar ng Suriname",
-            "displayName-count-one": "dolyar ng Suriname",
-            "displayName-count-other": "dolyares ng Suriname",
+            "displayName": "Dolyar ng SuriName",
+            "displayName-count-one": "dolyar ng SuriName",
+            "displayName-count-other": "dolyares ng SuriName",
             "symbol": "SRD",
             "symbol-alt-narrow": "$"
           },
@@ -1407,9 +1407,9 @@
             "symbol-alt-narrow": "Bs"
           },
           "VND": {
-            "displayName": "Vietnamese Dong",
-            "displayName-count-one": "Vietnamese dong",
-            "displayName-count-other": "Vietnamese dong",
+            "displayName": "VietNamese Dong",
+            "displayName-count-one": "VietNamese dong",
+            "displayName-count-other": "VietNamese dong",
             "symbol": "₫",
             "symbol-alt-narrow": "₫"
           },

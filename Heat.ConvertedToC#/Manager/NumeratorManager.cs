@@ -45,7 +45,7 @@ namespace Heat.Manager
 		/// <summary>
 		/// Ritorna il successivo numero di serie di tipo temporaneo per il numeratore assegnato e aggiorna lo stesso numeratore.
 		/// </summary>
-		/// <param name="numbering"></param>
+		/// <param Name="numbering"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public SerialNumber GetNextTemp(ref Numbering numbering)
@@ -77,7 +77,7 @@ namespace Heat.Manager
 		/// <summary>
 		/// Ritorna il primo numero seriale di tipo definitivo per il numeratore assegnato
 		/// </summary>
-		/// <param name="numbering"></param>
+		/// <param Name="numbering"></param>
 		/// <returns></returns>
 		/// <remarks></remarks>
 		public SerialNumber GetNextFinal(Numbering numbering)
@@ -107,8 +107,8 @@ namespace Heat.Manager
 		public static DateTime EndOfWeek()
 		{
 			DateTime startDayOfCurrentWeek = default(DateTime);
-			startDayOfCurrentWeek = DateAndTime.Now.AddDays(-DateAndTime.Now.DayOfWeek).AddDays(7);
-			return DateAndTime.Now.AddDays(-DateAndTime.Now.DayOfWeek).AddDays(7);
+			startDayOfCurrentWeek = DateAndTime.Now.AddDays(- (double) DateAndTime.Now.DayOfWeek).AddDays(7);
+			return DateAndTime.Now.AddDays(- (double) DateAndTime.Now.DayOfWeek).AddDays(7);
 		}
 	}
 

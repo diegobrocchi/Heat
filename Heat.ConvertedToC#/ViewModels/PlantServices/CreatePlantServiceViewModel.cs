@@ -32,19 +32,19 @@ namespace Heat.ViewModels.PlantServices
 
 		public int PlantID { get; set; }
 
-		[Display(name = "Impianto di riferimento")]
+		[Display(Name = "Impianto di riferimento")]
 		public string PlantDescription { get; set; }
 
-		[Display(name = "Data dell'ultima manutenzione eseguita")]
+		[Display(Name = "Data dell'ultima manutenzione eseguita")]
 		public Nullable<DateTime> PreviousServiceDate { get; set; }
 
-		[Display(name = "Periodicità della manutenzione")]
+		[Display(Name = "Periodicità della manutenzione")]
 		public Periodicity Periodicity { get; set; }
 
-		[Display(name = "Scadenza legale della manutenzione")]
+		[Display(Name = "Scadenza legale della manutenzione")]
 		public DateTime LegalExpirationDate { get; set; }
 
-		[Display(name = "Data programmata della prossima manutenzione")]
+		[Display(Name = "Data programmata della prossima manutenzione")]
 		public DateTime PlannedServiceDate { get; set; }
 
 	}

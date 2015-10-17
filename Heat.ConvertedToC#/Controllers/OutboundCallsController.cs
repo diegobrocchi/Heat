@@ -28,7 +28,7 @@ using System.Net;
 using System.Security.Principal;
 using Heat.Manager;
 using Heat.Models;
-using Heat.Repositories;
+using Heat.ViewModels.OutboundCall;
 
 namespace Heat.Controllers
 {
@@ -36,13 +36,14 @@ namespace Heat.Controllers
 	{
 
 		private IHeatDBContext _db;
+		//Private _ocm As OutboundCallManager
 
-		private OutboundCallManager _ocm;
-
+		private OutboundCallsModelViewBuilder _mb;
 		public OutboundCallsController(IHeatDBContext dbContext)
 		{
 			_db = dbContext;
-			_ocm = new OutboundCallManager(_db);
+			_mb = new OutboundCallsModelViewBuilder(_db);
+			//_ocm = New OutboundCallManager(_db)
 		}
 
 		// GET: OutboundCalls
@@ -149,8 +150,15 @@ OutboundCall outboundCall)
 		[HttpGet()]
 		public ActionResult GetNextProposed(IPrincipal login)
 		{
+			try {
+				ProposedOutboundCallsViewModel model = null;
+				model = _mb.GetNextProposed(login.Identity.Name);
+				return View(model);
+			} catch (Exception ex) {
+				ViewBag.message = ex.Message;
+				return View("error");
+			}
 
-			return View(_ocm.GetNextOutboundCallSet(login.Identity.Name));
 		}
 
 		protected override void Dispose(bool disposing)
