@@ -10,7 +10,7 @@ $(document).ready(function () {
             url: "Customers/PageCustomerEnabled",
             type: "GET"},
         columns: [
-            { data: "Name" },
+            { data: "name" },
             { data: "address" },
             { data: "city" },
             { data: "telephone1" },
@@ -34,7 +34,7 @@ $(document).ready(function () {
             type: "GET"
         },
         columns: [
-            { data: "Name" },
+            { data: "name" },
             { data: "address" },
             { data: "city" },
             { data: "telephone1" },

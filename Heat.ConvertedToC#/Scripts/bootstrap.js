@@ -41,9 +41,9 @@ if (typeof jQuery === 'undefined') {
       transition       : 'transitionend'
     }
 
-    for (var Name in transEndEventNames) {
-      if (el.style[Name] !== undefined) {
-        return { end: transEndEventNames[Name] }
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
       }
     }
 
