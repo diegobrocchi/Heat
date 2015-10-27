@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -57,11 +58,9 @@
     <TypeScriptModuleKind>none</TypeScriptModuleKind>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DataTables.AspNet.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DataTables.AspNet.Core.2.0.0-alpha2-070602\lib\net45\DataTables.AspNet.Core.dll</HintPath>
@@ -254,6 +253,7 @@
     <Compile Include="Import\ImportHelper.cs" />
     <Compile Include="Manager\CustomerManager.cs" />
     <Compile Include="Manager\InvoiceManager.cs" />
+    <Compile Include="Manager\IOutboundCallsManager.cs" />
     <Compile Include="Manager\MediaManager.cs" />
     <Compile Include="Manager\NumeratorManager.cs" />
     <Compile Include="Manager\OutboundCallManager.cs" />
@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201510171534198_Initial.cs" />
     <Compile Include="Migrations\201510171534198_Initial.Designer.cs">
       <DependentUpon>201510171534198_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510271404292_AssignedOutbound.cs" />
+    <Compile Include="Migrations\201510271404292_AssignedOutbound.Designer.cs">
+      <DependentUpon>201510271404292_AssignedOutbound.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\DecimalModelBinder.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="Models\ActionType.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\AddressType.cs" />
+    <Compile Include="Models\AssignedOutboundCall.cs" />
     <Compile Include="Models\Boiler.cs" />
     <Compile Include="Models\BoilerHeater.cs" />
     <Compile Include="Models\BoilerService.cs" />
@@ -391,6 +396,7 @@
     <Compile Include="ViewModels\ManifacturerModels\EditManifacturerModelViewModel.cs" />
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.cs" />
     <Compile Include="ViewModels\NumberingViewModels.cs" />
+    <Compile Include="ViewModels\OutboundCalls\AssignedOutboundCallViewModel.cs" />
     <Compile Include="ViewModels\OutboundCalls\ProposedOutboundCallsViewModel.cs" />
     <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.cs" />
     <Compile Include="ViewModels\Plants\AddContactPlantViewModel.cs" />
@@ -441,6 +447,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510171534198_Initial.resx">
       <DependentUpon>201510171534198_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510271404292_AssignedOutbound.resx">
+      <DependentUpon>201510271404292_AssignedOutbound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1442,7 +1451,6 @@
     <Content Include="Views\OutboundCalls\Details.vbhtml" />
     <Content Include="Views\OutboundCalls\Edit.vbhtml" />
     <Content Include="Views\OutboundCalls\GetNextProposed.vbhtml" />
-    <Content Include="Views\OutboundCalls\Index.vbhtml" />
     <Content Include="Views\Payments\Create.vbhtml" />
     <Content Include="Views\Payments\Delete.vbhtml" />
     <Content Include="Views\Payments\Details.vbhtml" />
@@ -1545,6 +1553,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\OutboundCalls\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1582,8 +1593,11 @@
     <TypeScriptCompile Include="Scripts\Views\Invoices\create.ts" />
     <TypeScriptCompile Include="Scripts\Views\Invoices\edit.ts" />
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v14.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -1602,4 +1616,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
 </Project>

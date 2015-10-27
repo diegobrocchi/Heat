@@ -8,7 +8,7 @@ namespace Heat.Manager
     /// <summary>
     /// Il gestore delle chiamate ai contatti.
     /// </summary>
-    public class OutboundCallsManager
+    public class OutboundCallsManager : IOutboundCallsManager
 	{
 
 
@@ -49,5 +49,13 @@ namespace Heat.Manager
 			return result;
 
 		}
+
+        public List<AssignedOutboundCall> GetAssignedOutboundSet(string login)
+        {
+            List<AssignedOutboundCall> result;
+            result = _db.AssignedOutboundCalls.Where(x => x.User == login).ToList();
+            return result;
+
+        }
 	}
 }

@@ -13,21 +13,19 @@ namespace Heat.Controllers
 	{
 
 		private IHeatDBContext _db;
-		//Private _ocm As OutboundCallManager
-
 		private OutboundCallsModelViewBuilder _mb;
+
 		public OutboundCallsController(IHeatDBContext dbContext)
 		{
 			_db = dbContext;
 			_mb = new OutboundCallsModelViewBuilder(_db);
-			//_ocm = New OutboundCallManager(_db)
 		}
 
 		// GET: OutboundCalls
-		public ActionResult Index()
+		public ActionResult Index(IPrincipal user)
 		{
-			var outboundCalls = _db.OutboundCalls.Include(o => o.Contact);
-			return View(outboundCalls.ToList());
+            var model = _mb.GetIndexViewModel(user.Identity.Name );
+			return View(model);
 		}
 
 		// GET: OutboundCalls/Details/5

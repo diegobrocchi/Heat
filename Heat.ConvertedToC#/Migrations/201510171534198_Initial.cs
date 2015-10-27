@@ -237,8 +237,8 @@ namespace Heat.Migrations
                         LastFinalSerial_InvalidError = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.SerialSchemes", t => t.FinalSerialSchemaID, cascadeDelete: true)
-                .ForeignKey("dbo.SerialSchemes", t => t.TempSerialSchemaID, cascadeDelete: true)
+                .ForeignKey("dbo.SerialSchemes", t => t.FinalSerialSchemaID, cascadeDelete: false)
+                .ForeignKey("dbo.SerialSchemes", t => t.TempSerialSchemaID, cascadeDelete: false)
                 .Index(t => t.TempSerialSchemaID)
                 .Index(t => t.FinalSerialSchemaID);
             
@@ -389,7 +389,7 @@ namespace Heat.Migrations
                 .ForeignKey("dbo.Fuels", t => t.FuelID, cascadeDelete: true)
                 .ForeignKey("dbo.HeatTransferFluids", t => t.HeatTransferFluidID, cascadeDelete: true)
                 .ForeignKey("dbo.Manifacturers", t => t.ManifacturerId, cascadeDelete: true)
-                .ForeignKey("dbo.ManifacturerModels", t => t.ModelID, cascadeDelete: true)
+                .ForeignKey("dbo.ManifacturerModels", t => t.ModelID, cascadeDelete: false)
                 .Index(t => t.ManifacturerId)
                 .Index(t => t.ModelID)
                 .Index(t => t.FuelID)
@@ -639,7 +639,7 @@ namespace Heat.Migrations
                 .ForeignKey("dbo.CausalWarehouses", t => t.CausalWarehouseID, cascadeDelete: true)
                 .ForeignKey("dbo.Warehouses", t => t.DestinationID, cascadeDelete: true)
                 .ForeignKey("dbo.Products", t => t.ProductID, cascadeDelete: true)
-                .ForeignKey("dbo.Warehouses", t => t.SourceID, cascadeDelete: true)
+                .ForeignKey("dbo.Warehouses", t => t.SourceID, cascadeDelete: false)
                 .Index(t => t.ProductID)
                 .Index(t => t.SourceID)
                 .Index(t => t.DestinationID)
