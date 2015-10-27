@@ -1,14 +1,10 @@
 ﻿using System.Web.Mvc;
 using log4net;
-using Owin;
 using Microsoft.Owin.Security;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
-using System;
-using System.Globalization;
 using System.Linq;
-using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Heat.Models;
 

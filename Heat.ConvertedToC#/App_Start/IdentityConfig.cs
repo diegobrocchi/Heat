@@ -1,28 +1,4 @@
-using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Xml.Linq;
-using System.Diagnostics;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Caching;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Mvc.Html;
-using System.Web.Routing;
-using System.Web.SessionState;
-using System.Web.Security;
-using System.Web.Profile;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
@@ -30,14 +6,13 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using System.Data.Entity;
 using Heat.Repositories;
 using Heat.Models;
 
 namespace Heat
 {
 
-	public class EmailService : IIdentityMessageService
+    public class EmailService : IIdentityMessageService
 	{
 
 		public Task SendAsync(IdentityMessage message)
@@ -50,7 +25,7 @@ namespace Heat
 namespace Heat
 {
 
-	public class SmsService : IIdentityMessageService
+    public class SmsService : IIdentityMessageService
 	{
 
 		public Task SendAsync(IdentityMessage message)
@@ -63,8 +38,8 @@ namespace Heat
 namespace Heat
 {
 
-	// Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-	public class HeatUserManager : UserManager<HeatUser>
+    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
+    public class HeatUserManager : UserManager<HeatUser>
 	{
 
 		public HeatUserManager(IUserStore<HeatUser> store) : base(store)
@@ -117,8 +92,8 @@ namespace Heat
 namespace Heat
 {
 
-	// Configure the application sign-in manager which is used in this application.
-	public class ApplicationSignInManager : SignInManager<HeatUser, string>
+    // Configure the application sign-in manager which is used in this application.
+    public class ApplicationSignInManager : SignInManager<HeatUser, string>
 	{
 		public ApplicationSignInManager(HeatUserManager userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
 		{
@@ -140,48 +115,48 @@ namespace Heat
 namespace Heat
 {
 
-	//Public Class HeatDBInitializer
-	//    Inherits DropCreateDatabaseAlways(Of HeatDBContext) ' CreateDatabaseIfNotExists(Of HeatDBContext)
+    //Public Class HeatDBInitializer
+    //    Inherits DropCreateDatabaseAlways(Of HeatDBContext) ' CreateDatabaseIfNotExists(Of HeatDBContext)
 
-	//    Protected Overrides Sub Seed(context As HeatDBContext)
-	//        'InitializeIdentity(context)
-	//        MyBase.Seed(context)
-	//    End Sub
+    //    Protected Overrides Sub Seed(context As HeatDBContext)
+    //        'InitializeIdentity(context)
+    //        MyBase.Seed(context)
+    //    End Sub
 
-	//    Public Sub InitializeIdentity(DbConfiguration As HeatDBContext)
-	//        'Dim um As HeatUserManager = HttpContext.Current.GetOwinContext().GetUserManager(Of HeatUserManager)()
-	//        'Dim rm As HeatRoleManager = HttpContext.Current.GetOwinContext().Get(Of HeatRoleManager)()
+    //    Public Sub InitializeIdentity(DbConfiguration As HeatDBContext)
+    //        'Dim um As HeatUserManager = HttpContext.Current.GetOwinContext().GetUserManager(Of HeatUserManager)()
+    //        'Dim rm As HeatRoleManager = HttpContext.Current.GetOwinContext().Get(Of HeatRoleManager)()
 
-	//        'Const userName As String = "demo"
-	//        'Const password As String = "demo"
-	//        'Const role As String = "canView"
+    //        'Const userName As String = "demo"
+    //        'Const password As String = "demo"
+    //        'Const role As String = "canView"
 
-	//        'Dim cr = rm.FindByName(role)
+    //        'Dim cr = rm.FindByName(role)
 
-	//        'If IsNothing(cr) Then
-	//        '    cr = New HeatRole(role, "Può visualizzare")
-	//        '    Dim result = rm.Create(cr)
-	//        'End If
+    //        'If IsNothing(cr) Then
+    //        '    cr = New HeatRole(role, "Può visualizzare")
+    //        '    Dim result = rm.Create(cr)
+    //        'End If
 
-	//        'Dim cu = um.FindByName(userName)
-	//        'If IsNothing(cu) Then
-	//        '    cu = New HeatUser With {.UserName = userName}
-	//        '    Dim result = um.Create(cu, password)
-	//        '    result = um.SetLockoutEnabled(cu.Id, False)
-	//        'End If
+    //        'Dim cu = um.FindByName(userName)
+    //        'If IsNothing(cu) Then
+    //        '    cu = New HeatUser With {.UserName = userName}
+    //        '    Dim result = um.Create(cu, password)
+    //        '    result = um.SetLockoutEnabled(cu.Id, False)
+    //        'End If
 
-	//        'Dim RolesForUser = um.GetRoles(cu.Id)
-	//        'If Not RolesForUser.Contains(cr.Name) Then
-	//        '    Dim result = um.AddToRole(cu.Id, cr.Name)
+    //        'Dim RolesForUser = um.GetRoles(cu.Id)
+    //        'If Not RolesForUser.Contains(cr.Name) Then
+    //        '    Dim result = um.AddToRole(cu.Id, cr.Name)
 
-	//        'End If
+    //        'End If
 
-	//    End Sub
+    //    End Sub
 
 
-	//End Class
+    //End Class
 
-	public class HeatRoleManager : RoleManager<HeatRole>
+    public class HeatRoleManager : RoleManager<HeatRole>
 	{
 
 		public HeatRoleManager(IRoleStore<HeatRole, string> roleStore) : base(roleStore)

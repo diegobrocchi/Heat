@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.VisualBasic.ApplicationServices;
-using Microsoft.VisualBasic.CompilerServices;
 using Microsoft.VisualBasic.Devices;
 
 // This file was created by the VB to C# converter (SharpDevelop 4.4.2.9749).
@@ -12,7 +10,7 @@ using Microsoft.VisualBasic.Devices;
 
 namespace Heat.My
 {
-	sealed partial class MyProject
+    sealed partial class MyProject
 	{
 		[ThreadStatic] static MyApplication application;
 		

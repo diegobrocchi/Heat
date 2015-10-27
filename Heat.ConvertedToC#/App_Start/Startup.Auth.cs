@@ -1,28 +1,4 @@
-using Microsoft.VisualBasic;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Xml.Linq;
-using System.Diagnostics;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Caching;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using System.Web.Mvc.Html;
-using System.Web.Routing;
-using System.Web.SessionState;
-using System.Web.Security;
-using System.Web.Profile;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -35,7 +11,7 @@ using Heat.Models;
 namespace Heat
 {
 
-	public partial class Startup
+    public partial class Startup
 	{
 		// For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
 		public void ConfigureAuth(IAppBuilder app)
