@@ -50,6 +50,11 @@ namespace Heat.Manager
 
 		}
 
+        /// <summary>
+        /// Ritorna la lista delle chiamate assegnate all'utente
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public List<AssignedOutboundCall> GetAssignedOutboundSet(string login)
         {
             List<AssignedOutboundCall> result;

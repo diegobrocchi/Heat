@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201510271404292_AssignedOutbound.Designer.cs">
       <DependentUpon>201510271404292_AssignedOutbound.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510291442225_contactName-AssignedOutbound.cs" />
+    <Compile Include="Migrations\201510291442225_contactName-AssignedOutbound.Designer.cs">
+      <DependentUpon>201510291442225_contactName-AssignedOutbound.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\DecimalModelBinder.cs" />
     <Compile Include="ModelBinders\PrincipalModelBinder.cs" />
@@ -450,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510271404292_AssignedOutbound.resx">
       <DependentUpon>201510271404292_AssignedOutbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510291442225_contactName-AssignedOutbound.resx">
+      <DependentUpon>201510291442225_contactName-AssignedOutbound.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

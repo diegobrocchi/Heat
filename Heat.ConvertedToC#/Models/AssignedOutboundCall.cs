@@ -11,6 +11,7 @@ namespace Heat.Models
         public int ID {get; set;}
         public string User {get; set;}
         public DateTime AssignmentDate {get; set;}
+        public string ContactName { get; set; }
 
     }
 }

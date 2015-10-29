@@ -3,7 +3,6 @@ namespace Heat.ViewModels.OutboundCall
 
     public class ProposedOutboundCallsViewModel
 	{
-
 		public int ID { get; set; }
 
 		public string User { get; set; }

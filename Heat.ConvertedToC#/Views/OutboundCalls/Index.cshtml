@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Heat.ViewModels.OutboundCalls.AssignedOutboundCallViewModel>
+﻿@model  Heat.ViewModels.OutboundCalls.AssignedOutboundCallViewModel 
 
 @{
     ViewBag.Title = "Index";
@@ -6,32 +6,34 @@
 
 <h2>Index</h2>
 
+<div>
+    Elenco chiamate assegnate all'utente @Model.Login 
+</div>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Genera nuove", "GetNextProposed")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User)
+            @Html.DisplayNameFor(model => model.Calls.First().ContactName )
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactName)
+            @Html.DisplayNameFor(model => model.Calls.First().AssignmentDate)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Calls) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.ContactName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.AssignmentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Chiama", "Call", new { id=item.ID })
         </td>
     </tr>
 }
