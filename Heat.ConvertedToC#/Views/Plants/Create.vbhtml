@@ -1,4 +1,4 @@
-﻿@ModelType Heat.Viewmodels.Plants.CreatePlantViewModel 
+﻿@ModelType Heat.ViewModels.Plants.CreatePlantViewModel 
 @Code
     ViewData("Title") = "Crea un nuovo impianto - dati identificativi"
 End Code

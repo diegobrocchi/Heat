@@ -1,5 +1,7 @@
 using Heat.ViewModels.OutboundCall;
 using Heat.Manager;
+using Heat.ViewModels.OutboundCalls;
+using System.Collections.Generic;
 namespace Heat
 {
 
@@ -7,24 +9,47 @@ namespace Heat
     /// Costruisce tutti i modelli per le View
     /// </summary>
     public class OutboundCallsModelViewBuilder
-	{
-		private IHeatDBContext _db;
+    {
+        private IHeatDBContext _db;
+        private IOutboundCallsManager _ocm;
 
-		private OutboundCallsManager _ocm;
-		public OutboundCallsModelViewBuilder(IHeatDBContext dbContext)
-		{
-			_db = dbContext;
-			_ocm = new OutboundCallsManager(_db);
-		}
+        public OutboundCallsModelViewBuilder(IHeatDBContext dbContext)
+            : this(dbContext, new OutboundCallsManager(dbContext))
+        {
+        }
 
-		public ProposedOutboundCallsViewModel GetNextProposed(string login)
-		{
-			ProposedOutboundCallsViewModel result = new ProposedOutboundCallsViewModel();
+        public OutboundCallsModelViewBuilder(IHeatDBContext dbContext, IOutboundCallsManager manager)
+        {
+            _db = dbContext;
+            _ocm = manager;
+        }
 
-			result.User = login;
 
-			return result;
+        /// <summary>
+        /// Genera la lista delle prossime chiamate
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public ProposedOutboundCallsViewModel GetNextProposed(string login)
+        {
+            ProposedOutboundCallsViewModel result = new ProposedOutboundCallsViewModel();
+            result.User = login;
+            result.Calls = _ocm.GetNextOutboundCallSet(login);
+            return result;
 
-		}
-	}
+        }
+
+        /// <summary>
+        /// Costruisce il modello per la view con l'elenco delle chiamate già assegnate all'utente.
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        public AssignedOutboundCallViewModel GetIndexViewModel(string login)
+        {
+            AssignedOutboundCallViewModel result = new AssignedOutboundCallViewModel();
+            result.Login = login;
+            result.Calls = _ocm.GetAssignedOutboundSet(login);
+            return result;
+        }
+    }
 }

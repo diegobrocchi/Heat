@@ -1,0 +1,41 @@
+﻿@model  Heat.ViewModels.OutboundCalls.AssignedOutboundCallViewModel 
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    Elenco chiamate assegnate all'utente @Model.Login 
+</div>
+
+<p>
+    @Html.ActionLink("Genera nuove", "SetCriteria")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Calls.First().ContactName )
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calls.First().AssignmentDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Calls) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignmentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Chiama", "Call", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

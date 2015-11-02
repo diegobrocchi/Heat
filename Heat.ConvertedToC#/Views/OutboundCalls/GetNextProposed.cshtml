@@ -1,0 +1,49 @@
+﻿@model  Heat.ViewModels.OutboundCall.ProposedOutboundCallsViewModel 
+
+@{
+    ViewBag.Title = "GetNextProposed";
+}
+
+<h2>GetNextProposed</h2>
+
+<p>
+    @Html.ActionLink("Create New", "GetNextProposed")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlantID)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Calls) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlantID )
+            </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@using (@Html.BeginForm())
+{
+    <div>
+
+    </div>    
+}
