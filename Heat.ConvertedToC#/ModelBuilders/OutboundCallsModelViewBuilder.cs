@@ -33,8 +33,8 @@ namespace Heat
         public ProposedOutboundCallsViewModel GetNextProposed(string login)
         {
             ProposedOutboundCallsViewModel result = new ProposedOutboundCallsViewModel();
-
             result.User = login;
+            result.Calls = _ocm.GetNextOutboundCallSet(login);
             return result;
 
         }
@@ -42,13 +42,13 @@ namespace Heat
         /// <summary>
         /// Costruisce il modello per la view con l'elenco delle chiamate già assegnate all'utente.
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="login"></param>
         /// <returns></returns>
         public AssignedOutboundCallViewModel GetIndexViewModel(string login)
         {
             AssignedOutboundCallViewModel result = new AssignedOutboundCallViewModel();
+            result.Login = login;
             result.Calls = _ocm.GetAssignedOutboundSet(login);
-
             return result;
         }
     }

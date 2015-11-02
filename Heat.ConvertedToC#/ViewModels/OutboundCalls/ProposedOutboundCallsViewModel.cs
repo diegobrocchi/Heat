@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 namespace Heat.ViewModels.OutboundCall
 {
 
@@ -11,6 +12,9 @@ namespace Heat.ViewModels.OutboundCall
 		public string PlantDetails { get; set; }
 		public string Telephone1 { get; set; }
 		public string Telephone2 { get; set; }
+
+        public string Login { get; set; }
+        public List<Models.ProposedOutBoundCall> Calls { get; set; }
 
 	}
 }

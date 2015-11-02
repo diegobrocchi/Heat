@@ -247,6 +247,7 @@
     <Compile Include="Extensions\AutomapperExtensions.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\SpecificationExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -259,6 +260,7 @@
     <Compile Include="Manager\OutboundCallManager.cs" />
     <Compile Include="Manager\PlantManager.cs" />
     <Compile Include="Manager\ProductManager.cs" />
+    <Compile Include="Manager\ProposedOutBoundCallDTO.cs" />
     <Compile Include="Manager\WarehouseMovementManager.cs" />
     <Compile Include="Migrations\201510171534198_Initial.cs" />
     <Compile Include="Migrations\201510171534198_Initial.Designer.cs">
@@ -359,6 +361,11 @@
     </Compile>
     <Compile Include="Repositories\HeatDBContext.cs" />
     <Compile Include="Repositories\IHeatDBContext.cs" />
+    <Compile Include="Specification\AndSpecification.cs" />
+    <Compile Include="Specification\ExpressionSpecification.cs" />
+    <Compile Include="Specification\Interfaces\ISpecification.cs" />
+    <Compile Include="Specification\NotSpecification.cs" />
+    <Compile Include="Specification\OrSpecification.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Types\SerialNumber.cs" />
     <Compile Include="Validation\EditableInvoiceValidator.cs" />
@@ -401,6 +408,7 @@
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.cs" />
     <Compile Include="ViewModels\NumberingViewModels.cs" />
     <Compile Include="ViewModels\OutboundCalls\AssignedOutboundCallViewModel.cs" />
+    <Compile Include="ViewModels\OutboundCalls\OutboundCallsCriteriaViewModel.cs" />
     <Compile Include="ViewModels\OutboundCalls\ProposedOutboundCallsViewModel.cs" />
     <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.cs" />
     <Compile Include="ViewModels\Plants\AddContactPlantViewModel.cs" />
@@ -1457,7 +1465,6 @@
     <Content Include="Views\OutboundCalls\Delete.vbhtml" />
     <Content Include="Views\OutboundCalls\Details.vbhtml" />
     <Content Include="Views\OutboundCalls\Edit.vbhtml" />
-    <Content Include="Views\OutboundCalls\GetNextProposed.vbhtml" />
     <Content Include="Views\Payments\Create.vbhtml" />
     <Content Include="Views\Payments\Delete.vbhtml" />
     <Content Include="Views\Payments\Details.vbhtml" />
@@ -1563,6 +1570,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\OutboundCalls\Index.cshtml" />
+    <Content Include="Views\OutboundCalls\GetNextProposed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
