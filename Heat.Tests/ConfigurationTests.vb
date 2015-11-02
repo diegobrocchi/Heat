@@ -6,7 +6,7 @@ Public Class ConfigurationTests
 
     <TestMethod> _
     Public Sub Initi()
-        Dim cs As New Global.Heat.Migrations.Configuration
+        'Dim cs As New Global.Heat.Migrations.Configuration
 
         'cs.InitializeIdentity(New HeatDBContext)
 
