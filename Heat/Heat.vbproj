@@ -1791,8 +1791,6 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Views\Customers\index.js" />
-    <Content Include="Scripts\Views\Invoices\create.js" />
-    <Content Include="Scripts\Views\Invoices\edit.js" />
     <Content Include="Scripts\Views\Plants\index.js" />
     <Content Include="Scripts\Views\Products\index.js" />
     <Content Include="Scripts\Views\WorkActions\index.js" />
@@ -1917,10 +1915,8 @@
     <Content Include="Views\Invoices\Partials\_invoiceRows.vbhtml" />
     <Content Include="Views\Invoices\confirmedIndex.vbhtml" />
     <Content Include="Views\Invoices\SelectCustomer.vbhtml" />
-    <Content Include="Scripts\Views\Invoices\create.js.map" />
     <Content Include="Views\Shared\_searchCustomer.vbhtml" />
     <Content Include="Views\Invoices\Partials\_addInvoiceRows.vbhtml" />
-    <Content Include="Scripts\Views\Invoices\edit.js.map" />
     <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\InvoiceRows\Create.vbhtml" />
     <Content Include="Views\InvoiceRows\Delete.vbhtml" />
@@ -2061,6 +2057,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Views\Invoices\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -2073,8 +2070,6 @@
     <TypeScriptCompile Include="Scripts\typings\jquery.validation\jquery.validation.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="Scripts\Views\Invoices\create.ts" />
-    <TypeScriptCompile Include="Scripts\Views\Invoices\edit.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
