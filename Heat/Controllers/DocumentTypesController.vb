@@ -8,7 +8,7 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports Heat.Models
 Imports Heat.Repositories
-Imports Heat.Viewmodels
+Imports Heat.ViewModels
 
 Namespace Controllers
     Public Class DocumentTypesController
