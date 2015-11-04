@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Security.Principal;
 using Heat.Models;
-using Heat.ViewModels.OutboundCall;
+using Heat.ViewModels.OutboundCalls;
 
 namespace Heat.Controllers
 {
@@ -39,7 +39,9 @@ namespace Heat.Controllers
         [HttpGet]
         public ActionResult SetCriteria()
         {
-            return View();
+            CriteriaViewModel model;
+            model = _mb.GetCriteriaViewModel();
+            return View(model);
         }
 
         [HttpGet()]

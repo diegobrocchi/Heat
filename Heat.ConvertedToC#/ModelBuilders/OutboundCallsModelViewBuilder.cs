@@ -2,6 +2,10 @@ using Heat.ViewModels.OutboundCall;
 using Heat.Manager;
 using Heat.ViewModels.OutboundCalls;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using System.Data.Entity;
+
 namespace Heat
 {
 
@@ -50,6 +54,18 @@ namespace Heat
             result.Login = login;
             result.Calls = _ocm.GetAssignedOutboundSet(login);
             return result;
+        }
+
+        public CriteriaViewModel  GetCriteriaViewModel()
+        {
+            CriteriaViewModel result = new CriteriaViewModel();
+            List<string> caps;
+
+            caps = _db.Addresses.Select(selector =>  selector.PostalCode ).Distinct().ToList();
+
+            result.CAPList = caps.ToSelectListItems(x => x.ToUpper() , x => x, "");
+            return result;
+
         }
     }
 }

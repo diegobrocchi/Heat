@@ -408,6 +408,7 @@
     <Compile Include="ViewModels\ManifacturerModels\IndexManifacturerModelViewModel.cs" />
     <Compile Include="ViewModels\NumberingViewModels.cs" />
     <Compile Include="ViewModels\OutboundCalls\AssignedOutboundCallViewModel.cs" />
+    <Compile Include="ViewModels\OutboundCalls\CriteriaViewModel.cs" />
     <Compile Include="ViewModels\OutboundCalls\OutboundCallsCriteriaViewModel.cs" />
     <Compile Include="ViewModels\OutboundCalls\ProposedOutboundCallsViewModel.cs" />
     <Compile Include="ViewModels\PlantServices\CreatePlantServiceViewModel.cs" />
@@ -1280,6 +1281,8 @@
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -1588,6 +1591,7 @@
     <None Include="Properties\PublishProfiles\Heat c#.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
   </ItemGroup>
   <ItemGroup>

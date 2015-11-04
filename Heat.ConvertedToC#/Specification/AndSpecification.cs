@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 
 namespace Heat.Specification
 {
-    internal class AndSpecification<T> : ISpecification<T>
+    internal class AndSpecification<T> : ISpecification<T> where T : EntityObject
     {
         private readonly ISpecification<T> _specification1;
         private readonly ISpecification<T> _specification2;
