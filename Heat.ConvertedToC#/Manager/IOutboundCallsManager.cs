@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Heat.Models;
+using Heat.ViewModels.OutboundCalls;
 
 namespace Heat.Manager
 {
     public interface IOutboundCallsManager
     {
-        List<ProposedOutBoundCall> GetNextOutboundCallSet(string login);
+        List<ProposedOutboundCallsGridViewModel> GetNextOutboundCallSet(OutboundCallsCriteria criteria);
         List<AssignedOutboundCall> GetAssignedOutboundSet(string login);
     }
 }

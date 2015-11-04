@@ -77,6 +77,7 @@ namespace Heat.Repositories
 		public DbSet<OutboundCall> OutboundCalls { get; set; }
 		public DbSet<ProposedOutBoundCall> ProposedOutboundCalls { get; set; }
         public DbSet<AssignedOutboundCall> AssignedOutboundCalls { get; set; }
+        public DbSet<ProposedCallsGeneration> ProposedCallsGenerations {get; set;}
 
         public DbSet<WarehouseMovement> WarehouseMovements { get; set; }
         
@@ -87,8 +88,7 @@ namespace Heat.Repositories
 			return base.SaveChanges();
 		}
 
-
-
+        
     }
 
 }

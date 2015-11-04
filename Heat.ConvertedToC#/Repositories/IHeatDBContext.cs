@@ -46,6 +46,7 @@ namespace Heat
 
 		DbSet<ProposedOutBoundCall> ProposedOutboundCalls { get; set; }
         DbSet<AssignedOutboundCall> AssignedOutboundCalls { get; set; }
+        DbSet<ProposedCallsGeneration> ProposedCallsGenerations { get; set; }
 
 		int SaveChanges();
 

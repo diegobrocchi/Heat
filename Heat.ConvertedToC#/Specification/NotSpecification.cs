@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 
 namespace Heat.Specification
 {
-    internal class NotSpecification<T> : ISpecification<T>
+    internal class NotSpecification<T> : ISpecification<T> where T : EntityObject
     {
         private readonly ISpecification<T> _wrapped;
 

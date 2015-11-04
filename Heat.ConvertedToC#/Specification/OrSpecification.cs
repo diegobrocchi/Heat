@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 
 namespace Heat.Specification
-{
-    internal class OrSpecification<T> : ISpecification<T>
+{ 
+    internal class OrSpecification<T> : ISpecification<T> where T : EntityObject
     {
         private readonly ISpecification<T> _specification1;
         private readonly ISpecification<T> _specification2;
@@ -18,7 +19,7 @@ namespace Heat.Specification
             }
         }
 
-        protected ISpecification<T> Specification2
+        protected ISpecification<T> Specification2  
         {
             get
             {
@@ -26,7 +27,7 @@ namespace Heat.Specification
             }
         }
 
-        internal OrSpecification(ISpecification<T> Spec1, ISpecification<T> Spec2)
+        internal OrSpecification(ISpecification<T> Spec1, ISpecification<T> Spec2)  
         {
             if (Spec1== null)
             {

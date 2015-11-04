@@ -14,8 +14,12 @@ namespace Heat.Manager
         /// <returns></returns>
         public string User { get; set; }
         public int PlantID { get; set; }
+        public string PlantRegionalID { get; set; }
         public string ContactName { get; set; }
-        public string TelephoneNumber { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
+        public string MainPhoneNumber { get; set; }
+        //public List<string> TelephoneNumbers { get; set; }
 
     }
 }

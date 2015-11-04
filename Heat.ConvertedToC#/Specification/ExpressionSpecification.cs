@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 
 namespace Heat.Specification
 {
-    public class ExpressionSpecification<T> : ISpecification<T>
+    public class ExpressionSpecification<T> : ISpecification<T> where T : EntityObject
     {
         private readonly Func<T, bool> _expression;
 
