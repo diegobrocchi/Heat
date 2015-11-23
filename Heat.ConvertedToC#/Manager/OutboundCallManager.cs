@@ -59,6 +59,16 @@ namespace Heat.Manager
                 userFilteredPlants = userFilteredPlants.Where(plant => plant.BuildingAddress.City == criteria.City);
             }
 
+            if (criteria.PlantClass != null)
+            {
+                userFilteredPlants = userFilteredPlants.Where(plant => plant.PlantClass.Name == criteria.PlantClass);
+            }
+
+            if ( criteria.PlantType != null)
+            {
+                userFilteredPlants = userFilteredPlants.Where(plant => plant.PlantType.Name == criteria.PlantType);
+            }
+
             //con LINQ to Entities non è possibile fare proiezioni su entità,
             //quindi è necessario fare 2 giri: 
             //il primo estrae i valori in un DTO, il secondo genera le entità
@@ -137,6 +147,7 @@ namespace Heat.Manager
             {
                 result.CAP = viewCriteria.SelectedCAP;
             }
+
             if (viewCriteria.SelectedCity == "_ALLVALUES")
             {
                 result.City = null;
@@ -145,6 +156,25 @@ namespace Heat.Manager
             {
                 result.City = viewCriteria.SelectedCity;
             }
+
+            if (viewCriteria.PlantClassSelected == "_ALLVALUES")
+            {
+                result.PlantClass = null;
+            }
+            else
+            {
+                result.PlantClass = viewCriteria.PlantClassSelected;
+            }
+
+            if (viewCriteria.PlantTypeSelected =="_ALLVALUES")
+            {
+                result.PlantType = null;
+            }
+            else
+            {
+                result.PlantType = viewCriteria.PlantTypeSelected;
+            }
+
             return result;
         }
     }

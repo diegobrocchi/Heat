@@ -30,6 +30,24 @@
                 @Html.ValidationMessageFor(model => model.SelectedCity, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlantClassSelected , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PlantClassSelected, Model.PlantClassList , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PlantClassSelected, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlantTypeSelected, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PlantTypeSelected, Model.PlantTypeList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PlantTypeSelected, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
         <div class="form-group">
             @Html.LabelFor(model => model.DaysInFuture, htmlAttributes: new { @class="control-label col-md-2"})
             <div class="col-md-10">

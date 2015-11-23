@@ -62,12 +62,19 @@ namespace Heat
             CriteriaViewModel result = new CriteriaViewModel();
             List<string> caps;
             List<string> cities;
+            List<string> plantClasses;
+            List<string> plantTypes;
 
             caps = _db.Addresses.Select(selector =>  selector.PostalCode ).Distinct().ToList();
             cities = _db.Addresses.Select(selector => selector.City).Distinct().ToList();
+            plantClasses = _db.PlantClasses.Select(selector => selector.Name).ToList();
+            plantTypes = _db.PlantTypes.Select(selector => selector.Name).ToList();
             result.CAPList = caps.ToSelectListItems(x => x.ToUpper() , x => x,"_ALLVALUES",  true, "_ALLVALUES", " - tutti i CAP - ");
             result.CityList = cities.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutte le città - ");
+            result.PlantClassList = plantClasses.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti le classi impianto - ");
+            result.PlantTypeList = plantTypes.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti i tipi impianto - ");
             result.DaysInFuture = 30;
+
             return result;
 
         }

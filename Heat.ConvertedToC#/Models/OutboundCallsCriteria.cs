@@ -14,6 +14,8 @@ namespace Heat.Models
         public string CAP { get; set; }
         public string City { get; set; }
         public int DaysInFuture { get; set; }
+        public string PlantClass { get; set; }
+        public string PlantType { get; set; }
 
 
     }
