@@ -1,4 +1,4 @@
-namespace Heat
+namespace Heat.Models
 {
     /// <summary>
     /// Rappresenta una causale di movimento di magazzino.

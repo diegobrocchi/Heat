@@ -1,4 +1,4 @@
-namespace Heat
+namespace Heat.Models
 {
 
     public class CausalWarehouseGroup

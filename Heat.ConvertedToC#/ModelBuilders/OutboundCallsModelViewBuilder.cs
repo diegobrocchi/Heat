@@ -1,6 +1,5 @@
 using Heat.ViewModels.OutboundCalls;
 using Heat.Manager;
-using Heat.ViewModels.OutboundCalls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -39,7 +38,8 @@ namespace Heat
         {
             ProposedOutboundCallsViewModel result = new ProposedOutboundCallsViewModel();
             result.User = criteria.Login ;
-            result.Calls = _ocm.GetNextOutboundCallSet(criteria);
+            //result.Calls = _ocm.GetNextOutboundCallSet(criteria).Calls ;
+            //int res = _ocm.GetNextOutboundCallSet(criteria);
             return result;
 
         }

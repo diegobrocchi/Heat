@@ -3,7 +3,7 @@ using System.Linq;
 using System.Data.Entity;
 using Heat.Models;
 using System;
-using Heat.ViewModels.OutboundCalls;
+//using Heat.ViewModels.OutboundCalls;
 
 namespace Heat.Manager
 {
@@ -24,13 +24,14 @@ namespace Heat.Manager
         /// Genera una lista diversa per ogni utente.
         /// </summary>
         /// <param Name="login"></param>
-        /// <returns></returns>
-        public List<ProposedOutboundCallsGridViewModel> GetNextOutboundCallSet(OutboundCallsCriteria criteria)
+        /// <returns>La generazione proposta</returns>
+        public ProposedCallsGeneration GetNextOutboundCallSet(OutboundCallsCriteria criteria)
         {
-            List<ProposedOutBoundCall> result = new List<ProposedOutBoundCall>();
-            List<ProposedOutboundCallsGridViewModel> viewResult = new List<ProposedOutboundCallsGridViewModel>();
-            List<ProposedOutBoundCallDTO> tempResult;
+            //List<ProposedOutBoundCall> result = new List<ProposedOutBoundCall>();
+            ProposedCallsGeneration result = new ProposedCallsGeneration(criteria.Login);
 
+            //List<ProposedOutboundCallsGridViewModel> viewResult = new List<ProposedOutboundCallsGridViewModel>();
+            List<ProposedOutBoundCallDTO> tempResult;
 
             IQueryable<Plant> expiringServicePlants = null;
 
@@ -84,28 +85,30 @@ namespace Heat.Manager
             }).ToList();
 
 
-            result = tempResult.Select(x => new ProposedOutBoundCall
+            result.Calls  = tempResult.Select(x => new ProposedOutBoundCall
             {
                 PlantID = x.PlantID,
                 User = x.User
             }).ToList();
 
-            ProposedCallsGeneration generation = new ProposedCallsGeneration();
-            generation.Calls = result;
+            //ProposedCallsGeneration generation = new ProposedCallsGeneration(criteria.Login );
+            //generation.Calls = result;
             
-            viewResult = tempResult.Select(x => new ProposedOutboundCallsGridViewModel
-                {
-                    Address = x.Address,
-                    City = x.City,
-                    ContactName = x.ContactName,
-                    MainPhoneNumber = x.MainPhoneNumber,
-                    PlantRegionalID = x.PlantRegionalID
-                }).ToList();
+           
+            //viewResult = tempResult.Select(x => new ProposedOutboundCallsGridViewModel
+            //    {
+            //        Address = x.Address,
+            //        City = x.City,
+            //        ContactName = x.ContactName,
+            //        MainPhoneNumber = x.MainPhoneNumber,
+            //        PlantRegionalID = x.PlantRegionalID
+            //    }).ToList();
 
-            _db.ProposedOutboundCalls.AddRange(result);
+            _db.ProposedOutboundCalls.AddRange(result.Calls );
+            _db.ProposedCallsGenerations.Add(result );
             _db.SaveChanges();
 
-            return viewResult;
+            return result ;
         }
 
 
@@ -127,7 +130,7 @@ namespace Heat.Manager
         /// </summary>
         /// <param name="viewCriteria"></param>
         /// <returns></returns>
-        public OutboundCallsCriteria ToCriteria(CriteriaViewModel viewCriteria)
+        public OutboundCallsCriteria ToCriteria(ViewModels.OutboundCalls.CriteriaViewModel viewCriteria)
         {
             OutboundCallsCriteria result = new OutboundCallsCriteria();
             if (viewCriteria.DaysInFuture == 0)

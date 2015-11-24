@@ -24,7 +24,7 @@ namespace Heat.Controllers
             _ocm = new Manager.OutboundCallsManager(_db);
         }
 
-
+        [HttpGet]
         public ActionResult Index(IPrincipal user)
         {
             try

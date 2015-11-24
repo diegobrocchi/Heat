@@ -10,6 +10,12 @@ namespace Heat.Models
     /// </summary>
     public class ProposedCallsGeneration
     {
+        public ProposedCallsGeneration(string user)
+        {
+            User = user;
+            GenerationDate = DateTime.Now ;
+        }
+
         public int ID { get; set; }
         public DateTime GenerationDate { get; set; }
         public string User { get; set; }

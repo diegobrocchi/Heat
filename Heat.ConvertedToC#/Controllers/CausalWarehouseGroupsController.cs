@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
 using Heat.Repositories;
+using Heat.Models;
 
 namespace Heat.Controllers
 {

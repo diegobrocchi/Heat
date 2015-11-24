@@ -2,6 +2,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
+using Heat.Models;
 
 namespace Heat.Controllers
 {

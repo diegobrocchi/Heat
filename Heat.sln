@@ -9,6 +9,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Heat.Tests", "Heat.Tests\He
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heat.Converted", "Heat.ConvertedToC#\Heat.Converted.csproj", "{CC9E76A9-F8A3-4DFE-9F0C-CFB5F074E7A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heat.Converted.Tests", "Heat.Converted.Tests\Heat.Converted.Tests.csproj", "{363907D9-FB3B-41C1-9D1B-64C4CC76BBB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CC9E76A9-F8A3-4DFE-9F0C-CFB5F074E7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC9E76A9-F8A3-4DFE-9F0C-CFB5F074E7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC9E76A9-F8A3-4DFE-9F0C-CFB5F074E7A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363907D9-FB3B-41C1-9D1B-64C4CC76BBB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363907D9-FB3B-41C1-9D1B-64C4CC76BBB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363907D9-FB3B-41C1-9D1B-64C4CC76BBB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363907D9-FB3B-41C1-9D1B-64C4CC76BBB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
