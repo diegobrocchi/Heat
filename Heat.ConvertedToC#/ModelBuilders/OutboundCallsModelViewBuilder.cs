@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Heat.Models;
+using AutoMapper;
 
 namespace Heat
 {
@@ -37,8 +38,12 @@ namespace Heat
         public ProposedOutboundCallsViewModel GetNextProposed(OutboundCallsCriteria criteria)
         {
             ProposedOutboundCallsViewModel result = new ProposedOutboundCallsViewModel();
+            ProposedCallsGeneration generation = _ocm.GetNextOutboundCallSet(criteria);
+
             result.User = criteria.Login ;
-            //result.Calls = _ocm.GetNextOutboundCallSet(criteria).Calls ;
+            result.ProposedGenerationID = generation.ID;
+            result.GenerationDate = generation.GenerationDate;
+            result.Calls = Mapper.Map<List<ProposedOutboundCallsGridViewModel>>(generation.Calls);
             //int res = _ocm.GetNextOutboundCallSet(criteria);
             return result;
 
@@ -74,6 +79,7 @@ namespace Heat
             result.PlantClassList = plantClasses.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti le classi impianto - ");
             result.PlantTypeList = plantTypes.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti i tipi impianto - ");
             result.DaysInFuture = 30;
+            result.CallsNumber = 5;
 
             return result;
 

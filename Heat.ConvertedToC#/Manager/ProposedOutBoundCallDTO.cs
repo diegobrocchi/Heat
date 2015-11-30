@@ -8,6 +8,10 @@ namespace Heat.Manager
 {
     public class ProposedOutBoundCallDTO
     {
+        public ProposedOutBoundCallDTO()
+        {
+            Contacts = new List<Contact>();
+        }
         /// <summary>
         /// L'utente a cui è stata proposta la chiamata.
         /// </summary>
@@ -20,6 +24,7 @@ namespace Heat.Manager
         public string Address { get; set; }
         public string MainPhoneNumber { get; set; }
         //public List<string> TelephoneNumbers { get; set; }
+        public List<Contact> Contacts { get; set; }
 
     }
 }

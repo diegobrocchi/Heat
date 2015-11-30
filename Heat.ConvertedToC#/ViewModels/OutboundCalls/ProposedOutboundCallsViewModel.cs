@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 namespace Heat.ViewModels.OutboundCalls
 {
@@ -15,6 +16,7 @@ namespace Heat.ViewModels.OutboundCalls
 
 
         public int ProposedGenerationID { get; set; }
+        public DateTime GenerationDate { get; set; }
         public string Login { get; set; }
         public List<ProposedOutboundCallsGridViewModel> Calls { get; set; }
 

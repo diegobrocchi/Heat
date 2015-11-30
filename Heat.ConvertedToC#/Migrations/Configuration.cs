@@ -24,9 +24,11 @@ namespace Heat.Migrations
 
         protected override void Seed(HeatDBContext context)
         {
-            //If Not System.Diagnostics.Debugger.IsAttached Then
-            //    System.Diagnostics.Debugger.Launch()
-            //End If
+            if (!System.Diagnostics.Debugger.IsAttached)
+            {
+                System.Diagnostics.Debugger.Launch();
+
+            } 
 
             InitializeIdentity(context );
 
@@ -76,10 +78,13 @@ namespace Heat.Migrations
             Models.ThermalUnitKind tuk1 = new Models.ThermalUnitKind();
             Models.ThermalUnitKind tuk2 = new Models.ThermalUnitKind();
 
+            Models.ThermalUnit tu1 = new Models.ThermalUnit();
+
             Models.PlantClass plc1 = new Models.PlantClass();
             Models.PlantType pt1 = new Models.PlantType();
             Models.Plant pl1 = new Models.Plant();
-
+            Models.PlantService ps1 = new Models.PlantService();
+            Models.Contact c1 = new Models.Contact();
 
             Fuel1.Name = "Gasolio";
             Fuel2.Name = "Metano";
@@ -184,11 +189,60 @@ namespace Heat.Migrations
 
             pt1.Name = "Climatizzazione";
 
+            c1.Address = new Address();
+            c1.Address.AddressType = new AddressType();
+            c1.Address.City = "Milazzo";
+            c1.Address.Street = "Via del cane, 23";
+            c1.CellPhone = "23455677";
+            c1.Email = "lll@fff.vv";
+            c1.Fax = "";
+            c1.Name = "Diego Enrichetti";
+            c1.Phone = "334567777";
+            c1.URL = "http://www.enrichetti.com";
+            
+
+            ps1.LegalExpirationDate = DateTime.Now.AddDays(20);
+            ps1.Periodicity = Periodicity.Yearly;
+            ps1.PlannedServiceDate = DateTime.Now.AddDays(20);
+            ps1.PreviousServiceDate = null;
+
+            tu1.DismissDate = null;
+            tu1.FirstStartUp = DateTime.Now.AddDays(-100);
+            tu1.Fuel = Fuel1;
+            tu1.HeatTransferFluid = flu1;
+            tu1.InstallationDate = DateTime.Now;
+            tu1.Kind = ThermalUnitKindEnum.HotAirGenerator;
+            tu1.Manifacturer = manu1;
+            tu1.Model = manuModel1;
+            tu1.NominalThermalPowerMax = 234;
+            tu1.SerialNumber = "asdfgre";
+            tu1.ThermalEfficiencyPowerMax = 1000;
+            tu1.Warranty = "garanzia1";
+            tu1.WarrantyExpiration = DateTime.Now.AddDays(1000);
+
             pl1.Code = 999;
+            pl1.PlantDistinctCode = "ABCDEFG";
             pl1.Name = "impianto XYZ";
             pl1.PlantClass = plc1;
             pl1.PlantType = pt1;
             pl1.BuildingAddress = new Models.PlantBuilding();
+            pl1.BuildingAddress.Address = "via dei gelsomini";
+            pl1.BuildingAddress.Apartment = "34";
+            pl1.BuildingAddress.Area = "area x";
+            pl1.BuildingAddress.Building = "Margherita";
+            pl1.BuildingAddress.City = "Missaglia";
+            pl1.BuildingAddress.District = "LC";
+            pl1.BuildingAddress.EnergyCategory = EnergyCategoryEnum.E1;
+            pl1.BuildingAddress.GrossHeatedVolumeM3 = 1000;
+            pl1.BuildingAddress.GrossHeatedVolumeM3 = 34;
+            pl1.BuildingAddress.IsSingleUnit = true;
+            pl1.BuildingAddress.PostalCode = "23456";
+            pl1.BuildingAddress.Stair = "A";
+            pl1.BuildingAddress.StreetNumber = "33/A";
+            pl1.BuildingAddress.Zone = "Zone xyz";
+
+            pl1.Contacts.Add(c1);
+            pl1.Service = ps1;
 
             //###################################
             //Aggiunta dati al DB
@@ -215,9 +269,11 @@ namespace Heat.Migrations
 
             pl1.PlantClass = plc1;
             pl1.PlantType = pt1;
+            context.ThermalUnits.AddOrUpdate(tu => tu.ID, tu1);
+            pl1.ThermalUnit = tu1;
+
+            context.Contacts.Add(c1);
             context.Plants.AddOrUpdate(p => p.Name, pl1);
-
-
 
             //*****************
             //HACK HACK HACK
@@ -256,7 +312,7 @@ namespace Heat.Migrations
             manuModel2.ManifacturerID = manu2.ID;
             manuModel2.Model = "ModelABC";
 
-            //l'hack consiste nel valorizzare manifacturerID con il suo attuale valore, altrimenti è 0 si arrabbia.
+            //l'hack consiste nel valorizzare manifacturerID con il suo attuale valore, altrimenti è 0 e si arrabbia.
             //FINE HACK
 
             context.ManifacturerModels.AddOrUpdate(m => m.Model, manuModel1);

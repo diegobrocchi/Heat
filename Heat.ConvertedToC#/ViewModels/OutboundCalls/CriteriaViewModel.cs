@@ -6,6 +6,9 @@ namespace Heat.ViewModels.OutboundCalls
 {
     public class CriteriaViewModel
     {
+        [Display(Name = "Numero di chiamate")]
+        public int CallsNumber { get; set; }
+
         [Display(Name="CAP")]
         public string SelectedCAP { get; set; } 
         public IEnumerable<SelectListItem> CAPList { get; set; }

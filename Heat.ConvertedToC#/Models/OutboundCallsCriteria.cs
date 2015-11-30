@@ -11,6 +11,7 @@ namespace Heat.Models
     public class OutboundCallsCriteria
     {
         public string Login { get; set; }
+        public int TotalNumber { get; set; }
         public string CAP { get; set; }
         public string City { get; set; }
         public int DaysInFuture { get; set; }

@@ -96,6 +96,20 @@ namespace Heat.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult GetNextProposed(int ProposedGenerationID, IPrincipal user)
+        {
+            try
+            {
+
+                return RedirectToAction("index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.ToString();
+                return View("error");
+            }
+        }
 
 
         protected override void Dispose(bool disposing)

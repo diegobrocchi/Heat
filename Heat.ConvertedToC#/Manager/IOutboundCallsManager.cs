@@ -5,6 +5,10 @@ using Heat.ViewModels.OutboundCalls;
 
 namespace Heat.Manager
 {
+
+    /// <summary>
+    /// Si occupa delle logiche di business relative alle chiamate da effettuare agli impianti in scadenza.
+    /// </summary>
     public interface IOutboundCallsManager
     {
         //List<ProposedOutboundCallsGridViewModel> GetNextOutboundCallSet(OutboundCallsCriteria criteria);

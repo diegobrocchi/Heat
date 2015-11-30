@@ -6,7 +6,8 @@ using System.Web;
 namespace Heat.Models
 {
     /// <summary>
-    /// Rappresenta una generazione di OutboundCalls
+    /// Rappresenta una generazione di OutboundCalls.
+    /// La generazione identifica univocamente un set di chiamate proposte.
     /// </summary>
     public class ProposedCallsGeneration
     {

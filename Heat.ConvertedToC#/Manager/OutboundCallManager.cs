@@ -35,7 +35,13 @@ namespace Heat.Manager
 
             IQueryable<Plant> expiringServicePlants = null;
 
-            //cancella tutte le chiamate proposte all'utente pre-esistenti 
+            ////cancella tutte le chiamate proposte all'utente pre-esistenti 
+            //foreach (ProposedOutBoundCall poc in _db.ProposedOutboundCalls.Where(x=> x.User == criteria.Login ))
+            //{
+            //    poc.Contacts = null;
+            //}
+
+            //_db.SaveChanges();
             _db.ProposedOutboundCalls.RemoveRange(_db.ProposedOutboundCalls.Where(x => x.User == criteria.Login));
             _db.SaveChanges();
 
@@ -73,7 +79,7 @@ namespace Heat.Manager
             //con LINQ to Entities non è possibile fare proiezioni su entità,
             //quindi è necessario fare 2 giri: 
             //il primo estrae i valori in un DTO, il secondo genera le entità
-            tempResult = userFilteredPlants.Include(x=> x.BuildingAddress).Select(x => new ProposedOutBoundCallDTO
+            tempResult = userFilteredPlants.Include(x=> x.BuildingAddress).Include(x => x.Contacts ).Select(x => new ProposedOutBoundCallDTO
             {
                 PlantID = x.ID,
                 User = criteria.Login,
@@ -81,14 +87,16 @@ namespace Heat.Manager
                 Address = x.BuildingAddress.Address,
                 City = x.BuildingAddress.City,
                 ContactName = x.Contacts.FirstOrDefault().Name,
-                PlantRegionalID = x.PlantDistinctCode 
+                PlantRegionalID = x.PlantDistinctCode,
+                Contacts = x.Contacts 
             }).ToList();
 
 
             result.Calls  = tempResult.Select(x => new ProposedOutBoundCall
             {
                 PlantID = x.PlantID,
-                User = x.User
+                User = x.User,
+                Contacts = x.Contacts 
             }).ToList();
 
             //ProposedCallsGeneration generation = new ProposedCallsGeneration(criteria.Login );
@@ -133,6 +141,9 @@ namespace Heat.Manager
         public OutboundCallsCriteria ToCriteria(ViewModels.OutboundCalls.CriteriaViewModel viewCriteria)
         {
             OutboundCallsCriteria result = new OutboundCallsCriteria();
+
+            result.TotalNumber = viewCriteria.CallsNumber;
+
             if (viewCriteria.DaysInFuture == 0)
             {
                 result.DaysInFuture = 30; //default value
