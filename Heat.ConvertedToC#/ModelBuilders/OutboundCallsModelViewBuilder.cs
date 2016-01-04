@@ -62,6 +62,7 @@ namespace Heat
             return result;
         }
 
+
         public CriteriaViewModel  GetCriteriaViewModel()
         {
             CriteriaViewModel result = new CriteriaViewModel();
@@ -74,7 +75,8 @@ namespace Heat
             cities = _db.Addresses.Select(selector => selector.City).Distinct().ToList();
             plantClasses = _db.PlantClasses.Select(selector => selector.Name).ToList();
             plantTypes = _db.PlantTypes.Select(selector => selector.Name).ToList();
-            result.CAPList = caps.ToSelectListItems(x => x.ToUpper() , x => x,"_ALLVALUES",  true, "_ALLVALUES", " - tutti i CAP - ");
+
+            result.CAPList = caps.ToSelectListItems(x => x  , x => x,"_ALLVALUES",  true, "_ALLVALUES", " - tutti i CAP - ");
             result.CityList = cities.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutte le città - ");
             result.PlantClassList = plantClasses.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti le classi impianto - ");
             result.PlantTypeList = plantTypes.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti i tipi impianto - ");

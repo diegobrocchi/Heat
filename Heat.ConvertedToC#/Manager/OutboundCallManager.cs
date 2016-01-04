@@ -35,13 +35,8 @@ namespace Heat.Manager
 
             IQueryable<Plant> expiringServicePlants = null;
 
-            ////cancella tutte le chiamate proposte all'utente pre-esistenti 
-            //foreach (ProposedOutBoundCall poc in _db.ProposedOutboundCalls.Where(x=> x.User == criteria.Login ))
-            //{
-            //    poc.Contacts = null;
-            //}
-
-            //_db.SaveChanges();
+            //cancella tutte le chiamate proposte all'utente pre-esistenti 
+            
             _db.ProposedOutboundCalls.RemoveRange(_db.ProposedOutboundCalls.Where(x => x.User == criteria.Login));
             _db.SaveChanges();
 
@@ -95,8 +90,8 @@ namespace Heat.Manager
             result.Calls  = tempResult.Select(x => new ProposedOutBoundCall
             {
                 PlantID = x.PlantID,
-                User = x.User,
-                Contacts = x.Contacts 
+                User = x.User
+                //Contacts = x.Contacts 
             }).ToList();
 
             //ProposedCallsGeneration generation = new ProposedCallsGeneration(criteria.Login );

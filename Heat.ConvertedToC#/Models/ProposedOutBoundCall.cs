@@ -10,13 +10,13 @@ namespace Heat.Models
 
 		public int ID { get; set; }
 		/// <summary>
-		/// L'utente a cui è stata proposta la chiamata.
+		/// L'utente Heat a cui è stata proposta la chiamata.
 		/// </summary>
 		/// <returns></returns>
 		public string User { get; set; }
 		public int PlantID { get; set; }
 		public Plant Plant { get; set; }
-		public List<Contact> Contacts { get; set; }
+		//public virtual List<Contact> Contacts { get; set; }
 
 	}
 }

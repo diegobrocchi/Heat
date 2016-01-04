@@ -10,6 +10,7 @@ using Heat.ViewModels.Plants;
 using DataTables.AspNet.Core;
 using Heat.Manager;
 using System.IO;
+using System.Text;
 
 namespace Heat.Controllers
 {
@@ -350,16 +351,27 @@ Plant plant)
 		}
 
 		[HttpPost()]
-		public ActionResult Import(HttpPostedFileBase uploadFilePlant)
+		public ActionResult Import(HttpPostedFileBase uploadFilePlant, HttpPostedFileBase uploadFileThermalUnit)
 		{
-			if ((uploadFilePlant != null) && uploadFilePlant.ContentLength > 0) {
-				string fileExt = null;
-				fileExt = System.IO.Path.GetExtension(uploadFilePlant.FileName).ToLower();
-				if (fileExt == ".txt") {
+			if (uploadFilePlant != null && uploadFilePlant.ContentLength > 0 && uploadFileThermalUnit != null && uploadFileThermalUnit.ContentLength>0) {
+				string plantFileExt;
+                string thermUnitFileExt;
+
+				plantFileExt = Path.GetExtension(uploadFilePlant.FileName).ToLower();
+                thermUnitFileExt = Path.GetExtension(uploadFileThermalUnit.FileName).ToLower();
+
+                if (plantFileExt == ".txt" && thermUnitFileExt == ".txt") {
 					ImportHelper ih = new ImportHelper(_db);
-					byte[] b = new byte[uploadFilePlant.ContentLength + 1];
-					uploadFilePlant.InputStream.Read(b, 0, uploadFilePlant.ContentLength);
-					if (ih.Plant(System.Text.Encoding.ASCII.GetString(b))) {
+					byte[] plantsFileBytes = new byte[uploadFilePlant.ContentLength + 1];
+                    byte[] thermalUnitsFileBytes = new byte[uploadFileThermalUnit.ContentLength + 1];
+
+					uploadFilePlant.InputStream.Read(plantsFileBytes, 0, uploadFilePlant.ContentLength);
+                    uploadFileThermalUnit.InputStream.Read(thermalUnitsFileBytes, 0, uploadFileThermalUnit.ContentLength);
+
+                    string plantFileText = Encoding.ASCII.GetString(plantsFileBytes);
+                    string thermalUnitFileText = Encoding.ASCII.GetString(thermalUnitsFileBytes);
+
+					if (ih.Plant(plantFileText, thermalUnitFileText )) {
 						return RedirectToAction("index");
 					} else {
 						ViewBag.error = "Errore durante l'importazione del file";

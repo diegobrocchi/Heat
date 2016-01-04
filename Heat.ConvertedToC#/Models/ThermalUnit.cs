@@ -21,7 +21,7 @@ namespace Heat.Models
 		public int ModelID { get; set; }
 		public ManifacturerModel Model { get; set; }
 		public string SerialNumber { get; set; }
-		public DateTime InstallationDate { get; set; }
+		public Nullable<DateTime> InstallationDate { get; set; }
 		public Nullable<DateTime> FirstStartUp { get; set; }
 		public string Warranty { get; set; }
 		public Nullable<DateTime> WarrantyExpiration { get; set; }

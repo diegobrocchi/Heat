@@ -223,12 +223,16 @@ namespace Heat
 
             Mapper.CreateMap<Product, ViewModels.Product.IndexDataTableProductViewModel>();
 
-            Mapper.CreateMap<ProposedOutBoundCall, ViewModels.OutboundCalls.ProposedOutboundCallsGridViewModel>().ForMember(
-                dest => dest.Address, opt => opt.MapFrom(x => x.Plant.BuildingAddress.Address)).ForMember(
-                dest => dest.PlantRegionalID, opt => opt.MapFrom(x => x.Plant.PlantDistinctCode)).ForMember(
-                dest => dest.ContactName, opt => opt.MapFrom(x => x.Contacts[0].Name)).ForMember(
-                dest => dest.City, opt => opt.MapFrom(x => x.Plant.BuildingAddress.City)).ForMember(
-                dest => dest.MainPhoneNumber, opt => opt.MapFrom(x => x.Plant.Contacts[0].Phone));
+            Mapper.CreateMap<ProposedOutBoundCall, ViewModels.OutboundCalls.ProposedOutboundCallsGridViewModel>().
+                ForMember(
+                dest => dest.Address, opt => opt.MapFrom(x => x.Plant.BuildingAddress.Address)).
+                ForMember(
+                dest => dest.PlantRegionalID, opt => opt.MapFrom(x => x.Plant.PlantDistinctCode)).
+                ForMember(
+                dest => dest.City, opt => opt.MapFrom(x => x.Plant.BuildingAddress.City)).
+                ForMember(
+                dest => dest.MainPhoneNumber, opt => opt.MapFrom(x => x.Plant.Contacts[0].Phone)).
+                ForMember(dest => dest.ContactName , opt => opt.Ignore());
                 
 
             Mapper.AssertConfigurationIsValid();

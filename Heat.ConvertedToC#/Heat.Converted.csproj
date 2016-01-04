@@ -252,6 +252,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Import\ImportHelper.cs" />
+    <Compile Include="Import\PlantImport.cs" />
+    <Compile Include="Import\ThermalUnitImport.cs" />
     <Compile Include="Manager\CustomerManager.cs" />
     <Compile Include="Manager\InvoiceManager.cs" />
     <Compile Include="Manager\IOutboundCallsManager.cs" />
@@ -277,6 +279,18 @@
     <Compile Include="Migrations\201511041559181_ProposedCallsGenerations.cs" />
     <Compile Include="Migrations\201511041559181_ProposedCallsGenerations.Designer.cs">
       <DependentUpon>201511041559181_ProposedCallsGenerations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601021300596_virtual-address-proposedcalls.cs" />
+    <Compile Include="Migrations\201601021300596_virtual-address-proposedcalls.Designer.cs">
+      <DependentUpon>201601021300596_virtual-address-proposedcalls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601021329546_remove-contacts-from-proposed.cs" />
+    <Compile Include="Migrations\201601021329546_remove-contacts-from-proposed.Designer.cs">
+      <DependentUpon>201601021329546_remove-contacts-from-proposed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601040528360_NullableInstallationDateInThermalUnit.cs" />
+    <Compile Include="Migrations\201601040528360_NullableInstallationDateInThermalUnit.Designer.cs">
+      <DependentUpon>201601040528360_NullableInstallationDateInThermalUnit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\DecimalModelBinder.cs" />
@@ -476,6 +490,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511041559181_ProposedCallsGenerations.resx">
       <DependentUpon>201511041559181_ProposedCallsGenerations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601021300596_virtual-address-proposedcalls.resx">
+      <DependentUpon>201601021300596_virtual-address-proposedcalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601021329546_remove-contacts-from-proposed.resx">
+      <DependentUpon>201601021329546_remove-contacts-from-proposed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601040528360_NullableInstallationDateInThermalUnit.resx">
+      <DependentUpon>201601040528360_NullableInstallationDateInThermalUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
