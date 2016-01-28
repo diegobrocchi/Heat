@@ -29,7 +29,7 @@ namespace Heat
             ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
             ModelBinders.Binders.Add(typeof(IPrincipal), new PrincipalModelBinder());
 
-            DataTables.AspNet.Mvc5.Configuration.Register();
+            DataTables.AspNet.Mvc5.Configuration.RegisterDataTables();
 
             DoAutomapperConfig();
 
@@ -112,7 +112,6 @@ namespace Heat
 
             Mapper.CreateMap<ViewModels.PlantServices.CreatePlantServiceViewModel, PlantService>().
                 ForMember(dest => dest.ID, opt => opt.Ignore());
-            //.ForMember(Function(dest) dest.Plant, Sub(opt) opt.Ignore())
 
             Mapper.CreateMap<ViewModels.WorkActions.CreateWorkActionViewModel, WorkAction>().
                 ForMember(dest => dest.ID, opt => opt.Ignore()).
@@ -142,6 +141,7 @@ namespace Heat
 
             Mapper.CreateMap<ViewModels.Plants.AddContactPlantViewModel, Contact>().
                 ForMember(dest => dest.ID, opt => opt.Ignore()).
+                ForMember(dest=> dest.Role, opt => opt.Ignore()).
                 ForMember(dest => dest.Address, opt => opt.MapFrom(src => Mapper.Map<ViewModels.Plants.AddContactPlantViewModel, Address>(src)));
 
             Mapper.CreateMap<ViewModels.Plants.AddThermInfoPlantViewModel, PlantBuilding>().

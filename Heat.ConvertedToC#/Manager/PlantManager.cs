@@ -34,7 +34,14 @@ namespace Heat.Manager
 			baseData = _db.Plants;
 
 			//poi filtra in base al termine inserito dall'utente
+            if (!string.IsNullOrEmpty(request.Search.Value))
+            {
 			filteredData = baseData.Where(p => p.Name.Contains(request.Search.Value));
+            }
+            else
+            {
+                filteredData = baseData;
+            }
 
 			string sortColumn = "plantdistinctcode";
 			string sortDirection = "ASC";

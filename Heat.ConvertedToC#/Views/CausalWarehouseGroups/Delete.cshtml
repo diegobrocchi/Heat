@@ -1,7 +1,8 @@
-﻿@ModelType Heat.CausalWarehouseGroup
-@Code
-    ViewData("Title") = "Delete"
-End Code
+﻿@model Heat.Models.CausalWarehouseGroup
+
+@{
+    ViewBag.Title = "Delete";
+}
 
 <h2>Delete</h2>
 
@@ -11,28 +12,29 @@ End Code
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(Function(model) model.Code)
+            @Html.DisplayNameFor(model => model.Code)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.Code)
+            @Html.DisplayFor(model => model.Code)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(Function(model) model.Description)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.Description)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
     </dl>
-    @Using (Html.BeginForm())
+
+    @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        @<div class="form-actions no-color">
+        <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
-    End Using
+    }
 </div>

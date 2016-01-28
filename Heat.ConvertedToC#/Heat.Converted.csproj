@@ -58,57 +58,57 @@
     <TypeScriptModuleKind>none</TypeScriptModuleKind>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DataTables.AspNet.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DataTables.AspNet.Core.2.0.0-alpha2-070602\lib\net45\DataTables.AspNet.Core.dll</HintPath>
+      <HintPath>..\packages\DataTables.AspNet.Core.2.0.0-beta2\lib\net45\DataTables.AspNet.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DataTables.AspNet.Mvc5, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DataTables.AspNet.Mvc5.2.0.0-alpha2-070602\lib\net45\DataTables.AspNet.Mvc5.dll</HintPath>
+      <HintPath>..\packages\DataTables.AspNet.Mvc5.2.0.0-beta2\lib\net45\DataTables.AspNet.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DynamicLINQ, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DynamicLINQ.1.0\lib\net40\DynamicLINQ.dll</HintPath>
+    <Reference Include="Elmah, Version=1.2.13605.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Elmah">
-      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
-    </Reference>
-    <Reference Include="Elmah.Mvc">
-      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="elmahappender_log4net">
-      <HintPath>..\packages\elmahappender_log4net.1.0.0.0\lib\net45\elmahappender_log4net.dll</HintPath>
+    <Reference Include="Elmah.Mvc, Version=2.1.2.1389, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Elmah.Mvc.2.1.2\lib\net40\Elmah.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="itextsharp, Version=5.5.6.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.8\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -127,20 +127,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Web.Common">
-      <HintPath>..\packages\Ninject.Web.Common.3.2.0.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ninject.Web.Mvc">
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -148,49 +158,50 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.identitymodel.services" />
-    <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    <Reference Include="System.Linq.Dynamic, Version=1.0.5840.25917, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.6\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebActivatorEx">
-      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="WebGrease">
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +224,7 @@
     <Compile Include="Controllers\CausalDocumentsController.cs" />
     <Compile Include="Controllers\CausalWarehouseGroupsController.cs" />
     <Compile Include="Controllers\CausalWarehousesController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DescriptiveInvoiceRowsController.cs" />
     <Compile Include="Controllers\DocumentTypesController.cs" />
@@ -251,6 +263,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Import\ContactImport.cs" />
     <Compile Include="Import\ImportHelper.cs" />
     <Compile Include="Import\PlantImport.cs" />
     <Compile Include="Import\ThermalUnitImport.cs" />
@@ -291,6 +304,26 @@
     <Compile Include="Migrations\201601040528360_NullableInstallationDateInThermalUnit.cs" />
     <Compile Include="Migrations\201601040528360_NullableInstallationDateInThermalUnit.Designer.cs">
       <DependentUpon>201601040528360_NullableInstallationDateInThermalUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601182104212_nullable_install_heater.cs" />
+    <Compile Include="Migrations\201601182104212_nullable_install_heater.Designer.cs">
+      <DependentUpon>201601182104212_nullable_install_heater.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601281959218_plantRole.cs" />
+    <Compile Include="Migrations\201601281959218_plantRole.Designer.cs">
+      <DependentUpon>201601281959218_plantRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601282000304_plantRoleToContact.cs" />
+    <Compile Include="Migrations\201601282000304_plantRoleToContact.Designer.cs">
+      <DependentUpon>201601282000304_plantRoleToContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601282035439_roleID_in_contact.cs" />
+    <Compile Include="Migrations\201601282035439_roleID_in_contact.Designer.cs">
+      <DependentUpon>201601282035439_roleID_in_contact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601282039481_nullableRolIDOnContact.cs" />
+    <Compile Include="Migrations\201601282039481_nullableRolIDOnContact.Designer.cs">
+      <DependentUpon>201601282039481_nullableRolIDOnContact.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\DecimalModelBinder.cs" />
@@ -350,6 +383,7 @@
     <Compile Include="Models\ProductInvoiceRow.cs" />
     <Compile Include="Models\ProposedCallsGeneration.cs" />
     <Compile Include="Models\ProposedOutBoundCall.cs" />
+    <Compile Include="Models\PlantRole.cs" />
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Models\SerialScheme.cs" />
     <Compile Include="Models\ThermalUnit.cs" />
@@ -500,6 +534,21 @@
     <EmbeddedResource Include="Migrations\201601040528360_NullableInstallationDateInThermalUnit.resx">
       <DependentUpon>201601040528360_NullableInstallationDateInThermalUnit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601182104212_nullable_install_heater.resx">
+      <DependentUpon>201601182104212_nullable_install_heater.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601281959218_plantRole.resx">
+      <DependentUpon>201601281959218_plantRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601282000304_plantRoleToContact.resx">
+      <DependentUpon>201601282000304_plantRoleToContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601282035439_roleID_in_contact.resx">
+      <DependentUpon>201601282035439_roleID_in_contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601282039481_nullableRolIDOnContact.resx">
+      <DependentUpon>201601282039481_nullableRolIDOnContact.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -514,7 +563,6 @@
   <ItemGroup>
     <Content Include="bin\System.Linq.Dynamic.dll" />
     <Content Include="bin\System.Web.WebPages.dll" />
-    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-bootswatch.css" />
     <Content Include="Content\bootstrap-bootswatch.css.map" />
     <Content Include="Content\bootstrap-bootswatch.min.css" />
@@ -1311,11 +1359,9 @@
     <Content Include="Scripts\globalize\relative-time.js" />
     <Content Include="Scripts\Heat.Globalize.js" />
     <Content Include="Scripts\Heat.js" />
-    <Content Include="Scripts\jquery-2.1.3.js" />
-    <Content Include="Scripts\jquery-2.1.3.min.js" />
-    <Content Include="Scripts\jquery-2.1.3.min.map" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -1345,6 +1391,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Views\Customers\index.js" />
+    <Content Include="Scripts\Views\DescriptiveInvoiceRow\create.js" />
     <Content Include="Scripts\Views\Invoices\create.js" />
     <Content Include="Scripts\Views\Invoices\create.js.map" />
     <Content Include="Scripts\Views\Invoices\edit.js" />
@@ -1392,16 +1439,6 @@
     <Content Include="Views\CausalDocuments\Details.vbhtml" />
     <Content Include="Views\CausalDocuments\Edit.vbhtml" />
     <Content Include="Views\CausalDocuments\Index.vbhtml" />
-    <Content Include="Views\CausalWarehouseGroups\Create.vbhtml" />
-    <Content Include="Views\CausalWarehouseGroups\Delete.vbhtml" />
-    <Content Include="Views\CausalWarehouseGroups\Details.vbhtml" />
-    <Content Include="Views\CausalWarehouseGroups\Edit.vbhtml" />
-    <Content Include="Views\CausalWarehouseGroups\Index.vbhtml" />
-    <Content Include="Views\CausalWarehouses\Create.vbhtml" />
-    <Content Include="Views\CausalWarehouses\Delete.vbhtml" />
-    <Content Include="Views\CausalWarehouses\Details.vbhtml" />
-    <Content Include="Views\CausalWarehouses\Edit.vbhtml" />
-    <Content Include="Views\CausalWarehouses\Index.vbhtml" />
     <Content Include="Views\Customers\Create.vbhtml" />
     <Content Include="Views\Customers\Delete.vbhtml" />
     <Content Include="Views\Customers\Details.vbhtml" />
@@ -1413,7 +1450,7 @@
     <Content Include="Views\Customers\Manage.vbhtml" />
     <Content Include="Views\Customers\Partials\_customerGrid.vbhtml" />
     <Content Include="Views\Customers\Search.vbhtml" />
-    <Content Include="Views\DescriptiveInvoiceRows\Create.vbhtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\CreateVB.vbhtml" />
     <Content Include="Views\DescriptiveInvoiceRows\Delete.vbhtml" />
     <Content Include="Views\DescriptiveInvoiceRows\Details.vbhtml" />
     <Content Include="Views\DescriptiveInvoiceRows\Edit.vbhtml" />
@@ -1507,14 +1544,14 @@
     <Content Include="Views\PlantClasses\Delete.vbhtml" />
     <Content Include="Views\PlantClasses\Details.vbhtml" />
     <Content Include="Views\PlantClasses\Edit.vbhtml" />
-    <Content Include="Views\PlantClasses\Index.vbhtml" />
     <Content Include="Views\PlantServices\Create.vbhtml" />
     <Content Include="Views\PlantServices\Delete.vbhtml" />
     <Content Include="Views\PlantServices\Details.vbhtml" />
     <Content Include="Views\PlantServices\Edit.vbhtml" />
     <Content Include="Views\PlantServices\Index.vbhtml" />
     <Content Include="Views\Plants\AddAnotherContact.vbhtml" />
-    <Content Include="Views\Plants\AddContact.vbhtml" />
+    <Content Include="Views\Contacts\Import.cshtml" />
+    <None Include="Views\Plants\AddContact.vbhtml.remove" />
     <Content Include="Views\Plants\AddMedium.vbhtml" />
     <Content Include="Views\Plants\AddThermInfo.vbhtml" />
     <Content Include="Views\Plants\Create.vbhtml" />
@@ -1532,7 +1569,6 @@
     <Content Include="Views\PlantTypes\Delete.vbhtml" />
     <Content Include="Views\PlantTypes\Details.vbhtml" />
     <Content Include="Views\PlantTypes\Edit.vbhtml" />
-    <Content Include="Views\PlantTypes\Index.vbhtml" />
     <Content Include="Views\ProductInvoiceRows\Create.vbhtml" />
     <Content Include="Views\ProductInvoiceRows\Delete.vbhtml" />
     <Content Include="Views\ProductInvoiceRows\Details.vbhtml" />
@@ -1560,7 +1596,6 @@
     <Content Include="Views\Shared\Error.vbhtml" />
     <Content Include="Views\Shared\Lockout.vbhtml" />
     <Content Include="Views\Shared\_indexPartial.vbhtml" />
-    <Content Include="Views\Shared\_Layout.vbhtml" />
     <Content Include="Views\Shared\_LoginPartial.vbhtml" />
     <Content Include="Views\Shared\_searchCustomer.vbhtml" />
     <Content Include="Views\Shared\_SearchPartial.vbhtml" />
@@ -1604,6 +1639,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\OutboundCalls\Index.cshtml" />
     <Content Include="Views\OutboundCalls\GetNextProposed.cshtml" />
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
+    <Content Include="Views\Contacts\Details.cshtml" />
+    <Content Include="Views\Contacts\Edit.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Plants\AddContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1622,11 +1663,22 @@
     </None>
     <None Include="Project_Readme.html" />
     <None Include="Properties\PublishProfiles\Heat c#.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Views\OutboundCalls\SetCriteria.cshtml" />
+    <Content Include="Views\PlantTypes\Index.cshtml" />
+    <Content Include="Views\PlantClasses\Index.cshtml" />
+    <Content Include="Views\CausalWarehouses\Index.cshtml" />
+    <Content Include="Views\CausalWarehouseGroups\Index.cshtml" />
+    <Content Include="Views\CausalWarehouseGroups\Create.cshtml" />
+    <Content Include="Views\CausalWarehouseGroups\Edit.cshtml" />
+    <Content Include="Views\CausalWarehouseGroups\Details.cshtml" />
+    <Content Include="Views\CausalWarehouseGroups\Delete.cshtml" />
+    <Content Include="Views\CausalWarehouses\Create.cshtml" />
+    <Content Include="Views\CausalWarehouses\Delete.cshtml" />
+    <Content Include="Views\CausalWarehouses\Details.cshtml" />
+    <Content Include="Views\CausalWarehouses\Edit.cshtml" />
+    <Content Include="Views\DescriptiveInvoiceRows\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

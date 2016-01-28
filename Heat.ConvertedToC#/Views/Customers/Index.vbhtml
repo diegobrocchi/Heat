@@ -1,4 +1,4 @@
-﻿@ModelType Heat.ViewModels.Customers.IndexCustomerViewModel 
+﻿@*@ModelType Heat.ViewModels.Customers.IndexCustomerViewModel*@ 
 @Code
     ViewData("Title") = "Gestione clienti"
 End Code
@@ -30,7 +30,7 @@ End Code
             <th>Indirizzo</th>
             <th>Città</th>
             <th>Telefono</th>
-            <th><a href="@Url.Action("create")" class=" btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th> 
+            <th><a href="@Url.Action("create")" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th> 
         </tr>
 
     </thead>

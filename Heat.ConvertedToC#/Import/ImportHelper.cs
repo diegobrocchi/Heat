@@ -28,7 +28,7 @@ namespace Heat
         {
             string[] fileRows = null;
             string[] fileRowFields = null;
-            List<Models.Customer> NewCustomersList = new List<Models.Customer>();
+            List<Customer> NewCustomersList = new List<Customer>();
 
             try
             {
@@ -45,7 +45,7 @@ namespace Heat
                         {
                             fileRowFields = fileRows[i].Split(new char[] { ';' });
 
-                            Models.Customer newCustomer = new Models.Customer();
+                            Customer newCustomer = new Customer();
                             newCustomer.Address = fileRowFields[4];
                             newCustomer.City = fileRowFields[5];
                             newCustomer.District = fileRowFields[7];
@@ -86,7 +86,8 @@ namespace Heat
         /// <summary>
         /// Importa la lista degli impianti a partire dal testo contenuto nel file.
         /// </summary>
-        /// <param name="fileContentPlants"></param>
+        /// <param name="fileContentPlants">Il file con gli impianti.</param>
+        /// <param name="fileContentThermalUnits">Il file con i thermal units</param>
         /// <returns></returns>
 		public bool Plant(string fileContentPlants, string fileContentThermalUnits)
         {
@@ -100,41 +101,57 @@ namespace Heat
             {
                 if (PlantFileIsValid(fileContentPlants) && ThermalUnitFileIsValid(fileContentThermalUnits))
                 {
+                    //elimino il pre-esistente
+                    _context.ManifacturerModels.RemoveRange(_context.ManifacturerModels.ToList());
+                    _context.Manifacturers.RemoveRange(_context.Manifacturers.ToList());
+                    _context.ThermalUnits.RemoveRange(_context.ThermalUnits.ToList());
+                    _context.Plants.RemoveRange(_context.Plants.ToList());
+                    _context.Fuels.RemoveRange(_context.Fuels.ToList());
+                    _context.PlantTypes.RemoveRange(_context.PlantTypes.ToList());
+                    _context.PlantClasses.RemoveRange(_context.PlantClasses.ToList());
+
+                    //_context.SaveChanges();
+
                     importPlants = MapToPlantList(fileContentPlants);
                     importThermalUnits = MapToThermalUnitList(fileContentThermalUnits);
 
                     //aggiungo tutti i PlantTypes
                     List<PlantType> PlantTypes = new List<PlantType>();
                     PlantTypes = importPlants.GroupBy(x => x.TipologiaImpianto).Select(grp => new PlantType() { Name = grp.First().TipologiaImpianto }).ToList();
-                    _context.PlantTypes.RemoveRange(_context.PlantTypes.ToList());
                     _context.PlantTypes.AddRange(PlantTypes);
 
                     //aggiungo tutti i Fuels
                     List<Fuel> Fuels = new List<Fuel>();
                     Fuels = importPlants.Where(x => x.Combustibile != String.Empty).GroupBy(x => x.Combustibile).Select(grp => new Fuel() { Name = grp.First().Combustibile }).ToList();
-                    _context.Fuels.RemoveRange(_context.Fuels.ToList());
                     _context.Fuels.AddRange(Fuels);
 
                     //aggiungo tutti i PlantClasses
                     List<PlantClass> PlantClasses;
                     PlantClasses = importPlants.Where(x => x.ClasseImpianto != String.Empty).GroupBy(x => x.ClasseImpianto).Select(grp => new PlantClass() { Name = grp.First().ClasseImpianto }).ToList();
-                    _context.PlantClasses.RemoveRange(_context.PlantClasses.ToList());
                     _context.PlantClasses.AddRange(PlantClasses);
 
                     //aggiungo tutti i Manifacturers
                     List<Manifacturer> Manifacturers;
                     Manifacturers = importThermalUnits.GroupBy(x => x.Marca).Select(grp => new Manifacturer { Name = grp.First().Marca }).ToList();
-                    _context.Manifacturers.RemoveRange(_context.Manifacturers.ToList());
                     _context.Manifacturers.AddRange(Manifacturers);
+                    //_context.SaveChanges();
 
                     //aggiungo tutti i ManifacturerModels
                     List<ManifacturerModel> ManifacturerModels;
                     //ManifacturerModels = importThermalUnits.Where(x => x.ModelloCaldaia != string.Empty).GroupBy(x => x.ModelloCaldaia).Select(grp => new ManifacturerModel { Manifacturer = null, Model = grp.First().ModelloCaldaia }).ToList();
-                    ManifacturerModels = importThermalUnits.Where(x => x.ModelloCaldaia != string.Empty).GroupBy(x => x.ModelloCaldaia).Select(grp => new ManifacturerModel { Manifacturer = Manifacturers.Where(m => m.Name == grp.First().Marca).First(), Model = grp.First().ModelloCaldaia }).ToList();
-                    _context.ManifacturerModels.RemoveRange(_context.ManifacturerModels.ToList());
+                    ManifacturerModels = importThermalUnits.
+                        Where(x => x.ModelloCaldaia != string.Empty).
+                        GroupBy(x => new { x.Marca, x.ModelloCaldaia }).
+                        Select(grp => new ManifacturerModel
+                        {
+                            ManifacturerID = Manifacturers.Where(mm => mm.Name == grp.Key.Marca).First().ID,
+                            Manifacturer = Manifacturers.Where(mm => mm.Name == grp.Key.Marca).First(),
+                            Model = grp.First().ModelloCaldaia
+                        }).
+                            ToList();
                     _context.ManifacturerModels.AddRange(ManifacturerModels);
 
-                    _context.SaveChanges();
+                    //_context.SaveChanges();
 
                     foreach (PlantImport pi in importPlants)
                     {
@@ -153,35 +170,72 @@ namespace Heat
                         newPlant.PlantClass = PlantClasses.Where(x => x.Name == pi.ClasseImpianto).SingleOrDefault();
 
                         newPlant.Code = pi.CodiceImpianto;
+                        newPlant.Name = pi.Nominativo;
                         newPlant.PlantDistinctCode = pi.CodImpProvincia;
 
                         ThermalUnit currentThermalUnit;
-                        currentThermalUnit = importThermalUnits.Where(x => x.CodiceImpianto == newPlant.Code).Select(x => new ThermalUnit
-                        {
-                            FirstStartUp = x.DataPrimaAccensione ,
-                            Fuel = _context.Fuels.Where(f => f.Name == pi.Combustibile).FirstOrDefault(),
-                            Kind = ThermalUnitKindEnum.SingleThermalUnit,
-                            Manifacturer = Manifacturers.Where(m => m.Name == x.Marca).First(),
-                            Model = ManifacturerModels.Where(mm => mm.Manifacturer.Name == x.Marca && mm.Model == x.ModelloCaldaia).FirstOrDefault(),
-                            NominalThermalPowerMax = x.PotenzaMassimaBruciatore,
-                            SerialNumber = x.MatricolaCaldaia,
-                            ThermalEfficiencyPowerMax = x.Rendimento,
-                            Warranty = x.DescrizioneGaranzia,
-                            InstallationDate = x.DataInstallazione, 
-                            HeatTransferFluidID = 1
-                        }).FirstOrDefault();
+                        List<ThermalUnitImport> currentRows = importThermalUnits.Where(x => x.CodiceImpianto == newPlant.Code).ToList();
 
-                        newPlant.ThermalUnit = currentThermalUnit;
+                        currentThermalUnit = new ThermalUnit();
+
+                        if (currentRows.Count == 1)
+                        {
+                            currentThermalUnit.FirstStartUp = currentRows[0].DataPrimaAccensione;
+                            if (Fuels.Where(x => x.Name == pi.Combustibile).FirstOrDefault() != null)
+                            {
+                                currentThermalUnit.Fuel = Fuels.Where(x => x.Name == pi.Combustibile).FirstOrDefault();
+                            }
+                            else
+                            {
+                                currentThermalUnit.Fuel = Fuels.Where(x => x.Name.ToUpper() == "METANO").First();
+                            }
+                            currentThermalUnit.Kind = ThermalUnitKindEnum.SingleThermalUnit;
+                            currentThermalUnit.Manifacturer = Manifacturers.Where(m => m.Name == currentRows[0].Marca).First();
+                            currentThermalUnit.Model = ManifacturerModels.Where(mm => mm.Manifacturer.Name == currentRows[0].Marca && mm.Model == currentRows[0].ModelloCaldaia).FirstOrDefault();
+                            currentThermalUnit.NominalThermalPowerMax = currentRows[0].PotenzaMassimaBruciatore;
+                            currentThermalUnit.SerialNumber = currentRows[0].MatricolaCaldaia;
+                            currentThermalUnit.ThermalEfficiencyPowerMax = currentRows[0].Rendimento;
+                            currentThermalUnit.Warranty = currentRows[0].DescrizioneGaranzia;
+                            currentThermalUnit.InstallationDate = currentRows[0].DataInstallazione;
+                            currentThermalUnit.HeatTransferFluidID = 1;
+
+                            newPlant.ThermalUnit = currentThermalUnit;
+                        }
+                        else
+                        {
+                            foreach (var tui in currentRows)
+                            {
+                                Heater heat = new Heater();
+                                if (Fuels.Where(x => x.Name == pi.Combustibile).FirstOrDefault() != null)
+                                {
+                                    heat.Fuel = Fuels.Where(x => x.Name == pi.Combustibile).First();
+                                }
+                                else
+                                {
+                                    heat.Fuel = Fuels.Where(x => x.Name.ToUpper() == "METANO").First();
+                                }
+                                heat.InstallationDate = tui.DataInstallazione;
+                                heat.Manifacturer = Manifacturers.Where(m => m.Name == tui.Marca).First();
+                                heat.MaximumPowerKW = tui.PotenzaMassimaBruciatore;
+                                heat.MinimumPowerKW = tui.PotenzaMinimaBruciatore;
+                                heat.Model = ManifacturerModels.Where(mm => mm.Manifacturer.Name == tui.Marca && mm.Model == tui.ModelloCaldaia).FirstOrDefault();
+                                heat.SerialNumber = tui.MatricolaBruciatore;
+
+                                currentThermalUnit.Heaters.Add(heat);
+                            }
+                        }
                         newPlantList.Add(newPlant);
+
+                        //currentThermalUnit = importThermalUnits.Where(x => x.CodiceImpianto == newPlant.Code).Select(x => new ThermalUnit
+                        //{
+                        ;
                     }
 
                 }
 
-                _context.ThermalUnits.RemoveRange(_context.ThermalUnits.ToList());
 
-                _context.Plants.RemoveRange(_context.Plants.ToList());
                 _context.Plants.AddRange(newPlantList);
-                
+
                 _context.SaveChanges();
                 return true;
             }
@@ -192,6 +246,37 @@ namespace Heat
             }
 
 
+        }
+
+        public bool Contact(string fileContentContacts)
+        {
+            List<Contact> newContacts = new List<Contact>();
+            List<ContactImport> importContact = MapToContactList(fileContentContacts);
+            foreach (var item in importContact )
+            {
+                Contact c = new Contact();
+                c.Address = new Address()
+                {
+                    City = item.Comune,
+                    District = item.Provincia,
+                    PostalCode = item.CAP,
+                    Street = item.Indirizzo,
+                    StreetNumber = item.Civico,
+                    State = "Italia"
+                };
+                c.Email = item.Email;
+                c.Name = item.Nominativo;
+
+                //newContacts.Add(c);
+                Plant plant = _context.Plants.Where(x => x.Code  == item.CodiceImpianto).FirstOrDefault();
+                if (plant != null)
+                {
+                    plant.Contacts.Add(c);
+                }
+            }
+            _context.SaveChanges();
+
+            return true;
         }
 
         private bool PlantFileIsValid(string plantFileText)
@@ -311,7 +396,7 @@ namespace Heat
                     tu.CodiceImpianto = Convert.ToInt32(fields[0]);
                     tu.CodiceProduttoreBruciatore = fields[22];
 
-                    DateTime PrimaAccensione ;
+                    DateTime PrimaAccensione;
                     if (DateTime.TryParse(fields[10], out PrimaAccensione))
                     {
                         tu.DataPrimaAccensione = PrimaAccensione;
@@ -324,7 +409,7 @@ namespace Heat
                     DateTime Installazione;
                     if (DateTime.TryParse(fields[12], out Installazione))
                     {
-                    tu.DataInstallazione = Installazione;
+                        tu.DataInstallazione = Installazione;
                     }
                     else
                     {
@@ -346,6 +431,39 @@ namespace Heat
 
                     result.Add(tu);
                 }
+            }
+            return result;
+        }
+
+        private List<ContactImport> MapToContactList(string fileContent)
+        {
+            List<ContactImport> result = new List<ContactImport>();
+            string[] rows;
+            string[] fields;
+            rows = fileContent.Split(new char[] { '\n' });
+
+            for (int i =1; i< rows.Count()-1; i++)
+            {
+                fields = rows[i].Split(new char[] {';'});
+
+                ContactImport ci = new ContactImport();
+                ci.CAP = fields[6];
+                ci.Civico = fields[4];
+                ci.CodiceImpianto = Convert.ToInt32(fields[14]);
+                ci.Comune = fields[5];
+                ci.Descrizione = fields[0];
+                ci.Email = fields[11];
+                ci.Indirizzo = fields[3];
+                ci.Nominativo = fields[1];
+                ci.PIVA = fields[13];
+                ci.Provincia = fields[7];
+                ci.Ruolo = fields[2];
+                ci.Telefono1 = fields[8];
+                ci.Telefono2 = fields[9];
+                ci.Telefono3 = fields[10];
+
+                result.Add(ci);
+
             }
             return result;
         }

@@ -11,7 +11,7 @@
         },
         columns: [
             { data: "plantDistinctCode" },
-            { data: "Name" },
+            { data: "name" },
             //{ data: "plantclass" },
             //{ data: "planttype" },
             { data: "id" }],

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Importa un file di contatti";
+}
+
+<h2>Import</h2>
+
+@using (Html.BeginForm("import", "Contacts", FormMethod.Post , new { @enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="uploadFileContacts">FileName:</label>
+            <input id="uploadFileContacts" type="file" Name="uploadFileContacts" />
+        </div>
+    </div>
+    <input type="submit" value="Carica contatti" class="btn btn-primary" />
+}

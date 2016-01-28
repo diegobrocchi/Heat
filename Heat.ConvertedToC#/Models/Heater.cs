@@ -20,7 +20,7 @@ namespace Heat.Models
 		public float MinimumPowerKW { get; set; }
 		public float MaximumPowerKW { get; set; }
 
-		public DateTime InstallationDate { get; set; }
+		public DateTime? InstallationDate { get; set; }
 		public string Type { get; set; }
 
 		public int FuelID { get; set; }

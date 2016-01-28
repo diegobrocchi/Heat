@@ -12,11 +12,17 @@ namespace Heat.Controllers
 	{
 
 
-		private HeatDBContext db = new HeatDBContext();
+		private IHeatDBContext _db;
+
+        public PlantClassesController(IHeatDBContext context)
+        {
+            _db = context;
+        }
+
 		// GET: PlantClasses
 		public ActionResult Index()
 		{
-			return View(db.PlantClasses.ToList());
+			return View(_db.PlantClasses.ToList());
 		}
 
 		// GET: PlantClasses/Details/5
@@ -25,7 +31,7 @@ namespace Heat.Controllers
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			PlantClass plantClass = db.PlantClasses.Find(id);
+			PlantClass plantClass = _db.PlantClasses.Find(id);
 			if ((plantClass == null)) {
 				return HttpNotFound();
 			}
@@ -47,8 +53,8 @@ namespace Heat.Controllers
 PlantClass plantClass)
 		{
 			if (ModelState.IsValid) {
-				db.PlantClasses.Add(plantClass);
-				db.SaveChanges();
+				_db.PlantClasses.Add(plantClass);
+				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 			return View(plantClass);
@@ -60,7 +66,7 @@ PlantClass plantClass)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			PlantClass plantClass = db.PlantClasses.Find(id);
+			PlantClass plantClass = _db.PlantClasses.Find(id);
 			if ((plantClass == null)) {
 				return HttpNotFound();
 			}
@@ -76,8 +82,8 @@ PlantClass plantClass)
 PlantClass plantClass)
 		{
 			if (ModelState.IsValid) {
-				db.Entry(plantClass).State = EntityState.Modified;
-				db.SaveChanges();
+				_db.SetModified(plantClass) ;
+				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 			return View(plantClass);
@@ -89,7 +95,7 @@ PlantClass plantClass)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			PlantClass plantClass = db.PlantClasses.Find(id);
+			PlantClass plantClass = _db.PlantClasses.Find(id);
 			if ((plantClass == null)) {
 				return HttpNotFound();
 			}
@@ -102,16 +108,16 @@ PlantClass plantClass)
 		[ValidateAntiForgeryToken()]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			PlantClass plantClass = db.PlantClasses.Find(id);
-			db.PlantClasses.Remove(plantClass);
-			db.SaveChanges();
+			PlantClass plantClass = _db.PlantClasses.Find(id);
+			_db.PlantClasses.Remove(plantClass);
+			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
 
 		protected override void Dispose(bool disposing)
 		{
 			if ((disposing)) {
-				db.Dispose();
+				_db.Dispose();
 			}
 			base.Dispose(disposing);
 		}

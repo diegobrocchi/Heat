@@ -35,15 +35,16 @@ namespace Heat.Controllers
 
 		public ActionResult Index(bool IncludeDisabled = false)
 		{
-			try {
-				IndexCustomerViewModel model = null;
-				model = _mb.GetIndexCustomerViewModel(IncludeDisabled);
+            return View();
+			//try {
+			//	IndexCustomerViewModel model = null;
+			//	model = _mb.GetIndexCustomerViewModel(IncludeDisabled);
 
-				return View(model);
-			} catch (Exception ex) {
-				ViewBag.message = ex.Message;
-				return View("error");
-			}
+			//	return View(model);
+			//} catch (Exception ex) {
+			//	ViewBag.message = ex.Message;
+			//	return View("error");
+			//}
 
 		}
 

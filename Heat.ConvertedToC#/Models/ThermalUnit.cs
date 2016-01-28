@@ -11,6 +11,12 @@ namespace Heat.Models
     /// <remarks></remarks>
     public class ThermalUnit
 	{
+
+        public ThermalUnit()
+        {
+            this.Heaters = new List<Heater>();
+        }
+
 		[Key()]
 		public int ID { get; set; }
 

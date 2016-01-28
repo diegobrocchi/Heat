@@ -34,16 +34,17 @@ namespace Heat.Controllers
 		// GET: Plants
 		public ActionResult Index()
 		{
-			try {
-				List<IndexPlantViewModel> model = null;
+            return View();
+			//try {
+			//	List<IndexPlantViewModel> model = null;
 
-				model = _mb.GetIndexPlantViewModel();
+			//	model = _mb.GetIndexPlantViewModel();
 
-				return View(model);
-			} catch (Exception ex) {
-				ViewBag.message = ex.ToString();
-				return View("error");
-			}
+			//	return View(model);
+			//} catch (Exception ex) {
+			//	ViewBag.message = ex.ToString();
+			//	return View("error");
+			//}
 
 		}
 
@@ -109,10 +110,7 @@ namespace Heat.Controllers
 		public ActionResult AddContact(int ID)
 		{
 			try {
-				if ((ID == null)) {
-					return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-				}
-				//Dim plant As Plant = _db.Plants.Find(plantID)
+				 
 				if (!_db.Plants.Any(p => p.ID == ID)) {
 					return HttpNotFound();
 				}
@@ -491,13 +489,13 @@ Plant plant)
 
 		}
 
-		protected override void Dispose(bool disposing)
-		{
-			if ((disposing)) {
-				_db.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+		//protected override void Dispose(bool disposing)
+		//{
+		//	if ((disposing)) {
+		//		_db.Dispose();
+		//	}
+		//	base.Dispose(disposing);
+		//}
 
 	}
 }

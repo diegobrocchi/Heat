@@ -12,6 +12,10 @@ namespace Heat.ViewModels.Plants
 		[Display(Name = "Nominativo")]
 		public string Name { get; set; }
 
+        [Display(Name = "Ruolo")]
+        public int RoleID { get; set; }
+        public IEnumerable<SelectListItem> RoleList { get; set; }
+
 		[Display(Name = "Tipo contatto")]
 		public int AddressTypeID { get; set; }
 		public IEnumerable<SelectListItem> AddressTypeList { get; set; }

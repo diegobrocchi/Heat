@@ -13,6 +13,11 @@ namespace Heat.Models
 		public string Email { get; set; }
 		public string URL { get; set; }
 
+        public int? RoleID { get; set; }
+        /// <summary>
+        /// Il ruolo che il contatto ha rispetto all'impianto.
+        /// </summary>
+        public virtual PlantRole Role { get; set; }
 
 	}
 }

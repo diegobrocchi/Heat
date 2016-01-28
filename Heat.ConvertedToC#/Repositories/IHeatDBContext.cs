@@ -10,7 +10,7 @@ namespace Heat
 		IDbSet<Address> Addresses { get; set; }
 		IDbSet<AddressType> AddressTypes { get; set; }
 		DbSet<Customer> Customers { get; set; }
-		IDbSet<Contact> Contacts { get; set; }
+		DbSet<Contact> Contacts { get; set; }
 		DbSet<Numbering> Numberings { get; set; }
 		IDbSet<SerialScheme> SerialSchemes { get; set; }
 		IDbSet<CausalWarehouse> CausalWarehouses { get; set; }
@@ -47,6 +47,8 @@ namespace Heat
 		DbSet<ProposedOutBoundCall> ProposedOutboundCalls { get; set; }
         DbSet<AssignedOutboundCall> AssignedOutboundCalls { get; set; }
         DbSet<ProposedCallsGeneration> ProposedCallsGenerations { get; set; }
+
+        DbSet<PlantRole> PlantRoles { get; set; }
 
 		int SaveChanges();
 		void SetModified(object entity);

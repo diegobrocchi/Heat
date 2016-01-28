@@ -19,7 +19,7 @@ namespace Heat.Controllers
 		// GET: CausalWarehouses
 		public ActionResult Index()
 		{
-			var causalWarehouses = _db.CausalWarehouses.Include(c => c.Type);
+			var causalWarehouses = _db.CausalWarehouses;
 			return View(causalWarehouses.ToList());
 		}
 

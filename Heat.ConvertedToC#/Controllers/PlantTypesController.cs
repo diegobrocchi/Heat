@@ -12,11 +12,16 @@ namespace Heat.Controllers
 	{
 
 
-		private HeatDBContext db = new HeatDBContext();
+		private IHeatDBContext _db ;
+        public PlantTypesController(IHeatDBContext context)
+        {
+            _db = context;
+        }
+
 		// GET: PlantTypes
 		public ActionResult Index()
 		{
-			return View(db.PlantTypes.ToList());
+			return View(_db.PlantTypes.ToList());
 		}
 
 		// GET: PlantTypes/Details/5
@@ -25,7 +30,7 @@ namespace Heat.Controllers
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			PlantType plantType = db.PlantTypes.Find(id);
+			PlantType plantType = _db.PlantTypes.Find(id);
 			if ((plantType == null)) {
 				return HttpNotFound();
 			}
@@ -47,8 +52,8 @@ namespace Heat.Controllers
 PlantType plantType)
 		{
 			if (ModelState.IsValid) {
-				db.PlantTypes.Add(plantType);
-				db.SaveChanges();
+				_db.PlantTypes.Add(plantType);
+				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 			return View(plantType);
@@ -60,7 +65,7 @@ PlantType plantType)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			PlantType plantType = db.PlantTypes.Find(id);
+			PlantType plantType = _db.PlantTypes.Find(id);
 			if ((plantType == null)) {
 				return HttpNotFound();
 			}
@@ -76,8 +81,8 @@ PlantType plantType)
 PlantType plantType)
 		{
 			if (ModelState.IsValid) {
-				db.Entry(plantType).State = EntityState.Modified;
-				db.SaveChanges();
+				_db.SetModified(plantType);
+				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
 			return View(plantType);
@@ -89,7 +94,7 @@ PlantType plantType)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			PlantType plantType = db.PlantTypes.Find(id);
+			PlantType plantType = _db.PlantTypes.Find(id);
 			if ((plantType == null)) {
 				return HttpNotFound();
 			}
@@ -102,18 +107,18 @@ PlantType plantType)
 		[ValidateAntiForgeryToken()]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			PlantType plantType = db.PlantTypes.Find(id);
-			db.PlantTypes.Remove(plantType);
-			db.SaveChanges();
+			PlantType plantType = _db.PlantTypes.Find(id);
+			_db.PlantTypes.Remove(plantType);
+			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
 
-		protected override void Dispose(bool disposing)
-		{
-			if ((disposing)) {
-				db.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+		//protected override void Dispose(bool disposing)
+		//{
+		//	if ((disposing)) {
+		//		_db.Dispose();
+		//	}
+		//	base.Dispose(disposing);
+		//}
 	}
 }

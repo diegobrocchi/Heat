@@ -40,7 +40,7 @@ namespace Heat.Repositories
 		public IDbSet<Address> Addresses { get; set; }
 			
 		public IDbSet<AddressType> AddressTypes { get; set; }
-		public IDbSet<Contact> Contacts { get; set; }
+		public DbSet<Contact> Contacts { get; set; }
 
 		public DbSet<Plant> Plants { get; set; }
 		public DbSet<PlantType> PlantTypes { get; set; }
@@ -81,6 +81,8 @@ namespace Heat.Repositories
 
         public IDbSet<WarehouseMovement> WarehouseMovements { get; set; }
         
+        public DbSet<PlantRole> PlantRoles { get; set; }
+
         public IDbSet<Seller> Sellers { get; set; }
 
         public override int SaveChanges()

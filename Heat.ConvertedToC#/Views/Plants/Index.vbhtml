@@ -17,14 +17,14 @@ End Code
             <th>Nome</th>
             @*<th>Classe</th>
             <th>Tipo</th>*@
-            <th><a href="@Url.Action("create")" class=" btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th>
+            <th><a href="@Url.Action("create")" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" /></a> </th>
         </tr>
 
     </thead>
     <tbody></tbody>
     </table> 
 
-<table id="tblPagedPlantsXXX" class="table table-bordered table-hover table-striped">
+@*<table id="tblPagedPlantsXXX" class="table table-bordered table-hover table-striped">
     <thead >
         <tr>
             <th>
@@ -77,7 +77,7 @@ Next
 
    
 
-</table>
+</table>*@
 
 
 @section scripts
