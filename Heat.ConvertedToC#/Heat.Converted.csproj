@@ -1440,7 +1440,6 @@
     <Content Include="Views\CausalDocuments\Details.vbhtml" />
     <Content Include="Views\CausalDocuments\Edit.vbhtml" />
     <Content Include="Views\CausalDocuments\Index.vbhtml" />
-    <Content Include="Views\Customers\Create.vbhtml" />
     <Content Include="Views\Customers\Delete.vbhtml" />
     <Content Include="Views\Customers\Details.vbhtml" />
     <Content Include="Views\Customers\DisableCustomer.vbhtml" />
@@ -1552,6 +1551,7 @@
     <Content Include="Views\PlantServices\Index.vbhtml" />
     <Content Include="Views\Plants\AddAnotherContact.vbhtml" />
     <Content Include="Views\Contacts\Import.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
     <None Include="Views\Plants\AddContact.vbhtml.remove" />
     <Content Include="Views\Plants\AddMedium.vbhtml" />
     <Content Include="Views\Plants\AddThermInfo.vbhtml" />

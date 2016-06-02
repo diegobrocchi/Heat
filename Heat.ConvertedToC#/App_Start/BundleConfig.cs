@@ -31,7 +31,7 @@ namespace Heat
                 "~/Content/dataTables.bootstrap.css"));
 
 
-			BundleTable.EnableOptimizations = true;
+			BundleTable.EnableOptimizations = false;
 
 		}
 	}
