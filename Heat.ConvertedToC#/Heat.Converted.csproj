@@ -1358,6 +1358,8 @@
     <Content Include="Scripts\globalize\relative-time.js" />
     <Content Include="Scripts\Heat.Globalize.js" />
     <Content Include="Scripts\Heat.js" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
