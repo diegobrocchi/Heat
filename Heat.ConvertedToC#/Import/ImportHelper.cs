@@ -102,15 +102,15 @@ namespace Heat
                 if (PlantFileIsValid(fileContentPlants) && ThermalUnitFileIsValid(fileContentThermalUnits))
                 {
                     //elimino il pre-esistente
-                    _context.ManifacturerModels.RemoveRange(_context.ManifacturerModels.ToList());
-                    _context.Manifacturers.RemoveRange(_context.Manifacturers.ToList());
-                    _context.ThermalUnits.RemoveRange(_context.ThermalUnits.ToList());
-                    _context.Plants.RemoveRange(_context.Plants.ToList());
-                    _context.Fuels.RemoveRange(_context.Fuels.ToList());
-                    _context.PlantTypes.RemoveRange(_context.PlantTypes.ToList());
-                    _context.PlantClasses.RemoveRange(_context.PlantClasses.ToList());
-
-                    //_context.SaveChanges();
+                    _context.Media.RemoveRange(_context.Media);
+                    _context.Contacts.RemoveRange(_context.Contacts);
+                    _context.ManifacturerModels.RemoveRange(_context.ManifacturerModels);
+                    _context.Manifacturers.RemoveRange(_context.Manifacturers);
+                    _context.ThermalUnits.RemoveRange(_context.ThermalUnits);
+                    _context.Plants.RemoveRange(_context.Plants);
+                    _context.Fuels.RemoveRange(_context.Fuels);
+                    _context.PlantTypes.RemoveRange(_context.PlantTypes);
+                    _context.PlantClasses.RemoveRange(_context.PlantClasses);
 
                     importPlants = MapToPlantList(fileContentPlants);
                     importThermalUnits = MapToThermalUnitList(fileContentThermalUnits);
@@ -134,7 +134,6 @@ namespace Heat
                     List<Manifacturer> Manifacturers;
                     Manifacturers = importThermalUnits.GroupBy(x => x.Marca).Select(grp => new Manifacturer { Name = grp.First().Marca }).ToList();
                     _context.Manifacturers.AddRange(Manifacturers);
-                    //_context.SaveChanges();
 
                     //aggiungo tutti i ManifacturerModels
                     List<ManifacturerModel> ManifacturerModels;
@@ -150,8 +149,6 @@ namespace Heat
                         }).
                             ToList();
                     _context.ManifacturerModels.AddRange(ManifacturerModels);
-
-                    //_context.SaveChanges();
 
                     foreach (PlantImport pi in importPlants)
                     {
@@ -172,6 +169,18 @@ namespace Heat
                         newPlant.Code = pi.CodiceImpianto;
                         newPlant.Name = pi.Nominativo;
                         newPlant.PlantDistinctCode = pi.CodImpProvincia;
+
+                        Contact newContact = new Models.Contact();
+                        newContact.Address = new Address();
+                        newContact.Name = pi.Nominativo;
+                        newContact.Address.AddressTypeID = 2;
+                        newContact.Address.Street = pi.IndirizzoImpianto;
+                        newContact.Address.StreetNumber = pi.NumeroCivico;
+                        newContact.Address.City = pi.Comune;
+                        newContact.Phone = pi.Telefono1 + " - " + pi.Telefono3;
+                        newContact.CellPhone = pi.Telefono2;
+
+                        newPlant.Contacts.Add(newContact);
 
                         ThermalUnit currentThermalUnit;
                         List<ThermalUnitImport> currentRows = importThermalUnits.Where(x => x.CodiceImpianto == newPlant.Code).ToList();
@@ -225,14 +234,8 @@ namespace Heat
                             }
                         }
                         newPlantList.Add(newPlant);
-
-                        //currentThermalUnit = importThermalUnits.Where(x => x.CodiceImpianto == newPlant.Code).Select(x => new ThermalUnit
-                        //{
-                        ;
                     }
-
                 }
-
 
                 _context.Plants.AddRange(newPlantList);
 
@@ -262,7 +265,9 @@ namespace Heat
                     PostalCode = item.CAP,
                     Street = item.Indirizzo,
                     StreetNumber = item.Civico,
-                    State = "Italia"
+                    State = "Italia",
+                    AddressTypeID = 2
+                    
                 };
                 c.Email = item.Email;
                 c.Name = item.Nominativo;

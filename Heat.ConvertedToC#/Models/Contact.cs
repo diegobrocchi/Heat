@@ -2,6 +2,10 @@ namespace Heat.Models
 {
     public class Contact
 	{
+        public Contact()
+        {
+            //this.Address = new Address();
+        }
 
 		public int ID { get; set; }
 

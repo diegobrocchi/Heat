@@ -41,7 +41,7 @@ namespace Heat
 		DbSet<ThermalUnit> ThermalUnits { get; set; }
 		DbSet<Fuel> Fuels { get; set; }
 		IDbSet<Heater> Heaters { get; set; }
-		IDbSet<Medium> Media { get; set; }
+		DbSet<Medium> Media { get; set; }
 		IDbSet<OutboundCall> OutboundCalls { get; set; }
 
 		DbSet<ProposedOutBoundCall> ProposedOutboundCalls { get; set; }

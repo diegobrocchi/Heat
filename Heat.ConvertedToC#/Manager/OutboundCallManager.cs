@@ -36,14 +36,14 @@ namespace Heat.Manager
             IQueryable<Plant> expiringServicePlants = null;
 
             //cancella tutte le chiamate proposte all'utente pre-esistenti 
-            
             _db.ProposedOutboundCalls.RemoveRange(_db.ProposedOutboundCalls.Where(x => x.User == criteria.Login));
-            _db.SaveChanges();
+            //_db.SaveChanges();
 
             //cerca gli impianti con la manutenzione scaduta o in scadenza nei prossimi X giorni
             //esclude gli impianti che abbiano una data di manutenzione fissata nel futuro
             System.DateTime stopDate = DateTime.Now.AddDays(criteria.DaysInFuture);
-            expiringServicePlants = _db.Plants.Where(plant => plant.Service.LegalExpirationDate <= stopDate || plant.Service.PlannedServiceDate < DateTime.Now);
+
+            expiringServicePlants = _db.Plants.Include(x=> x.Service).Where(plant => plant.Service.LegalExpirationDate <= stopDate || plant.Service.PlannedServiceDate < DateTime.Now);
 
             //esclude quelli per i quali sono già assegnate chiamate
             IQueryable<Plant> notPendingCallPlants;
@@ -89,23 +89,11 @@ namespace Heat.Manager
 
             result.Calls  = tempResult.Select(x => new ProposedOutBoundCall
             {
+                 
                 PlantID = x.PlantID,
                 User = x.User
                 //Contacts = x.Contacts 
             }).ToList();
-
-            //ProposedCallsGeneration generation = new ProposedCallsGeneration(criteria.Login );
-            //generation.Calls = result;
-            
-           
-            //viewResult = tempResult.Select(x => new ProposedOutboundCallsGridViewModel
-            //    {
-            //        Address = x.Address,
-            //        City = x.City,
-            //        ContactName = x.ContactName,
-            //        MainPhoneNumber = x.MainPhoneNumber,
-            //        PlantRegionalID = x.PlantRegionalID
-            //    }).ToList();
 
             _db.ProposedOutboundCalls.AddRange(result.Calls );
             _db.ProposedCallsGenerations.Add(result );
@@ -185,6 +173,25 @@ namespace Heat.Manager
             }
 
             return result;
+        }
+
+        public void ConfirmProposedCalls(int generationID)
+        {
+            //cerca le chiamate proposte
+            var proposedCalls = _db.ProposedCallsGenerations.Include(x=> x.Calls.Select(c=> c.Plant )).Where(x => x.ID == generationID).Single().Calls;
+            
+            foreach (var call in proposedCalls )
+            {
+                AssignedOutboundCall target = new AssignedOutboundCall();
+                target.AssignmentDate = DateTime.Now;
+                target.ContactName = call.Plant.Name;
+                target.User = call.User;
+
+                _db.AssignedOutboundCalls.Add(target);
+            }
+
+            _db.SaveChanges();
+
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Heat.Repositories
 		public IDbSet<Heater> Heaters { get; set; }
 		public IDbSet<Models.PlantService> PlantServices { get; set; }
 
-		public IDbSet<Medium> Media { get; set; }
+		public DbSet<Medium> Media { get; set; }
 		public IDbSet<OutboundCall> OutboundCalls { get; set; }
 		public  DbSet<ProposedOutBoundCall> ProposedOutboundCalls { get; set; }
         public  DbSet<AssignedOutboundCall> AssignedOutboundCalls { get; set; }

@@ -101,7 +101,8 @@ namespace Heat.Controllers
         {
             try
             {
-
+                //conferma le chiamate proposte identificate dall'ID 'ProposedGenerationID'
+                _ocm.ConfirmProposedCalls(ProposedGenerationID);
                 return RedirectToAction("index");
             }
             catch (Exception ex)

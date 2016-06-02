@@ -11,6 +11,12 @@ namespace Heat.Models
     /// </summary>
     public class ProposedCallsGeneration
     {
+
+        public ProposedCallsGeneration()
+        {
+
+        }
+
         public ProposedCallsGeneration(string user)
         {
             User = user;

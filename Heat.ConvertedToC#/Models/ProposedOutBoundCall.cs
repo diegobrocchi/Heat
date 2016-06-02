@@ -7,7 +7,7 @@ namespace Heat.Models
     /// </summary>
     public class ProposedOutBoundCall
 	{
-
+       
 		public int ID { get; set; }
 		/// <summary>
 		/// L'utente Heat a cui è stata proposta la chiamata.

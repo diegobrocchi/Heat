@@ -40,11 +40,24 @@ namespace Heat
             ProposedOutboundCallsViewModel result = new ProposedOutboundCallsViewModel();
             ProposedCallsGeneration generation = _ocm.GetNextOutboundCallSet(criteria);
 
-            result.User = criteria.Login ;
+            result.User = criteria.Login;
             result.ProposedGenerationID = generation.ID;
             result.GenerationDate = generation.GenerationDate;
-            result.Calls = Mapper.Map<List<ProposedOutboundCallsGridViewModel>>(generation.Calls);
-            //int res = _ocm.GetNextOutboundCallSet(criteria);
+            result.Calls = new List<ProposedOutboundCallsGridViewModel>();
+
+            foreach (var item in generation.Calls)
+            {
+                var associatedPlant = _db.Plants.Include(x=> x.Contacts).Where(x => x.ID == item.PlantID).Single();
+                    result.Calls.Add(new ProposedOutboundCallsGridViewModel()
+                {
+                    Address = associatedPlant.BuildingAddress.Address,
+                    City = associatedPlant.BuildingAddress.City,
+                    ContactName = associatedPlant.Name,
+                    MainPhoneNumber = associatedPlant.Contacts.FirstOrDefault().Phone ,
+                    PlantRegionalID = associatedPlant.PlantDistinctCode
+                });
+            }
+            //result.Calls = Mapper.Map<List<ProposedOutboundCallsGridViewModel>>(generation.Calls);
             return result;
 
         }
@@ -63,7 +76,7 @@ namespace Heat
         }
 
 
-        public CriteriaViewModel  GetCriteriaViewModel()
+        public CriteriaViewModel GetCriteriaViewModel()
         {
             CriteriaViewModel result = new CriteriaViewModel();
             List<string> caps;
@@ -71,12 +84,12 @@ namespace Heat
             List<string> plantClasses;
             List<string> plantTypes;
 
-            caps = _db.Addresses.Select(selector =>  selector.PostalCode ).Distinct().ToList();
+            caps = _db.Addresses.Select(selector => selector.PostalCode).Distinct().ToList();
             cities = _db.Addresses.Select(selector => selector.City).Distinct().ToList();
             plantClasses = _db.PlantClasses.Select(selector => selector.Name).ToList();
             plantTypes = _db.PlantTypes.Select(selector => selector.Name).ToList();
 
-            result.CAPList = caps.ToSelectListItems(x => x  , x => x,"_ALLVALUES",  true, "_ALLVALUES", " - tutti i CAP - ");
+            result.CAPList = caps.ToSelectListItems(x => x, x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti i CAP - ");
             result.CityList = cities.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutte le città - ");
             result.PlantClassList = plantClasses.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti le classi impianto - ");
             result.PlantTypeList = plantTypes.ToSelectListItems(x => x.ToUpper(), x => x, "_ALLVALUES", true, "_ALLVALUES", " - tutti i tipi impianto - ");

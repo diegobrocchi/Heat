@@ -8,22 +8,22 @@ namespace Heat
 
 		public static void RegisterBundles(BundleCollection bundles)
 		{
-			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js", 
-                "~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.js", 
-                "~/Scripts/dataTables.bootstrap.js"));
+			bundles.Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/jquery-{version}.js") 
+                .Include("~/Scripts/DataTables-1.10.5/media/js/jquery.dataTables.js") 
+                .Include("~/Scripts/dataTables.bootstrap.js"));
 
-			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/scripts/jquery.validate.js", 
-                "~/scripts/jquery.validate.unobtrusive.js"));
+			bundles.Add(new ScriptBundle("~/bundles/jqueryval")
+                .Include("~/scripts/jquery.validate.js")
+                .Include("~/scripts/jquery.validate.unobtrusive.js"));
 
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're
 			// ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-{version}.js"));
 
-			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js", 
-                "~/Scripts/respond.js"));
+			bundles.Add(new ScriptBundle("~/bundles/bootstrap")
+                .Include("~/Scripts/bootstrap.js") 
+                .Include("~/Scripts/respond.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css", 
