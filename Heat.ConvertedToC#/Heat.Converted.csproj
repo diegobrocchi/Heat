@@ -228,6 +228,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DescriptiveInvoiceRowsController.cs" />
     <Compile Include="Controllers\DocumentTypesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FuelsController.cs" />
     <Compile Include="Controllers\HeatersController.cs" />
     <Compile Include="Controllers\HeatTransferFluidsController.cs" />
@@ -476,6 +477,7 @@
     <Compile Include="ViewModels\Plants\DetailsPlantViewModel.cs" />
     <Compile Include="ViewModels\Plants\DetailsServicePlantViewModel.cs" />
     <Compile Include="ViewModels\Plants\DetailsThermalPlantViewModel.cs" />
+    <Compile Include="ViewModels\Plants\EditPlantViewModel.cs" />
     <Compile Include="ViewModels\Plants\IndexDataTablePlantViewModel.cs" />
     <Compile Include="ViewModels\Plants\IndexPlantViewModel.cs" />
     <Compile Include="ViewModels\Plants\ManagePlantViewModel.cs" />
@@ -1552,13 +1554,18 @@
     <Content Include="Views\Plants\AddAnotherContact.vbhtml" />
     <Content Include="Views\Contacts\Import.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
-    <None Include="Views\Plants\AddContact.vbhtml.remove" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\Error\MethodNotAllowed.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
     <Content Include="Views\Plants\AddMedium.vbhtml" />
     <Content Include="Views\Plants\AddThermInfo.vbhtml" />
     <Content Include="Views\Plants\Create.vbhtml" />
     <Content Include="Views\Plants\Delete.vbhtml" />
     <Content Include="Views\Plants\Details.vbhtml" />
-    <Content Include="Views\Plants\Edit.vbhtml" />
+    <None Include="Views\Plants\Edit.vbhtm.removel" />
     <Content Include="Views\Plants\Index.vbhtml" />
     <Content Include="Views\Plants\Manage.vbhtml" />
     <Content Include="Views\Plants\Partials\_DetailsContacts.vbhtml" />
@@ -1646,6 +1653,7 @@
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Plants\AddContact.cshtml" />
+    <Content Include="Views\Plants\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1683,7 +1691,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Mamage\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />

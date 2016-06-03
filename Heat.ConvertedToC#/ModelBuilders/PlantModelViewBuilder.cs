@@ -192,5 +192,17 @@ namespace Heat
 
             return result;
         }
+
+        public EditPlantViewModel GetEditPlantViewModel(int id)
+        {
+            EditPlantViewModel result = new EditPlantViewModel();
+            Plant p = _db.Plants.Find(id);
+            result.ID = id;
+            result.Name = p.Name;
+
+            return result;
+
+            
+        }
     }
 }

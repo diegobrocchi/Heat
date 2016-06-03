@@ -93,7 +93,7 @@ namespace Heat.Controllers
 					_db.Plants.Add(p);
 					_db.SaveChanges();
 					//dopo aver salvato i dati dell'ubicazione passo ai dati del contatto
-					return RedirectToAction("AddContact", new { plantID = p.ID });
+					return RedirectToAction("AddContact", new { ID = p.ID });
 				} else {
 					//il modello non è valido
 					return View(newPlant);
@@ -115,12 +115,11 @@ namespace Heat.Controllers
 					return HttpNotFound();
 				}
 
-				AddContactPlantViewModel model = null;
-
-				model = _mb.GetAddContactPlantViewModel(ID);
+				AddContactPlantViewModel model = _mb.GetAddContactPlantViewModel(ID);
 				return View(model);
 
-			} catch (Exception ex) {
+			}
+            catch (Exception ex) {
 				ViewBag.message = ex.ToString();
 				return View("error");
 			}
@@ -273,13 +272,13 @@ namespace Heat.Controllers
 		public ActionResult Edit(int? id)
 		{
 			if ((id == null)) {
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("BadRequest", "error");
 			}
 			Plant plant = _db.Plants.Find(id);
 			if ((plant == null)) {
-				return HttpNotFound();
+				return RedirectToAction("NotFound", "error");
 			}
-			return View(plant);
+			return View(_mb.GetEditPlantViewModel(id.Value));
 		}
 
 		// POST: Plants/Edit/5

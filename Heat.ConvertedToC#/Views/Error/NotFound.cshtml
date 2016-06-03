@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Pagina non trovata";
+    ViewBag.Description = "Mi dispiace, ma la pagina che stai cercando non esiste";
+}
+
+<div class="jumbotron text-center">
+    <header>
+        <h1><span aria-hidden="true" class="fa fa-exclamation-circle text-danger"></span> @ViewBag.Title</h1>
+    </header>
+    <p>@ViewBag.Description</p>
+    <a class="btn btn-primary btn-lg" href="@Url.Action("index", "home")"><span aria-hidden="true" class="fa fa-home"></span>Vai alla homepage</a>
+</div>

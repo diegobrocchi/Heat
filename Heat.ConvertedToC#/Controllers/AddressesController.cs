@@ -9,23 +9,19 @@ namespace Heat.Controllers
 {
     public class AddressesController : System.Web.Mvc.Controller
 	{
-
-
-		private HeatDBContext db = new HeatDBContext();
-		// GET: Addresses
-		public ActionResult Index()
-		{
-			var address = db.Addresses.Include(a => a.AddressType);
-			return View(address.ToList());
-		}
-
+        private IHeatDBContext _db;
+        public AddressesController(IHeatDBContext context)
+        {
+            _db = context;
+        }
+		
 		// GET: Addresses/Details/5
 		public ActionResult Details(int? id)
 		{
 			if ((id == null)) {
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+				return RedirectToAction("badRequest", "error");
 			}
-			Address address = db.Addresses.Find(id);
+			Address address = _db.Addresses.Find(id);
 			if ((address == null)) {
 				return HttpNotFound();
 			}
@@ -35,7 +31,7 @@ namespace Heat.Controllers
 		// GET: Addresses/Create
 		public ActionResult Create()
 		{
-			ViewBag.AddressTypeID = new SelectList(db.AddressTypes, "ID", "Description");
+			ViewBag.AddressTypeID = new SelectList(_db.AddressTypes, "ID", "Description");
 			return View();
 		}
 
@@ -54,11 +50,11 @@ namespace Heat.Controllers
 Address address)
 		{
 			if (ModelState.IsValid) {
-				db.Addresses.Add(address);
-				db.SaveChanges();
+				_db.Addresses.Add(address);
+				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
-			ViewBag.AddressTypeID = new SelectList(db.AddressTypes, "ID", "Description", address.AddressTypeID);
+			ViewBag.AddressTypeID = new SelectList(_db.AddressTypes, "ID", "Description", address.AddressTypeID);
 			return View(address);
 		}
 
@@ -68,11 +64,11 @@ Address address)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Address address = db.Addresses.Find(id);
+			Address address = _db.Addresses.Find(id);
 			if ((address == null)) {
 				return HttpNotFound();
 			}
-			ViewBag.AddressTypeID = new SelectList(db.AddressTypes, "ID", "Description", address.AddressTypeID);
+			ViewBag.AddressTypeID = new SelectList(_db.AddressTypes, "ID", "Description", address.AddressTypeID);
 			return View(address);
 		}
 
@@ -85,11 +81,11 @@ Address address)
 Address address)
 		{
 			if (ModelState.IsValid) {
-				db.Entry(address).State = EntityState.Modified;
-				db.SaveChanges();
+				_db.SetModified(address);
+				_db.SaveChanges();
 				return RedirectToAction("Index");
 			}
-			ViewBag.AddressTypeID = new SelectList(db.AddressTypes, "ID", "Description", address.AddressTypeID);
+			ViewBag.AddressTypeID = new SelectList(_db.AddressTypes, "ID", "Description", address.AddressTypeID);
 			return View(address);
 		}
 
@@ -99,7 +95,7 @@ Address address)
 			if ((id == null)) {
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			Address address = db.Addresses.Find(id);
+			Address address = _db.Addresses.Find(id);
 			if ((address == null)) {
 				return HttpNotFound();
 			}
@@ -112,16 +108,16 @@ Address address)
 		[ValidateAntiForgeryToken()]
 		public ActionResult DeleteConfirmed(int id)
 		{
-			Address address = db.Addresses.Find(id);
-			db.Addresses.Remove(address);
-			db.SaveChanges();
+			Address address = _db.Addresses.Find(id);
+			_db.Addresses.Remove(address);
+			_db.SaveChanges();
 			return RedirectToAction("Index");
 		}
 
 		protected override void Dispose(bool disposing)
 		{
 			if ((disposing)) {
-				db.Dispose();
+				_db.Dispose();
 			}
 			base.Dispose(disposing);
 		}
